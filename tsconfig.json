@@ -1,0 +1,17 @@
+{
+    "extends": "@myfancy/tsconfig/base.json",
+    "compilerOptions": {
+        "strictNullChecks": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "target": "ES5"
+    },
+    "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+    "exclude": [
+        "node_modules",
+        "**/*.stories.ts",
+        "**/*.stories.js",
+        "**/*.stories.jsx",
+        "**/*.stories.tsx"
+    ]
+}
