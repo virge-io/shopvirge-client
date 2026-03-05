@@ -1,13 +1,13 @@
-# @virge/shopvirge-client
+# @shopvirge/shopvirge-client
 
 Auto-generated TypeScript API client for the [ShopVirge](https://api.shopvirge.com) API, built from the OpenAPI spec using [@hey-api/openapi-ts](https://github.com/hey-api/openapi-ts).
 
 ## Installation
 
 ```bash
-npm install @virge/shopvirge-client
+npm install @shopvirge/shopvirge-client
 # or
-yarn add @virge/shopvirge-client
+yarn add @shopvirge/shopvirge-client
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ yarn add @virge/shopvirge-client
 Before making any API calls, set the `BASE` URL on the exported `OpenAPI` config object:
 
 ```ts
-import { OpenAPI } from '@virge/shopvirge-client';
+import { OpenAPI } from '@shopvirge/shopvirge-client';
 
 OpenAPI.BASE = 'https://api.shopvirge.com';
 ```
@@ -27,7 +27,7 @@ OpenAPI.BASE = 'https://api.shopvirge.com';
 You can configure authentication by setting `TOKEN` or `HEADERS`:
 
 ```ts
-import { OpenAPI } from '@virge/shopvirge-client';
+import { OpenAPI } from '@shopvirge/shopvirge-client';
 
 // Bearer token
 OpenAPI.TOKEN = 'your-access-token';
@@ -43,7 +43,7 @@ OpenAPI.HEADERS = {
 Once configured, use the generated service functions to interact with the API:
 
 ```ts
-import { OpenAPI, ShopsService } from '@virge/shopvirge-client';
+import { OpenAPI, ShopsService } from '@shopvirge/shopvirge-client';
 
 OpenAPI.BASE = 'https://api.shopvirge.com';
 
@@ -70,7 +70,7 @@ All properties on the `OpenAPI` config object can be overridden:
 You can add interceptors to modify requests or responses:
 
 ```ts
-import { OpenAPI } from '@virge/shopvirge-client';
+import { OpenAPI } from '@shopvirge/shopvirge-client';
 
 OpenAPI.interceptors.request.use((request) => {
     console.log('Request:', request);
