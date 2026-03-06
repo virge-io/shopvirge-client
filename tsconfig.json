@@ -1,5 +1,5 @@
 {
-    "extends": "@myfancy/tsconfig/base.json",
+    "extends": "@shopvirge/tsconfig/base.json",
     "compilerOptions": {
         "strictNullChecks": true,
         "rootDir": "./src",
