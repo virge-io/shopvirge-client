@@ -1057,6 +1057,35 @@ export const $ConfigurationLanguages_Output = {
     title: 'ConfigurationLanguages',
 } as const;
 
+export const $ConfigurationLegal = {
+    properties: {
+        kvk_number: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Kvk Number',
+        },
+        btw_number: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Btw Number',
+        },
+    },
+    type: 'object',
+    title: 'ConfigurationLegal',
+} as const;
+
 export const $ConfigurationV1_Input = {
     properties: {
         short_shop_name: {
@@ -1117,6 +1146,16 @@ export const $ConfigurationV1_Input = {
         },
         toggles: {
             $ref: '#/components/schemas/Toggles',
+        },
+        legal: {
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/ConfigurationLegal',
+                },
+                {
+                    type: 'null',
+                },
+            ],
         },
     },
     type: 'object',
@@ -1191,6 +1230,16 @@ export const $ConfigurationV1_Output = {
         },
         toggles: {
             $ref: '#/components/schemas/Toggles',
+        },
+        legal: {
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/ConfigurationLegal',
+                },
+                {
+                    type: 'null',
+                },
+            ],
         },
     },
     type: 'object',

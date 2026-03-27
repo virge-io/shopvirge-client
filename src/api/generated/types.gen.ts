@@ -247,6 +247,11 @@ export type ConfigurationLanguages_Output = {
     alt2?: ConfigurationLanguageFields | null;
 };
 
+export type ConfigurationLegal = {
+    kvk_number?: string | null;
+    btw_number?: string | null;
+};
+
 export type ConfigurationV1_Input = {
     short_shop_name: string;
     logo: string;
@@ -258,6 +263,7 @@ export type ConfigurationV1_Input = {
     google_analytics_id?: string | null;
     contact: ConfigurationContact;
     toggles: Toggles;
+    legal?: ConfigurationLegal | null;
 };
 
 export type ConfigurationV1_Output = {
@@ -271,6 +277,7 @@ export type ConfigurationV1_Output = {
     google_analytics_id?: string | null;
     contact: ConfigurationContact;
     toggles: Toggles;
+    legal?: ConfigurationLegal | null;
 };
 
 export type DefaultPrice = {
@@ -1470,23 +1477,6 @@ export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
 export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse =
     Array<ProductWithAttributes>;
 
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData =
-    {
-        productId: string;
-        shopId: string;
-    };
-
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse =
-    ProductWithAttributes;
-
-export type GetByIdShopsShopIdProductsProductIdGetData = {
-    productId: string;
-    shopId: string;
-};
-
-export type GetByIdShopsShopIdProductsProductIdGetResponse =
-    ProductWithDetailsAndPrices;
-
 export type UpdateShopsShopIdProductsProductIdPutData = {
     productId: string;
     requestBody: ProductUpdate;
@@ -1502,6 +1492,14 @@ export type DeleteShopsShopIdProductsProductIdDeleteData = {
 
 export type DeleteShopsShopIdProductsProductIdDeleteResponse = void;
 
+export type GetByIdShopsShopIdProductsProductIdGetData = {
+    productId: string;
+    shopId: string;
+};
+
+export type GetByIdShopsShopIdProductsProductIdGetResponse =
+    ProductWithDetailsAndPrices;
+
 export type SwapShopsShopIdProductsProductIdSwapPutData = {
     moveUp: boolean;
     productId: string;
@@ -1509,6 +1507,15 @@ export type SwapShopsShopIdProductsProductIdSwapPutData = {
 };
 
 export type SwapShopsShopIdProductsProductIdSwapPutResponse = unknown;
+
+export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData =
+    {
+        productId: string;
+        shopId: string;
+    };
+
+export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse =
+    ProductWithAttributes;
 
 export type GetMultiShopsShopIdProductsToTagsGetData = {
     /**
@@ -2883,35 +2890,7 @@ export type $OpenApiTs = {
             };
         };
     };
-    '/shops/{shop_id}/products/{product_id}/with_attributes': {
-        get: {
-            req: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData;
-            res: {
-                /**
-                 * Successful Response
-                 */
-                200: ProductWithAttributes;
-                /**
-                 * Validation Error
-                 */
-                422: HTTPValidationError;
-            };
-        };
-    };
     '/shops/{shop_id}/products/{product_id}': {
-        get: {
-            req: GetByIdShopsShopIdProductsProductIdGetData;
-            res: {
-                /**
-                 * Successful Response
-                 */
-                200: ProductWithDetailsAndPrices;
-                /**
-                 * Validation Error
-                 */
-                422: HTTPValidationError;
-            };
-        };
         put: {
             req: UpdateShopsShopIdProductsProductIdPutData;
             res: {
@@ -2938,6 +2917,19 @@ export type $OpenApiTs = {
                 422: HTTPValidationError;
             };
         };
+        get: {
+            req: GetByIdShopsShopIdProductsProductIdGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: ProductWithDetailsAndPrices;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
     };
     '/shops/{shop_id}/products/{product_id}/swap': {
         put: {
@@ -2947,6 +2939,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 201: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/products/{product_id}/with_attributes': {
+        get: {
+            req: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: ProductWithAttributes;
                 /**
                  * Validation Error
                  */

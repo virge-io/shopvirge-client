@@ -126,16 +126,16 @@ import type {
     CreateShopsShopIdProductsPostResponse,
     GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData,
     GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse,
-    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
-    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse,
-    GetByIdShopsShopIdProductsProductIdGetData,
-    GetByIdShopsShopIdProductsProductIdGetResponse,
     UpdateShopsShopIdProductsProductIdPutData,
     UpdateShopsShopIdProductsProductIdPutResponse,
     DeleteShopsShopIdProductsProductIdDeleteData,
     DeleteShopsShopIdProductsProductIdDeleteResponse,
+    GetByIdShopsShopIdProductsProductIdGetData,
+    GetByIdShopsShopIdProductsProductIdGetResponse,
     SwapShopsShopIdProductsProductIdSwapPutData,
     SwapShopsShopIdProductsProductIdSwapPutResponse,
+    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
+    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse,
     GetMultiShopsShopIdProductsToTagsGetData,
     GetMultiShopsShopIdProductsToTagsGetResponse,
     CreateShopsShopIdProductsToTagsPostData,
@@ -1789,55 +1789,6 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
 };
 
 /**
- * Get By Id With Attributes
- * @param data The data for the request.
- * @param data.productId
- * @param data.shopId
- * @returns ProductWithAttributes Successful Response
- * @throws ApiError
- */
-export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet =
-    (
-        data: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
-    ): CancelablePromise<GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse> => {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/shops/{shop_id}/products/{product_id}/with_attributes',
-            path: {
-                product_id: data.productId,
-                shop_id: data.shopId,
-            },
-            errors: {
-                422: 'Validation Error',
-            },
-        });
-    };
-
-/**
- * Get By Id
- * @param data The data for the request.
- * @param data.productId
- * @param data.shopId
- * @returns ProductWithDetailsAndPrices Successful Response
- * @throws ApiError
- */
-export const getByIdShopsShopIdProductsProductIdGet = (
-    data: GetByIdShopsShopIdProductsProductIdGetData,
-): CancelablePromise<GetByIdShopsShopIdProductsProductIdGetResponse> => {
-    return __request(OpenAPI, {
-        method: 'GET',
-        url: '/shops/{shop_id}/products/{product_id}',
-        path: {
-            product_id: data.productId,
-            shop_id: data.shopId,
-        },
-        errors: {
-            422: 'Validation Error',
-        },
-    });
-};
-
-/**
  * Update
  * @param data The data for the request.
  * @param data.productId
@@ -1889,6 +1840,30 @@ export const deleteShopsShopIdProductsProductIdDelete = (
 };
 
 /**
+ * Get By Id
+ * @param data The data for the request.
+ * @param data.productId
+ * @param data.shopId
+ * @returns ProductWithDetailsAndPrices Successful Response
+ * @throws ApiError
+ */
+export const getByIdShopsShopIdProductsProductIdGet = (
+    data: GetByIdShopsShopIdProductsProductIdGetData,
+): CancelablePromise<GetByIdShopsShopIdProductsProductIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products/{product_id}',
+        path: {
+            product_id: data.productId,
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
  * Swap
  * @param data The data for the request.
  * @param data.shopId
@@ -1915,6 +1890,31 @@ export const swapShopsShopIdProductsProductIdSwapPut = (
         },
     });
 };
+
+/**
+ * Get By Id With Attributes
+ * @param data The data for the request.
+ * @param data.productId
+ * @param data.shopId
+ * @returns ProductWithAttributes Successful Response
+ * @throws ApiError
+ */
+export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet =
+    (
+        data: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
+    ): CancelablePromise<GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/products/{product_id}/with_attributes',
+            path: {
+                product_id: data.productId,
+                shop_id: data.shopId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * Get Multi
