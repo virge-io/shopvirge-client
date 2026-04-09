@@ -319,6 +319,73 @@ export const $AttributeWithOptionsSchema = {
     title: 'AttributeWithOptionsSchema',
 } as const;
 
+export const $AvailableAttributeSchema = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+        unit: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Unit',
+        },
+        translation: {
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/AttributeTranslationBase',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+        },
+        options: {
+            items: {
+                $ref: '#/components/schemas/AvailableOptionSchema',
+            },
+            type: 'array',
+            title: 'Options',
+            default: [],
+        },
+    },
+    type: 'object',
+    required: ['id', 'name'],
+    title: 'AvailableAttributeSchema',
+} as const;
+
+export const $AvailableOptionSchema = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        value_key: {
+            type: 'string',
+            title: 'Value Key',
+        },
+        product_count: {
+            type: 'integer',
+            title: 'Product Count',
+        },
+    },
+    type: 'object',
+    required: ['id', 'value_key', 'product_count'],
+    title: 'AvailableOptionSchema',
+} as const;
+
 export const $Body_login_access_token_login_access_token_post = {
     properties: {
         grant_type: {
@@ -4686,6 +4753,11 @@ export const $Toggles = {
         enable_stock_on_products: {
             type: 'boolean',
             title: 'Enable Stock On Products',
+            default: false,
+        },
+        enable_attributes_for_categories: {
+            type: 'boolean',
+            title: 'Enable Attributes For Categories',
             default: false,
         },
     },

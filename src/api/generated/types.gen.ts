@@ -75,6 +75,20 @@ export type AttributeWithOptionsSchema = {
     options?: Array<AttributeOptionSchema>;
 };
 
+export type AvailableAttributeSchema = {
+    id: string;
+    name: string;
+    unit?: string | null;
+    translation?: AttributeTranslationBase | null;
+    options?: Array<AvailableOptionSchema>;
+};
+
+export type AvailableOptionSchema = {
+    id: string;
+    value_key: string;
+    product_count: number;
+};
+
 export type Body_login_access_token_login_access_token_post = {
     grant_type?: string | null;
     username: string;
@@ -945,6 +959,7 @@ export type Toggles = {
     language_alt2_enabled?: boolean;
     product_call_to_action_enabled?: boolean;
     enable_stock_on_products?: boolean;
+    enable_attributes_for_categories?: boolean;
 };
 
 export type User = {
@@ -1388,6 +1403,38 @@ export type SwapShopsShopIdCategoriesCategoryIdSwapPutData = {
 };
 
 export type SwapShopsShopIdCategoriesCategoryIdSwapPutResponse = unknown;
+
+export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData =
+    {
+        categoryId: string;
+        shopId: string;
+    };
+
+export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse =
+    Array<AvailableAttributeSchema>;
+
+export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData =
+    {
+        attributeId?: string | null;
+        attributeName?: string | null;
+        categoryId: string;
+        /**
+         * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
+         */
+        filter?: Array<string>;
+        limit?: number;
+        optionId?: Array<string>;
+        optionValueKey?: Array<string>;
+        shopId: string;
+        skip?: number;
+        /**
+         * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+         */
+        sort?: Array<string>;
+    };
+
+export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse =
+    Array<ProductWithAttributes>;
 
 export type GetMultiShopsShopIdCategoriesImagesGetData = {
     /**
@@ -2767,6 +2814,36 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 201: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/categories/{category_id}/available-attributes': {
+        get: {
+            req: GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: Array<AvailableAttributeSchema>;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/categories/{category_id}/products': {
+        get: {
+            req: GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: Array<ProductWithAttributes>;
                 /**
                  * Validation Error
                  */

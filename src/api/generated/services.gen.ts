@@ -110,6 +110,10 @@ import type {
     GetByNameShopsShopIdCategoriesNameNameGetResponse,
     SwapShopsShopIdCategoriesCategoryIdSwapPutData,
     SwapShopsShopIdCategoriesCategoryIdSwapPutResponse,
+    GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData,
+    GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse,
+    GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData,
+    GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse,
     GetMultiShopsShopIdCategoriesImagesGetData,
     GetMultiShopsShopIdCategoriesImagesGetResponse,
     GetByIdShopsShopIdCategoriesImagesIdGetData,
@@ -1549,6 +1553,81 @@ export const swapShopsShopIdCategoriesCategoryIdSwapPut = (
         },
         query: {
             move_up: data.moveUp,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Get available filter attributes for a category
+ * Returns attributes actually used by products in this category, with option counts.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.categoryId
+ * @returns AvailableAttributeSchema Successful Response
+ * @throws ApiError
+ */
+export const getAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGet =
+    (
+        data: GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData,
+    ): CancelablePromise<GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/categories/{category_id}/available-attributes',
+            path: {
+                shop_id: data.shopId,
+                category_id: data.categoryId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
+
+/**
+ * List products in a category with attribute filters
+ * Fetch products in a category along with their attributes. Supports attribute-based filtering.
+ *
+ * Attribute filters (mutually exclusive — only one can be used at a time):
+ * * `option_id` array[UUID]: Filter by attribute option UUIDs.
+ * * `attribute_id` UUID: Filter by attribute UUID.
+ * * `option_value_key` array[str]: Filter by option value keys (e.g., 'S', 'RED').
+ * * `attribute_name` str: Filter by attribute name.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.categoryId
+ * @param data.optionId
+ * @param data.attributeId
+ * @param data.optionValueKey
+ * @param data.attributeName
+ * @param data.skip
+ * @param data.limit
+ * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
+ * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @returns ProductWithAttributes Successful Response
+ * @throws ApiError
+ */
+export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (
+    data: GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData,
+): CancelablePromise<GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories/{category_id}/products',
+        path: {
+            shop_id: data.shopId,
+            category_id: data.categoryId,
+        },
+        query: {
+            option_id: data.optionId,
+            attribute_id: data.attributeId,
+            option_value_key: data.optionValueKey,
+            attribute_name: data.attributeName,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
         },
         errors: {
             422: 'Validation Error',
