@@ -25,6 +25,19 @@ export type AccountUpdate = {
     };
 };
 
+export type AdminAccountSchema = {
+    id: string;
+    shop_id?: string | null;
+    shop_name?: string | null;
+    name?: string | null;
+    hash_name?: string | null;
+    details?: {
+        [key: string]: unknown;
+    } | null;
+    stripe_customer_id?: string | null;
+    stripe_synced_at?: string | null;
+};
+
 export type AttributeCreate = {
     name: string;
     unit?: string | null;
@@ -383,6 +396,10 @@ export type LicenseSchema = {
 export type LicenseUpdate = {
     seats: number | null;
     end_date: string | null;
+};
+
+export type LinkStripeBody = {
+    stripe_customer_id: string;
 };
 
 export type Msg = {
@@ -924,6 +941,15 @@ export type ShopWithPrices = {
     id: string;
 };
 
+export type SyncStripeResponse = {
+    id: string;
+    stripe_customer_id: string;
+    stripe_synced_at: string;
+    stripe_customer: {
+        [key: string]: unknown;
+    };
+};
+
 export type TagCreate = {
     shop_id: string;
     name: string;
@@ -1127,6 +1153,58 @@ export type GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData = {
 
 export type GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse =
     LicenseSchema;
+
+export type ListAccountsAdminAccountsGetData = {
+    /**
+     * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
+     */
+    filter?: Array<string>;
+    limit?: number;
+    /**
+     * If true, only accounts without a stripe_customer_id; if false, only those with one.
+     */
+    missingStripe?: boolean | null;
+    /**
+     * Restrict to a single shop
+     */
+    shopId?: string | null;
+    skip?: number;
+    /**
+     * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+     */
+    sort?: Array<string>;
+};
+
+export type ListAccountsAdminAccountsGetResponse = Array<AdminAccountSchema>;
+
+export type GetAccountAdminAccountsIdGetData = {
+    id: string;
+};
+
+export type GetAccountAdminAccountsIdGetResponse = AdminAccountSchema;
+
+export type GetStripeCustomerAdminAccountsIdStripeCustomerGetData = {
+    id: string;
+};
+
+export type GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse = {
+    [key: string]: unknown;
+};
+
+export type SyncStripeAdminAccountsIdSyncStripePostData = {
+    id: string;
+};
+
+export type SyncStripeAdminAccountsIdSyncStripePostResponse =
+    SyncStripeResponse;
+
+export type LinkStripeAdminAccountsIdLinkStripePostData = {
+    id: string;
+    requestBody: LinkStripeBody;
+};
+
+export type LinkStripeAdminAccountsIdLinkStripePostResponse =
+    AdminAccountSchema;
 
 export type GetSignedDownloadLinkDownloadsFileNameGetData = {
     fileName: string;
@@ -2326,6 +2404,135 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 200: LicenseSchema;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/admin/accounts': {
+        get: {
+            req: ListAccountsAdminAccountsGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: Array<AdminAccountSchema>;
+                /**
+                 * Not a superuser
+                 */
+                403: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/admin/accounts/{id}': {
+        get: {
+            req: GetAccountAdminAccountsIdGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: AdminAccountSchema;
+                /**
+                 * Not a superuser
+                 */
+                403: unknown;
+                /**
+                 * Account not found
+                 */
+                404: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/admin/accounts/{id}/stripe-customer': {
+        get: {
+            req: GetStripeCustomerAdminAccountsIdStripeCustomerGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: {
+                    [key: string]: unknown;
+                };
+                /**
+                 * Account or shop not configured for Stripe
+                 */
+                400: unknown;
+                /**
+                 * Not a superuser
+                 */
+                403: unknown;
+                /**
+                 * Account not found
+                 */
+                404: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+                /**
+                 * Stripe API error
+                 */
+                502: unknown;
+            };
+        };
+    };
+    '/admin/accounts/{id}/sync-stripe': {
+        post: {
+            req: SyncStripeAdminAccountsIdSyncStripePostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: SyncStripeResponse;
+                /**
+                 * Account or shop not configured for Stripe
+                 */
+                400: unknown;
+                /**
+                 * Not a superuser
+                 */
+                403: unknown;
+                /**
+                 * Account not found
+                 */
+                404: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+                /**
+                 * Stripe API error
+                 */
+                502: unknown;
+            };
+        };
+    };
+    '/admin/accounts/{id}/link-stripe': {
+        post: {
+            req: LinkStripeAdminAccountsIdLinkStripePostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: AdminAccountSchema;
+                /**
+                 * Not a superuser
+                 */
+                403: unknown;
+                /**
+                 * Account not found
+                 */
+                404: unknown;
                 /**
                  * Validation Error
                  */

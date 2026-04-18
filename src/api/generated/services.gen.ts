@@ -42,6 +42,16 @@ import type {
     DeleteLicensesIdDeleteResponse,
     GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData,
     GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse,
+    ListAccountsAdminAccountsGetData,
+    ListAccountsAdminAccountsGetResponse,
+    GetAccountAdminAccountsIdGetData,
+    GetAccountAdminAccountsIdGetResponse,
+    GetStripeCustomerAdminAccountsIdStripeCustomerGetData,
+    GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse,
+    SyncStripeAdminAccountsIdSyncStripePostData,
+    SyncStripeAdminAccountsIdSyncStripePostResponse,
+    LinkStripeAdminAccountsIdLinkStripePostData,
+    LinkStripeAdminAccountsIdLinkStripePostResponse,
     GetSignedDownloadLinkDownloadsFileNameGetData,
     GetSignedDownloadLinkDownloadsFileNameGetResponse,
     SendDownloadLinkViaEmailDownloadsSendPostData,
@@ -710,6 +720,156 @@ export const getByImproviserUserIdLicensesImproviserImproviserUserIdGet = (
             improviser_user_id: data.improviserUserId,
         },
         errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * List Accounts
+ * @param data The data for the request.
+ * @param data.shopId Restrict to a single shop
+ * @param data.missingStripe If true, only accounts without a stripe_customer_id; if false, only those with one.
+ * @param data.skip
+ * @param data.limit
+ * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
+ * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @returns AdminAccountSchema Successful Response
+ * @throws ApiError
+ */
+export const listAccountsAdminAccountsGet = (
+    data: ListAccountsAdminAccountsGetData = {},
+): CancelablePromise<ListAccountsAdminAccountsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts',
+        query: {
+            shop_id: data.shopId,
+            missing_stripe: data.missingStripe,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            403: 'Not a superuser',
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Get Account
+ * @param data The data for the request.
+ * @param data.id
+ * @returns AdminAccountSchema Successful Response
+ * @throws ApiError
+ */
+export const getAccountAdminAccountsIdGet = (
+    data: GetAccountAdminAccountsIdGetData,
+): CancelablePromise<GetAccountAdminAccountsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            403: 'Not a superuser',
+            404: 'Account not found',
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Get Stripe Customer
+ * Read-through: fetch the Stripe customer for this account.
+ *
+ * Does NOT persist anything; use ``POST /sync-stripe`` to write the
+ * snapshot back into the account's ``details`` column.
+ * @param data The data for the request.
+ * @param data.id
+ * @returns unknown Successful Response
+ * @throws ApiError
+ */
+export const getStripeCustomerAdminAccountsIdStripeCustomerGet = (
+    data: GetStripeCustomerAdminAccountsIdStripeCustomerGetData,
+): CancelablePromise<GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts/{id}/stripe-customer',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            400: 'Account or shop not configured for Stripe',
+            403: 'Not a superuser',
+            404: 'Account not found',
+            422: 'Validation Error',
+            502: 'Stripe API error',
+        },
+    });
+};
+
+/**
+ * Sync Stripe
+ * Pull the Stripe customer snapshot and persist it on the account.
+ *
+ * Writes ``details["stripe_customer"]`` (the full Stripe payload) and
+ * ``details["stripe_synced_at"]`` (ISO timestamp). Existing keys in
+ * ``details`` are preserved.
+ * @param data The data for the request.
+ * @param data.id
+ * @returns SyncStripeResponse Successful Response
+ * @throws ApiError
+ */
+export const syncStripeAdminAccountsIdSyncStripePost = (
+    data: SyncStripeAdminAccountsIdSyncStripePostData,
+): CancelablePromise<SyncStripeAdminAccountsIdSyncStripePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/admin/accounts/{id}/sync-stripe',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            400: 'Account or shop not configured for Stripe',
+            403: 'Not a superuser',
+            404: 'Account not found',
+            422: 'Validation Error',
+            502: 'Stripe API error',
+        },
+    });
+};
+
+/**
+ * Link Stripe
+ * Manually associate a Stripe customer id with an account.
+ *
+ * Useful for reconciling local records that pre-date the
+ * auto-customer-create flow. This does NOT call Stripe; follow up
+ * with ``POST /sync-stripe`` to pull the snapshot.
+ * @param data The data for the request.
+ * @param data.id
+ * @param data.requestBody
+ * @returns AdminAccountSchema Successful Response
+ * @throws ApiError
+ */
+export const linkStripeAdminAccountsIdLinkStripePost = (
+    data: LinkStripeAdminAccountsIdLinkStripePostData,
+): CancelablePromise<LinkStripeAdminAccountsIdLinkStripePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/admin/accounts/{id}/link-stripe',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            403: 'Not a superuser',
+            404: 'Account not found',
             422: 'Validation Error',
         },
     });

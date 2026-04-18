@@ -849,6 +849,313 @@
                 }
             }
         },
+        "/admin/accounts": {
+            "get": {
+                "tags": ["admin", "accounts"],
+                "summary": "List Accounts",
+                "operationId": "list_accounts_admin_accounts_get",
+                "security": [{ "OAuth2PasswordBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                { "type": "string", "format": "uuid" },
+                                { "type": "null" }
+                            ],
+                            "description": "Restrict to a single shop",
+                            "title": "Shop Id"
+                        },
+                        "description": "Restrict to a single shop"
+                    },
+                    {
+                        "name": "missing_stripe",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                { "type": "boolean" },
+                                { "type": "null" }
+                            ],
+                            "description": "If true, only accounts without a stripe_customer_id; if false, only those with one.",
+                            "title": "Missing Stripe"
+                        },
+                        "description": "If true, only accounts without a stripe_customer_id; if false, only those with one."
+                    },
+                    {
+                        "name": "skip",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "Skip"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "Limit"
+                        }
+                    },
+                    {
+                        "name": "filter",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.",
+                            "title": "Filter"
+                        },
+                        "description": "This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns."
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.",
+                            "title": "Sort"
+                        },
+                        "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AdminAccountSchema"
+                                    },
+                                    "title": "Response List Accounts Admin Accounts Get"
+                                }
+                            }
+                        }
+                    },
+                    "403": { "description": "Not a superuser" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/accounts/{id}": {
+            "get": {
+                "tags": ["admin", "accounts"],
+                "summary": "Get Account",
+                "operationId": "get_account_admin_accounts__id__get",
+                "security": [{ "OAuth2PasswordBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminAccountSchema"
+                                }
+                            }
+                        }
+                    },
+                    "403": { "description": "Not a superuser" },
+                    "404": { "description": "Account not found" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/accounts/{id}/stripe-customer": {
+            "get": {
+                "tags": ["admin", "accounts"],
+                "summary": "Get Stripe Customer",
+                "description": "Read-through: fetch the Stripe customer for this account.\n\nDoes NOT persist anything; use ``POST /sync-stripe`` to write the\nsnapshot back into the account's ``details`` column.",
+                "operationId": "get_stripe_customer_admin_accounts__id__stripe_customer_get",
+                "security": [{ "OAuth2PasswordBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "title": "Response Get Stripe Customer Admin Accounts  Id  Stripe Customer Get"
+                                }
+                            }
+                        }
+                    },
+                    "403": { "description": "Not a superuser" },
+                    "404": { "description": "Account not found" },
+                    "400": {
+                        "description": "Account or shop not configured for Stripe"
+                    },
+                    "502": { "description": "Stripe API error" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/accounts/{id}/sync-stripe": {
+            "post": {
+                "tags": ["admin", "accounts"],
+                "summary": "Sync Stripe",
+                "description": "Pull the Stripe customer snapshot and persist it on the account.\n\nWrites ``details[\"stripe_customer\"]`` (the full Stripe payload) and\n``details[\"stripe_synced_at\"]`` (ISO timestamp). Existing keys in\n``details`` are preserved.",
+                "operationId": "sync_stripe_admin_accounts__id__sync_stripe_post",
+                "security": [{ "OAuth2PasswordBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SyncStripeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "403": { "description": "Not a superuser" },
+                    "404": { "description": "Account not found" },
+                    "400": {
+                        "description": "Account or shop not configured for Stripe"
+                    },
+                    "502": { "description": "Stripe API error" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/accounts/{id}/link-stripe": {
+            "post": {
+                "tags": ["admin", "accounts"],
+                "summary": "Link Stripe",
+                "description": "Manually associate a Stripe customer id with an account.\n\nUseful for reconciling local records that pre-date the\nauto-customer-create flow. This does NOT call Stripe; follow up\nwith ``POST /sync-stripe`` to pull the snapshot.",
+                "operationId": "link_stripe_admin_accounts__id__link_stripe_post",
+                "security": [{ "OAuth2PasswordBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LinkStripeBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdminAccountSchema"
+                                }
+                            }
+                        }
+                    },
+                    "403": { "description": "Not a superuser" },
+                    "404": { "description": "Account not found" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/downloads/{file_name}": {
             "get": {
                 "tags": ["downloads"],
@@ -6343,6 +6650,48 @@
                 "required": ["shop_id", "name", "details"],
                 "title": "AccountUpdate"
             },
+            "AdminAccountSchema": {
+                "properties": {
+                    "id": { "type": "string", "format": "uuid", "title": "Id" },
+                    "shop_id": {
+                        "anyOf": [
+                            { "type": "string", "format": "uuid" },
+                            { "type": "null" }
+                        ],
+                        "title": "Shop Id"
+                    },
+                    "shop_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Shop Name"
+                    },
+                    "name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Name"
+                    },
+                    "hash_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Hash Name"
+                    },
+                    "details": {
+                        "anyOf": [{ "type": "object" }, { "type": "null" }],
+                        "title": "Details"
+                    },
+                    "stripe_customer_id": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Stripe Customer Id"
+                    },
+                    "stripe_synced_at": {
+                        "anyOf": [
+                            { "type": "string", "format": "date-time" },
+                            { "type": "null" }
+                        ],
+                        "title": "Stripe Synced At"
+                    }
+                },
+                "type": "object",
+                "required": ["id"],
+                "title": "AdminAccountSchema"
+            },
             "AttributeCreate": {
                 "properties": {
                     "name": { "type": "string", "title": "Name" },
@@ -7398,6 +7747,17 @@
                 "type": "object",
                 "required": ["seats", "end_date"],
                 "title": "LicenseUpdate"
+            },
+            "LinkStripeBody": {
+                "properties": {
+                    "stripe_customer_id": {
+                        "type": "string",
+                        "title": "Stripe Customer Id"
+                    }
+                },
+                "type": "object",
+                "required": ["stripe_customer_id"],
+                "title": "LinkStripeBody"
             },
             "Msg": {
                 "properties": { "msg": { "type": "string", "title": "Msg" } },
@@ -9022,6 +9382,32 @@
                     "id"
                 ],
                 "title": "ShopWithPrices"
+            },
+            "SyncStripeResponse": {
+                "properties": {
+                    "id": { "type": "string", "format": "uuid", "title": "Id" },
+                    "stripe_customer_id": {
+                        "type": "string",
+                        "title": "Stripe Customer Id"
+                    },
+                    "stripe_synced_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Stripe Synced At"
+                    },
+                    "stripe_customer": {
+                        "type": "object",
+                        "title": "Stripe Customer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "stripe_customer_id",
+                    "stripe_synced_at",
+                    "stripe_customer"
+                ],
+                "title": "SyncStripeResponse"
             },
             "TagCreate": {
                 "properties": {

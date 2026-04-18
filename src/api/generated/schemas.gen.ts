@@ -68,6 +68,98 @@ export const $AccountUpdate = {
     title: 'AccountUpdate',
 } as const;
 
+export const $AdminAccountSchema = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        shop_id: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'uuid',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shop Id',
+        },
+        shop_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shop Name',
+        },
+        name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Name',
+        },
+        hash_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Hash Name',
+        },
+        details: {
+            anyOf: [
+                {
+                    type: 'object',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Details',
+        },
+        stripe_customer_id: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Stripe Customer Id',
+        },
+        stripe_synced_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Stripe Synced At',
+        },
+    },
+    type: 'object',
+    required: ['id'],
+    title: 'AdminAccountSchema',
+} as const;
+
 export const $AttributeCreate = {
     properties: {
         name: {
@@ -1786,6 +1878,18 @@ export const $LicenseUpdate = {
     type: 'object',
     required: ['seats', 'end_date'],
     title: 'LicenseUpdate',
+} as const;
+
+export const $LinkStripeBody = {
+    properties: {
+        stripe_customer_id: {
+            type: 'string',
+            title: 'Stripe Customer Id',
+        },
+    },
+    type: 'object',
+    required: ['stripe_customer_id'],
+    title: 'LinkStripeBody',
 } as const;
 
 export const $Msg = {
@@ -4607,6 +4711,37 @@ export const $ShopWithPrices = {
         'id',
     ],
     title: 'ShopWithPrices',
+} as const;
+
+export const $SyncStripeResponse = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        stripe_customer_id: {
+            type: 'string',
+            title: 'Stripe Customer Id',
+        },
+        stripe_synced_at: {
+            type: 'string',
+            format: 'date-time',
+            title: 'Stripe Synced At',
+        },
+        stripe_customer: {
+            type: 'object',
+            title: 'Stripe Customer',
+        },
+    },
+    type: 'object',
+    required: [
+        'id',
+        'stripe_customer_id',
+        'stripe_synced_at',
+        'stripe_customer',
+    ],
+    title: 'SyncStripeResponse',
 } as const;
 
 export const $TagCreate = {
