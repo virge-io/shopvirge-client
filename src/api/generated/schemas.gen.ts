@@ -1245,6 +1245,38 @@ export const $ConfigurationLegal = {
     title: 'ConfigurationLegal',
 } as const;
 
+export const $ConfigurationShipping = {
+    properties: {
+        enabled: {
+            type: 'boolean',
+            title: 'Enabled',
+            default: false,
+        },
+        method: {
+            type: 'string',
+            title: 'Method',
+            default: 'fixed',
+        },
+        fixed_fee: {
+            type: 'number',
+            title: 'Fixed Fee',
+            default: 0,
+        },
+        free_shipping_above_enabled: {
+            type: 'boolean',
+            title: 'Free Shipping Above Enabled',
+            default: false,
+        },
+        free_shipping_above_amount: {
+            type: 'number',
+            title: 'Free Shipping Above Amount',
+            default: 0,
+        },
+    },
+    type: 'object',
+    title: 'ConfigurationShipping',
+} as const;
+
 export const $ConfigurationV1_Input = {
     properties: {
         short_shop_name: {
@@ -1310,6 +1342,16 @@ export const $ConfigurationV1_Input = {
             anyOf: [
                 {
                     $ref: '#/components/schemas/ConfigurationLegal',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+        },
+        shipping: {
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/ConfigurationShipping',
                 },
                 {
                     type: 'null',
@@ -1394,6 +1436,16 @@ export const $ConfigurationV1_Output = {
             anyOf: [
                 {
                     $ref: '#/components/schemas/ConfigurationLegal',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+        },
+        shipping: {
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/ConfigurationShipping',
                 },
                 {
                     type: 'null',
@@ -1962,6 +2014,17 @@ export const $OrderBase = {
             ],
             title: 'Status',
         },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
+        },
     },
     type: 'object',
     required: ['total', 'notes', 'customer_order_id', 'status'],
@@ -2025,6 +2088,17 @@ export const $OrderCreate = {
                 },
             ],
             title: 'Status',
+        },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
         },
         shop_id: {
             type: 'string',
@@ -2131,6 +2205,17 @@ export const $OrderCreated = {
                 },
             ],
             title: 'Status',
+        },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
         },
         id: {
             type: 'string',
@@ -2278,6 +2363,17 @@ export const $OrderSchema = {
                 },
             ],
             title: 'Status',
+        },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
         },
         id: {
             type: 'string',
@@ -2434,6 +2530,17 @@ export const $OrderUpdate = {
             ],
             title: 'Status',
         },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
+        },
         shop_id: {
             type: 'string',
             format: 'uuid',
@@ -2516,6 +2623,17 @@ export const $OrderUpdated = {
                 },
             ],
             title: 'Status',
+        },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
         },
         shop_id: {
             type: 'string',
@@ -4208,6 +4326,114 @@ export const $ProductWithDetailsAndPrices = {
         'id',
     ],
     title: 'ProductWithDetailsAndPrices',
+} as const;
+
+export const $ShippingCalculateRequest = {
+    properties: {
+        shop_id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Shop Id',
+        },
+        order_info: {
+            items: {
+                $ref: '#/components/schemas/OrderItem',
+            },
+            type: 'array',
+            title: 'Order Info',
+        },
+    },
+    type: 'object',
+    required: ['shop_id', 'order_info'],
+    title: 'ShippingCalculateRequest',
+} as const;
+
+export const $ShippingCalculation = {
+    properties: {
+        enabled: {
+            type: 'boolean',
+            title: 'Enabled',
+        },
+        method: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Method',
+        },
+        fee_inc_btw: {
+            type: 'number',
+            title: 'Fee Inc Btw',
+        },
+        fee_ex_btw: {
+            type: 'number',
+            title: 'Fee Ex Btw',
+        },
+        fee_btw: {
+            type: 'number',
+            title: 'Fee Btw',
+        },
+        free_shipping_applied: {
+            type: 'boolean',
+            title: 'Free Shipping Applied',
+        },
+        free_shipping_threshold: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Free Shipping Threshold',
+        },
+        lines: {
+            items: {
+                $ref: '#/components/schemas/ShippingLine',
+            },
+            type: 'array',
+            title: 'Lines',
+        },
+    },
+    type: 'object',
+    required: [
+        'enabled',
+        'fee_inc_btw',
+        'fee_ex_btw',
+        'fee_btw',
+        'free_shipping_applied',
+        'lines',
+    ],
+    title: 'ShippingCalculation',
+} as const;
+
+export const $ShippingLine = {
+    properties: {
+        btw_rate: {
+            type: 'number',
+            title: 'Btw Rate',
+        },
+        amount_ex_btw: {
+            type: 'number',
+            title: 'Amount Ex Btw',
+        },
+        amount_inc_btw: {
+            type: 'number',
+            title: 'Amount Inc Btw',
+        },
+        amount_btw: {
+            type: 'number',
+            title: 'Amount Btw',
+        },
+    },
+    type: 'object',
+    required: ['btw_rate', 'amount_ex_btw', 'amount_inc_btw', 'amount_btw'],
+    title: 'ShippingLine',
 } as const;
 
 export const $ShopCacheStatus = {

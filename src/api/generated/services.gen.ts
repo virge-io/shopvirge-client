@@ -106,6 +106,8 @@ import type {
     DeleteOrdersOrderIdDeleteResponse,
     GetOrderProductsInStockOrdersStockOrderIdGetData,
     GetOrderProductsInStockOrdersStockOrderIdGetResponse,
+    CalculateShippingCalculatePostData,
+    CalculateShippingCalculatePostResponse,
     GetMultiShopsShopIdCategoriesGetData,
     GetMultiShopsShopIdCategoriesGetResponse,
     CreateShopsShopIdCategoriesPostData,
@@ -752,7 +754,7 @@ export const listAccountsAdminAccountsGet = (
             sort: data.sort,
         },
         errors: {
-            403: 'Not a superuser',
+            403: 'Not a member of the Admins group',
             422: 'Validation Error',
         },
     });
@@ -775,7 +777,7 @@ export const getAccountAdminAccountsIdGet = (
             id: data.id,
         },
         errors: {
-            403: 'Not a superuser',
+            403: 'Not a member of the Admins group',
             404: 'Account not found',
             422: 'Validation Error',
         },
@@ -804,7 +806,7 @@ export const getStripeCustomerAdminAccountsIdStripeCustomerGet = (
         },
         errors: {
             400: 'Account or shop not configured for Stripe',
-            403: 'Not a superuser',
+            403: 'Not a member of the Admins group',
             404: 'Account not found',
             422: 'Validation Error',
             502: 'Stripe API error',
@@ -835,7 +837,7 @@ export const syncStripeAdminAccountsIdSyncStripePost = (
         },
         errors: {
             400: 'Account or shop not configured for Stripe',
-            403: 'Not a superuser',
+            403: 'Not a member of the Admins group',
             404: 'Account not found',
             422: 'Validation Error',
             502: 'Stripe API error',
@@ -868,7 +870,7 @@ export const linkStripeAdminAccountsIdLinkStripePost = (
         body: data.requestBody,
         mediaType: 'application/json',
         errors: {
-            403: 'Not a superuser',
+            403: 'Not a member of the Admins group',
             404: 'Account not found',
             422: 'Validation Error',
         },
@@ -1530,6 +1532,27 @@ export const getOrderProductsInStockOrdersStockOrderIdGet = (
         path: {
             order_id: data.orderId,
         },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Calculate
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @returns ShippingCalculation Successful Response
+ * @throws ApiError
+ */
+export const calculateShippingCalculatePost = (
+    data: CalculateShippingCalculatePostData,
+): CancelablePromise<CalculateShippingCalculatePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shipping/calculate',
+        body: data.requestBody,
+        mediaType: 'application/json',
         errors: {
             422: 'Validation Error',
         },

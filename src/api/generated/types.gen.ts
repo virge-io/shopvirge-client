@@ -279,6 +279,14 @@ export type ConfigurationLegal = {
     btw_number?: string | null;
 };
 
+export type ConfigurationShipping = {
+    enabled?: boolean;
+    method?: string;
+    fixed_fee?: number;
+    free_shipping_above_enabled?: boolean;
+    free_shipping_above_amount?: number;
+};
+
 export type ConfigurationV1_Input = {
     short_shop_name: string;
     logo: string;
@@ -291,6 +299,7 @@ export type ConfigurationV1_Input = {
     contact: ConfigurationContact;
     toggles: Toggles;
     legal?: ConfigurationLegal | null;
+    shipping?: ConfigurationShipping | null;
 };
 
 export type ConfigurationV1_Output = {
@@ -305,6 +314,7 @@ export type ConfigurationV1_Output = {
     contact: ConfigurationContact;
     toggles: Toggles;
     legal?: ConfigurationLegal | null;
+    shipping?: ConfigurationShipping | null;
 };
 
 export type DefaultPrice = {
@@ -412,6 +422,7 @@ export type OrderBase = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
 };
 
 export type OrderCreate = {
@@ -420,6 +431,7 @@ export type OrderCreate = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
     shop_id: string;
     order_info: Array<OrderItem>;
     completed_at?: string | null;
@@ -432,6 +444,7 @@ export type OrderCreated = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
     id: string;
     created_at: string;
     completed_at?: string | null;
@@ -452,6 +465,7 @@ export type OrderSchema = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
     id: string;
     shop_id: string;
     order_info: Array<OrderItem>;
@@ -469,6 +483,7 @@ export type OrderUpdate = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
     shop_id: string;
     order_info: Array<OrderItem>;
 };
@@ -479,6 +494,7 @@ export type OrderUpdated = {
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
+    shipping_fee_inc_btw?: number | null;
     shop_id: string;
     order_info: Array<OrderItem>;
     id: string;
@@ -839,6 +855,29 @@ export type ProductWithDetailsAndPrices = {
     prices?: Array<{
         [key: string]: unknown;
     }>;
+};
+
+export type ShippingCalculateRequest = {
+    shop_id: string;
+    order_info: Array<OrderItem>;
+};
+
+export type ShippingCalculation = {
+    enabled: boolean;
+    method?: string | null;
+    fee_inc_btw: number;
+    fee_ex_btw: number;
+    fee_btw: number;
+    free_shipping_applied: boolean;
+    free_shipping_threshold?: number | null;
+    lines: Array<ShippingLine>;
+};
+
+export type ShippingLine = {
+    btw_rate: number;
+    amount_ex_btw: number;
+    amount_inc_btw: number;
+    amount_btw: number;
 };
 
 export type ShopCacheStatus = {
@@ -1421,6 +1460,12 @@ export type GetOrderProductsInStockOrdersStockOrderIdGetData = {
 };
 
 export type GetOrderProductsInStockOrdersStockOrderIdGetResponse = boolean;
+
+export type CalculateShippingCalculatePostData = {
+    requestBody: ShippingCalculateRequest;
+};
+
+export type CalculateShippingCalculatePostResponse = ShippingCalculation;
 
 export type GetMultiShopsShopIdCategoriesGetData = {
     /**
@@ -2420,7 +2465,7 @@ export type $OpenApiTs = {
                  */
                 200: Array<AdminAccountSchema>;
                 /**
-                 * Not a superuser
+                 * Not a member of the Admins group
                  */
                 403: unknown;
                 /**
@@ -2439,7 +2484,7 @@ export type $OpenApiTs = {
                  */
                 200: AdminAccountSchema;
                 /**
-                 * Not a superuser
+                 * Not a member of the Admins group
                  */
                 403: unknown;
                 /**
@@ -2468,7 +2513,7 @@ export type $OpenApiTs = {
                  */
                 400: unknown;
                 /**
-                 * Not a superuser
+                 * Not a member of the Admins group
                  */
                 403: unknown;
                 /**
@@ -2499,7 +2544,7 @@ export type $OpenApiTs = {
                  */
                 400: unknown;
                 /**
-                 * Not a superuser
+                 * Not a member of the Admins group
                  */
                 403: unknown;
                 /**
@@ -2526,7 +2571,7 @@ export type $OpenApiTs = {
                  */
                 200: AdminAccountSchema;
                 /**
-                 * Not a superuser
+                 * Not a member of the Admins group
                  */
                 403: unknown;
                 /**
@@ -2922,6 +2967,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 200: boolean;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shipping/calculate': {
+        post: {
+            req: CalculateShippingCalculatePostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: ShippingCalculation;
                 /**
                  * Validation Error
                  */
