@@ -279,10 +279,20 @@ export type ConfigurationLegal = {
     btw_number?: string | null;
 };
 
-export type ConfigurationShipping = {
+export type ConfigurationShipping_Input = {
+    enabled?: boolean;
+    method?: string;
+    fixed_fee?: number | string;
+    vat_calculation_enabled?: boolean;
+    free_shipping_above_enabled?: boolean;
+    free_shipping_above_amount?: number | string;
+};
+
+export type ConfigurationShipping_Output = {
     enabled?: boolean;
     method?: string;
     fixed_fee?: number;
+    vat_calculation_enabled?: boolean;
     free_shipping_above_enabled?: boolean;
     free_shipping_above_amount?: number;
 };
@@ -299,7 +309,7 @@ export type ConfigurationV1_Input = {
     contact: ConfigurationContact;
     toggles: Toggles;
     legal?: ConfigurationLegal | null;
-    shipping?: ConfigurationShipping | null;
+    shipping?: ConfigurationShipping_Input | null;
 };
 
 export type ConfigurationV1_Output = {
@@ -314,7 +324,7 @@ export type ConfigurationV1_Output = {
     contact: ConfigurationContact;
     toggles: Toggles;
     legal?: ConfigurationLegal | null;
-    shipping?: ConfigurationShipping | null;
+    shipping?: ConfigurationShipping_Output | null;
 };
 
 export type DefaultPrice = {
@@ -418,22 +428,22 @@ export type Msg = {
 
 export type OrderBase = {
     account_id?: string | null;
-    total: number | null;
+    total: number | string | null;
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
-    shipping_fee_inc_btw?: number | null;
+    shipping_fee_inc_btw?: number | string | null;
 };
 
 export type OrderCreate = {
     account_id?: string | null;
-    total: number | null;
+    total: number | string | null;
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
-    shipping_fee_inc_btw?: number | null;
+    shipping_fee_inc_btw?: number | string | null;
     shop_id: string;
-    order_info: Array<OrderItem>;
+    order_info: Array<OrderItem_Input>;
     completed_at?: string | null;
     account_name?: string | null;
 };
@@ -451,7 +461,15 @@ export type OrderCreated = {
     account_name: string | null;
 };
 
-export type OrderItem = {
+export type OrderItem_Input = {
+    description: string | null;
+    price: number | string;
+    product_id: string;
+    product_name: string;
+    quantity: number;
+};
+
+export type OrderItem_Output = {
     description: string | null;
     price: number;
     product_id: string;
@@ -468,7 +486,7 @@ export type OrderSchema = {
     shipping_fee_inc_btw?: number | null;
     id: string;
     shop_id: string;
-    order_info: Array<OrderItem>;
+    order_info: Array<OrderItem_Output>;
     created_at: string;
     completed_at?: string | null;
     completed_by: string | null;
@@ -479,13 +497,13 @@ export type OrderSchema = {
 
 export type OrderUpdate = {
     account_id?: string | null;
-    total: number | null;
+    total: number | string | null;
     notes: string | null;
     customer_order_id: number | null;
     status: string | null;
-    shipping_fee_inc_btw?: number | null;
+    shipping_fee_inc_btw?: number | string | null;
     shop_id: string;
-    order_info: Array<OrderItem>;
+    order_info: Array<OrderItem_Input>;
 };
 
 export type OrderUpdated = {
@@ -496,7 +514,7 @@ export type OrderUpdated = {
     status: string | null;
     shipping_fee_inc_btw?: number | null;
     shop_id: string;
-    order_info: Array<OrderItem>;
+    order_info: Array<OrderItem_Output>;
     id: string;
 };
 
@@ -551,16 +569,16 @@ export type ProductAttributeValueSchema = {
 export type ProductCreate = {
     shop_id: string;
     category_id: string;
-    price?: number | null;
-    recurring_price_monthly?: number | null;
-    recurring_price_yearly?: number | null;
+    price?: number | string | null;
+    recurring_price_monthly?: number | string | null;
+    recurring_price_yearly?: number | string | null;
     max_one: boolean;
     shippable: boolean;
     digital?: string | null;
     featured: boolean;
     new_product: boolean;
     tax_category: string;
-    discounted_price?: number | null;
+    discounted_price?: number | string | null;
     discounted_from?: string | null;
     discounted_to?: string | null;
     order_number?: number | null;
@@ -671,16 +689,16 @@ export type ProductTranslationBase = {
 export type ProductUpdate = {
     shop_id: string;
     category_id: string;
-    price?: number | null;
-    recurring_price_monthly?: number | null;
-    recurring_price_yearly?: number | null;
+    price?: number | string | null;
+    recurring_price_monthly?: number | string | null;
+    recurring_price_yearly?: number | string | null;
     max_one: boolean;
     shippable: boolean;
     digital?: string | null;
     featured: boolean;
     new_product: boolean;
     tax_category: string;
-    discounted_price?: number | null;
+    discounted_price?: number | string | null;
     discounted_from?: string | null;
     discounted_to?: string | null;
     order_number?: number | null;
@@ -859,7 +877,7 @@ export type ProductWithDetailsAndPrices = {
 
 export type ShippingCalculateRequest = {
     shop_id: string;
-    order_info: Array<OrderItem>;
+    order_info: Array<OrderItem_Input>;
 };
 
 export type ShippingCalculation = {
@@ -906,12 +924,12 @@ export type ShopCreate = {
     description: string;
     internal_url?: string | null;
     external_url?: string | null;
-    vat_standard: number;
-    vat_lower_1: number;
-    vat_lower_2: number;
-    vat_lower_3: number;
-    vat_special: number;
-    vat_zero: number;
+    vat_standard: number | string;
+    vat_lower_1: number | string;
+    vat_lower_2: number | string;
+    vat_lower_3: number | string;
+    vat_special: number | string;
+    vat_zero: number | string;
 };
 
 export type ShopIp = {
@@ -956,12 +974,12 @@ export type ShopUpdate = {
     description: string;
     internal_url?: string | null;
     external_url?: string | null;
-    vat_standard: number;
-    vat_lower_1: number;
-    vat_lower_2: number;
-    vat_lower_3: number;
-    vat_special: number;
-    vat_zero: number;
+    vat_standard: number | string;
+    vat_lower_1: number | string;
+    vat_lower_2: number | string;
+    vat_lower_3: number | string;
+    vat_special: number | string;
+    vat_zero: number | string;
     modified_at: string | null;
     allowed_ips?: Array<string> | null;
 };

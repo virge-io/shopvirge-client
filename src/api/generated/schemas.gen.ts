@@ -1245,7 +1245,58 @@ export const $ConfigurationLegal = {
     title: 'ConfigurationLegal',
 } as const;
 
-export const $ConfigurationShipping = {
+export const $ConfigurationShipping_Input = {
+    properties: {
+        enabled: {
+            type: 'boolean',
+            title: 'Enabled',
+            default: false,
+        },
+        method: {
+            type: 'string',
+            title: 'Method',
+            default: 'fixed',
+        },
+        fixed_fee: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
+            title: 'Fixed Fee',
+            default: '0',
+        },
+        vat_calculation_enabled: {
+            type: 'boolean',
+            title: 'Vat Calculation Enabled',
+            default: true,
+        },
+        free_shipping_above_enabled: {
+            type: 'boolean',
+            title: 'Free Shipping Above Enabled',
+            default: false,
+        },
+        free_shipping_above_amount: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
+            title: 'Free Shipping Above Amount',
+            default: '0',
+        },
+    },
+    type: 'object',
+    title: 'ConfigurationShipping',
+} as const;
+
+export const $ConfigurationShipping_Output = {
     properties: {
         enabled: {
             type: 'boolean',
@@ -1260,7 +1311,12 @@ export const $ConfigurationShipping = {
         fixed_fee: {
             type: 'number',
             title: 'Fixed Fee',
-            default: 0,
+            default: '0',
+        },
+        vat_calculation_enabled: {
+            type: 'boolean',
+            title: 'Vat Calculation Enabled',
+            default: true,
         },
         free_shipping_above_enabled: {
             type: 'boolean',
@@ -1270,7 +1326,7 @@ export const $ConfigurationShipping = {
         free_shipping_above_amount: {
             type: 'number',
             title: 'Free Shipping Above Amount',
-            default: 0,
+            default: '0',
         },
     },
     type: 'object',
@@ -1351,7 +1407,7 @@ export const $ConfigurationV1_Input = {
         shipping: {
             anyOf: [
                 {
-                    $ref: '#/components/schemas/ConfigurationShipping',
+                    $ref: '#/components/schemas/ConfigurationShipping-Input',
                 },
                 {
                     type: 'null',
@@ -1445,7 +1501,7 @@ export const $ConfigurationV1_Output = {
         shipping: {
             anyOf: [
                 {
-                    $ref: '#/components/schemas/ConfigurationShipping',
+                    $ref: '#/components/schemas/ConfigurationShipping-Output',
                 },
                 {
                     type: 'null',
@@ -1976,6 +2032,9 @@ export const $OrderBase = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2018,6 +2077,9 @@ export const $OrderBase = {
             anyOf: [
                 {
                     type: 'number',
+                },
+                {
+                    type: 'string',
                 },
                 {
                     type: 'null',
@@ -2051,6 +2113,9 @@ export const $OrderCreate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2095,6 +2160,9 @@ export const $OrderCreate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2107,7 +2175,7 @@ export const $OrderCreate = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem',
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
             title: 'Order Info',
@@ -2264,7 +2332,56 @@ export const $OrderCreated = {
     title: 'OrderCreated',
 } as const;
 
-export const $OrderItem = {
+export const $OrderItem_Input = {
+    properties: {
+        description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Description',
+        },
+        price: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
+            title: 'Price',
+        },
+        product_id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Product Id',
+        },
+        product_name: {
+            type: 'string',
+            title: 'Product Name',
+        },
+        quantity: {
+            type: 'integer',
+            title: 'Quantity',
+        },
+    },
+    type: 'object',
+    required: [
+        'description',
+        'price',
+        'product_id',
+        'product_name',
+        'quantity',
+    ],
+    title: 'OrderItem',
+} as const;
+
+export const $OrderItem_Output = {
     properties: {
         description: {
             anyOf: [
@@ -2387,7 +2504,7 @@ export const $OrderSchema = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem',
+                $ref: '#/components/schemas/OrderItem-Output',
             },
             type: 'array',
             title: 'Order Info',
@@ -2492,6 +2609,9 @@ export const $OrderUpdate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2536,6 +2656,9 @@ export const $OrderUpdate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2548,7 +2671,7 @@ export const $OrderUpdate = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem',
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
             title: 'Order Info',
@@ -2642,7 +2765,7 @@ export const $OrderUpdated = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem',
+                $ref: '#/components/schemas/OrderItem-Output',
             },
             type: 'array',
             title: 'Order Info',
@@ -2840,6 +2963,9 @@ export const $ProductCreate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2851,6 +2977,9 @@ export const $ProductCreate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -2860,6 +2989,9 @@ export const $ProductCreate = {
             anyOf: [
                 {
                     type: 'number',
+                },
+                {
+                    type: 'string',
                 },
                 {
                     type: 'null',
@@ -2902,6 +3034,9 @@ export const $ProductCreate = {
             anyOf: [
                 {
                     type: 'number',
+                },
+                {
+                    type: 'string',
                 },
                 {
                     type: 'null',
@@ -3499,6 +3634,9 @@ export const $ProductUpdate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -3510,6 +3648,9 @@ export const $ProductUpdate = {
                     type: 'number',
                 },
                 {
+                    type: 'string',
+                },
+                {
                     type: 'null',
                 },
             ],
@@ -3519,6 +3660,9 @@ export const $ProductUpdate = {
             anyOf: [
                 {
                     type: 'number',
+                },
+                {
+                    type: 'string',
                 },
                 {
                     type: 'null',
@@ -3561,6 +3705,9 @@ export const $ProductUpdate = {
             anyOf: [
                 {
                     type: 'number',
+                },
+                {
+                    type: 'string',
                 },
                 {
                     type: 'null',
@@ -4337,7 +4484,7 @@ export const $ShippingCalculateRequest = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem',
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
             title: 'Order Info',
@@ -4548,27 +4695,69 @@ export const $ShopCreate = {
             title: 'External Url',
         },
         vat_standard: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Standard',
         },
         vat_lower_1: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 1',
         },
         vat_lower_2: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 2',
         },
         vat_lower_3: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 3',
         },
         vat_special: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Special',
         },
         vat_zero: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Zero',
         },
     },
@@ -4797,27 +4986,69 @@ export const $ShopUpdate = {
             title: 'External Url',
         },
         vat_standard: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Standard',
         },
         vat_lower_1: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 1',
         },
         vat_lower_2: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 2',
         },
         vat_lower_3: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Lower 3',
         },
         vat_special: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Special',
         },
         vat_zero: {
-            type: 'number',
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'string',
+                },
+            ],
             title: 'Vat Zero',
         },
         modified_at: {

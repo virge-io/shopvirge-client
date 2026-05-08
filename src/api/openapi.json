@@ -3,7 +3,7 @@
     "info": {
         "title": "ShopVirge API",
         "description": "Backend for ShopVirge Shops.",
-        "version": "0.2.8"
+        "version": "0.2.9"
     },
     "paths": {
         "/login/access-token": {
@@ -8296,7 +8296,57 @@
                 "type": "object",
                 "title": "ConfigurationLegal"
             },
-            "ConfigurationShipping": {
+            "ConfigurationShipping-Input": {
+                "properties": {
+                    "enabled": {
+                        "type": "boolean",
+                        "title": "Enabled",
+                        "default": false
+                    },
+                    "method": {
+                        "type": "string",
+                        "title": "Method",
+                        "default": "fixed"
+                    },
+                    "fixed_fee": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Fixed Fee",
+                        "default": "0"
+                    },
+                    "vat_calculation_enabled": {
+                        "type": "boolean",
+                        "title": "Vat Calculation Enabled",
+                        "default": true
+                    },
+                    "free_shipping_above_enabled": {
+                        "type": "boolean",
+                        "title": "Free Shipping Above Enabled",
+                        "default": false
+                    },
+                    "free_shipping_above_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Free Shipping Above Amount",
+                        "default": "0"
+                    }
+                },
+                "type": "object",
+                "title": "ConfigurationShipping"
+            },
+            "ConfigurationShipping-Output": {
                 "properties": {
                     "enabled": {
                         "type": "boolean",
@@ -8311,7 +8361,12 @@
                     "fixed_fee": {
                         "type": "number",
                         "title": "Fixed Fee",
-                        "default": 0.0
+                        "default": "0"
+                    },
+                    "vat_calculation_enabled": {
+                        "type": "boolean",
+                        "title": "Vat Calculation Enabled",
+                        "default": true
                     },
                     "free_shipping_above_enabled": {
                         "type": "boolean",
@@ -8321,7 +8376,7 @@
                     "free_shipping_above_amount": {
                         "type": "number",
                         "title": "Free Shipping Above Amount",
-                        "default": 0.0
+                        "default": "0"
                     }
                 },
                 "type": "object",
@@ -8401,7 +8456,7 @@
                     "shipping": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/ConfigurationShipping"
+                                "$ref": "#/components/schemas/ConfigurationShipping-Input"
                             },
                             {
                                 "type": "null"
@@ -8494,7 +8549,7 @@
                     "shipping": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/ConfigurationShipping"
+                                "$ref": "#/components/schemas/ConfigurationShipping-Output"
                             },
                             {
                                 "type": "null"
@@ -9010,6 +9065,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9052,6 +9110,9 @@
                         "anyOf": [
                             {
                                 "type": "number"
+                            },
+                            {
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -9084,6 +9145,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9128,6 +9192,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9140,7 +9207,7 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem"
+                            "$ref": "#/components/schemas/OrderItem-Input"
                         },
                         "type": "array",
                         "title": "Order Info"
@@ -9295,7 +9362,55 @@
                 ],
                 "title": "OrderCreated"
             },
-            "OrderItem": {
+            "OrderItem-Input": {
+                "properties": {
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "price": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "title": "Price"
+                    },
+                    "product_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "title": "Product Id"
+                    },
+                    "product_name": {
+                        "type": "string",
+                        "title": "Product Name"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "title": "Quantity"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "price",
+                    "product_id",
+                    "product_name",
+                    "quantity"
+                ],
+                "title": "OrderItem"
+            },
+            "OrderItem-Output": {
                 "properties": {
                     "description": {
                         "anyOf": [
@@ -9417,7 +9532,7 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem"
+                            "$ref": "#/components/schemas/OrderItem-Output"
                         },
                         "type": "array",
                         "title": "Order Info"
@@ -9521,6 +9636,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9565,6 +9683,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9577,7 +9698,7 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem"
+                            "$ref": "#/components/schemas/OrderItem-Input"
                         },
                         "type": "array",
                         "title": "Order Info"
@@ -9670,7 +9791,7 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem"
+                            "$ref": "#/components/schemas/OrderItem-Output"
                         },
                         "type": "array",
                         "title": "Order Info"
@@ -9855,6 +9976,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9866,6 +9990,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -9875,6 +10002,9 @@
                         "anyOf": [
                             {
                                 "type": "number"
+                            },
+                            {
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -9917,6 +10047,9 @@
                         "anyOf": [
                             {
                                 "type": "number"
+                            },
+                            {
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -10512,6 +10645,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -10523,6 +10659,9 @@
                                 "type": "number"
                             },
                             {
+                                "type": "string"
+                            },
+                            {
                                 "type": "null"
                             }
                         ],
@@ -10532,6 +10671,9 @@
                         "anyOf": [
                             {
                                 "type": "number"
+                            },
+                            {
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -10574,6 +10716,9 @@
                         "anyOf": [
                             {
                                 "type": "number"
+                            },
+                            {
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -11346,7 +11491,7 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem"
+                            "$ref": "#/components/schemas/OrderItem-Input"
                         },
                         "type": "array",
                         "title": "Order Info"
@@ -11560,27 +11705,69 @@
                         "title": "External Url"
                     },
                     "vat_standard": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Standard"
                     },
                     "vat_lower_1": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 1"
                     },
                     "vat_lower_2": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 2"
                     },
                     "vat_lower_3": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 3"
                     },
                     "vat_special": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Special"
                     },
                     "vat_zero": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Zero"
                     }
                 },
@@ -11802,27 +11989,69 @@
                         "title": "External Url"
                     },
                     "vat_standard": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Standard"
                     },
                     "vat_lower_1": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 1"
                     },
                     "vat_lower_2": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 2"
                     },
                     "vat_lower_3": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Lower 3"
                     },
                     "vat_special": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Special"
                     },
                     "vat_zero": {
-                        "type": "number",
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
                         "title": "Vat Zero"
                     },
                     "modified_at": {
