@@ -1632,6 +1632,10 @@ export type GetMultiShopsShopIdProductsGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    /**
+     * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
+     */
+    stockStatus?: 'in_stock' | 'out_of_stock' | 'all';
 };
 
 export type GetMultiShopsShopIdProductsGetResponse =
@@ -1660,6 +1664,10 @@ export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    /**
+     * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
+     */
+    stockStatus?: 'in_stock' | 'out_of_stock' | 'all';
 };
 
 export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse =

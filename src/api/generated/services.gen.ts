@@ -1947,6 +1947,7 @@ export const getSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGet = (
  * Get Multi
  * @param data The data for the request.
  * @param data.shopId
+ * @param data.stockStatus Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
@@ -1964,6 +1965,7 @@ export const getMultiShopsShopIdProductsGet = (
             shop_id: data.shopId,
         },
         query: {
+            stock_status: data.stockStatus,
             skip: data.skip,
             limit: data.limit,
             filter: data.filter,
@@ -2012,12 +2014,16 @@ export const createShopsShopIdProductsPost = (
  * * `attribute_name` array[str]: Filter by one or multiple attribute names (e.g., 'Color', 'Size').
  *
  * Only one attribute filter can be used at a time.
+ *
+ * You can additionally narrow results by inventory state with `stock_status`:
+ * `in_stock` (stock > 0), `out_of_stock` (stock = 0), or `all` (default).
  * @param data The data for the request.
  * @param data.shopId
  * @param data.optionId
  * @param data.attributeId
  * @param data.optionValueKey
  * @param data.attributeName
+ * @param data.stockStatus Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
@@ -2039,6 +2045,7 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
             attribute_id: data.attributeId,
             option_value_key: data.optionValueKey,
             attribute_name: data.attributeName,
+            stock_status: data.stockStatus,
             skip: data.skip,
             limit: data.limit,
             filter: data.filter,
