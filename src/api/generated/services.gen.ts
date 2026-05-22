@@ -1745,10 +1745,11 @@ export const swapShopsShopIdCategoriesCategoryIdSwapPut = (
 
 /**
  * Get available filter attributes for a category
- * Returns attributes actually used by products in this category, with option counts.
+ * Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to already-selected filters (AND logic).
  * @param data The data for the request.
  * @param data.shopId
  * @param data.categoryId
+ * @param data.optionId
  * @returns AvailableAttributeSchema Successful Response
  * @throws ApiError
  */
@@ -1762,6 +1763,9 @@ export const getAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttri
             path: {
                 shop_id: data.shopId,
                 category_id: data.categoryId,
+            },
+            query: {
+                option_id: data.optionId,
             },
             errors: {
                 422: 'Validation Error',

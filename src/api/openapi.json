@@ -2906,7 +2906,7 @@
             "get": {
                 "tags": ["categories"],
                 "summary": "Get available filter attributes for a category",
-                "description": "Returns attributes actually used by products in this category, with option counts.",
+                "description": "Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to already-selected filters (AND logic).",
                 "operationId": "get_available_attributes_shops__shop_id__categories__category_id__available_attributes_get",
                 "parameters": [
                     {
@@ -2927,6 +2927,19 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Category Id"
+                        }
+                    },
+                    {
+                        "name": "option_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "title": "Option Id"
                         }
                     }
                 ],

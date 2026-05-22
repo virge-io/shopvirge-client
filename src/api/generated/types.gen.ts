@@ -1548,6 +1548,7 @@ export type SwapShopsShopIdCategoriesCategoryIdSwapPutResponse = unknown;
 export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData =
     {
         categoryId: string;
+        optionId?: Array<string>;
         shopId: string;
     };
 
