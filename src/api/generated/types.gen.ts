@@ -38,6 +38,32 @@ export type AdminAccountSchema = {
     stripe_synced_at?: string | null;
 };
 
+export type ApiKeyCreate = {
+    name: string;
+};
+
+/**
+ * Response from minting a key. ``plaintext`` is shown ONCE — never again.
+ */
+export type ApiKeyCreated = {
+    id: string;
+    name: string;
+    prefix: string;
+    created_at: string;
+    last_used_at?: string | null;
+    revoked_at?: string | null;
+    plaintext: string;
+};
+
+export type ApiKeyRead = {
+    id: string;
+    name: string;
+    prefix: string;
+    created_at: string;
+    last_used_at?: string | null;
+    revoked_at?: string | null;
+};
+
 export type AttributeCreate = {
     name: string;
     unit?: string | null;
@@ -262,13 +288,7 @@ export type ConfigurationLanguageFields = {
     static_texts: ConfigurationLanguageFieldStaticTexts;
 };
 
-export type ConfigurationLanguages_Input = {
-    main: ConfigurationLanguageFields;
-    alt1?: ConfigurationLanguageFields | null;
-    alt2?: ConfigurationLanguageFields | null;
-};
-
-export type ConfigurationLanguages_Output = {
+export type ConfigurationLanguages = {
     main: ConfigurationLanguageFields;
     alt1?: ConfigurationLanguageFields | null;
     alt2?: ConfigurationLanguageFields | null;
@@ -304,7 +324,7 @@ export type ConfigurationV1_Input = {
     alt1_banner?: string | null;
     alt2_banner?: string | null;
     gradient_percentage?: number;
-    languages: ConfigurationLanguages_Input;
+    languages: ConfigurationLanguages;
     google_analytics_id?: string | null;
     contact: ConfigurationContact;
     toggles: Toggles;
@@ -319,7 +339,7 @@ export type ConfigurationV1_Output = {
     alt1_banner?: string | null;
     alt2_banner?: string | null;
     gradient_percentage?: number;
-    languages: ConfigurationLanguages_Output;
+    languages: ConfigurationLanguages;
     google_analytics_id?: string | null;
     contact: ConfigurationContact;
     toggles: Toggles;
@@ -1485,7 +1505,7 @@ export type CalculateShippingCalculatePostData = {
 
 export type CalculateShippingCalculatePostResponse = ShippingCalculation;
 
-export type GetMultiShopsShopIdCategoriesGetData = {
+export type ListCategoriesData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1497,42 +1517,48 @@ export type GetMultiShopsShopIdCategoriesGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type GetMultiShopsShopIdCategoriesGetResponse = Array<CategorySchema>;
+export type ListCategoriesResponse = Array<CategorySchema>;
 
-export type CreateShopsShopIdCategoriesPostData = {
+export type CreateCategoryData = {
     requestBody: CategoryCreate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateShopsShopIdCategoriesPostResponse = unknown;
+export type CreateCategoryResponse = unknown;
 
-export type GetByIdShopsShopIdCategoriesCategoryIdGetData = {
+export type GetCategoryData = {
     categoryId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type GetByIdShopsShopIdCategoriesCategoryIdGetResponse = CategorySchema;
+export type GetCategoryResponse = CategorySchema;
 
-export type UpdateShopsShopIdCategoriesCategoryIdPutData = {
+export type UpdateCategoryData = {
     categoryId: string;
     requestBody: CategoryUpdate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateShopsShopIdCategoriesCategoryIdPutResponse = unknown;
+export type UpdateCategoryResponse = unknown;
 
-export type DeleteShopsShopIdCategoriesCategoryIdDeleteData = {
+export type DeleteCategoryData = {
     categoryId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type DeleteShopsShopIdCategoriesCategoryIdDeleteResponse = void;
+export type DeleteCategoryResponse = void;
 
 export type GetByNameShopsShopIdCategoriesNameNameGetData = {
     name: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type GetByNameShopsShopIdCategoriesNameNameGetResponse = CategorySchema;
@@ -1541,6 +1567,7 @@ export type SwapShopsShopIdCategoriesCategoryIdSwapPutData = {
     categoryId: string;
     moveUp: boolean;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type SwapShopsShopIdCategoriesCategoryIdSwapPutResponse = unknown;
@@ -1621,7 +1648,7 @@ export type GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData = {
 export type GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse =
     unknown;
 
-export type GetMultiShopsShopIdProductsGetData = {
+export type ListProductsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1637,17 +1664,18 @@ export type GetMultiShopsShopIdProductsGetData = {
      * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
      */
     stockStatus?: 'in_stock' | 'out_of_stock' | 'all';
+    xApiKey?: string | null;
 };
 
-export type GetMultiShopsShopIdProductsGetResponse =
-    Array<ProductWithDefaultPrice>;
+export type ListProductsResponse = Array<ProductWithDefaultPrice>;
 
-export type CreateShopsShopIdProductsPostData = {
+export type CreateProductData = {
     requestBody: ProductCreate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateShopsShopIdProductsPostResponse = unknown;
+export type CreateProductResponse = unknown;
 
 export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
     attributeId?: string;
@@ -1669,38 +1697,41 @@ export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
      * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
      */
     stockStatus?: 'in_stock' | 'out_of_stock' | 'all';
+    xApiKey?: string | null;
 };
 
 export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse =
     Array<ProductWithAttributes>;
 
-export type UpdateShopsShopIdProductsProductIdPutData = {
+export type UpdateProductData = {
     productId: string;
     requestBody: ProductUpdate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateShopsShopIdProductsProductIdPutResponse = unknown;
+export type UpdateProductResponse = unknown;
 
-export type DeleteShopsShopIdProductsProductIdDeleteData = {
+export type DeleteProductData = {
+    productId: string;
+    shopId: string;
+    xApiKey?: string | null;
+};
+
+export type DeleteProductResponse = void;
+
+export type GetProductData = {
     productId: string;
     shopId: string;
 };
 
-export type DeleteShopsShopIdProductsProductIdDeleteResponse = void;
-
-export type GetByIdShopsShopIdProductsProductIdGetData = {
-    productId: string;
-    shopId: string;
-};
-
-export type GetByIdShopsShopIdProductsProductIdGetResponse =
-    ProductWithDetailsAndPrices;
+export type GetProductResponse = ProductWithDetailsAndPrices;
 
 export type SwapShopsShopIdProductsProductIdSwapPutData = {
     moveUp: boolean;
     productId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type SwapShopsShopIdProductsProductIdSwapPutResponse = unknown;
@@ -1763,7 +1794,7 @@ export type DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData = {
 
 export type DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse = void;
 
-export type GetMultiShopsShopIdTagsGetData = {
+export type ListTagsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1775,42 +1806,48 @@ export type GetMultiShopsShopIdTagsGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type GetMultiShopsShopIdTagsGetResponse = Array<TagSchema>;
+export type ListTagsResponse = Array<TagSchema>;
 
-export type CreateShopsShopIdTagsPostData = {
+export type CreateTagData = {
     requestBody: TagCreate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateShopsShopIdTagsPostResponse = unknown;
+export type CreateTagResponse = unknown;
 
-export type GetByIdShopsShopIdTagsTagIdGetData = {
+export type GetTagData = {
     shopId: string;
     tagId: string;
+    xApiKey?: string | null;
 };
 
-export type GetByIdShopsShopIdTagsTagIdGetResponse = TagSchema;
+export type GetTagResponse = TagSchema;
 
-export type UpdateShopsShopIdTagsTagIdPutData = {
+export type UpdateTagData = {
     requestBody: TagUpdate;
     shopId: string;
     tagId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateShopsShopIdTagsTagIdPutResponse = unknown;
+export type UpdateTagResponse = unknown;
 
-export type DeleteShopsShopIdTagsTagIdDeleteData = {
+export type DeleteTagData = {
     shopId: string;
     tagId: string;
+    xApiKey?: string | null;
 };
 
-export type DeleteShopsShopIdTagsTagIdDeleteResponse = void;
+export type DeleteTagResponse = void;
 
 export type GetByNameShopsShopIdTagsNameNameGetData = {
     name: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type GetByNameShopsShopIdTagsNameNameGetResponse = TagSchema;
@@ -1819,6 +1856,7 @@ export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsG
     {
         attributeId: string;
         shopId: string;
+        xApiKey?: string | null;
     };
 
 export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse =
@@ -1836,12 +1874,13 @@ export type GetWithOptionsShopsShopIdAttributesWithOptionsGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
 export type GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse =
     Array<AttributeWithOptionsSchema>;
 
-export type GetMultiShopsShopIdAttributesGetData = {
+export type ListAttributesData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1853,55 +1892,81 @@ export type GetMultiShopsShopIdAttributesGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type GetMultiShopsShopIdAttributesGetResponse = Array<AttributeSchema>;
+export type ListAttributesResponse = Array<AttributeSchema>;
 
-export type CreateShopsShopIdAttributesPostData = {
+export type CreateAttributeData = {
     requestBody: AttributeCreate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateShopsShopIdAttributesPostResponse = AttributeSchema;
+export type CreateAttributeResponse = AttributeSchema;
 
 export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData =
     {
         attributeId: string;
         shopId: string;
+        xApiKey?: string | null;
     };
 
 export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse =
     AttributeWithOptionsSchema;
 
-export type GetByIdShopsShopIdAttributesIdAttributeIdGetData = {
+export type GetAttributeData = {
     attributeId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type GetByIdShopsShopIdAttributesIdAttributeIdGetResponse =
-    AttributeSchema;
+export type GetAttributeResponse = AttributeSchema;
 
 export type GetByNameShopsShopIdAttributesNameNameGetData = {
     name: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type GetByNameShopsShopIdAttributesNameNameGetResponse = AttributeSchema;
 
-export type UpdateShopsShopIdAttributesAttributeIdPutData = {
+export type UpdateAttributeData = {
     attributeId: string;
     requestBody: AttributeUpdate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateShopsShopIdAttributesAttributeIdPutResponse = AttributeSchema;
+export type UpdateAttributeResponse = AttributeSchema;
 
-export type DeleteShopsShopIdAttributesAttributeIdDeleteData = {
+export type DeleteAttributeData = {
     attributeId: string;
+    shopId: string;
+    xApiKey?: string | null;
+};
+
+export type DeleteAttributeResponse = void;
+
+export type MintShopsShopIdApiKeysPostData = {
+    requestBody: ApiKeyCreate;
     shopId: string;
 };
 
-export type DeleteShopsShopIdAttributesAttributeIdDeleteResponse = void;
+export type MintShopsShopIdApiKeysPostResponse = ApiKeyCreated;
+
+export type ListKeysShopsShopIdApiKeysGetData = {
+    shopId: string;
+};
+
+export type ListKeysShopsShopIdApiKeysGetResponse = Array<ApiKeyRead>;
+
+export type RevokeShopsShopIdApiKeysKeyIdDeleteData = {
+    keyId: string;
+    shopId: string;
+};
+
+export type RevokeShopsShopIdApiKeysKeyIdDeleteResponse = void;
 
 export type ListOptionsForShopShopsShopIdAttributeOptionsGetData = {
     /**
@@ -3018,7 +3083,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/categories/': {
         get: {
-            req: GetMultiShopsShopIdCategoriesGetData;
+            req: ListCategoriesData;
             res: {
                 /**
                  * Successful Response
@@ -3031,7 +3096,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateShopsShopIdCategoriesPostData;
+            req: CreateCategoryData;
             res: {
                 /**
                  * Successful Response
@@ -3046,7 +3111,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/categories/{category_id}': {
         get: {
-            req: GetByIdShopsShopIdCategoriesCategoryIdGetData;
+            req: GetCategoryData;
             res: {
                 /**
                  * Successful Response
@@ -3059,7 +3124,7 @@ export type $OpenApiTs = {
             };
         };
         put: {
-            req: UpdateShopsShopIdCategoriesCategoryIdPutData;
+            req: UpdateCategoryData;
             res: {
                 /**
                  * Successful Response
@@ -3072,7 +3137,7 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteShopsShopIdCategoriesCategoryIdDeleteData;
+            req: DeleteCategoryData;
             res: {
                 /**
                  * Successful Response
@@ -3220,7 +3285,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products/': {
         get: {
-            req: GetMultiShopsShopIdProductsGetData;
+            req: ListProductsData;
             res: {
                 /**
                  * Successful Response
@@ -3233,7 +3298,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateShopsShopIdProductsPostData;
+            req: CreateProductData;
             res: {
                 /**
                  * Successful Response
@@ -3263,7 +3328,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products/{product_id}': {
         put: {
-            req: UpdateShopsShopIdProductsProductIdPutData;
+            req: UpdateProductData;
             res: {
                 /**
                  * Successful Response
@@ -3276,7 +3341,7 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteShopsShopIdProductsProductIdDeleteData;
+            req: DeleteProductData;
             res: {
                 /**
                  * Successful Response
@@ -3289,7 +3354,7 @@ export type $OpenApiTs = {
             };
         };
         get: {
-            req: GetByIdShopsShopIdProductsProductIdGetData;
+            req: GetProductData;
             res: {
                 /**
                  * Successful Response
@@ -3420,7 +3485,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/tags/': {
         get: {
-            req: GetMultiShopsShopIdTagsGetData;
+            req: ListTagsData;
             res: {
                 /**
                  * Successful Response
@@ -3433,7 +3498,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateShopsShopIdTagsPostData;
+            req: CreateTagData;
             res: {
                 /**
                  * Successful Response
@@ -3448,7 +3513,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/tags/{tag_id}': {
         get: {
-            req: GetByIdShopsShopIdTagsTagIdGetData;
+            req: GetTagData;
             res: {
                 /**
                  * Successful Response
@@ -3461,7 +3526,7 @@ export type $OpenApiTs = {
             };
         };
         put: {
-            req: UpdateShopsShopIdTagsTagIdPutData;
+            req: UpdateTagData;
             res: {
                 /**
                  * Successful Response
@@ -3474,7 +3539,7 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteShopsShopIdTagsTagIdDeleteData;
+            req: DeleteTagData;
             res: {
                 /**
                  * Successful Response
@@ -3534,7 +3599,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/attributes/': {
         get: {
-            req: GetMultiShopsShopIdAttributesGetData;
+            req: ListAttributesData;
             res: {
                 /**
                  * Successful Response
@@ -3547,7 +3612,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateShopsShopIdAttributesPostData;
+            req: CreateAttributeData;
             res: {
                 /**
                  * Successful Response
@@ -3577,7 +3642,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/attributes/id/{attribute_id}': {
         get: {
-            req: GetByIdShopsShopIdAttributesIdAttributeIdGetData;
+            req: GetAttributeData;
             res: {
                 /**
                  * Successful Response
@@ -3607,7 +3672,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/attributes/{attribute_id}': {
         put: {
-            req: UpdateShopsShopIdAttributesAttributeIdPutData;
+            req: UpdateAttributeData;
             res: {
                 /**
                  * Successful Response
@@ -3620,7 +3685,50 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteShopsShopIdAttributesAttributeIdDeleteData;
+            req: DeleteAttributeData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                204: void;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/api-keys/': {
+        post: {
+            req: MintShopsShopIdApiKeysPostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                201: ApiKeyCreated;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+        get: {
+            req: ListKeysShopsShopIdApiKeysGetData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: Array<ApiKeyRead>;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/api-keys/{key_id}': {
+        delete: {
+            req: RevokeShopsShopIdApiKeysKeyIdDeleteData;
             res: {
                 /**
                  * Successful Response

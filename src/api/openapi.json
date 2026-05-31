@@ -3,7 +3,7 @@
     "info": {
         "title": "ShopVirge API",
         "description": "Backend for ShopVirge Shops.",
-        "version": "0.2.10"
+        "version": "0.3.1"
     },
     "paths": {
         "/login/access-token": {
@@ -306,12 +306,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "allOf": [
-                                    {
-                                        "$ref": "#/components/schemas/Body_update_user_me_users_me_put"
-                                    }
-                                ],
-                                "title": "Body"
+                                "$ref": "#/components/schemas/Body_update_user_me_users_me_put"
                             }
                         }
                     }
@@ -480,7 +475,10 @@
                         "application/json": {
                             "schema": {
                                 "type": "array",
-                                "items": { "type": "object" },
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                },
                                 "title": "Json Data"
                             }
                         }
@@ -493,6 +491,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
+                                    "additionalProperties": true,
                                     "title": "Response New Form Forms  Form Key  Post"
                                 }
                             }
@@ -1029,6 +1028,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
+                                    "additionalProperties": true,
                                     "title": "Response Get Stripe Customer Admin Accounts  Id  Stripe Customer Get"
                                 }
                             }
@@ -2530,9 +2530,9 @@
         },
         "/shops/{shop_id}/categories/": {
             "get": {
-                "tags": ["categories"],
+                "tags": ["categories", "agent-exposed", "agent-large"],
                 "summary": "Get Multi",
-                "operationId": "get_multi_shops__shop_id__categories__get",
+                "operationId": "list_categories",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -2587,6 +2587,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -2599,7 +2608,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/CategorySchema"
                                     },
-                                    "title": "Response Get Multi Shops  Shop Id  Categories  Get"
+                                    "title": "Response List Categories"
                                 }
                             }
                         }
@@ -2617,9 +2626,9 @@
                 }
             },
             "post": {
-                "tags": ["categories"],
+                "tags": ["categories", "agent-exposed"],
                 "summary": "Create",
-                "operationId": "create_shops__shop_id__categories__post",
+                "operationId": "create_category",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -2629,6 +2638,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -2662,9 +2680,9 @@
         },
         "/shops/{shop_id}/categories/{category_id}": {
             "get": {
-                "tags": ["categories"],
+                "tags": ["categories", "agent-exposed"],
                 "summary": "Get By Id",
-                "operationId": "get_by_id_shops__shop_id__categories__category_id__get",
+                "operationId": "get_category",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -2684,6 +2702,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Category Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -2711,9 +2738,9 @@
                 }
             },
             "put": {
-                "tags": ["categories"],
+                "tags": ["categories", "agent-exposed"],
                 "summary": "Update",
-                "operationId": "update_shops__shop_id__categories__category_id__put",
+                "operationId": "update_category",
                 "parameters": [
                     {
                         "name": "category_id",
@@ -2733,6 +2760,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -2764,9 +2800,9 @@
                 }
             },
             "delete": {
-                "tags": ["categories"],
+                "tags": ["categories", "agent-exposed"],
                 "summary": "Delete",
-                "operationId": "delete_shops__shop_id__categories__category_id__delete",
+                "operationId": "delete_category",
                 "parameters": [
                     {
                         "name": "category_id",
@@ -2786,6 +2822,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -2824,6 +2869,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -2882,6 +2936,15 @@
                         "in": "query",
                         "required": true,
                         "schema": { "type": "boolean", "title": "Move Up" }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -2906,7 +2969,7 @@
             "get": {
                 "tags": ["categories"],
                 "summary": "Get available filter attributes for a category",
-                "description": "Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to already-selected filters (AND logic).",
+                "description": "Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to the already-selected filters (AND logic).",
                 "operationId": "get_available_attributes_shops__shop_id__categories__category_id__available_attributes_get",
                 "parameters": [
                     {
@@ -2935,10 +2998,7 @@
                         "required": false,
                         "schema": {
                             "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "uuid"
-                            },
+                            "items": { "type": "string", "format": "uuid" },
                             "title": "Option Id"
                         }
                     }
@@ -3348,9 +3408,9 @@
         },
         "/shops/{shop_id}/products/": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed", "agent-large"],
                 "summary": "Get Multi",
-                "operationId": "get_multi_shops__shop_id__products__get",
+                "operationId": "list_products",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -3418,6 +3478,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -3430,7 +3499,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/ProductWithDefaultPrice"
                                     },
-                                    "title": "Response Get Multi Shops  Shop Id  Products  Get"
+                                    "title": "Response List Products"
                                 }
                             }
                         }
@@ -3448,9 +3517,9 @@
                 }
             },
             "post": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Create",
-                "operationId": "create_shops__shop_id__products__post",
+                "operationId": "create_product",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -3460,6 +3529,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -3603,6 +3681,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -3635,9 +3722,9 @@
         },
         "/shops/{shop_id}/products/{product_id}": {
             "put": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Update",
-                "operationId": "update_shops__shop_id__products__product_id__put",
+                "operationId": "update_product",
                 "parameters": [
                     {
                         "name": "product_id",
@@ -3657,6 +3744,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -3688,9 +3784,9 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Delete",
-                "operationId": "delete_shops__shop_id__products__product_id__delete",
+                "operationId": "delete_product",
                 "parameters": [
                     {
                         "name": "product_id",
@@ -3711,6 +3807,15 @@
                             "format": "uuid",
                             "title": "Shop Id"
                         }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -3728,9 +3833,9 @@
                 }
             },
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Get By Id",
-                "operationId": "get_by_id_shops__shop_id__products__product_id__get",
+                "operationId": "get_product",
                 "parameters": [
                     {
                         "name": "product_id",
@@ -3808,6 +3913,15 @@
                         "in": "query",
                         "required": true,
                         "schema": { "type": "boolean", "title": "Move Up" }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4147,9 +4261,9 @@
         },
         "/shops/{shop_id}/tags/": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed", "agent-large"],
                 "summary": "Get Multi",
-                "operationId": "get_multi_shops__shop_id__tags__get",
+                "operationId": "list_tags",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -4204,6 +4318,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4216,7 +4339,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/TagSchema"
                                     },
-                                    "title": "Response Get Multi Shops  Shop Id  Tags  Get"
+                                    "title": "Response List Tags"
                                 }
                             }
                         }
@@ -4234,9 +4357,9 @@
                 }
             },
             "post": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Create",
-                "operationId": "create_shops__shop_id__tags__post",
+                "operationId": "create_tag",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -4246,6 +4369,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4279,9 +4411,9 @@
         },
         "/shops/{shop_id}/tags/{tag_id}": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Get By Id",
-                "operationId": "get_by_id_shops__shop_id__tags__tag_id__get",
+                "operationId": "get_tag",
                 "parameters": [
                     {
                         "name": "tag_id",
@@ -4301,6 +4433,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4328,9 +4469,9 @@
                 }
             },
             "put": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Update",
-                "operationId": "update_shops__shop_id__tags__tag_id__put",
+                "operationId": "update_tag",
                 "parameters": [
                     {
                         "name": "tag_id",
@@ -4350,6 +4491,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4381,9 +4531,9 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Delete",
-                "operationId": "delete_shops__shop_id__tags__tag_id__delete",
+                "operationId": "delete_tag",
                 "parameters": [
                     {
                         "name": "tag_id",
@@ -4403,6 +4553,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4441,6 +4600,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4493,6 +4661,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4580,6 +4757,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4612,10 +4798,10 @@
         },
         "/shops/{shop_id}/attributes/": {
             "get": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed", "agent-large"],
                 "summary": "List shop attributes",
                 "description": "Retrieve a paginated list of all attributes defined for a specific shop. This list does not include options.",
-                "operationId": "get_multi_shops__shop_id__attributes__get",
+                "operationId": "list_attributes",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -4670,6 +4856,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4682,7 +4877,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/AttributeSchema"
                                     },
-                                    "title": "Response Get Multi Shops  Shop Id  Attributes  Get"
+                                    "title": "Response List Attributes"
                                 }
                             }
                         }
@@ -4700,10 +4895,10 @@
                 }
             },
             "post": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Create attribute",
                 "description": "Create a new attribute for a shop. This also initializes a translation record with the provided name.",
-                "operationId": "create_shops__shop_id__attributes__post",
+                "operationId": "create_attribute",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -4713,6 +4908,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4776,6 +4980,15 @@
                             "format": "uuid",
                             "title": "Shop Id"
                         }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4804,10 +5017,10 @@
         },
         "/shops/{shop_id}/attributes/id/{attribute_id}": {
             "get": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Get attribute by ID",
                 "description": "Retrieve the details of a specific attribute using its unique ID.",
-                "operationId": "get_by_id_shops__shop_id__attributes_id__attribute_id__get",
+                "operationId": "get_attribute",
                 "parameters": [
                     {
                         "name": "attribute_id",
@@ -4827,6 +5040,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4876,6 +5098,15 @@
                             "format": "uuid",
                             "title": "Shop Id"
                         }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -4904,10 +5135,10 @@
         },
         "/shops/{shop_id}/attributes/{attribute_id}": {
             "put": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Update attribute",
                 "description": "Update the details of an existing attribute, such as its name or unit.",
-                "operationId": "update_shops__shop_id__attributes__attribute_id__put",
+                "operationId": "update_attribute",
                 "parameters": [
                     {
                         "name": "attribute_id",
@@ -4927,6 +5158,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -4964,10 +5204,10 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Delete attribute",
                 "description": "Remove an attribute from a shop. This will fail if the attribute is currently in use by any products.",
-                "operationId": "delete_shops__shop_id__attributes__attribute_id__delete",
+                "operationId": "delete_attribute",
                 "parameters": [
                     {
                         "name": "attribute_id",
@@ -4987,6 +5227,152 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Successful Response" },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shops/{shop_id}/api-keys/": {
+            "post": {
+                "tags": ["shops", "api-keys"],
+                "summary": "Mint a new API key for the shop",
+                "description": "Mint a new API key. The plaintext is returned exactly once.\n\nStore it somewhere safe — it cannot be retrieved again. If lost, revoke\nand mint a new one.",
+                "operationId": "mint_shops__shop_id__api_keys__post",
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ApiKeyCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiKeyCreated"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["shops", "api-keys"],
+                "summary": "List API keys for the shop",
+                "operationId": "list_keys_shops__shop_id__api_keys__get",
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApiKeyRead"
+                                    },
+                                    "title": "Response List Keys Shops  Shop Id  Api Keys  Get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shops/{shop_id}/api-keys/{key_id}": {
+            "delete": {
+                "tags": ["shops", "api-keys"],
+                "summary": "Revoke an API key",
+                "operationId": "revoke_shops__shop_id__api_keys__key_id__delete",
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "key_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Key Id"
                         }
                     }
                 ],
@@ -5430,7 +5816,11 @@
                     "required": true,
                     "content": {
                         "application/json": {
-                            "schema": { "type": "object", "title": "Data" }
+                            "schema": {
+                                "type": "object",
+                                "additionalProperties": true,
+                                "title": "Data"
+                            }
                         }
                     }
                 },
@@ -6358,7 +6748,10 @@
                         "application/json": {
                             "schema": {
                                 "type": "array",
-                                "items": { "type": "object" },
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": true
+                                },
                                 "default": [],
                                 "title": "Form Data"
                             }
@@ -6423,7 +6816,10 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "items": { "type": "object" },
+                                "items": {
+                                    "additionalProperties": true,
+                                    "type": "object"
+                                },
                                 "type": "array",
                                 "title": "Form Data",
                                 "default": []
@@ -6698,7 +7094,11 @@
                         "title": "Shop Id"
                     },
                     "name": { "type": "string", "title": "Name" },
-                    "details": { "type": "object", "title": "Details" }
+                    "details": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Details"
+                    }
                 },
                 "type": "object",
                 "required": ["shop_id", "name", "details"],
@@ -6712,7 +7112,11 @@
                         "title": "Shop Id"
                     },
                     "name": { "type": "string", "title": "Name" },
-                    "details": { "type": "object", "title": "Details" },
+                    "details": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Details"
+                    },
                     "id": { "type": "string", "format": "uuid", "title": "Id" }
                 },
                 "type": "object",
@@ -6727,7 +7131,11 @@
                         "title": "Shop Id"
                     },
                     "name": { "type": "string", "title": "Name" },
-                    "details": { "type": "object", "title": "Details" }
+                    "details": {
+                        "additionalProperties": true,
+                        "type": "object",
+                        "title": "Details"
+                    }
                 },
                 "type": "object",
                 "required": ["shop_id", "name", "details"],
@@ -6756,7 +7164,10 @@
                         "title": "Hash Name"
                     },
                     "details": {
-                        "anyOf": [{ "type": "object" }, { "type": "null" }],
+                        "anyOf": [
+                            { "additionalProperties": true, "type": "object" },
+                            { "type": "null" }
+                        ],
                         "title": "Details"
                     },
                     "stripe_customer_id": {
@@ -6774,6 +7185,72 @@
                 "type": "object",
                 "required": ["id"],
                 "title": "AdminAccountSchema"
+            },
+            "ApiKeyCreate": {
+                "properties": { "name": { "type": "string", "title": "Name" } },
+                "type": "object",
+                "required": ["name"],
+                "title": "ApiKeyCreate"
+            },
+            "ApiKeyCreated": {
+                "properties": {
+                    "id": { "type": "string", "format": "uuid", "title": "Id" },
+                    "name": { "type": "string", "title": "Name" },
+                    "prefix": { "type": "string", "title": "Prefix" },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "last_used_at": {
+                        "anyOf": [
+                            { "type": "string", "format": "date-time" },
+                            { "type": "null" }
+                        ],
+                        "title": "Last Used At"
+                    },
+                    "revoked_at": {
+                        "anyOf": [
+                            { "type": "string", "format": "date-time" },
+                            { "type": "null" }
+                        ],
+                        "title": "Revoked At"
+                    },
+                    "plaintext": { "type": "string", "title": "Plaintext" }
+                },
+                "type": "object",
+                "required": ["id", "name", "prefix", "created_at", "plaintext"],
+                "title": "ApiKeyCreated",
+                "description": "Response from minting a key. ``plaintext`` is shown ONCE — never again."
+            },
+            "ApiKeyRead": {
+                "properties": {
+                    "id": { "type": "string", "format": "uuid", "title": "Id" },
+                    "name": { "type": "string", "title": "Name" },
+                    "prefix": { "type": "string", "title": "Prefix" },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "last_used_at": {
+                        "anyOf": [
+                            { "type": "string", "format": "date-time" },
+                            { "type": "null" }
+                        ],
+                        "title": "Last Used At"
+                    },
+                    "revoked_at": {
+                        "anyOf": [
+                            { "type": "string", "format": "date-time" },
+                            { "type": "null" }
+                        ],
+                        "title": "Revoked At"
+                    }
+                },
+                "type": "object",
+                "required": ["id", "name", "prefix", "created_at"],
+                "title": "ApiKeyRead"
             },
             "AttributeCreate": {
                 "properties": {
@@ -6974,13 +7451,17 @@
                 "properties": {
                     "grant_type": {
                         "anyOf": [
-                            { "type": "string", "pattern": "password" },
+                            { "type": "string", "pattern": "^password$" },
                             { "type": "null" }
                         ],
                         "title": "Grant Type"
                     },
                     "username": { "type": "string", "title": "Username" },
-                    "password": { "type": "string", "title": "Password" },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "title": "Password"
+                    },
                     "scope": {
                         "type": "string",
                         "title": "Scope",
@@ -6992,6 +7473,7 @@
                     },
                     "client_secret": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "format": "password",
                         "title": "Client Secret"
                     }
                 },
@@ -7057,7 +7539,7 @@
                     },
                     "main_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7065,7 +7547,7 @@
                     },
                     "alt1_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7073,7 +7555,7 @@
                     },
                     "alt2_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7120,7 +7602,7 @@
                     },
                     "main_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7128,7 +7610,7 @@
                     },
                     "alt1_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7136,7 +7618,7 @@
                     },
                     "alt2_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7205,7 +7687,7 @@
                     },
                     "main_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7213,7 +7695,7 @@
                     },
                     "alt1_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7221,7 +7703,7 @@
                     },
                     "alt2_image": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -7372,33 +7854,7 @@
                 "required": ["language_name", "menu_items", "static_texts"],
                 "title": "ConfigurationLanguageFields"
             },
-            "ConfigurationLanguages-Input": {
-                "properties": {
-                    "main": {
-                        "$ref": "#/components/schemas/ConfigurationLanguageFields"
-                    },
-                    "alt1": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/ConfigurationLanguageFields"
-                            },
-                            { "type": "null" }
-                        ]
-                    },
-                    "alt2": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/ConfigurationLanguageFields"
-                            },
-                            { "type": "null" }
-                        ]
-                    }
-                },
-                "type": "object",
-                "required": ["main"],
-                "title": "ConfigurationLanguages"
-            },
-            "ConfigurationLanguages-Output": {
+            "ConfigurationLanguages": {
                 "properties": {
                     "main": {
                         "$ref": "#/components/schemas/ConfigurationLanguageFields"
@@ -7451,7 +7907,13 @@
                         "default": "fixed"
                     },
                     "fixed_fee": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Fixed Fee",
                         "default": "0"
                     },
@@ -7466,7 +7928,13 @@
                         "default": false
                     },
                     "free_shipping_above_amount": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Free Shipping Above Amount",
                         "default": "0"
                     }
@@ -7489,7 +7957,7 @@
                     "fixed_fee": {
                         "type": "number",
                         "title": "Fixed Fee",
-                        "default": "0"
+                        "default": 0.0
                     },
                     "vat_calculation_enabled": {
                         "type": "boolean",
@@ -7504,7 +7972,7 @@
                     "free_shipping_above_amount": {
                         "type": "number",
                         "title": "Free Shipping Above Amount",
-                        "default": "0"
+                        "default": 0.0
                     }
                 },
                 "type": "object",
@@ -7532,7 +8000,7 @@
                         "default": 75
                     },
                     "languages": {
-                        "$ref": "#/components/schemas/ConfigurationLanguages-Input"
+                        "$ref": "#/components/schemas/ConfigurationLanguages"
                     },
                     "google_analytics_id": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
@@ -7592,7 +8060,7 @@
                         "default": 75
                     },
                     "languages": {
-                        "$ref": "#/components/schemas/ConfigurationLanguages-Output"
+                        "$ref": "#/components/schemas/ConfigurationLanguages"
                     },
                     "google_analytics_id": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
@@ -7948,7 +8416,10 @@
                     "total": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Total"
@@ -7968,7 +8439,10 @@
                     "shipping_fee_inc_btw": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Shipping Fee Inc Btw"
@@ -7990,7 +8464,10 @@
                     "total": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Total"
@@ -8010,7 +8487,10 @@
                     "shipping_fee_inc_btw": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Shipping Fee Inc Btw"
@@ -8116,7 +8596,13 @@
                         "title": "Description"
                     },
                     "price": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Price"
                     },
                     "product_id": {
@@ -8270,7 +8756,10 @@
                     "total": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Total"
@@ -8290,7 +8779,10 @@
                     "shipping_fee_inc_btw": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Shipping Fee Inc Btw"
@@ -8494,7 +8986,10 @@
                     "price": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Price"
@@ -8502,7 +8997,10 @@
                     "recurring_price_monthly": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Recurring Price Monthly"
@@ -8510,7 +9008,10 @@
                     "recurring_price_yearly": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Recurring Price Yearly"
@@ -8533,7 +9034,10 @@
                     "discounted_price": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Discounted Price"
@@ -8563,7 +9067,7 @@
                     },
                     "image_1": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8571,7 +9075,7 @@
                     },
                     "image_2": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8579,7 +9083,7 @@
                     },
                     "image_3": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8587,7 +9091,7 @@
                     },
                     "image_4": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8595,7 +9099,7 @@
                     },
                     "image_5": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8603,7 +9107,7 @@
                     },
                     "image_6": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8888,7 +9392,10 @@
                     "price": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Price"
@@ -8896,7 +9403,10 @@
                     "recurring_price_monthly": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Recurring Price Monthly"
@@ -8904,7 +9414,10 @@
                     "recurring_price_yearly": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Recurring Price Yearly"
@@ -8927,7 +9440,10 @@
                     "discounted_price": {
                         "anyOf": [
                             { "type": "number" },
-                            { "type": "string" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
                             { "type": "null" }
                         ],
                         "title": "Discounted Price"
@@ -8957,7 +9473,7 @@
                     },
                     "image_1": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8965,7 +9481,7 @@
                     },
                     "image_2": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8973,7 +9489,7 @@
                     },
                     "image_3": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8981,7 +9497,7 @@
                     },
                     "image_4": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8989,7 +9505,7 @@
                     },
                     "image_5": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -8997,7 +9513,7 @@
                     },
                     "image_6": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9120,7 +9636,7 @@
                     },
                     "image_1": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9128,7 +9644,7 @@
                     },
                     "image_2": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9136,7 +9652,7 @@
                     },
                     "image_3": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9144,7 +9660,7 @@
                     },
                     "image_4": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9152,7 +9668,7 @@
                     },
                     "image_5": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9160,7 +9676,7 @@
                     },
                     "image_6": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9285,7 +9801,7 @@
                     },
                     "image_1": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9293,7 +9809,7 @@
                     },
                     "image_2": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9301,7 +9817,7 @@
                     },
                     "image_3": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9309,7 +9825,7 @@
                     },
                     "image_4": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9317,7 +9833,7 @@
                     },
                     "image_5": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9325,7 +9841,7 @@
                     },
                     "image_6": {
                         "anyOf": [
-                            { "type": "object" },
+                            { "additionalProperties": true, "type": "object" },
                             { "type": "string" },
                             { "type": "null" }
                         ],
@@ -9355,7 +9871,10 @@
                         "default": 0
                     },
                     "prices": {
-                        "items": { "type": "object" },
+                        "items": {
+                            "additionalProperties": true,
+                            "type": "object"
+                        },
                         "type": "array",
                         "title": "Prices",
                         "default": []
@@ -9538,27 +10057,63 @@
                         "title": "External Url"
                     },
                     "vat_standard": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Standard"
                     },
                     "vat_lower_1": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 1"
                     },
                     "vat_lower_2": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 2"
                     },
                     "vat_lower_3": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 3"
                     },
                     "vat_special": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Special"
                     },
                     "vat_zero": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Zero"
                     }
                 },
@@ -9692,27 +10247,63 @@
                         "title": "External Url"
                     },
                     "vat_standard": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Standard"
                     },
                     "vat_lower_1": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 1"
                     },
                     "vat_lower_2": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 2"
                     },
                     "vat_lower_3": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Lower 3"
                     },
                     "vat_special": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Special"
                     },
                     "vat_zero": {
-                        "anyOf": [{ "type": "number" }, { "type": "string" }],
+                        "anyOf": [
+                            { "type": "number" },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            }
+                        ],
                         "title": "Vat Zero"
                     },
                     "modified_at": {
@@ -9794,6 +10385,7 @@
                         "title": "Stripe Synced At"
                     },
                     "stripe_customer": {
+                        "additionalProperties": true,
                         "type": "object",
                         "title": "Stripe Customer"
                     }

@@ -12,6 +12,7 @@ export const $AccountCreate = {
             title: 'Name',
         },
         details: {
+            additionalProperties: true,
             type: 'object',
             title: 'Details',
         },
@@ -33,6 +34,7 @@ export const $AccountSchema = {
             title: 'Name',
         },
         details: {
+            additionalProperties: true,
             type: 'object',
             title: 'Details',
         },
@@ -59,6 +61,7 @@ export const $AccountUpdate = {
             title: 'Name',
         },
         details: {
+            additionalProperties: true,
             type: 'object',
             title: 'Details',
         },
@@ -123,6 +126,7 @@ export const $AdminAccountSchema = {
         details: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -158,6 +162,124 @@ export const $AdminAccountSchema = {
     type: 'object',
     required: ['id'],
     title: 'AdminAccountSchema',
+} as const;
+
+export const $ApiKeyCreate = {
+    properties: {
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+    },
+    type: 'object',
+    required: ['name'],
+    title: 'ApiKeyCreate',
+} as const;
+
+export const $ApiKeyCreated = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+        prefix: {
+            type: 'string',
+            title: 'Prefix',
+        },
+        created_at: {
+            type: 'string',
+            format: 'date-time',
+            title: 'Created At',
+        },
+        last_used_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Last Used At',
+        },
+        revoked_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Revoked At',
+        },
+        plaintext: {
+            type: 'string',
+            title: 'Plaintext',
+        },
+    },
+    type: 'object',
+    required: ['id', 'name', 'prefix', 'created_at', 'plaintext'],
+    title: 'ApiKeyCreated',
+    description:
+        'Response from minting a key. ``plaintext`` is shown ONCE — never again.',
+} as const;
+
+export const $ApiKeyRead = {
+    properties: {
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+        prefix: {
+            type: 'string',
+            title: 'Prefix',
+        },
+        created_at: {
+            type: 'string',
+            format: 'date-time',
+            title: 'Created At',
+        },
+        last_used_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Last Used At',
+        },
+        revoked_at: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'date-time',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Revoked At',
+        },
+    },
+    type: 'object',
+    required: ['id', 'name', 'prefix', 'created_at'],
+    title: 'ApiKeyRead',
 } as const;
 
 export const $AttributeCreate = {
@@ -484,7 +606,7 @@ export const $Body_login_access_token_login_access_token_post = {
             anyOf: [
                 {
                     type: 'string',
-                    pattern: 'password',
+                    pattern: '^password$',
                 },
                 {
                     type: 'null',
@@ -498,6 +620,7 @@ export const $Body_login_access_token_login_access_token_post = {
         },
         password: {
             type: 'string',
+            format: 'password',
             title: 'Password',
         },
         scope: {
@@ -525,6 +648,7 @@ export const $Body_login_access_token_login_access_token_post = {
                     type: 'null',
                 },
             ],
+            format: 'password',
             title: 'Client Secret',
         },
     },
@@ -624,6 +748,7 @@ export const $CategoryCreate = {
         main_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -638,6 +763,7 @@ export const $CategoryCreate = {
         alt1_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -652,6 +778,7 @@ export const $CategoryCreate = {
         alt2_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -727,6 +854,7 @@ export const $CategorySchema = {
         main_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -741,6 +869,7 @@ export const $CategorySchema = {
         alt1_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -755,6 +884,7 @@ export const $CategorySchema = {
         alt2_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -884,6 +1014,7 @@ export const $CategoryUpdate = {
         main_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -898,6 +1029,7 @@ export const $CategoryUpdate = {
         alt1_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -912,6 +1044,7 @@ export const $CategoryUpdate = {
         alt2_image: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -1154,38 +1287,7 @@ export const $ConfigurationLanguageFields = {
     title: 'ConfigurationLanguageFields',
 } as const;
 
-export const $ConfigurationLanguages_Input = {
-    properties: {
-        main: {
-            $ref: '#/components/schemas/ConfigurationLanguageFields',
-        },
-        alt1: {
-            anyOf: [
-                {
-                    $ref: '#/components/schemas/ConfigurationLanguageFields',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-        },
-        alt2: {
-            anyOf: [
-                {
-                    $ref: '#/components/schemas/ConfigurationLanguageFields',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-        },
-    },
-    type: 'object',
-    required: ['main'],
-    title: 'ConfigurationLanguages',
-} as const;
-
-export const $ConfigurationLanguages_Output = {
+export const $ConfigurationLanguages = {
     properties: {
         main: {
             $ref: '#/components/schemas/ConfigurationLanguageFields',
@@ -1264,6 +1366,7 @@ export const $ConfigurationShipping_Input = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Fixed Fee',
@@ -1286,6 +1389,7 @@ export const $ConfigurationShipping_Input = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Free Shipping Above Amount',
@@ -1311,7 +1415,7 @@ export const $ConfigurationShipping_Output = {
         fixed_fee: {
             type: 'number',
             title: 'Fixed Fee',
-            default: '0',
+            default: 0,
         },
         vat_calculation_enabled: {
             type: 'boolean',
@@ -1326,7 +1430,7 @@ export const $ConfigurationShipping_Output = {
         free_shipping_above_amount: {
             type: 'number',
             title: 'Free Shipping Above Amount',
-            default: '0',
+            default: 0,
         },
     },
     type: 'object',
@@ -1375,7 +1479,7 @@ export const $ConfigurationV1_Input = {
             default: 75,
         },
         languages: {
-            $ref: '#/components/schemas/ConfigurationLanguages-Input',
+            $ref: '#/components/schemas/ConfigurationLanguages',
         },
         google_analytics_id: {
             anyOf: [
@@ -1469,7 +1573,7 @@ export const $ConfigurationV1_Output = {
             default: 75,
         },
         languages: {
-            $ref: '#/components/schemas/ConfigurationLanguages-Output',
+            $ref: '#/components/schemas/ConfigurationLanguages',
         },
         google_analytics_id: {
             anyOf: [
@@ -2033,6 +2137,7 @@ export const $OrderBase = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2080,6 +2185,7 @@ export const $OrderBase = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2114,6 +2220,7 @@ export const $OrderCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2161,6 +2268,7 @@ export const $OrderCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2352,6 +2460,7 @@ export const $OrderItem_Input = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Price',
@@ -2610,6 +2719,7 @@ export const $OrderUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2657,6 +2767,7 @@ export const $OrderUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2964,6 +3075,7 @@ export const $ProductCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2978,6 +3090,7 @@ export const $ProductCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -2992,6 +3105,7 @@ export const $ProductCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3037,6 +3151,7 @@ export const $ProductCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3094,6 +3209,7 @@ export const $ProductCreate = {
         image_1: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3108,6 +3224,7 @@ export const $ProductCreate = {
         image_2: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3122,6 +3239,7 @@ export const $ProductCreate = {
         image_3: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3136,6 +3254,7 @@ export const $ProductCreate = {
         image_4: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3150,6 +3269,7 @@ export const $ProductCreate = {
         image_5: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3164,6 +3284,7 @@ export const $ProductCreate = {
         image_6: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3635,6 +3756,7 @@ export const $ProductUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3649,6 +3771,7 @@ export const $ProductUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3663,6 +3786,7 @@ export const $ProductUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3708,6 +3832,7 @@ export const $ProductUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
                     type: 'null',
@@ -3765,6 +3890,7 @@ export const $ProductUpdate = {
         image_1: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3779,6 +3905,7 @@ export const $ProductUpdate = {
         image_2: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3793,6 +3920,7 @@ export const $ProductUpdate = {
         image_3: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3807,6 +3935,7 @@ export const $ProductUpdate = {
         image_4: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3821,6 +3950,7 @@ export const $ProductUpdate = {
         image_5: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -3835,6 +3965,7 @@ export const $ProductUpdate = {
         image_6: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4039,6 +4170,7 @@ export const $ProductWithDefaultPrice = {
         image_1: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4053,6 +4185,7 @@ export const $ProductWithDefaultPrice = {
         image_2: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4067,6 +4200,7 @@ export const $ProductWithDefaultPrice = {
         image_3: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4081,6 +4215,7 @@ export const $ProductWithDefaultPrice = {
         image_4: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4095,6 +4230,7 @@ export const $ProductWithDefaultPrice = {
         image_5: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4109,6 +4245,7 @@ export const $ProductWithDefaultPrice = {
         image_6: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4327,6 +4464,7 @@ export const $ProductWithDetailsAndPrices = {
         image_1: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4341,6 +4479,7 @@ export const $ProductWithDetailsAndPrices = {
         image_2: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4355,6 +4494,7 @@ export const $ProductWithDetailsAndPrices = {
         image_3: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4369,6 +4509,7 @@ export const $ProductWithDetailsAndPrices = {
         image_4: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4383,6 +4524,7 @@ export const $ProductWithDetailsAndPrices = {
         image_5: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4397,6 +4539,7 @@ export const $ProductWithDetailsAndPrices = {
         image_6: {
             anyOf: [
                 {
+                    additionalProperties: true,
                     type: 'object',
                 },
                 {
@@ -4447,6 +4590,7 @@ export const $ProductWithDetailsAndPrices = {
         },
         prices: {
             items: {
+                additionalProperties: true,
                 type: 'object',
             },
             type: 'array',
@@ -4701,6 +4845,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Standard',
@@ -4712,6 +4857,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 1',
@@ -4723,6 +4869,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 2',
@@ -4734,6 +4881,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 3',
@@ -4745,6 +4893,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Special',
@@ -4756,6 +4905,7 @@ export const $ShopCreate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Zero',
@@ -4992,6 +5142,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Standard',
@@ -5003,6 +5154,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 1',
@@ -5014,6 +5166,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 2',
@@ -5025,6 +5178,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Lower 3',
@@ -5036,6 +5190,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Special',
@@ -5047,6 +5202,7 @@ export const $ShopUpdate = {
                 },
                 {
                     type: 'string',
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
             ],
             title: 'Vat Zero',
@@ -5187,6 +5343,7 @@ export const $SyncStripeResponse = {
             title: 'Stripe Synced At',
         },
         stripe_customer: {
+            additionalProperties: true,
             type: 'object',
             title: 'Stripe Customer',
         },

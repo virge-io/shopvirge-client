@@ -108,16 +108,16 @@ import type {
     GetOrderProductsInStockOrdersStockOrderIdGetResponse,
     CalculateShippingCalculatePostData,
     CalculateShippingCalculatePostResponse,
-    GetMultiShopsShopIdCategoriesGetData,
-    GetMultiShopsShopIdCategoriesGetResponse,
-    CreateShopsShopIdCategoriesPostData,
-    CreateShopsShopIdCategoriesPostResponse,
-    GetByIdShopsShopIdCategoriesCategoryIdGetData,
-    GetByIdShopsShopIdCategoriesCategoryIdGetResponse,
-    UpdateShopsShopIdCategoriesCategoryIdPutData,
-    UpdateShopsShopIdCategoriesCategoryIdPutResponse,
-    DeleteShopsShopIdCategoriesCategoryIdDeleteData,
-    DeleteShopsShopIdCategoriesCategoryIdDeleteResponse,
+    ListCategoriesData,
+    ListCategoriesResponse,
+    CreateCategoryData,
+    CreateCategoryResponse,
+    GetCategoryData,
+    GetCategoryResponse,
+    UpdateCategoryData,
+    UpdateCategoryResponse,
+    DeleteCategoryData,
+    DeleteCategoryResponse,
     GetByNameShopsShopIdCategoriesNameNameGetData,
     GetByNameShopsShopIdCategoriesNameNameGetResponse,
     SwapShopsShopIdCategoriesCategoryIdSwapPutData,
@@ -136,18 +136,18 @@ import type {
     DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse,
     GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData,
     GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse,
-    GetMultiShopsShopIdProductsGetData,
-    GetMultiShopsShopIdProductsGetResponse,
-    CreateShopsShopIdProductsPostData,
-    CreateShopsShopIdProductsPostResponse,
+    ListProductsData,
+    ListProductsResponse,
+    CreateProductData,
+    CreateProductResponse,
     GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData,
     GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse,
-    UpdateShopsShopIdProductsProductIdPutData,
-    UpdateShopsShopIdProductsProductIdPutResponse,
-    DeleteShopsShopIdProductsProductIdDeleteData,
-    DeleteShopsShopIdProductsProductIdDeleteResponse,
-    GetByIdShopsShopIdProductsProductIdGetData,
-    GetByIdShopsShopIdProductsProductIdGetResponse,
+    UpdateProductData,
+    UpdateProductResponse,
+    DeleteProductData,
+    DeleteProductResponse,
+    GetProductData,
+    GetProductResponse,
     SwapShopsShopIdProductsProductIdSwapPutData,
     SwapShopsShopIdProductsProductIdSwapPutResponse,
     GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
@@ -164,36 +164,42 @@ import type {
     UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse,
     DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData,
     DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse,
-    GetMultiShopsShopIdTagsGetData,
-    GetMultiShopsShopIdTagsGetResponse,
-    CreateShopsShopIdTagsPostData,
-    CreateShopsShopIdTagsPostResponse,
-    GetByIdShopsShopIdTagsTagIdGetData,
-    GetByIdShopsShopIdTagsTagIdGetResponse,
-    UpdateShopsShopIdTagsTagIdPutData,
-    UpdateShopsShopIdTagsTagIdPutResponse,
-    DeleteShopsShopIdTagsTagIdDeleteData,
-    DeleteShopsShopIdTagsTagIdDeleteResponse,
+    ListTagsData,
+    ListTagsResponse,
+    CreateTagData,
+    CreateTagResponse,
+    GetTagData,
+    GetTagResponse,
+    UpdateTagData,
+    UpdateTagResponse,
+    DeleteTagData,
+    DeleteTagResponse,
     GetByNameShopsShopIdTagsNameNameGetData,
     GetByNameShopsShopIdTagsNameNameGetResponse,
     GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData,
     GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse,
     GetWithOptionsShopsShopIdAttributesWithOptionsGetData,
     GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse,
-    GetMultiShopsShopIdAttributesGetData,
-    GetMultiShopsShopIdAttributesGetResponse,
-    CreateShopsShopIdAttributesPostData,
-    CreateShopsShopIdAttributesPostResponse,
+    ListAttributesData,
+    ListAttributesResponse,
+    CreateAttributeData,
+    CreateAttributeResponse,
     GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData,
     GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse,
-    GetByIdShopsShopIdAttributesIdAttributeIdGetData,
-    GetByIdShopsShopIdAttributesIdAttributeIdGetResponse,
+    GetAttributeData,
+    GetAttributeResponse,
     GetByNameShopsShopIdAttributesNameNameGetData,
     GetByNameShopsShopIdAttributesNameNameGetResponse,
-    UpdateShopsShopIdAttributesAttributeIdPutData,
-    UpdateShopsShopIdAttributesAttributeIdPutResponse,
-    DeleteShopsShopIdAttributesAttributeIdDeleteData,
-    DeleteShopsShopIdAttributesAttributeIdDeleteResponse,
+    UpdateAttributeData,
+    UpdateAttributeResponse,
+    DeleteAttributeData,
+    DeleteAttributeResponse,
+    MintShopsShopIdApiKeysPostData,
+    MintShopsShopIdApiKeysPostResponse,
+    ListKeysShopsShopIdApiKeysGetData,
+    ListKeysShopsShopIdApiKeysGetResponse,
+    RevokeShopsShopIdApiKeysKeyIdDeleteData,
+    RevokeShopsShopIdApiKeysKeyIdDeleteResponse,
     ListOptionsForShopShopsShopIdAttributeOptionsGetData,
     ListOptionsForShopShopsShopIdAttributeOptionsGetResponse,
     CreateOptionV2ShopsShopIdAttributeOptionsPostData,
@@ -1567,17 +1573,21 @@ export const calculateShippingCalculatePost = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdCategoriesGet = (
-    data: GetMultiShopsShopIdCategoriesGetData,
-): CancelablePromise<GetMultiShopsShopIdCategoriesGetResponse> => {
+export const listCategories = (
+    data: ListCategoriesData,
+): CancelablePromise<ListCategoriesResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/categories/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -1596,17 +1606,21 @@ export const getMultiShopsShopIdCategoriesGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdCategoriesPost = (
-    data: CreateShopsShopIdCategoriesPostData,
-): CancelablePromise<CreateShopsShopIdCategoriesPostResponse> => {
+export const createCategory = (
+    data: CreateCategoryData,
+): CancelablePromise<CreateCategoryResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/categories/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -1621,18 +1635,22 @@ export const createShopsShopIdCategoriesPost = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.categoryId
+ * @param data.xApiKey
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdCategoriesCategoryIdGet = (
-    data: GetByIdShopsShopIdCategoriesCategoryIdGetData,
-): CancelablePromise<GetByIdShopsShopIdCategoriesCategoryIdGetResponse> => {
+export const getCategory = (
+    data: GetCategoryData,
+): CancelablePromise<GetCategoryResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/categories/{category_id}',
         path: {
             shop_id: data.shopId,
             category_id: data.categoryId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -1646,18 +1664,22 @@ export const getByIdShopsShopIdCategoriesCategoryIdGet = (
  * @param data.categoryId
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdCategoriesCategoryIdPut = (
-    data: UpdateShopsShopIdCategoriesCategoryIdPutData,
-): CancelablePromise<UpdateShopsShopIdCategoriesCategoryIdPutResponse> => {
+export const updateCategory = (
+    data: UpdateCategoryData,
+): CancelablePromise<UpdateCategoryResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/categories/{category_id}',
         path: {
             category_id: data.categoryId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -1672,18 +1694,22 @@ export const updateShopsShopIdCategoriesCategoryIdPut = (
  * @param data The data for the request.
  * @param data.categoryId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdCategoriesCategoryIdDelete = (
-    data: DeleteShopsShopIdCategoriesCategoryIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdCategoriesCategoryIdDeleteResponse> => {
+export const deleteCategory = (
+    data: DeleteCategoryData,
+): CancelablePromise<DeleteCategoryResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/categories/{category_id}',
         path: {
             category_id: data.categoryId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -1696,6 +1722,7 @@ export const deleteShopsShopIdCategoriesCategoryIdDelete = (
  * @param data The data for the request.
  * @param data.name
  * @param data.shopId
+ * @param data.xApiKey
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
@@ -1709,6 +1736,9 @@ export const getByNameShopsShopIdCategoriesNameNameGet = (
             name: data.name,
             shop_id: data.shopId,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         errors: {
             422: 'Validation Error',
         },
@@ -1721,6 +1751,7 @@ export const getByNameShopsShopIdCategoriesNameNameGet = (
  * @param data.shopId
  * @param data.categoryId
  * @param data.moveUp
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
@@ -1734,6 +1765,9 @@ export const swapShopsShopIdCategoriesCategoryIdSwapPut = (
             shop_id: data.shopId,
             category_id: data.categoryId,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         query: {
             move_up: data.moveUp,
         },
@@ -1745,7 +1779,7 @@ export const swapShopsShopIdCategoriesCategoryIdSwapPut = (
 
 /**
  * Get available filter attributes for a category
- * Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to already-selected filters (AND logic).
+ * Returns attributes actually used by products in this category, with option counts. Pass option_id[] to narrow counts to the already-selected filters (AND logic).
  * @param data The data for the request.
  * @param data.shopId
  * @param data.categoryId
@@ -1956,17 +1990,21 @@ export const getSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGet = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns ProductWithDefaultPrice Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdProductsGet = (
-    data: GetMultiShopsShopIdProductsGetData,
-): CancelablePromise<GetMultiShopsShopIdProductsGetResponse> => {
+export const listProducts = (
+    data: ListProductsData,
+): CancelablePromise<ListProductsResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/products/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             stock_status: data.stockStatus,
@@ -1986,17 +2024,21 @@ export const getMultiShopsShopIdProductsGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdProductsPost = (
-    data: CreateShopsShopIdProductsPostData,
-): CancelablePromise<CreateShopsShopIdProductsPostResponse> => {
+export const createProduct = (
+    data: CreateProductData,
+): CancelablePromise<CreateProductResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/products/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2032,6 +2074,7 @@ export const createShopsShopIdProductsPost = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns ProductWithAttributes Successful Response
  * @throws ApiError
  */
@@ -2043,6 +2086,9 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
         url: '/shops/{shop_id}/products/with_attributes',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             option_id: data.optionId,
@@ -2067,18 +2113,22 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
  * @param data.productId
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdProductsProductIdPut = (
-    data: UpdateShopsShopIdProductsProductIdPutData,
-): CancelablePromise<UpdateShopsShopIdProductsProductIdPutResponse> => {
+export const updateProduct = (
+    data: UpdateProductData,
+): CancelablePromise<UpdateProductResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/products/{product_id}',
         path: {
             product_id: data.productId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2093,18 +2143,22 @@ export const updateShopsShopIdProductsProductIdPut = (
  * @param data The data for the request.
  * @param data.productId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdProductsProductIdDelete = (
-    data: DeleteShopsShopIdProductsProductIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdProductsProductIdDeleteResponse> => {
+export const deleteProduct = (
+    data: DeleteProductData,
+): CancelablePromise<DeleteProductResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/products/{product_id}',
         path: {
             product_id: data.productId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2120,9 +2174,9 @@ export const deleteShopsShopIdProductsProductIdDelete = (
  * @returns ProductWithDetailsAndPrices Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdProductsProductIdGet = (
-    data: GetByIdShopsShopIdProductsProductIdGetData,
-): CancelablePromise<GetByIdShopsShopIdProductsProductIdGetResponse> => {
+export const getProduct = (
+    data: GetProductData,
+): CancelablePromise<GetProductResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/products/{product_id}',
@@ -2142,6 +2196,7 @@ export const getByIdShopsShopIdProductsProductIdGet = (
  * @param data.shopId
  * @param data.productId
  * @param data.moveUp
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
@@ -2154,6 +2209,9 @@ export const swapShopsShopIdProductsProductIdSwapPut = (
         path: {
             shop_id: data.shopId,
             product_id: data.productId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             move_up: data.moveUp,
@@ -2340,17 +2398,21 @@ export const deleteShopsShopIdProductsToTagsProductToTagIdDelete = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdTagsGet = (
-    data: GetMultiShopsShopIdTagsGetData,
-): CancelablePromise<GetMultiShopsShopIdTagsGetResponse> => {
+export const listTags = (
+    data: ListTagsData,
+): CancelablePromise<ListTagsResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/tags/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -2369,17 +2431,21 @@ export const getMultiShopsShopIdTagsGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdTagsPost = (
-    data: CreateShopsShopIdTagsPostData,
-): CancelablePromise<CreateShopsShopIdTagsPostResponse> => {
+export const createTag = (
+    data: CreateTagData,
+): CancelablePromise<CreateTagResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/tags/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2394,18 +2460,20 @@ export const createShopsShopIdTagsPost = (
  * @param data The data for the request.
  * @param data.tagId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdTagsTagIdGet = (
-    data: GetByIdShopsShopIdTagsTagIdGetData,
-): CancelablePromise<GetByIdShopsShopIdTagsTagIdGetResponse> => {
+export const getTag = (data: GetTagData): CancelablePromise<GetTagResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/tags/{tag_id}',
         path: {
             tag_id: data.tagId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2419,18 +2487,22 @@ export const getByIdShopsShopIdTagsTagIdGet = (
  * @param data.tagId
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdTagsTagIdPut = (
-    data: UpdateShopsShopIdTagsTagIdPutData,
-): CancelablePromise<UpdateShopsShopIdTagsTagIdPutResponse> => {
+export const updateTag = (
+    data: UpdateTagData,
+): CancelablePromise<UpdateTagResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/tags/{tag_id}',
         path: {
             tag_id: data.tagId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2445,18 +2517,22 @@ export const updateShopsShopIdTagsTagIdPut = (
  * @param data The data for the request.
  * @param data.tagId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdTagsTagIdDelete = (
-    data: DeleteShopsShopIdTagsTagIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdTagsTagIdDeleteResponse> => {
+export const deleteTag = (
+    data: DeleteTagData,
+): CancelablePromise<DeleteTagResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/tags/{tag_id}',
         path: {
             tag_id: data.tagId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2469,6 +2545,7 @@ export const deleteShopsShopIdTagsTagIdDelete = (
  * @param data The data for the request.
  * @param data.name
  * @param data.shopId
+ * @param data.xApiKey
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
@@ -2482,6 +2559,9 @@ export const getByNameShopsShopIdTagsNameNameGet = (
             name: data.name,
             shop_id: data.shopId,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         errors: {
             422: 'Validation Error',
         },
@@ -2494,6 +2574,7 @@ export const getByNameShopsShopIdTagsNameNameGet = (
  * @param data The data for the request.
  * @param data.attributeId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
@@ -2507,6 +2588,9 @@ export const getByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptions
             path: {
                 attribute_id: data.attributeId,
                 shop_id: data.shopId,
+            },
+            headers: {
+                'X-API-Key': data.xApiKey,
             },
             errors: {
                 422: 'Validation Error',
@@ -2523,6 +2607,7 @@ export const getByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptions
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
@@ -2534,6 +2619,9 @@ export const getWithOptionsShopsShopIdAttributesWithOptionsGet = (
         url: '/shops/{shop_id}/attributes/with-options',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -2556,17 +2644,21 @@ export const getWithOptionsShopsShopIdAttributesWithOptionsGet = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdAttributesGet = (
-    data: GetMultiShopsShopIdAttributesGetData,
-): CancelablePromise<GetMultiShopsShopIdAttributesGetResponse> => {
+export const listAttributes = (
+    data: ListAttributesData,
+): CancelablePromise<ListAttributesResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/attributes/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -2586,17 +2678,21 @@ export const getMultiShopsShopIdAttributesGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdAttributesPost = (
-    data: CreateShopsShopIdAttributesPostData,
-): CancelablePromise<CreateShopsShopIdAttributesPostResponse> => {
+export const createAttribute = (
+    data: CreateAttributeData,
+): CancelablePromise<CreateAttributeResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/attributes/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2612,6 +2708,7 @@ export const createShopsShopIdAttributesPost = (
  * @param data The data for the request.
  * @param data.attributeId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
@@ -2626,6 +2723,9 @@ export const getByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGet 
                 attribute_id: data.attributeId,
                 shop_id: data.shopId,
             },
+            headers: {
+                'X-API-Key': data.xApiKey,
+            },
             errors: {
                 422: 'Validation Error',
             },
@@ -2638,18 +2738,22 @@ export const getByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGet 
  * @param data The data for the request.
  * @param data.attributeId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdAttributesIdAttributeIdGet = (
-    data: GetByIdShopsShopIdAttributesIdAttributeIdGetData,
-): CancelablePromise<GetByIdShopsShopIdAttributesIdAttributeIdGetResponse> => {
+export const getAttribute = (
+    data: GetAttributeData,
+): CancelablePromise<GetAttributeResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/attributes/id/{attribute_id}',
         path: {
             attribute_id: data.attributeId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2663,6 +2767,7 @@ export const getByIdShopsShopIdAttributesIdAttributeIdGet = (
  * @param data The data for the request.
  * @param data.name
  * @param data.shopId
+ * @param data.xApiKey
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
@@ -2675,6 +2780,9 @@ export const getByNameShopsShopIdAttributesNameNameGet = (
         path: {
             name: data.name,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2689,18 +2797,22 @@ export const getByNameShopsShopIdAttributesNameNameGet = (
  * @param data.attributeId
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdAttributesAttributeIdPut = (
-    data: UpdateShopsShopIdAttributesAttributeIdPutData,
-): CancelablePromise<UpdateShopsShopIdAttributesAttributeIdPutResponse> => {
+export const updateAttribute = (
+    data: UpdateAttributeData,
+): CancelablePromise<UpdateAttributeResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/attributes/{attribute_id}',
         path: {
             attribute_id: data.attributeId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2716,18 +2828,97 @@ export const updateShopsShopIdAttributesAttributeIdPut = (
  * @param data The data for the request.
  * @param data.attributeId
  * @param data.shopId
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdAttributesAttributeIdDelete = (
-    data: DeleteShopsShopIdAttributesAttributeIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdAttributesAttributeIdDeleteResponse> => {
+export const deleteAttribute = (
+    data: DeleteAttributeData,
+): CancelablePromise<DeleteAttributeResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/attributes/{attribute_id}',
         path: {
             attribute_id: data.attributeId,
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Mint a new API key for the shop
+ * Mint a new API key. The plaintext is returned exactly once.
+ *
+ * Store it somewhere safe — it cannot be retrieved again. If lost, revoke
+ * and mint a new one.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.requestBody
+ * @returns ApiKeyCreated Successful Response
+ * @throws ApiError
+ */
+export const mintShopsShopIdApiKeysPost = (
+    data: MintShopsShopIdApiKeysPostData,
+): CancelablePromise<MintShopsShopIdApiKeysPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/api-keys/',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * List API keys for the shop
+ * @param data The data for the request.
+ * @param data.shopId
+ * @returns ApiKeyRead Successful Response
+ * @throws ApiError
+ */
+export const listKeysShopsShopIdApiKeysGet = (
+    data: ListKeysShopsShopIdApiKeysGetData,
+): CancelablePromise<ListKeysShopsShopIdApiKeysGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/api-keys/',
+        path: {
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Revoke an API key
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.keyId
+ * @returns void Successful Response
+ * @throws ApiError
+ */
+export const revokeShopsShopIdApiKeysKeyIdDelete = (
+    data: RevokeShopsShopIdApiKeysKeyIdDeleteData,
+): CancelablePromise<RevokeShopsShopIdApiKeysKeyIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/api-keys/{key_id}',
+        path: {
+            shop_id: data.shopId,
+            key_id: data.keyId,
         },
         errors: {
             422: 'Validation Error',
