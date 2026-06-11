@@ -3,7 +3,269 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { LoginAccessTokenLoginAccessTokenPostData, LoginAccessTokenLoginAccessTokenPostResponse, TestTokenLoginTestTokenPostResponse, RecoverPasswordPasswordRecoveryEmailPostData, RecoverPasswordPasswordRecoveryEmailPostResponse, ResetPasswordResetPasswordPostData, ResetPasswordResetPasswordPostResponse, GetHealthHealthGetResponse, GetMultiUsersGetData, GetMultiUsersGetResponse, CreateUsersPostData, CreateUsersPostResponse, GetUserMeUsersMeGetResponse, UpdateUserMeUsersMePutData, UpdateUserMeUsersMePutResponse, GetByIdUsersUserIdGetData, GetByIdUsersUserIdGetResponse, UpdateUsersUserIdPutData, UpdateUsersUserIdPutResponse, GetFormsFormsGetResponse, NewFormFormsFormKeyPostData, NewFormFormsFormKeyPostResponse, GetSignedUrlImagesSignedUrlImageNameGetData, GetSignedUrlImagesSignedUrlImageNameGetResponse, MoveImagesImagesMovePostResponse, DeleteTemporaryImagesImagesDeleteTempPostResponse, GetMultiLicensesGetData, GetMultiLicensesGetResponse, CreateLicensesPostData, CreateLicensesPostResponse, GetByIdLicensesIdGetData, GetByIdLicensesIdGetResponse, EditLicensesIdPutData, EditLicensesIdPutResponse, DeleteLicensesIdDeleteData, DeleteLicensesIdDeleteResponse, GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData, GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse, ListAccountsAdminAccountsGetData, ListAccountsAdminAccountsGetResponse, GetAccountAdminAccountsIdGetData, GetAccountAdminAccountsIdGetResponse, GetStripeCustomerAdminAccountsIdStripeCustomerGetData, GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse, SyncStripeAdminAccountsIdSyncStripePostData, SyncStripeAdminAccountsIdSyncStripePostResponse, LinkStripeAdminAccountsIdLinkStripePostData, LinkStripeAdminAccountsIdLinkStripePostResponse, GetSignedDownloadLinkDownloadsFileNameGetData, GetSignedDownloadLinkDownloadsFileNameGetResponse, SendDownloadLinkViaEmailDownloadsSendPostData, SendDownloadLinkViaEmailDownloadsSendPostResponse, GetMultiShopsGetData, GetMultiShopsGetResponse, CreateShopsPostData, CreateShopsPostResponse, ListMyShopsResponse, GetCacheStatusShopsCacheStatusIdGetData, GetCacheStatusShopsCacheStatusIdGetResponse, GetLastCompletedOrderShopsLastCompletedOrderIdGetData, GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse, GetLastPendingOrderShopsLastPendingOrderIdGetData, GetLastPendingOrderShopsLastPendingOrderIdGetResponse, GetByIdShopsIdGetData, GetByIdShopsIdGetResponse, UpdateShopsShopIdPutData, UpdateShopsShopIdPutResponse, DeleteShopsShopIdDeleteData, DeleteShopsShopIdDeleteResponse, GetConfigShopsConfigIdGetData, GetConfigShopsConfigIdGetResponse, UpdateConfigShopsConfigIdPutData, UpdateConfigShopsConfigIdPutResponse, GetAllowedIpsShopsAllowedIpsIdGetData, GetAllowedIpsShopsAllowedIpsIdGetResponse, AddNewIpShopsAllowedIpsIdPostData, AddNewIpShopsAllowedIpsIdPostResponse, RemoveIpShopsAllowedIpsIdRemovePostData, RemoveIpShopsAllowedIpsIdRemovePostResponse, GetProductsShopsShopIdPricesGetData, GetProductsShopsShopIdPricesGetResponse, GetCartProductsShopsShopIdPricesPostData, GetCartProductsShopsShopIdPricesPostResponse, GetMultiOrdersGetData, GetMultiOrdersGetResponse, CreateOrdersPostData, CreateOrdersPostResponse, ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData, ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse, ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData, ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse, GetByIdOrdersIdGetData, GetByIdOrdersIdGetResponse, CheckOrdersCheckIdsGetData, CheckOrdersCheckIdsGetResponse, PatchOrdersOrderIdPatchData, PatchOrdersOrderIdPatchResponse, UpdateOrdersOrderIdPutData, UpdateOrdersOrderIdPutResponse, DeleteOrdersOrderIdDeleteData, DeleteOrdersOrderIdDeleteResponse, GetOrderProductsInStockOrdersStockOrderIdGetData, GetOrderProductsInStockOrdersStockOrderIdGetResponse, CalculateShippingCalculatePostData, CalculateShippingCalculatePostResponse, ListCategoriesData, ListCategoriesResponse, CreateCategoryData, CreateCategoryResponse, GetCategoryData, GetCategoryResponse, UpdateCategoryData, UpdateCategoryResponse, DeleteCategoryData, DeleteCategoryResponse, GetByNameShopsShopIdCategoriesNameNameGetData, GetByNameShopsShopIdCategoriesNameNameGetResponse, SwapShopsShopIdCategoriesCategoryIdSwapPutData, SwapShopsShopIdCategoriesCategoryIdSwapPutResponse, GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData, GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse, GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData, GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse, GetMultiShopsShopIdCategoriesImagesGetData, GetMultiShopsShopIdCategoriesImagesGetResponse, GetByIdShopsShopIdCategoriesImagesIdGetData, GetByIdShopsShopIdCategoriesImagesIdGetResponse, PutShopsShopIdCategoriesImagesIdPutData, PutShopsShopIdCategoriesImagesIdPutResponse, DeleteImageShopsShopIdCategoriesImagesDeleteIdPutData, DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse, GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData, GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse, ListProductsData, ListProductsResponse, CreateProductData, CreateProductResponse, GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData, GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse, UpdateProductData, UpdateProductResponse, DeleteProductData, DeleteProductResponse, GetProductData, GetProductResponse, SwapShopsShopIdProductsProductIdSwapPutData, SwapShopsShopIdProductsProductIdSwapPutResponse, GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData, GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse, GetMultiShopsShopIdProductsToTagsGetData, GetMultiShopsShopIdProductsToTagsGetResponse, CreateShopsShopIdProductsToTagsPostData, CreateShopsShopIdProductsToTagsPostResponse, GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData, GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse, GetByIdShopsShopIdProductsToTagsIdGetData, GetByIdShopsShopIdProductsToTagsIdGetResponse, UpdateShopsShopIdProductsToTagsProductToTagIdPutData, UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse, DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData, DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse, ListTagsData, ListTagsResponse, CreateTagData, CreateTagResponse, GetTagData, GetTagResponse, UpdateTagData, UpdateTagResponse, DeleteTagData, DeleteTagResponse, GetByNameShopsShopIdTagsNameNameGetData, GetByNameShopsShopIdTagsNameNameGetResponse, GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData, GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse, GetWithOptionsShopsShopIdAttributesWithOptionsGetData, GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse, ListAttributesData, ListAttributesResponse, CreateAttributeData, CreateAttributeResponse, GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData, GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse, GetAttributeData, GetAttributeResponse, GetByNameShopsShopIdAttributesNameNameGetData, GetByNameShopsShopIdAttributesNameNameGetResponse, UpdateAttributeData, UpdateAttributeResponse, DeleteAttributeData, DeleteAttributeResponse, MintShopsShopIdApiKeysPostData, MintShopsShopIdApiKeysPostResponse, ListKeysShopsShopIdApiKeysGetData, ListKeysShopsShopIdApiKeysGetResponse, RevokeShopsShopIdApiKeysKeyIdDeleteData, RevokeShopsShopIdApiKeysKeyIdDeleteResponse, ListOptionsForShopShopsShopIdAttributeOptionsGetData, ListOptionsForShopShopsShopIdAttributeOptionsGetResponse, CreateOptionV2ShopsShopIdAttributeOptionsPostData, CreateOptionV2ShopsShopIdAttributeOptionsPostResponse, GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData, GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse, UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData, UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse, DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData, DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse, ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData, ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse, CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData, CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse, GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData, GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse, DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData, DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse, ProductAttributeValuesListData, ProductAttributeValuesListResponse, ProductAttributeValuesCreateDeprecatedData, ProductAttributeValuesCreateDeprecatedResponse, ProductAttributeValuesGetData, ProductAttributeValuesGetResponse, ProductAttributeValuesDeleteData, ProductAttributeValuesDeleteResponse, ProductAttributeValuesCreateForProductData, ProductAttributeValuesCreateForProductResponse, ProductAttributeValuesReplaceForProductData, ProductAttributeValuesReplaceForProductResponse, GetMultiShopsShopIdAccountsGetData, GetMultiShopsShopIdAccountsGetResponse, CreateShopsShopIdAccountsPostData, CreateShopsShopIdAccountsPostResponse, GetByIdShopsShopIdAccountsIdGetData, GetByIdShopsShopIdAccountsIdGetResponse, UpdateShopsShopIdAccountsAccountIdPutData, UpdateShopsShopIdAccountsAccountIdPutResponse, DeleteShopsShopIdAccountsAccountIdDeleteData, DeleteShopsShopIdAccountsAccountIdDeleteResponse, CreatePaymentIntentShopsShopIdStripePostData, CreatePaymentIntentShopsShopIdStripePostResponse, CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData, CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse, CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData, CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse, CreateEarlyAccessPostData, CreateEarlyAccessPostResponse, FormInfoRequestFormPostData, FormInfoRequestFormPostResponse, TriggerErrorSentryGetData, TriggerErrorSentryGetResponse, FormTestFormsPostData, FormTestFormsPostResponse, GetMultiFaqGetData, GetMultiFaqGetResponse, CreateFaqPostData, CreateFaqPostResponse, GetByIdFaqIdGetData, GetByIdFaqIdGetResponse, UpdateFaqFaqIdPutData, UpdateFaqFaqIdPutResponse, DeleteFaqFaqIdDeleteData, DeleteFaqFaqIdDeleteResponse } from './types.gen';
+import type {
+    LoginAccessTokenLoginAccessTokenPostData,
+    LoginAccessTokenLoginAccessTokenPostResponse,
+    TestTokenLoginTestTokenPostResponse,
+    RecoverPasswordPasswordRecoveryEmailPostData,
+    RecoverPasswordPasswordRecoveryEmailPostResponse,
+    ResetPasswordResetPasswordPostData,
+    ResetPasswordResetPasswordPostResponse,
+    GetHealthHealthGetResponse,
+    GetMultiUsersGetData,
+    GetMultiUsersGetResponse,
+    CreateUsersPostData,
+    CreateUsersPostResponse,
+    GetUserMeUsersMeGetResponse,
+    UpdateUserMeUsersMePutData,
+    UpdateUserMeUsersMePutResponse,
+    GetByIdUsersUserIdGetData,
+    GetByIdUsersUserIdGetResponse,
+    UpdateUsersUserIdPutData,
+    UpdateUsersUserIdPutResponse,
+    GetFormsFormsGetResponse,
+    NewFormFormsFormKeyPostData,
+    NewFormFormsFormKeyPostResponse,
+    GetSignedUrlImagesSignedUrlImageNameGetData,
+    GetSignedUrlImagesSignedUrlImageNameGetResponse,
+    MoveImagesImagesMovePostResponse,
+    DeleteTemporaryImagesImagesDeleteTempPostResponse,
+    GetMultiLicensesGetData,
+    GetMultiLicensesGetResponse,
+    CreateLicensesPostData,
+    CreateLicensesPostResponse,
+    GetByIdLicensesIdGetData,
+    GetByIdLicensesIdGetResponse,
+    EditLicensesIdPutData,
+    EditLicensesIdPutResponse,
+    DeleteLicensesIdDeleteData,
+    DeleteLicensesIdDeleteResponse,
+    GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData,
+    GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse,
+    ListAccountsAdminAccountsGetData,
+    ListAccountsAdminAccountsGetResponse,
+    GetAccountAdminAccountsIdGetData,
+    GetAccountAdminAccountsIdGetResponse,
+    GetStripeCustomerAdminAccountsIdStripeCustomerGetData,
+    GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse,
+    SyncStripeAdminAccountsIdSyncStripePostData,
+    SyncStripeAdminAccountsIdSyncStripePostResponse,
+    LinkStripeAdminAccountsIdLinkStripePostData,
+    LinkStripeAdminAccountsIdLinkStripePostResponse,
+    GetSignedDownloadLinkDownloadsFileNameGetData,
+    GetSignedDownloadLinkDownloadsFileNameGetResponse,
+    SendDownloadLinkViaEmailDownloadsSendPostData,
+    SendDownloadLinkViaEmailDownloadsSendPostResponse,
+    GetMultiShopsGetData,
+    GetMultiShopsGetResponse,
+    CreateShopsPostData,
+    CreateShopsPostResponse,
+    ListMyShopsResponse,
+    GetCacheStatusShopsCacheStatusIdGetData,
+    GetCacheStatusShopsCacheStatusIdGetResponse,
+    GetLastCompletedOrderShopsLastCompletedOrderIdGetData,
+    GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse,
+    GetLastPendingOrderShopsLastPendingOrderIdGetData,
+    GetLastPendingOrderShopsLastPendingOrderIdGetResponse,
+    GetByIdShopsIdGetData,
+    GetByIdShopsIdGetResponse,
+    UpdateShopsShopIdPutData,
+    UpdateShopsShopIdPutResponse,
+    DeleteShopsShopIdDeleteData,
+    DeleteShopsShopIdDeleteResponse,
+    GetConfigShopsConfigIdGetData,
+    GetConfigShopsConfigIdGetResponse,
+    UpdateConfigShopsConfigIdPutData,
+    UpdateConfigShopsConfigIdPutResponse,
+    GetAllowedIpsShopsAllowedIpsIdGetData,
+    GetAllowedIpsShopsAllowedIpsIdGetResponse,
+    AddNewIpShopsAllowedIpsIdPostData,
+    AddNewIpShopsAllowedIpsIdPostResponse,
+    RemoveIpShopsAllowedIpsIdRemovePostData,
+    RemoveIpShopsAllowedIpsIdRemovePostResponse,
+    GetProductsShopsShopIdPricesGetData,
+    GetProductsShopsShopIdPricesGetResponse,
+    GetCartProductsShopsShopIdPricesPostData,
+    GetCartProductsShopsShopIdPricesPostResponse,
+    GetMultiOrdersGetData,
+    GetMultiOrdersGetResponse,
+    CreateOrdersPostData,
+    CreateOrdersPostResponse,
+    ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData,
+    ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse,
+    ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData,
+    ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse,
+    GetByIdOrdersIdGetData,
+    GetByIdOrdersIdGetResponse,
+    CheckOrdersCheckIdsGetData,
+    CheckOrdersCheckIdsGetResponse,
+    PatchOrdersOrderIdPatchData,
+    PatchOrdersOrderIdPatchResponse,
+    UpdateOrdersOrderIdPutData,
+    UpdateOrdersOrderIdPutResponse,
+    DeleteOrdersOrderIdDeleteData,
+    DeleteOrdersOrderIdDeleteResponse,
+    GetOrderProductsInStockOrdersStockOrderIdGetData,
+    GetOrderProductsInStockOrdersStockOrderIdGetResponse,
+    CalculateShippingCalculatePostData,
+    CalculateShippingCalculatePostResponse,
+    ListCategoriesData,
+    ListCategoriesResponse,
+    CreateCategoryData,
+    CreateCategoryResponse,
+    GetCategoryData,
+    GetCategoryResponse,
+    UpdateCategoryData,
+    UpdateCategoryResponse,
+    DeleteCategoryData,
+    DeleteCategoryResponse,
+    GetByNameShopsShopIdCategoriesNameNameGetData,
+    GetByNameShopsShopIdCategoriesNameNameGetResponse,
+    SwapShopsShopIdCategoriesCategoryIdSwapPutData,
+    SwapShopsShopIdCategoriesCategoryIdSwapPutResponse,
+    GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData,
+    GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse,
+    GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData,
+    GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse,
+    GetMultiShopsShopIdCategoriesImagesGetData,
+    GetMultiShopsShopIdCategoriesImagesGetResponse,
+    GetByIdShopsShopIdCategoriesImagesIdGetData,
+    GetByIdShopsShopIdCategoriesImagesIdGetResponse,
+    PutShopsShopIdCategoriesImagesIdPutData,
+    PutShopsShopIdCategoriesImagesIdPutResponse,
+    DeleteImageShopsShopIdCategoriesImagesDeleteIdPutData,
+    DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse,
+    GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData,
+    GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse,
+    ListProductsData,
+    ListProductsResponse,
+    CreateProductData,
+    CreateProductResponse,
+    GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData,
+    GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse,
+    UpdateProductData,
+    UpdateProductResponse,
+    DeleteProductData,
+    DeleteProductResponse,
+    GetProductData,
+    GetProductResponse,
+    SwapShopsShopIdProductsProductIdSwapPutData,
+    SwapShopsShopIdProductsProductIdSwapPutResponse,
+    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
+    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse,
+    GetMultiShopsShopIdProductsToTagsGetData,
+    GetMultiShopsShopIdProductsToTagsGetResponse,
+    CreateShopsShopIdProductsToTagsPostData,
+    CreateShopsShopIdProductsToTagsPostResponse,
+    GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData,
+    GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse,
+    GetByIdShopsShopIdProductsToTagsIdGetData,
+    GetByIdShopsShopIdProductsToTagsIdGetResponse,
+    UpdateShopsShopIdProductsToTagsProductToTagIdPutData,
+    UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse,
+    DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData,
+    DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse,
+    ListTagsData,
+    ListTagsResponse,
+    CreateTagData,
+    CreateTagResponse,
+    GetTagData,
+    GetTagResponse,
+    UpdateTagData,
+    UpdateTagResponse,
+    DeleteTagData,
+    DeleteTagResponse,
+    GetByNameShopsShopIdTagsNameNameGetData,
+    GetByNameShopsShopIdTagsNameNameGetResponse,
+    GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData,
+    GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse,
+    GetWithOptionsShopsShopIdAttributesWithOptionsGetData,
+    GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse,
+    ListAttributesData,
+    ListAttributesResponse,
+    CreateAttributeData,
+    CreateAttributeResponse,
+    GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData,
+    GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse,
+    GetAttributeData,
+    GetAttributeResponse,
+    GetByNameShopsShopIdAttributesNameNameGetData,
+    GetByNameShopsShopIdAttributesNameNameGetResponse,
+    UpdateAttributeData,
+    UpdateAttributeResponse,
+    DeleteAttributeData,
+    DeleteAttributeResponse,
+    MintShopsShopIdApiKeysPostData,
+    MintShopsShopIdApiKeysPostResponse,
+    ListKeysShopsShopIdApiKeysGetData,
+    ListKeysShopsShopIdApiKeysGetResponse,
+    RevokeShopsShopIdApiKeysKeyIdDeleteData,
+    RevokeShopsShopIdApiKeysKeyIdDeleteResponse,
+    ListOptionsForShopShopsShopIdAttributeOptionsGetData,
+    ListOptionsForShopShopsShopIdAttributeOptionsGetResponse,
+    CreateOptionV2ShopsShopIdAttributeOptionsPostData,
+    CreateOptionV2ShopsShopIdAttributeOptionsPostResponse,
+    GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData,
+    GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse,
+    UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData,
+    UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse,
+    DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData,
+    DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse,
+    ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData,
+    ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse,
+    CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData,
+    CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse,
+    GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData,
+    GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse,
+    DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData,
+    DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse,
+    ProductAttributeValuesListData,
+    ProductAttributeValuesListResponse,
+    ProductAttributeValuesCreateDeprecatedData,
+    ProductAttributeValuesCreateDeprecatedResponse,
+    ProductAttributeValuesGetData,
+    ProductAttributeValuesGetResponse,
+    ProductAttributeValuesDeleteData,
+    ProductAttributeValuesDeleteResponse,
+    ProductAttributeValuesCreateForProductData,
+    ProductAttributeValuesCreateForProductResponse,
+    ProductAttributeValuesReplaceForProductData,
+    ProductAttributeValuesReplaceForProductResponse,
+    GetMultiShopsShopIdAccountsGetData,
+    GetMultiShopsShopIdAccountsGetResponse,
+    CreateShopsShopIdAccountsPostData,
+    CreateShopsShopIdAccountsPostResponse,
+    GetByIdShopsShopIdAccountsIdGetData,
+    GetByIdShopsShopIdAccountsIdGetResponse,
+    UpdateShopsShopIdAccountsAccountIdPutData,
+    UpdateShopsShopIdAccountsAccountIdPutResponse,
+    DeleteShopsShopIdAccountsAccountIdDeleteData,
+    DeleteShopsShopIdAccountsAccountIdDeleteResponse,
+    CreatePaymentIntentShopsShopIdStripePostData,
+    CreatePaymentIntentShopsShopIdStripePostResponse,
+    CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData,
+    CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse,
+    CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData,
+    CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse,
+    CreateEarlyAccessPostData,
+    CreateEarlyAccessPostResponse,
+    FormInfoRequestFormPostData,
+    FormInfoRequestFormPostResponse,
+    TriggerErrorSentryGetData,
+    TriggerErrorSentryGetResponse,
+    FormTestFormsPostData,
+    FormTestFormsPostResponse,
+    GetMultiFaqGetData,
+    GetMultiFaqGetResponse,
+    CreateFaqPostData,
+    CreateFaqPostResponse,
+    GetByIdFaqIdGetData,
+    GetByIdFaqIdGetResponse,
+    UpdateFaqFaqIdPutData,
+    UpdateFaqFaqIdPutResponse,
+    DeleteFaqFaqIdDeleteData,
+    DeleteFaqFaqIdDeleteResponse,
+} from './types.gen';
 
 /**
  * Login Access Token
@@ -13,15 +275,19 @@ import type { LoginAccessTokenLoginAccessTokenPostData, LoginAccessTokenLoginAcc
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const loginAccessTokenLoginAccessTokenPost = (data: LoginAccessTokenLoginAccessTokenPostData): CancelablePromise<LoginAccessTokenLoginAccessTokenPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/login/access-token',
-    formData: data.formData,
-    mediaType: 'application/x-www-form-urlencoded',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const loginAccessTokenLoginAccessTokenPost = (
+    data: LoginAccessTokenLoginAccessTokenPostData,
+): CancelablePromise<LoginAccessTokenLoginAccessTokenPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/login/access-token',
+        formData: data.formData,
+        mediaType: 'application/x-www-form-urlencoded',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Test Token
@@ -29,10 +295,13 @@ export const loginAccessTokenLoginAccessTokenPost = (data: LoginAccessTokenLogin
  * @returns User Successful Response
  * @throws ApiError
  */
-export const testTokenLoginTestTokenPost = (): CancelablePromise<TestTokenLoginTestTokenPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/login/test-token'
-}); };
+export const testTokenLoginTestTokenPost =
+    (): CancelablePromise<TestTokenLoginTestTokenPostResponse> => {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/login/test-token',
+        });
+    };
 
 /**
  * Recover Password
@@ -42,16 +311,20 @@ export const testTokenLoginTestTokenPost = (): CancelablePromise<TestTokenLoginT
  * @returns Msg Successful Response
  * @throws ApiError
  */
-export const recoverPasswordPasswordRecoveryEmailPost = (data: RecoverPasswordPasswordRecoveryEmailPostData): CancelablePromise<RecoverPasswordPasswordRecoveryEmailPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/password-recovery/{email}',
-    path: {
-        email: data.email
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const recoverPasswordPasswordRecoveryEmailPost = (
+    data: RecoverPasswordPasswordRecoveryEmailPostData,
+): CancelablePromise<RecoverPasswordPasswordRecoveryEmailPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/password-recovery/{email}',
+        path: {
+            email: data.email,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Reset Password
@@ -61,25 +334,32 @@ export const recoverPasswordPasswordRecoveryEmailPost = (data: RecoverPasswordPa
  * @returns Msg Successful Response
  * @throws ApiError
  */
-export const resetPasswordResetPasswordPost = (data: ResetPasswordResetPasswordPostData): CancelablePromise<ResetPasswordResetPasswordPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/reset-password/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const resetPasswordResetPasswordPost = (
+    data: ResetPasswordResetPasswordPostData,
+): CancelablePromise<ResetPasswordResetPasswordPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/reset-password/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Health
  * @returns string Successful Response
  * @throws ApiError
  */
-export const getHealthHealthGet = (): CancelablePromise<GetHealthHealthGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/health/'
-}); };
+export const getHealthHealthGet =
+    (): CancelablePromise<GetHealthHealthGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/health/',
+        });
+    };
 
 /**
  * Get Multi
@@ -92,19 +372,23 @@ export const getHealthHealthGet = (): CancelablePromise<GetHealthHealthGetRespon
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getMultiUsersGet = (data: GetMultiUsersGetData = {}): CancelablePromise<GetMultiUsersGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/users/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiUsersGet = (
+    data: GetMultiUsersGetData = {},
+): CancelablePromise<GetMultiUsersGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/users/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -114,15 +398,19 @@ export const getMultiUsersGet = (data: GetMultiUsersGetData = {}): CancelablePro
  * @returns User Successful Response
  * @throws ApiError
  */
-export const createUsersPost = (data: CreateUsersPostData): CancelablePromise<CreateUsersPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/users/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createUsersPost = (
+    data: CreateUsersPostData,
+): CancelablePromise<CreateUsersPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/users/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get User Me
@@ -130,10 +418,13 @@ export const createUsersPost = (data: CreateUsersPostData): CancelablePromise<Cr
  * @returns User Successful Response
  * @throws ApiError
  */
-export const getUserMeUsersMeGet = (): CancelablePromise<GetUserMeUsersMeGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/users/me'
-}); };
+export const getUserMeUsersMeGet =
+    (): CancelablePromise<GetUserMeUsersMeGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/users/me',
+        });
+    };
 
 /**
  * Update User Me
@@ -143,15 +434,19 @@ export const getUserMeUsersMeGet = (): CancelablePromise<GetUserMeUsersMeGetResp
  * @returns User Successful Response
  * @throws ApiError
  */
-export const updateUserMeUsersMePut = (data: UpdateUserMeUsersMePutData = {}): CancelablePromise<UpdateUserMeUsersMePutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/users/me',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateUserMeUsersMePut = (
+    data: UpdateUserMeUsersMePutData = {},
+): CancelablePromise<UpdateUserMeUsersMePutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/users/me',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -161,16 +456,20 @@ export const updateUserMeUsersMePut = (data: UpdateUserMeUsersMePutData = {}): C
  * @returns User Successful Response
  * @throws ApiError
  */
-export const getByIdUsersUserIdGet = (data: GetByIdUsersUserIdGetData): CancelablePromise<GetByIdUsersUserIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/users/{user_id}',
-    path: {
-        user_id: data.userId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdUsersUserIdGet = (
+    data: GetByIdUsersUserIdGetData,
+): CancelablePromise<GetByIdUsersUserIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/users/{user_id}',
+        path: {
+            user_id: data.userId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -181,18 +480,22 @@ export const getByIdUsersUserIdGet = (data: GetByIdUsersUserIdGetData): Cancelab
  * @returns User Successful Response
  * @throws ApiError
  */
-export const updateUsersUserIdPut = (data: UpdateUsersUserIdPutData): CancelablePromise<UpdateUsersUserIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/users/{user_id}',
-    path: {
-        user_id: data.userId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateUsersUserIdPut = (
+    data: UpdateUsersUserIdPutData,
+): CancelablePromise<UpdateUsersUserIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/users/{user_id}',
+        path: {
+            user_id: data.userId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Forms
@@ -206,10 +509,13 @@ export const updateUsersUserIdPut = (data: UpdateUsersUserIdPutData): Cancelable
  * @returns string Successful Response
  * @throws ApiError
  */
-export const getFormsFormsGet = (): CancelablePromise<GetFormsFormsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/forms'
-}); };
+export const getFormsFormsGet =
+    (): CancelablePromise<GetFormsFormsGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/forms',
+        });
+    };
 
 /**
  * New Form
@@ -220,21 +526,25 @@ export const getFormsFormsGet = (): CancelablePromise<GetFormsFormsGetResponse> 
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const newFormFormsFormKeyPost = (data: NewFormFormsFormKeyPostData): CancelablePromise<NewFormFormsFormKeyPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/forms/{form_key}',
-    path: {
-        form_key: data.formKey
-    },
-    query: {
-        shop_id: data.shopId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const newFormFormsFormKeyPost = (
+    data: NewFormFormsFormKeyPostData,
+): CancelablePromise<NewFormFormsFormKeyPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/forms/{form_key}',
+        path: {
+            form_key: data.formKey,
+        },
+        query: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Signed Url
@@ -243,36 +553,46 @@ export const newFormFormsFormKeyPost = (data: NewFormFormsFormKeyPostData): Canc
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getSignedUrlImagesSignedUrlImageNameGet = (data: GetSignedUrlImagesSignedUrlImageNameGetData): CancelablePromise<GetSignedUrlImagesSignedUrlImageNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/images/signed-url/{image_name}',
-    path: {
-        image_name: data.imageName
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getSignedUrlImagesSignedUrlImageNameGet = (
+    data: GetSignedUrlImagesSignedUrlImageNameGetData,
+): CancelablePromise<GetSignedUrlImagesSignedUrlImageNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/images/signed-url/{image_name}',
+        path: {
+            image_name: data.imageName,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Move Images
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const moveImagesImagesMovePost = (): CancelablePromise<MoveImagesImagesMovePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/images/move'
-}); };
+export const moveImagesImagesMovePost =
+    (): CancelablePromise<MoveImagesImagesMovePostResponse> => {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/images/move',
+        });
+    };
 
 /**
  * Delete Temporary Images
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const deleteTemporaryImagesImagesDeleteTempPost = (): CancelablePromise<DeleteTemporaryImagesImagesDeleteTempPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/images/delete-temp'
-}); };
+export const deleteTemporaryImagesImagesDeleteTempPost =
+    (): CancelablePromise<DeleteTemporaryImagesImagesDeleteTempPostResponse> => {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/images/delete-temp',
+        });
+    };
 
 /**
  * Get Multi
@@ -284,19 +604,23 @@ export const deleteTemporaryImagesImagesDeleteTempPost = (): CancelablePromise<D
  * @returns LicenseSchema Successful Response
  * @throws ApiError
  */
-export const getMultiLicensesGet = (data: GetMultiLicensesGetData = {}): CancelablePromise<GetMultiLicensesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/licenses',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiLicensesGet = (
+    data: GetMultiLicensesGetData = {},
+): CancelablePromise<GetMultiLicensesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/licenses',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -305,15 +629,19 @@ export const getMultiLicensesGet = (data: GetMultiLicensesGetData = {}): Cancela
  * @returns LicenseSchema Successful Response
  * @throws ApiError
  */
-export const createLicensesPost = (data: CreateLicensesPostData): CancelablePromise<CreateLicensesPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/licenses',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createLicensesPost = (
+    data: CreateLicensesPostData,
+): CancelablePromise<CreateLicensesPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/licenses',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -322,16 +650,20 @@ export const createLicensesPost = (data: CreateLicensesPostData): CancelableProm
  * @returns LicenseSchema Successful Response
  * @throws ApiError
  */
-export const getByIdLicensesIdGet = (data: GetByIdLicensesIdGetData): CancelablePromise<GetByIdLicensesIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/licenses/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdLicensesIdGet = (
+    data: GetByIdLicensesIdGetData,
+): CancelablePromise<GetByIdLicensesIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/licenses/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Edit
@@ -341,18 +673,22 @@ export const getByIdLicensesIdGet = (data: GetByIdLicensesIdGetData): Cancelable
  * @returns LicenseSchema Successful Response
  * @throws ApiError
  */
-export const editLicensesIdPut = (data: EditLicensesIdPutData): CancelablePromise<EditLicensesIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/licenses/{id}',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const editLicensesIdPut = (
+    data: EditLicensesIdPutData,
+): CancelablePromise<EditLicensesIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/licenses/{id}',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -361,16 +697,20 @@ export const editLicensesIdPut = (data: EditLicensesIdPutData): CancelablePromis
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteLicensesIdDelete = (data: DeleteLicensesIdDeleteData): CancelablePromise<DeleteLicensesIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/licenses/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteLicensesIdDelete = (
+    data: DeleteLicensesIdDeleteData,
+): CancelablePromise<DeleteLicensesIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/licenses/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Improviser User Id
@@ -379,16 +719,20 @@ export const deleteLicensesIdDelete = (data: DeleteLicensesIdDeleteData): Cancel
  * @returns LicenseSchema Successful Response
  * @throws ApiError
  */
-export const getByImproviserUserIdLicensesImproviserImproviserUserIdGet = (data: GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData): CancelablePromise<GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/licenses/improviser/{improviser_user_id}',
-    path: {
-        improviser_user_id: data.improviserUserId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByImproviserUserIdLicensesImproviserImproviserUserIdGet = (
+    data: GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData,
+): CancelablePromise<GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/licenses/improviser/{improviser_user_id}',
+        path: {
+            improviser_user_id: data.improviserUserId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List Accounts
@@ -402,22 +746,26 @@ export const getByImproviserUserIdLicensesImproviserImproviserUserIdGet = (data:
  * @returns AdminAccountSchema Successful Response
  * @throws ApiError
  */
-export const listAccountsAdminAccountsGet = (data: ListAccountsAdminAccountsGetData = {}): CancelablePromise<ListAccountsAdminAccountsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/admin/accounts',
-    query: {
-        shop_id: data.shopId,
-        missing_stripe: data.missingStripe,
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        403: 'Not a member of the Admins group',
-        422: 'Validation Error'
-    }
-}); };
+export const listAccountsAdminAccountsGet = (
+    data: ListAccountsAdminAccountsGetData = {},
+): CancelablePromise<ListAccountsAdminAccountsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts',
+        query: {
+            shop_id: data.shopId,
+            missing_stripe: data.missingStripe,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            403: 'Not a member of the Admins group',
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Account
@@ -426,18 +774,22 @@ export const listAccountsAdminAccountsGet = (data: ListAccountsAdminAccountsGetD
  * @returns AdminAccountSchema Successful Response
  * @throws ApiError
  */
-export const getAccountAdminAccountsIdGet = (data: GetAccountAdminAccountsIdGetData): CancelablePromise<GetAccountAdminAccountsIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/admin/accounts/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        403: 'Not a member of the Admins group',
-        404: 'Account not found',
-        422: 'Validation Error'
-    }
-}); };
+export const getAccountAdminAccountsIdGet = (
+    data: GetAccountAdminAccountsIdGetData,
+): CancelablePromise<GetAccountAdminAccountsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            403: 'Not a member of the Admins group',
+            404: 'Account not found',
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Stripe Customer
@@ -450,20 +802,24 @@ export const getAccountAdminAccountsIdGet = (data: GetAccountAdminAccountsIdGetD
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getStripeCustomerAdminAccountsIdStripeCustomerGet = (data: GetStripeCustomerAdminAccountsIdStripeCustomerGetData): CancelablePromise<GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/admin/accounts/{id}/stripe-customer',
-    path: {
-        id: data.id
-    },
-    errors: {
-        400: 'Account or shop not configured for Stripe',
-        403: 'Not a member of the Admins group',
-        404: 'Account not found',
-        422: 'Validation Error',
-        502: 'Stripe API error'
-    }
-}); };
+export const getStripeCustomerAdminAccountsIdStripeCustomerGet = (
+    data: GetStripeCustomerAdminAccountsIdStripeCustomerGetData,
+): CancelablePromise<GetStripeCustomerAdminAccountsIdStripeCustomerGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/admin/accounts/{id}/stripe-customer',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            400: 'Account or shop not configured for Stripe',
+            403: 'Not a member of the Admins group',
+            404: 'Account not found',
+            422: 'Validation Error',
+            502: 'Stripe API error',
+        },
+    });
+};
 
 /**
  * Sync Stripe
@@ -477,20 +833,24 @@ export const getStripeCustomerAdminAccountsIdStripeCustomerGet = (data: GetStrip
  * @returns SyncStripeResponse Successful Response
  * @throws ApiError
  */
-export const syncStripeAdminAccountsIdSyncStripePost = (data: SyncStripeAdminAccountsIdSyncStripePostData): CancelablePromise<SyncStripeAdminAccountsIdSyncStripePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/admin/accounts/{id}/sync-stripe',
-    path: {
-        id: data.id
-    },
-    errors: {
-        400: 'Account or shop not configured for Stripe',
-        403: 'Not a member of the Admins group',
-        404: 'Account not found',
-        422: 'Validation Error',
-        502: 'Stripe API error'
-    }
-}); };
+export const syncStripeAdminAccountsIdSyncStripePost = (
+    data: SyncStripeAdminAccountsIdSyncStripePostData,
+): CancelablePromise<SyncStripeAdminAccountsIdSyncStripePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/admin/accounts/{id}/sync-stripe',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            400: 'Account or shop not configured for Stripe',
+            403: 'Not a member of the Admins group',
+            404: 'Account not found',
+            422: 'Validation Error',
+            502: 'Stripe API error',
+        },
+    });
+};
 
 /**
  * Link Stripe
@@ -505,20 +865,24 @@ export const syncStripeAdminAccountsIdSyncStripePost = (data: SyncStripeAdminAcc
  * @returns AdminAccountSchema Successful Response
  * @throws ApiError
  */
-export const linkStripeAdminAccountsIdLinkStripePost = (data: LinkStripeAdminAccountsIdLinkStripePostData): CancelablePromise<LinkStripeAdminAccountsIdLinkStripePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/admin/accounts/{id}/link-stripe',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        403: 'Not a member of the Admins group',
-        404: 'Account not found',
-        422: 'Validation Error'
-    }
-}); };
+export const linkStripeAdminAccountsIdLinkStripePost = (
+    data: LinkStripeAdminAccountsIdLinkStripePostData,
+): CancelablePromise<LinkStripeAdminAccountsIdLinkStripePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/admin/accounts/{id}/link-stripe',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            403: 'Not a member of the Admins group',
+            404: 'Account not found',
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Signed Download Link
@@ -527,16 +891,20 @@ export const linkStripeAdminAccountsIdLinkStripePost = (data: LinkStripeAdminAcc
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getSignedDownloadLinkDownloadsFileNameGet = (data: GetSignedDownloadLinkDownloadsFileNameGetData): CancelablePromise<GetSignedDownloadLinkDownloadsFileNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/downloads/{file_name}',
-    path: {
-        file_name: data.fileName
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getSignedDownloadLinkDownloadsFileNameGet = (
+    data: GetSignedDownloadLinkDownloadsFileNameGetData,
+): CancelablePromise<GetSignedDownloadLinkDownloadsFileNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/downloads/{file_name}',
+        path: {
+            file_name: data.fileName,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Send Download Link Via Email
@@ -547,18 +915,22 @@ export const getSignedDownloadLinkDownloadsFileNameGet = (data: GetSignedDownloa
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const sendDownloadLinkViaEmailDownloadsSendPost = (data: SendDownloadLinkViaEmailDownloadsSendPostData): CancelablePromise<SendDownloadLinkViaEmailDownloadsSendPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/downloads/send',
-    query: {
-        file_name: data.fileName,
-        email: data.email,
-        shop_name: data.shopName
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const sendDownloadLinkViaEmailDownloadsSendPost = (
+    data: SendDownloadLinkViaEmailDownloadsSendPostData,
+): CancelablePromise<SendDownloadLinkViaEmailDownloadsSendPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/downloads/send',
+        query: {
+            file_name: data.fileName,
+            email: data.email,
+            shop_name: data.shopName,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -570,19 +942,23 @@ export const sendDownloadLinkViaEmailDownloadsSendPost = (data: SendDownloadLink
  * @returns ShopSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsGet = (data: GetMultiShopsGetData = {}): CancelablePromise<GetMultiShopsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiShopsGet = (
+    data: GetMultiShopsGetData = {},
+): CancelablePromise<GetMultiShopsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -591,15 +967,19 @@ export const getMultiShopsGet = (data: GetMultiShopsGetData = {}): CancelablePro
  * @returns ShopSchema Successful Response
  * @throws ApiError
  */
-export const createShopsPost = (data: CreateShopsPostData): CancelablePromise<CreateShopsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createShopsPost = (
+    data: CreateShopsPostData,
+): CancelablePromise<CreateShopsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List shops and capabilities for the current user
@@ -607,10 +987,12 @@ export const createShopsPost = (data: CreateShopsPostData): CancelablePromise<Cr
  * @returns MyShopsResponse Successful Response
  * @throws ApiError
  */
-export const listMyShops = (): CancelablePromise<ListMyShopsResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/my-shops'
-}); };
+export const listMyShops = (): CancelablePromise<ListMyShopsResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/my-shops',
+    });
+};
 
 /**
  * Get Cache Status
@@ -620,16 +1002,20 @@ export const listMyShops = (): CancelablePromise<ListMyShopsResponse> => { retur
  * @returns ShopCacheStatus Successful Response
  * @throws ApiError
  */
-export const getCacheStatusShopsCacheStatusIdGet = (data: GetCacheStatusShopsCacheStatusIdGetData): CancelablePromise<GetCacheStatusShopsCacheStatusIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/cache-status/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getCacheStatusShopsCacheStatusIdGet = (
+    data: GetCacheStatusShopsCacheStatusIdGetData,
+): CancelablePromise<GetCacheStatusShopsCacheStatusIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/cache-status/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Last Completed Order
@@ -639,16 +1025,20 @@ export const getCacheStatusShopsCacheStatusIdGet = (data: GetCacheStatusShopsCac
  * @returns ShopLastCompletedOrder Successful Response
  * @throws ApiError
  */
-export const getLastCompletedOrderShopsLastCompletedOrderIdGet = (data: GetLastCompletedOrderShopsLastCompletedOrderIdGetData): CancelablePromise<GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/last-completed-order/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getLastCompletedOrderShopsLastCompletedOrderIdGet = (
+    data: GetLastCompletedOrderShopsLastCompletedOrderIdGetData,
+): CancelablePromise<GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/last-completed-order/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Last Pending Order
@@ -658,16 +1048,20 @@ export const getLastCompletedOrderShopsLastCompletedOrderIdGet = (data: GetLastC
  * @returns ShopLastPendingOrder Successful Response
  * @throws ApiError
  */
-export const getLastPendingOrderShopsLastPendingOrderIdGet = (data: GetLastPendingOrderShopsLastPendingOrderIdGetData): CancelablePromise<GetLastPendingOrderShopsLastPendingOrderIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/last-pending-order/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getLastPendingOrderShopsLastPendingOrderIdGet = (
+    data: GetLastPendingOrderShopsLastPendingOrderIdGetData,
+): CancelablePromise<GetLastPendingOrderShopsLastPendingOrderIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/last-pending-order/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -677,16 +1071,20 @@ export const getLastPendingOrderShopsLastPendingOrderIdGet = (data: GetLastPendi
  * @returns ShopWithPrices Successful Response
  * @throws ApiError
  */
-export const getByIdShopsIdGet = (data: GetByIdShopsIdGetData): CancelablePromise<GetByIdShopsIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdShopsIdGet = (
+    data: GetByIdShopsIdGetData,
+): CancelablePromise<GetByIdShopsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -696,18 +1094,22 @@ export const getByIdShopsIdGet = (data: GetByIdShopsIdGetData): CancelablePromis
  * @returns ShopSchema Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdPut = (data: UpdateShopsShopIdPutData): CancelablePromise<UpdateShopsShopIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}',
-    path: {
-        shop_id: data.shopId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateShopsShopIdPut = (
+    data: UpdateShopsShopIdPutData,
+): CancelablePromise<UpdateShopsShopIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -716,16 +1118,20 @@ export const updateShopsShopIdPut = (data: UpdateShopsShopIdPutData): Cancelable
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdDelete = (data: DeleteShopsShopIdDeleteData): CancelablePromise<DeleteShopsShopIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}',
-    path: {
-        shop_id: data.shopId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteShopsShopIdDelete = (
+    data: DeleteShopsShopIdDeleteData,
+): CancelablePromise<DeleteShopsShopIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}',
+        path: {
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Config
@@ -734,16 +1140,20 @@ export const deleteShopsShopIdDelete = (data: DeleteShopsShopIdDeleteData): Canc
  * @returns ShopConfig Successful Response
  * @throws ApiError
  */
-export const getConfigShopsConfigIdGet = (data: GetConfigShopsConfigIdGetData): CancelablePromise<GetConfigShopsConfigIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/config/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getConfigShopsConfigIdGet = (
+    data: GetConfigShopsConfigIdGetData,
+): CancelablePromise<GetConfigShopsConfigIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/config/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update Config
@@ -753,18 +1163,22 @@ export const getConfigShopsConfigIdGet = (data: GetConfigShopsConfigIdGetData): 
  * @returns ShopConfigUpdate_Output Successful Response
  * @throws ApiError
  */
-export const updateConfigShopsConfigIdPut = (data: UpdateConfigShopsConfigIdPutData): CancelablePromise<UpdateConfigShopsConfigIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/config/{id}',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateConfigShopsConfigIdPut = (
+    data: UpdateConfigShopsConfigIdPutData,
+): CancelablePromise<UpdateConfigShopsConfigIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/config/{id}',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Allowed Ips
@@ -773,16 +1187,20 @@ export const updateConfigShopsConfigIdPut = (data: UpdateConfigShopsConfigIdPutD
  * @returns string Successful Response
  * @throws ApiError
  */
-export const getAllowedIpsShopsAllowedIpsIdGet = (data: GetAllowedIpsShopsAllowedIpsIdGetData): CancelablePromise<GetAllowedIpsShopsAllowedIpsIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/allowed-ips/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getAllowedIpsShopsAllowedIpsIdGet = (
+    data: GetAllowedIpsShopsAllowedIpsIdGetData,
+): CancelablePromise<GetAllowedIpsShopsAllowedIpsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/allowed-ips/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Add New Ip
@@ -792,18 +1210,22 @@ export const getAllowedIpsShopsAllowedIpsIdGet = (data: GetAllowedIpsShopsAllowe
  * @returns string Successful Response
  * @throws ApiError
  */
-export const addNewIpShopsAllowedIpsIdPost = (data: AddNewIpShopsAllowedIpsIdPostData): CancelablePromise<AddNewIpShopsAllowedIpsIdPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/allowed-ips/{id}',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const addNewIpShopsAllowedIpsIdPost = (
+    data: AddNewIpShopsAllowedIpsIdPostData,
+): CancelablePromise<AddNewIpShopsAllowedIpsIdPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/allowed-ips/{id}',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Remove Ip
@@ -813,18 +1235,22 @@ export const addNewIpShopsAllowedIpsIdPost = (data: AddNewIpShopsAllowedIpsIdPos
  * @returns string Successful Response
  * @throws ApiError
  */
-export const removeIpShopsAllowedIpsIdRemovePost = (data: RemoveIpShopsAllowedIpsIdRemovePostData): CancelablePromise<RemoveIpShopsAllowedIpsIdRemovePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/allowed-ips/{id}/remove',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const removeIpShopsAllowedIpsIdRemovePost = (
+    data: RemoveIpShopsAllowedIpsIdRemovePostData,
+): CancelablePromise<RemoveIpShopsAllowedIpsIdRemovePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/allowed-ips/{id}/remove',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Products
@@ -834,19 +1260,23 @@ export const removeIpShopsAllowedIpsIdRemovePost = (data: RemoveIpShopsAllowedIp
  * @returns ProductResponse Successful Response
  * @throws ApiError
  */
-export const getProductsShopsShopIdPricesGet = (data: GetProductsShopsShopIdPricesGetData): CancelablePromise<GetProductsShopsShopIdPricesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/prices/',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        lang: data.lang
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getProductsShopsShopIdPricesGet = (
+    data: GetProductsShopsShopIdPricesGetData,
+): CancelablePromise<GetProductsShopsShopIdPricesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/prices/',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            lang: data.lang,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Cart Products
@@ -857,21 +1287,25 @@ export const getProductsShopsShopIdPricesGet = (data: GetProductsShopsShopIdPric
  * @returns ProductResponse Successful Response
  * @throws ApiError
  */
-export const getCartProductsShopsShopIdPricesPost = (data: GetCartProductsShopsShopIdPricesPostData): CancelablePromise<GetCartProductsShopsShopIdPricesPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/prices/',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        lang: data.lang
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getCartProductsShopsShopIdPricesPost = (
+    data: GetCartProductsShopsShopIdPricesPostData,
+): CancelablePromise<GetCartProductsShopsShopIdPricesPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/prices/',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            lang: data.lang,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -883,19 +1317,23 @@ export const getCartProductsShopsShopIdPricesPost = (data: GetCartProductsShopsS
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const getMultiOrdersGet = (data: GetMultiOrdersGetData = {}): CancelablePromise<GetMultiOrdersGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiOrdersGet = (
+    data: GetMultiOrdersGetData = {},
+): CancelablePromise<GetMultiOrdersGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -904,15 +1342,19 @@ export const getMultiOrdersGet = (data: GetMultiOrdersGetData = {}): CancelableP
  * @returns OrderCreated Successful Response
  * @throws ApiError
  */
-export const createOrdersPost = (data: CreateOrdersPostData): CancelablePromise<CreateOrdersPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/orders/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createOrdersPost = (
+    data: CreateOrdersPostData,
+): CancelablePromise<CreateOrdersPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/orders/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Show All Pending Orders Per Shop
@@ -925,22 +1367,26 @@ export const createOrdersPost = (data: CreateOrdersPostData): CancelablePromise<
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const showAllPendingOrdersPerShopOrdersShopShopIdPendingGet = (data: ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData): CancelablePromise<ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/shop/{shop_id}/pending',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const showAllPendingOrdersPerShopOrdersShopShopIdPendingGet = (
+    data: ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData,
+): CancelablePromise<ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/shop/{shop_id}/pending',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Show All Complete Orders Per Shop
@@ -953,22 +1399,26 @@ export const showAllPendingOrdersPerShopOrdersShopShopIdPendingGet = (data: Show
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const showAllCompleteOrdersPerShopOrdersShopShopIdCompleteGet = (data: ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData): CancelablePromise<ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/shop/{shop_id}/complete',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const showAllCompleteOrdersPerShopOrdersShopShopIdCompleteGet = (
+    data: ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData,
+): CancelablePromise<ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/shop/{shop_id}/complete',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -977,16 +1427,20 @@ export const showAllCompleteOrdersPerShopOrdersShopShopIdCompleteGet = (data: Sh
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const getByIdOrdersIdGet = (data: GetByIdOrdersIdGetData): CancelablePromise<GetByIdOrdersIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdOrdersIdGet = (
+    data: GetByIdOrdersIdGetData,
+): CancelablePromise<GetByIdOrdersIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Check
@@ -995,16 +1449,20 @@ export const getByIdOrdersIdGet = (data: GetByIdOrdersIdGetData): CancelableProm
  * @returns OrderCreated Successful Response
  * @throws ApiError
  */
-export const checkOrdersCheckIdsGet = (data: CheckOrdersCheckIdsGetData): CancelablePromise<CheckOrdersCheckIdsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/check/{ids}',
-    path: {
-        ids: data.ids
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const checkOrdersCheckIdsGet = (
+    data: CheckOrdersCheckIdsGetData,
+): CancelablePromise<CheckOrdersCheckIdsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/check/{ids}',
+        path: {
+            ids: data.ids,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Patch
@@ -1014,18 +1472,22 @@ export const checkOrdersCheckIdsGet = (data: CheckOrdersCheckIdsGetData): Cancel
  * @returns OrderUpdated Successful Response
  * @throws ApiError
  */
-export const patchOrdersOrderIdPatch = (data: PatchOrdersOrderIdPatchData): CancelablePromise<PatchOrdersOrderIdPatchResponse> => { return __request(OpenAPI, {
-    method: 'PATCH',
-    url: '/orders/{order_id}',
-    path: {
-        order_id: data.orderId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const patchOrdersOrderIdPatch = (
+    data: PatchOrdersOrderIdPatchData,
+): CancelablePromise<PatchOrdersOrderIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/orders/{order_id}',
+        path: {
+            order_id: data.orderId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -1035,18 +1497,22 @@ export const patchOrdersOrderIdPatch = (data: PatchOrdersOrderIdPatchData): Canc
  * @returns OrderUpdated Successful Response
  * @throws ApiError
  */
-export const updateOrdersOrderIdPut = (data: UpdateOrdersOrderIdPutData): CancelablePromise<UpdateOrdersOrderIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/orders/{order_id}',
-    path: {
-        order_id: data.orderId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateOrdersOrderIdPut = (
+    data: UpdateOrdersOrderIdPutData,
+): CancelablePromise<UpdateOrdersOrderIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/orders/{order_id}',
+        path: {
+            order_id: data.orderId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -1055,16 +1521,20 @@ export const updateOrdersOrderIdPut = (data: UpdateOrdersOrderIdPutData): Cancel
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteOrdersOrderIdDelete = (data: DeleteOrdersOrderIdDeleteData): CancelablePromise<DeleteOrdersOrderIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/orders/{order_id}',
-    path: {
-        order_id: data.orderId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteOrdersOrderIdDelete = (
+    data: DeleteOrdersOrderIdDeleteData,
+): CancelablePromise<DeleteOrdersOrderIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/orders/{order_id}',
+        path: {
+            order_id: data.orderId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Order Products In Stock
@@ -1073,16 +1543,20 @@ export const deleteOrdersOrderIdDelete = (data: DeleteOrdersOrderIdDeleteData): 
  * @returns boolean Successful Response
  * @throws ApiError
  */
-export const getOrderProductsInStockOrdersStockOrderIdGet = (data: GetOrderProductsInStockOrdersStockOrderIdGetData): CancelablePromise<GetOrderProductsInStockOrdersStockOrderIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/orders/stock/{order_id}',
-    path: {
-        order_id: data.orderId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getOrderProductsInStockOrdersStockOrderIdGet = (
+    data: GetOrderProductsInStockOrdersStockOrderIdGetData,
+): CancelablePromise<GetOrderProductsInStockOrdersStockOrderIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/orders/stock/{order_id}',
+        path: {
+            order_id: data.orderId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Calculate
@@ -1091,15 +1565,19 @@ export const getOrderProductsInStockOrdersStockOrderIdGet = (data: GetOrderProdu
  * @returns ShippingCalculation Successful Response
  * @throws ApiError
  */
-export const calculateShippingCalculatePost = (data: CalculateShippingCalculatePostData): CancelablePromise<CalculateShippingCalculatePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shipping/calculate',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const calculateShippingCalculatePost = (
+    data: CalculateShippingCalculatePostData,
+): CancelablePromise<CalculateShippingCalculatePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shipping/calculate',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -1113,25 +1591,29 @@ export const calculateShippingCalculatePost = (data: CalculateShippingCalculateP
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
-export const listCategories = (data: ListCategoriesData): CancelablePromise<ListCategoriesResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listCategories = (
+    data: ListCategoriesData,
+): CancelablePromise<ListCategoriesResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -1142,21 +1624,25 @@ export const listCategories = (data: ListCategoriesData): CancelablePromise<List
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createCategory = (data: CreateCategoryData): CancelablePromise<CreateCategoryResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/categories/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createCategory = (
+    data: CreateCategoryData,
+): CancelablePromise<CreateCategoryResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/categories/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -1167,20 +1653,24 @@ export const createCategory = (data: CreateCategoryData): CancelablePromise<Crea
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
-export const getCategory = (data: GetCategoryData): CancelablePromise<GetCategoryResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories/{category_id}',
-    path: {
-        shop_id: data.shopId,
-        category_id: data.categoryId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getCategory = (
+    data: GetCategoryData,
+): CancelablePromise<GetCategoryResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories/{category_id}',
+        path: {
+            shop_id: data.shopId,
+            category_id: data.categoryId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -1192,22 +1682,26 @@ export const getCategory = (data: GetCategoryData): CancelablePromise<GetCategor
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateCategory = (data: UpdateCategoryData): CancelablePromise<UpdateCategoryResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/categories/{category_id}',
-    path: {
-        category_id: data.categoryId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateCategory = (
+    data: UpdateCategoryData,
+): CancelablePromise<UpdateCategoryResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/categories/{category_id}',
+        path: {
+            category_id: data.categoryId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -1218,20 +1712,24 @@ export const updateCategory = (data: UpdateCategoryData): CancelablePromise<Upda
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteCategory = (data: DeleteCategoryData): CancelablePromise<DeleteCategoryResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/categories/{category_id}',
-    path: {
-        category_id: data.categoryId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteCategory = (
+    data: DeleteCategoryData,
+): CancelablePromise<DeleteCategoryResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/categories/{category_id}',
+        path: {
+            category_id: data.categoryId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Name
@@ -1242,20 +1740,24 @@ export const deleteCategory = (data: DeleteCategoryData): CancelablePromise<Dele
  * @returns CategorySchema Successful Response
  * @throws ApiError
  */
-export const getByNameShopsShopIdCategoriesNameNameGet = (data: GetByNameShopsShopIdCategoriesNameNameGetData): CancelablePromise<GetByNameShopsShopIdCategoriesNameNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories/name/{name}',
-    path: {
-        name: data.name,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByNameShopsShopIdCategoriesNameNameGet = (
+    data: GetByNameShopsShopIdCategoriesNameNameGetData,
+): CancelablePromise<GetByNameShopsShopIdCategoriesNameNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories/name/{name}',
+        path: {
+            name: data.name,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Swap
@@ -1267,23 +1769,27 @@ export const getByNameShopsShopIdCategoriesNameNameGet = (data: GetByNameShopsSh
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const swapShopsShopIdCategoriesCategoryIdSwapPut = (data: SwapShopsShopIdCategoriesCategoryIdSwapPutData): CancelablePromise<SwapShopsShopIdCategoriesCategoryIdSwapPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/categories/{category_id}/swap',
-    path: {
-        shop_id: data.shopId,
-        category_id: data.categoryId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        move_up: data.moveUp
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const swapShopsShopIdCategoriesCategoryIdSwapPut = (
+    data: SwapShopsShopIdCategoriesCategoryIdSwapPutData,
+): CancelablePromise<SwapShopsShopIdCategoriesCategoryIdSwapPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/categories/{category_id}/swap',
+        path: {
+            shop_id: data.shopId,
+            category_id: data.categoryId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            move_up: data.moveUp,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get available filter attributes for a category
@@ -1295,20 +1801,25 @@ export const swapShopsShopIdCategoriesCategoryIdSwapPut = (data: SwapShopsShopId
  * @returns AvailableAttributeSchema Successful Response
  * @throws ApiError
  */
-export const getAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGet = (data: GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData): CancelablePromise<GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories/{category_id}/available-attributes',
-    path: {
-        shop_id: data.shopId,
-        category_id: data.categoryId
-    },
-    query: {
-        option_id: data.optionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGet =
+    (
+        data: GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData,
+    ): CancelablePromise<GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/categories/{category_id}/available-attributes',
+            path: {
+                shop_id: data.shopId,
+                category_id: data.categoryId,
+            },
+            query: {
+                option_id: data.optionId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * List products in a category with attribute filters
@@ -1333,27 +1844,31 @@ export const getAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttri
  * @returns ProductWithAttributes Successful Response
  * @throws ApiError
  */
-export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (data: GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData): CancelablePromise<GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories/{category_id}/products',
-    path: {
-        shop_id: data.shopId,
-        category_id: data.categoryId
-    },
-    query: {
-        option_id: data.optionId,
-        attribute_id: data.attributeId,
-        option_value_key: data.optionValueKey,
-        attribute_name: data.attributeName,
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (
+    data: GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData,
+): CancelablePromise<GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories/{category_id}/products',
+        path: {
+            shop_id: data.shopId,
+            category_id: data.categoryId,
+        },
+        query: {
+            option_id: data.optionId,
+            attribute_id: data.attributeId,
+            option_value_key: data.optionValueKey,
+            attribute_name: data.attributeName,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -1366,19 +1881,23 @@ export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (da
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdCategoriesImagesGet = (data: GetMultiShopsShopIdCategoriesImagesGetData = {}): CancelablePromise<GetMultiShopsShopIdCategoriesImagesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories-images/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiShopsShopIdCategoriesImagesGet = (
+    data: GetMultiShopsShopIdCategoriesImagesGetData = {},
+): CancelablePromise<GetMultiShopsShopIdCategoriesImagesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories-images/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -1387,16 +1906,20 @@ export const getMultiShopsShopIdCategoriesImagesGet = (data: GetMultiShopsShopId
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdCategoriesImagesIdGet = (data: GetByIdShopsShopIdCategoriesImagesIdGetData): CancelablePromise<GetByIdShopsShopIdCategoriesImagesIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/categories-images/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdShopsShopIdCategoriesImagesIdGet = (
+    data: GetByIdShopsShopIdCategoriesImagesIdGetData,
+): CancelablePromise<GetByIdShopsShopIdCategoriesImagesIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/categories-images/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Put
@@ -1406,18 +1929,22 @@ export const getByIdShopsShopIdCategoriesImagesIdGet = (data: GetByIdShopsShopId
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const putShopsShopIdCategoriesImagesIdPut = (data: PutShopsShopIdCategoriesImagesIdPutData): CancelablePromise<PutShopsShopIdCategoriesImagesIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/categories-images/{id}',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const putShopsShopIdCategoriesImagesIdPut = (
+    data: PutShopsShopIdCategoriesImagesIdPutData,
+): CancelablePromise<PutShopsShopIdCategoriesImagesIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/categories-images/{id}',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete Image
@@ -1427,18 +1954,22 @@ export const putShopsShopIdCategoriesImagesIdPut = (data: PutShopsShopIdCategori
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const deleteImageShopsShopIdCategoriesImagesDeleteIdPut = (data: DeleteImageShopsShopIdCategoriesImagesDeleteIdPutData): CancelablePromise<DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/categories-images/delete/{id}',
-    path: {
-        id: data.id
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteImageShopsShopIdCategoriesImagesDeleteIdPut = (
+    data: DeleteImageShopsShopIdCategoriesImagesDeleteIdPutData,
+): CancelablePromise<DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/categories-images/delete/{id}',
+        path: {
+            id: data.id,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Signed Upload Url
@@ -1448,17 +1979,21 @@ export const deleteImageShopsShopIdCategoriesImagesDeleteIdPut = (data: DeleteIm
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGet = (data: GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData): CancelablePromise<GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/images/signed-url/{image_name}',
-    path: {
-        shop_id: data.shopId,
-        image_name: data.imageName
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGet = (
+    data: GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData,
+): CancelablePromise<GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/images/signed-url/{image_name}',
+        path: {
+            shop_id: data.shopId,
+            image_name: data.imageName,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -1473,26 +2008,30 @@ export const getSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGet = (data: G
  * @returns ProductWithDefaultPrice Successful Response
  * @throws ApiError
  */
-export const listProducts = (data: ListProductsData): CancelablePromise<ListProductsResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        stock_status: data.stockStatus,
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listProducts = (
+    data: ListProductsData,
+): CancelablePromise<ListProductsResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            stock_status: data.stockStatus,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -1503,21 +2042,25 @@ export const listProducts = (data: ListProductsData): CancelablePromise<ListProd
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createProduct = (data: CreateProductData): CancelablePromise<CreateProductResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/products/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createProduct = (
+    data: CreateProductData,
+): CancelablePromise<CreateProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/products/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List products with attributes
@@ -1549,30 +2092,34 @@ export const createProduct = (data: CreateProductData): CancelablePromise<Create
  * @returns ProductWithAttributes Successful Response
  * @throws ApiError
  */
-export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (data: GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData): CancelablePromise<GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products/with_attributes',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        option_id: data.optionId,
-        attribute_id: data.attributeId,
-        option_value_key: data.optionValueKey,
-        attribute_name: data.attributeName,
-        stock_status: data.stockStatus,
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
+    data: GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData,
+): CancelablePromise<GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products/with_attributes',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            option_id: data.optionId,
+            attribute_id: data.attributeId,
+            option_value_key: data.optionValueKey,
+            attribute_name: data.attributeName,
+            stock_status: data.stockStatus,
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -1584,22 +2131,26 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (data:
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateProduct = (data: UpdateProductData): CancelablePromise<UpdateProductResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/products/{product_id}',
-    path: {
-        product_id: data.productId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateProduct = (
+    data: UpdateProductData,
+): CancelablePromise<UpdateProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/products/{product_id}',
+        path: {
+            product_id: data.productId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -1610,20 +2161,24 @@ export const updateProduct = (data: UpdateProductData): CancelablePromise<Update
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteProduct = (data: DeleteProductData): CancelablePromise<DeleteProductResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/products/{product_id}',
-    path: {
-        product_id: data.productId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteProduct = (
+    data: DeleteProductData,
+): CancelablePromise<DeleteProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/products/{product_id}',
+        path: {
+            product_id: data.productId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -1633,17 +2188,21 @@ export const deleteProduct = (data: DeleteProductData): CancelablePromise<Delete
  * @returns ProductWithDetailsAndPrices Successful Response
  * @throws ApiError
  */
-export const getProduct = (data: GetProductData): CancelablePromise<GetProductResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products/{product_id}',
-    path: {
-        product_id: data.productId,
-        shop_id: data.shopId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getProduct = (
+    data: GetProductData,
+): CancelablePromise<GetProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products/{product_id}',
+        path: {
+            product_id: data.productId,
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Swap
@@ -1655,23 +2214,27 @@ export const getProduct = (data: GetProductData): CancelablePromise<GetProductRe
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const swapShopsShopIdProductsProductIdSwapPut = (data: SwapShopsShopIdProductsProductIdSwapPutData): CancelablePromise<SwapShopsShopIdProductsProductIdSwapPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/products/{product_id}/swap',
-    path: {
-        shop_id: data.shopId,
-        product_id: data.productId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        move_up: data.moveUp
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const swapShopsShopIdProductsProductIdSwapPut = (
+    data: SwapShopsShopIdProductsProductIdSwapPutData,
+): CancelablePromise<SwapShopsShopIdProductsProductIdSwapPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/products/{product_id}/swap',
+        path: {
+            shop_id: data.shopId,
+            product_id: data.productId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            move_up: data.moveUp,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id With Attributes
@@ -1681,17 +2244,22 @@ export const swapShopsShopIdProductsProductIdSwapPut = (data: SwapShopsShopIdPro
  * @returns ProductWithAttributes Successful Response
  * @throws ApiError
  */
-export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet = (data: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData): CancelablePromise<GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products/{product_id}/with_attributes',
-    path: {
-        product_id: data.productId,
-        shop_id: data.shopId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet =
+    (
+        data: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
+    ): CancelablePromise<GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/products/{product_id}/with_attributes',
+            path: {
+                product_id: data.productId,
+                shop_id: data.shopId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * Get Multi
@@ -1704,19 +2272,23 @@ export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet 
  * @returns ProductToTagSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdProductsToTagsGet = (data: GetMultiShopsShopIdProductsToTagsGetData = {}): CancelablePromise<GetMultiShopsShopIdProductsToTagsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products-to-tags/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiShopsShopIdProductsToTagsGet = (
+    data: GetMultiShopsShopIdProductsToTagsGetData = {},
+): CancelablePromise<GetMultiShopsShopIdProductsToTagsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products-to-tags/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -1725,15 +2297,19 @@ export const getMultiShopsShopIdProductsToTagsGet = (data: GetMultiShopsShopIdPr
  * @returns void Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdProductsToTagsPost = (data: CreateShopsShopIdProductsToTagsPostData): CancelablePromise<CreateShopsShopIdProductsToTagsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/products-to-tags/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createShopsShopIdProductsToTagsPost = (
+    data: CreateShopsShopIdProductsToTagsPostData,
+): CancelablePromise<CreateShopsShopIdProductsToTagsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/products-to-tags/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Relation Id
@@ -1743,17 +2319,21 @@ export const createShopsShopIdProductsToTagsPost = (data: CreateShopsShopIdProdu
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getRelationIdShopsShopIdProductsToTagsGetRelationIdGet = (data: GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData): CancelablePromise<GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products-to-tags/get_relation_id',
-    query: {
-        tag_id: data.tagId,
-        product_id: data.productId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getRelationIdShopsShopIdProductsToTagsGetRelationIdGet = (
+    data: GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData,
+): CancelablePromise<GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products-to-tags/get_relation_id',
+        query: {
+            tag_id: data.tagId,
+            product_id: data.productId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -1762,16 +2342,20 @@ export const getRelationIdShopsShopIdProductsToTagsGetRelationIdGet = (data: Get
  * @returns ProductToTagSchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdProductsToTagsIdGet = (data: GetByIdShopsShopIdProductsToTagsIdGetData): CancelablePromise<GetByIdShopsShopIdProductsToTagsIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/products-to-tags/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdShopsShopIdProductsToTagsIdGet = (
+    data: GetByIdShopsShopIdProductsToTagsIdGetData,
+): CancelablePromise<GetByIdShopsShopIdProductsToTagsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products-to-tags/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -1781,18 +2365,22 @@ export const getByIdShopsShopIdProductsToTagsIdGet = (data: GetByIdShopsShopIdPr
  * @returns void Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdProductsToTagsProductToTagIdPut = (data: UpdateShopsShopIdProductsToTagsProductToTagIdPutData): CancelablePromise<UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
-    path: {
-        product_to_tag_id: data.productToTagId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateShopsShopIdProductsToTagsProductToTagIdPut = (
+    data: UpdateShopsShopIdProductsToTagsProductToTagIdPutData,
+): CancelablePromise<UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
+        path: {
+            product_to_tag_id: data.productToTagId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -1801,16 +2389,20 @@ export const updateShopsShopIdProductsToTagsProductToTagIdPut = (data: UpdateSho
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdProductsToTagsProductToTagIdDelete = (data: DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData): CancelablePromise<DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
-    path: {
-        product_to_tag_id: data.productToTagId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteShopsShopIdProductsToTagsProductToTagIdDelete = (
+    data: DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData,
+): CancelablePromise<DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
+        path: {
+            product_to_tag_id: data.productToTagId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -1824,25 +2416,29 @@ export const deleteShopsShopIdProductsToTagsProductToTagIdDelete = (data: Delete
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
-export const listTags = (data: ListTagsData): CancelablePromise<ListTagsResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/tags/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listTags = (
+    data: ListTagsData,
+): CancelablePromise<ListTagsResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/tags/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -1853,21 +2449,25 @@ export const listTags = (data: ListTagsData): CancelablePromise<ListTagsResponse
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createTag = (data: CreateTagData): CancelablePromise<CreateTagResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/tags/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createTag = (
+    data: CreateTagData,
+): CancelablePromise<CreateTagResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/tags/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -1878,20 +2478,22 @@ export const createTag = (data: CreateTagData): CancelablePromise<CreateTagRespo
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
-export const getTag = (data: GetTagData): CancelablePromise<GetTagResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/tags/{tag_id}',
-    path: {
-        tag_id: data.tagId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getTag = (data: GetTagData): CancelablePromise<GetTagResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/tags/{tag_id}',
+        path: {
+            tag_id: data.tagId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -1903,22 +2505,26 @@ export const getTag = (data: GetTagData): CancelablePromise<GetTagResponse> => {
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateTag = (data: UpdateTagData): CancelablePromise<UpdateTagResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/tags/{tag_id}',
-    path: {
-        tag_id: data.tagId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateTag = (
+    data: UpdateTagData,
+): CancelablePromise<UpdateTagResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/tags/{tag_id}',
+        path: {
+            tag_id: data.tagId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -1929,20 +2535,24 @@ export const updateTag = (data: UpdateTagData): CancelablePromise<UpdateTagRespo
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteTag = (data: DeleteTagData): CancelablePromise<DeleteTagResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/tags/{tag_id}',
-    path: {
-        tag_id: data.tagId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteTag = (
+    data: DeleteTagData,
+): CancelablePromise<DeleteTagResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/tags/{tag_id}',
+        path: {
+            tag_id: data.tagId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Name
@@ -1953,20 +2563,24 @@ export const deleteTag = (data: DeleteTagData): CancelablePromise<DeleteTagRespo
  * @returns TagSchema Successful Response
  * @throws ApiError
  */
-export const getByNameShopsShopIdTagsNameNameGet = (data: GetByNameShopsShopIdTagsNameNameGetData): CancelablePromise<GetByNameShopsShopIdTagsNameNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/tags/name/{name}',
-    path: {
-        name: data.name,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByNameShopsShopIdTagsNameNameGet = (
+    data: GetByNameShopsShopIdTagsNameNameGetData,
+): CancelablePromise<GetByNameShopsShopIdTagsNameNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/tags/name/{name}',
+        path: {
+            name: data.name,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get attribute by ID with options
@@ -1978,20 +2592,25 @@ export const getByNameShopsShopIdTagsNameNameGet = (data: GetByNameShopsShopIdTa
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
-export const getByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGet = (data: GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData): CancelablePromise<GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/{attribute_id}/with-options',
-    path: {
-        attribute_id: data.attributeId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGet =
+    (
+        data: GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData,
+    ): CancelablePromise<GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/attributes/{attribute_id}/with-options',
+            path: {
+                attribute_id: data.attributeId,
+                shop_id: data.shopId,
+            },
+            headers: {
+                'X-API-Key': data.xApiKey,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * List shop attributes with options
@@ -2006,25 +2625,29 @@ export const getByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptions
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
-export const getWithOptionsShopsShopIdAttributesWithOptionsGet = (data: GetWithOptionsShopsShopIdAttributesWithOptionsGetData): CancelablePromise<GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/with-options',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getWithOptionsShopsShopIdAttributesWithOptionsGet = (
+    data: GetWithOptionsShopsShopIdAttributesWithOptionsGetData,
+): CancelablePromise<GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/with-options',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List shop attributes
@@ -2039,25 +2662,29 @@ export const getWithOptionsShopsShopIdAttributesWithOptionsGet = (data: GetWithO
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const listAttributes = (data: ListAttributesData): CancelablePromise<ListAttributesResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listAttributes = (
+    data: ListAttributesData,
+): CancelablePromise<ListAttributesResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create attribute
@@ -2069,21 +2696,25 @@ export const listAttributes = (data: ListAttributesData): CancelablePromise<List
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const createAttribute = (data: CreateAttributeData): CancelablePromise<CreateAttributeResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/attributes/',
-    path: {
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createAttribute = (
+    data: CreateAttributeData,
+): CancelablePromise<CreateAttributeResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/attributes/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get attribute by ID with options
@@ -2095,20 +2726,25 @@ export const createAttribute = (data: CreateAttributeData): CancelablePromise<Cr
  * @returns AttributeWithOptionsSchema Successful Response
  * @throws ApiError
  */
-export const getByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGet = (data: GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData): CancelablePromise<GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/id/{attribute_id}/with-options',
-    path: {
-        attribute_id: data.attributeId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGet =
+    (
+        data: GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData,
+    ): CancelablePromise<GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse> => {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/shops/{shop_id}/attributes/id/{attribute_id}/with-options',
+            path: {
+                attribute_id: data.attributeId,
+                shop_id: data.shopId,
+            },
+            headers: {
+                'X-API-Key': data.xApiKey,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * Get attribute by ID
@@ -2120,20 +2756,24 @@ export const getByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGet 
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const getAttribute = (data: GetAttributeData): CancelablePromise<GetAttributeResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/id/{attribute_id}',
-    path: {
-        attribute_id: data.attributeId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getAttribute = (
+    data: GetAttributeData,
+): CancelablePromise<GetAttributeResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/id/{attribute_id}',
+        path: {
+            attribute_id: data.attributeId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get attribute by name
@@ -2145,20 +2785,24 @@ export const getAttribute = (data: GetAttributeData): CancelablePromise<GetAttri
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const getByNameShopsShopIdAttributesNameNameGet = (data: GetByNameShopsShopIdAttributesNameNameGetData): CancelablePromise<GetByNameShopsShopIdAttributesNameNameGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/name/{name}',
-    path: {
-        name: data.name,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByNameShopsShopIdAttributesNameNameGet = (
+    data: GetByNameShopsShopIdAttributesNameNameGetData,
+): CancelablePromise<GetByNameShopsShopIdAttributesNameNameGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/name/{name}',
+        path: {
+            name: data.name,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update attribute
@@ -2171,22 +2815,26 @@ export const getByNameShopsShopIdAttributesNameNameGet = (data: GetByNameShopsSh
  * @returns AttributeSchema Successful Response
  * @throws ApiError
  */
-export const updateAttribute = (data: UpdateAttributeData): CancelablePromise<UpdateAttributeResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/attributes/{attribute_id}',
-    path: {
-        attribute_id: data.attributeId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateAttribute = (
+    data: UpdateAttributeData,
+): CancelablePromise<UpdateAttributeResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/attributes/{attribute_id}',
+        path: {
+            attribute_id: data.attributeId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete attribute
@@ -2198,20 +2846,24 @@ export const updateAttribute = (data: UpdateAttributeData): CancelablePromise<Up
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteAttribute = (data: DeleteAttributeData): CancelablePromise<DeleteAttributeResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/attributes/{attribute_id}',
-    path: {
-        attribute_id: data.attributeId,
-        shop_id: data.shopId
-    },
-    headers: {
-        'X-API-Key': data.xApiKey
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteAttribute = (
+    data: DeleteAttributeData,
+): CancelablePromise<DeleteAttributeResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/attributes/{attribute_id}',
+        path: {
+            attribute_id: data.attributeId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Mint a new API key for the shop
@@ -2225,18 +2877,22 @@ export const deleteAttribute = (data: DeleteAttributeData): CancelablePromise<De
  * @returns ApiKeyCreated Successful Response
  * @throws ApiError
  */
-export const mintShopsShopIdApiKeysPost = (data: MintShopsShopIdApiKeysPostData): CancelablePromise<MintShopsShopIdApiKeysPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/api-keys/',
-    path: {
-        shop_id: data.shopId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const mintShopsShopIdApiKeysPost = (
+    data: MintShopsShopIdApiKeysPostData,
+): CancelablePromise<MintShopsShopIdApiKeysPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/api-keys/',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List API keys for the shop
@@ -2245,16 +2901,20 @@ export const mintShopsShopIdApiKeysPost = (data: MintShopsShopIdApiKeysPostData)
  * @returns ApiKeyRead Successful Response
  * @throws ApiError
  */
-export const listKeysShopsShopIdApiKeysGet = (data: ListKeysShopsShopIdApiKeysGetData): CancelablePromise<ListKeysShopsShopIdApiKeysGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/api-keys/',
-    path: {
-        shop_id: data.shopId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listKeysShopsShopIdApiKeysGet = (
+    data: ListKeysShopsShopIdApiKeysGetData,
+): CancelablePromise<ListKeysShopsShopIdApiKeysGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/api-keys/',
+        path: {
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Revoke an API key
@@ -2264,17 +2924,21 @@ export const listKeysShopsShopIdApiKeysGet = (data: ListKeysShopsShopIdApiKeysGe
  * @returns void Successful Response
  * @throws ApiError
  */
-export const revokeShopsShopIdApiKeysKeyIdDelete = (data: RevokeShopsShopIdApiKeysKeyIdDeleteData): CancelablePromise<RevokeShopsShopIdApiKeysKeyIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/api-keys/{key_id}',
-    path: {
-        shop_id: data.shopId,
-        key_id: data.keyId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const revokeShopsShopIdApiKeysKeyIdDelete = (
+    data: RevokeShopsShopIdApiKeysKeyIdDeleteData,
+): CancelablePromise<RevokeShopsShopIdApiKeysKeyIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/api-keys/{key_id}',
+        path: {
+            shop_id: data.shopId,
+            key_id: data.keyId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List attribute options for a shop
@@ -2288,22 +2952,26 @@ export const revokeShopsShopIdApiKeysKeyIdDelete = (data: RevokeShopsShopIdApiKe
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const listOptionsForShopShopsShopIdAttributeOptionsGet = (data: ListOptionsForShopShopsShopIdAttributeOptionsGetData): CancelablePromise<ListOptionsForShopShopsShopIdAttributeOptionsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attribute-options/',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listOptionsForShopShopsShopIdAttributeOptionsGet = (
+    data: ListOptionsForShopShopsShopIdAttributeOptionsGetData,
+): CancelablePromise<ListOptionsForShopShopsShopIdAttributeOptionsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attribute-options/',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create attribute option
@@ -2314,18 +2982,22 @@ export const listOptionsForShopShopsShopIdAttributeOptionsGet = (data: ListOptio
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const createOptionV2ShopsShopIdAttributeOptionsPost = (data: CreateOptionV2ShopsShopIdAttributeOptionsPostData): CancelablePromise<CreateOptionV2ShopsShopIdAttributeOptionsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/attribute-options/',
-    path: {
-        shop_id: data.shopId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createOptionV2ShopsShopIdAttributeOptionsPost = (
+    data: CreateOptionV2ShopsShopIdAttributeOptionsPostData,
+): CancelablePromise<CreateOptionV2ShopsShopIdAttributeOptionsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/attribute-options/',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get attribute option
@@ -2336,17 +3008,21 @@ export const createOptionV2ShopsShopIdAttributeOptionsPost = (data: CreateOption
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const getOptionV2ShopsShopIdAttributeOptionsOptionIdGet = (data: GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData): CancelablePromise<GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attribute-options/{option_id}',
-    path: {
-        shop_id: data.shopId,
-        option_id: data.optionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getOptionV2ShopsShopIdAttributeOptionsOptionIdGet = (
+    data: GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData,
+): CancelablePromise<GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attribute-options/{option_id}',
+        path: {
+            shop_id: data.shopId,
+            option_id: data.optionId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update attribute option
@@ -2358,19 +3034,23 @@ export const getOptionV2ShopsShopIdAttributeOptionsOptionIdGet = (data: GetOptio
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const updateOptionV2ShopsShopIdAttributeOptionsOptionIdPut = (data: UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData): CancelablePromise<UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/attribute-options/{option_id}',
-    path: {
-        shop_id: data.shopId,
-        option_id: data.optionId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateOptionV2ShopsShopIdAttributeOptionsOptionIdPut = (
+    data: UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData,
+): CancelablePromise<UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/attribute-options/{option_id}',
+        path: {
+            shop_id: data.shopId,
+            option_id: data.optionId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete attribute option
@@ -2381,17 +3061,21 @@ export const updateOptionV2ShopsShopIdAttributeOptionsOptionIdPut = (data: Updat
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteOptionV2ShopsShopIdAttributeOptionsOptionIdDelete = (data: DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData): CancelablePromise<DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/attribute-options/{option_id}',
-    path: {
-        shop_id: data.shopId,
-        option_id: data.optionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteOptionV2ShopsShopIdAttributeOptionsOptionIdDelete = (
+    data: DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData,
+): CancelablePromise<DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/attribute-options/{option_id}',
+        path: {
+            shop_id: data.shopId,
+            option_id: data.optionId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * @deprecated
@@ -2407,23 +3091,27 @@ export const deleteOptionV2ShopsShopIdAttributeOptionsOptionIdDelete = (data: De
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const listOptionsShopsShopIdAttributesAttributeIdOptionsGet = (data: ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData): CancelablePromise<ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/{attribute_id}/options/',
-    path: {
-        shop_id: data.shopId,
-        attribute_id: data.attributeId
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const listOptionsShopsShopIdAttributesAttributeIdOptionsGet = (
+    data: ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData,
+): CancelablePromise<ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/{attribute_id}/options/',
+        path: {
+            shop_id: data.shopId,
+            attribute_id: data.attributeId,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * @deprecated
@@ -2436,19 +3124,23 @@ export const listOptionsShopsShopIdAttributesAttributeIdOptionsGet = (data: List
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const createOptionShopsShopIdAttributesAttributeIdOptionsPost = (data: CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData): CancelablePromise<CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/attributes/{attribute_id}/options/',
-    path: {
-        shop_id: data.shopId,
-        attribute_id: data.attributeId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createOptionShopsShopIdAttributesAttributeIdOptionsPost = (
+    data: CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData,
+): CancelablePromise<CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/attributes/{attribute_id}/options/',
+        path: {
+            shop_id: data.shopId,
+            attribute_id: data.attributeId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * @deprecated
@@ -2461,18 +3153,22 @@ export const createOptionShopsShopIdAttributesAttributeIdOptionsPost = (data: Cr
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const getOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGet = (data: GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData): CancelablePromise<GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/attributes/{attribute_id}/options/{option_id}',
-    path: {
-        shop_id: data.shopId,
-        attribute_id: data.attributeId,
-        option_id: data.optionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGet = (
+    data: GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData,
+): CancelablePromise<GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/attributes/{attribute_id}/options/{option_id}',
+        path: {
+            shop_id: data.shopId,
+            attribute_id: data.attributeId,
+            option_id: data.optionId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * @deprecated
@@ -2485,18 +3181,23 @@ export const getOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGet = (data
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDelete = (data: DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData): CancelablePromise<DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/attributes/{attribute_id}/options/{option_id}',
-    path: {
-        shop_id: data.shopId,
-        attribute_id: data.attributeId,
-        option_id: data.optionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDelete =
+    (
+        data: DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData,
+    ): CancelablePromise<DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse> => {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/shops/{shop_id}/attributes/{attribute_id}/options/{option_id}',
+            path: {
+                shop_id: data.shopId,
+                attribute_id: data.attributeId,
+                option_id: data.optionId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * List product attribute values
@@ -2510,22 +3211,26 @@ export const deleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDelete =
  * @returns ProductAttributeValueSchema Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesList = (data: ProductAttributeValuesListData): CancelablePromise<ProductAttributeValuesListResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/product-attribute-values/',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesList = (
+    data: ProductAttributeValuesListData,
+): CancelablePromise<ProductAttributeValuesListResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/product-attribute-values/',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * @deprecated
@@ -2543,18 +3248,22 @@ export const productAttributeValuesList = (data: ProductAttributeValuesListData)
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesCreateDeprecated = (data: ProductAttributeValuesCreateDeprecatedData): CancelablePromise<ProductAttributeValuesCreateDeprecatedResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/product-attribute-values/',
-    path: {
-        shop_id: data.shopId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesCreateDeprecated = (
+    data: ProductAttributeValuesCreateDeprecatedData,
+): CancelablePromise<ProductAttributeValuesCreateDeprecatedResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/product-attribute-values/',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get product attribute value
@@ -2565,17 +3274,21 @@ export const productAttributeValuesCreateDeprecated = (data: ProductAttributeVal
  * @returns ProductAttributeValueSchema Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesGet = (data: ProductAttributeValuesGetData): CancelablePromise<ProductAttributeValuesGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/product-attribute-values/{id}',
-    path: {
-        shop_id: data.shopId,
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesGet = (
+    data: ProductAttributeValuesGetData,
+): CancelablePromise<ProductAttributeValuesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/product-attribute-values/{id}',
+        path: {
+            shop_id: data.shopId,
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete product attribute value
@@ -2586,17 +3299,21 @@ export const productAttributeValuesGet = (data: ProductAttributeValuesGetData): 
  * @returns void Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesDelete = (data: ProductAttributeValuesDeleteData): CancelablePromise<ProductAttributeValuesDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/product-attribute-values/{id}',
-    path: {
-        shop_id: data.shopId,
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesDelete = (
+    data: ProductAttributeValuesDeleteData,
+): CancelablePromise<ProductAttributeValuesDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/product-attribute-values/{id}',
+        path: {
+            shop_id: data.shopId,
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create product attribute values for product
@@ -2618,19 +3335,23 @@ export const productAttributeValuesDelete = (data: ProductAttributeValuesDeleteD
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesCreateForProduct = (data: ProductAttributeValuesCreateForProductData): CancelablePromise<ProductAttributeValuesCreateForProductResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/product-attribute-values/{product_id}',
-    path: {
-        shop_id: data.shopId,
-        product_id: data.productId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesCreateForProduct = (
+    data: ProductAttributeValuesCreateForProductData,
+): CancelablePromise<ProductAttributeValuesCreateForProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/product-attribute-values/{product_id}',
+        path: {
+            shop_id: data.shopId,
+            product_id: data.productId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Replace product attribute values for product
@@ -2651,19 +3372,23 @@ export const productAttributeValuesCreateForProduct = (data: ProductAttributeVal
  * @returns void Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesReplaceForProduct = (data: ProductAttributeValuesReplaceForProductData): CancelablePromise<ProductAttributeValuesReplaceForProductResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/product-attribute-values/{product_id}',
-    path: {
-        shop_id: data.shopId,
-        product_id: data.productId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const productAttributeValuesReplaceForProduct = (
+    data: ProductAttributeValuesReplaceForProductData,
+): CancelablePromise<ProductAttributeValuesReplaceForProductResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/product-attribute-values/{product_id}',
+        path: {
+            shop_id: data.shopId,
+            product_id: data.productId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -2675,19 +3400,23 @@ export const productAttributeValuesReplaceForProduct = (data: ProductAttributeVa
  * @returns AccountSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdAccountsGet = (data: GetMultiShopsShopIdAccountsGetData = {}): CancelablePromise<GetMultiShopsShopIdAccountsGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/accounts/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiShopsShopIdAccountsGet = (
+    data: GetMultiShopsShopIdAccountsGetData = {},
+): CancelablePromise<GetMultiShopsShopIdAccountsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/accounts/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -2696,15 +3425,19 @@ export const getMultiShopsShopIdAccountsGet = (data: GetMultiShopsShopIdAccounts
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdAccountsPost = (data: CreateShopsShopIdAccountsPostData): CancelablePromise<CreateShopsShopIdAccountsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/accounts/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createShopsShopIdAccountsPost = (
+    data: CreateShopsShopIdAccountsPostData,
+): CancelablePromise<CreateShopsShopIdAccountsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/accounts/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -2713,16 +3446,20 @@ export const createShopsShopIdAccountsPost = (data: CreateShopsShopIdAccountsPos
  * @returns AccountSchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdAccountsIdGet = (data: GetByIdShopsShopIdAccountsIdGetData): CancelablePromise<GetByIdShopsShopIdAccountsIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/shops/{shop_id}/accounts/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdShopsShopIdAccountsIdGet = (
+    data: GetByIdShopsShopIdAccountsIdGetData,
+): CancelablePromise<GetByIdShopsShopIdAccountsIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/accounts/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -2732,18 +3469,22 @@ export const getByIdShopsShopIdAccountsIdGet = (data: GetByIdShopsShopIdAccounts
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdAccountsAccountIdPut = (data: UpdateShopsShopIdAccountsAccountIdPutData): CancelablePromise<UpdateShopsShopIdAccountsAccountIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/shops/{shop_id}/accounts/{account_id}',
-    path: {
-        account_id: data.accountId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateShopsShopIdAccountsAccountIdPut = (
+    data: UpdateShopsShopIdAccountsAccountIdPutData,
+): CancelablePromise<UpdateShopsShopIdAccountsAccountIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/accounts/{account_id}',
+        path: {
+            account_id: data.accountId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -2752,16 +3493,20 @@ export const updateShopsShopIdAccountsAccountIdPut = (data: UpdateShopsShopIdAcc
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdAccountsAccountIdDelete = (data: DeleteShopsShopIdAccountsAccountIdDeleteData): CancelablePromise<DeleteShopsShopIdAccountsAccountIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/accounts/{account_id}',
-    path: {
-        account_id: data.accountId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteShopsShopIdAccountsAccountIdDelete = (
+    data: DeleteShopsShopIdAccountsAccountIdDeleteData,
+): CancelablePromise<DeleteShopsShopIdAccountsAccountIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}/accounts/{account_id}',
+        path: {
+            account_id: data.accountId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create Payment Intent
@@ -2772,20 +3517,24 @@ export const deleteShopsShopIdAccountsAccountIdDelete = (data: DeleteShopsShopId
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createPaymentIntentShopsShopIdStripePost = (data: CreatePaymentIntentShopsShopIdStripePostData): CancelablePromise<CreatePaymentIntentShopsShopIdStripePostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/stripe/',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        price: data.price,
-        account_id: data.accountId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createPaymentIntentShopsShopIdStripePost = (
+    data: CreatePaymentIntentShopsShopIdStripePostData,
+): CancelablePromise<CreatePaymentIntentShopsShopIdStripePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/stripe/',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            price: data.price,
+            account_id: data.accountId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create Subscription Intent
@@ -2797,22 +3546,26 @@ export const createPaymentIntentShopsShopIdStripePost = (data: CreatePaymentInte
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createSubscriptionIntentShopsShopIdStripeSubscriptionPost = (data: CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData): CancelablePromise<CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/shops/{shop_id}/stripe/subscription',
-    path: {
-        shop_id: data.shopId
-    },
-    query: {
-        account_id: data.accountId,
-        yearly: data.yearly
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createSubscriptionIntentShopsShopIdStripeSubscriptionPost = (
+    data: CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData,
+): CancelablePromise<CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/stripe/subscription',
+        path: {
+            shop_id: data.shopId,
+        },
+        query: {
+            account_id: data.accountId,
+            yearly: data.yearly,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Cancel Subscription
@@ -2822,17 +3575,22 @@ export const createSubscriptionIntentShopsShopIdStripeSubscriptionPost = (data: 
  * @returns void Successful Response
  * @throws ApiError
  */
-export const cancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDelete = (data: CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData): CancelablePromise<CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/shops/{shop_id}/stripe/subscription/{subscription_id}',
-    path: {
-        shop_id: data.shopId,
-        subscription_id: data.subscriptionId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const cancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDelete =
+    (
+        data: CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData,
+    ): CancelablePromise<CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse> => {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/shops/{shop_id}/stripe/subscription/{subscription_id}',
+            path: {
+                shop_id: data.shopId,
+                subscription_id: data.subscriptionId,
+            },
+            errors: {
+                422: 'Validation Error',
+            },
+        });
+    };
 
 /**
  * Create
@@ -2841,15 +3599,19 @@ export const cancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDelete
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const createEarlyAccessPost = (data: CreateEarlyAccessPostData): CancelablePromise<CreateEarlyAccessPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/early-access/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createEarlyAccessPost = (
+    data: CreateEarlyAccessPostData,
+): CancelablePromise<CreateEarlyAccessPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/early-access/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Form
@@ -2860,19 +3622,23 @@ export const createEarlyAccessPost = (data: CreateEarlyAccessPostData): Cancelab
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const formInfoRequestFormPost = (data: FormInfoRequestFormPostData): CancelablePromise<FormInfoRequestFormPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/info-request/form',
-    query: {
-        shop_id: data.shopId,
-        product_id: data.productId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const formInfoRequestFormPost = (
+    data: FormInfoRequestFormPostData,
+): CancelablePromise<FormInfoRequestFormPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/info-request/form',
+        query: {
+            shop_id: data.shopId,
+            product_id: data.productId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Trigger Error
@@ -2881,16 +3647,20 @@ export const formInfoRequestFormPost = (data: FormInfoRequestFormPostData): Canc
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const triggerErrorSentryGet = (data: TriggerErrorSentryGetData): CancelablePromise<TriggerErrorSentryGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/sentry/',
-    query: {
-        type: data.type
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const triggerErrorSentryGet = (
+    data: TriggerErrorSentryGetData,
+): CancelablePromise<TriggerErrorSentryGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/sentry/',
+        query: {
+            type: data.type,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Form
@@ -2899,15 +3669,19 @@ export const triggerErrorSentryGet = (data: TriggerErrorSentryGetData): Cancelab
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const formTestFormsPost = (data: FormTestFormsPostData = {}): CancelablePromise<FormTestFormsPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/test-forms/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const formTestFormsPost = (
+    data: FormTestFormsPostData = {},
+): CancelablePromise<FormTestFormsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/test-forms/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get Multi
@@ -2919,19 +3693,23 @@ export const formTestFormsPost = (data: FormTestFormsPostData = {}): CancelableP
  * @returns FaqSchema Successful Response
  * @throws ApiError
  */
-export const getMultiFaqGet = (data: GetMultiFaqGetData = {}): CancelablePromise<GetMultiFaqGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/faq/',
-    query: {
-        skip: data.skip,
-        limit: data.limit,
-        filter: data.filter,
-        sort: data.sort
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getMultiFaqGet = (
+    data: GetMultiFaqGetData = {},
+): CancelablePromise<GetMultiFaqGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/faq/',
+        query: {
+            skip: data.skip,
+            limit: data.limit,
+            filter: data.filter,
+            sort: data.sort,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Create
@@ -2940,15 +3718,19 @@ export const getMultiFaqGet = (data: GetMultiFaqGetData = {}): CancelablePromise
  * @returns FaqCreated Successful Response
  * @throws ApiError
  */
-export const createFaqPost = (data: CreateFaqPostData): CancelablePromise<CreateFaqPostResponse> => { return __request(OpenAPI, {
-    method: 'POST',
-    url: '/faq/',
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const createFaqPost = (
+    data: CreateFaqPostData,
+): CancelablePromise<CreateFaqPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/faq/',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Get By Id
@@ -2957,16 +3739,20 @@ export const createFaqPost = (data: CreateFaqPostData): CancelablePromise<Create
  * @returns FaqSchema Successful Response
  * @throws ApiError
  */
-export const getByIdFaqIdGet = (data: GetByIdFaqIdGetData): CancelablePromise<GetByIdFaqIdGetResponse> => { return __request(OpenAPI, {
-    method: 'GET',
-    url: '/faq/{id}',
-    path: {
-        id: data.id
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const getByIdFaqIdGet = (
+    data: GetByIdFaqIdGetData,
+): CancelablePromise<GetByIdFaqIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/faq/{id}',
+        path: {
+            id: data.id,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Update
@@ -2976,18 +3762,22 @@ export const getByIdFaqIdGet = (data: GetByIdFaqIdGetData): CancelablePromise<Ge
  * @returns FaqUpdated Successful Response
  * @throws ApiError
  */
-export const updateFaqFaqIdPut = (data: UpdateFaqFaqIdPutData): CancelablePromise<UpdateFaqFaqIdPutResponse> => { return __request(OpenAPI, {
-    method: 'PUT',
-    url: '/faq/{faq_id}',
-    path: {
-        faq_id: data.faqId
-    },
-    body: data.requestBody,
-    mediaType: 'application/json',
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const updateFaqFaqIdPut = (
+    data: UpdateFaqFaqIdPutData,
+): CancelablePromise<UpdateFaqFaqIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/faq/{faq_id}',
+        path: {
+            faq_id: data.faqId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * Delete
@@ -2996,13 +3786,17 @@ export const updateFaqFaqIdPut = (data: UpdateFaqFaqIdPutData): CancelablePromis
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteFaqFaqIdDelete = (data: DeleteFaqFaqIdDeleteData): CancelablePromise<DeleteFaqFaqIdDeleteResponse> => { return __request(OpenAPI, {
-    method: 'DELETE',
-    url: '/faq/{faq_id}',
-    path: {
-        faq_id: data.faqId
-    },
-    errors: {
-        422: 'Validation Error'
-    }
-}); };
+export const deleteFaqFaqIdDelete = (
+    data: DeleteFaqFaqIdDeleteData,
+): CancelablePromise<DeleteFaqFaqIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/faq/{faq_id}',
+        path: {
+            faq_id: data.faqId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
