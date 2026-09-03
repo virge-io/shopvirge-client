@@ -32,8 +32,8 @@ export type AdminAccountSchema = {
     name?: string | null;
     hash_name?: string | null;
     details?: {
-    [key: string]: unknown;
-} | null;
+        [key: string]: unknown;
+    } | null;
     stripe_customer_id?: string | null;
     stripe_synced_at?: string | null;
 };
@@ -129,7 +129,7 @@ export type AvailableOptionSchema = {
 };
 
 export type Cart = {
-    products: Array<(string)>;
+    products: Array<string>;
 };
 
 export type CategoryCreate = {
@@ -138,15 +138,24 @@ export type CategoryCreate = {
     icon?: string | null;
     order_number?: number | null;
     translation: CategoryTranslationBase;
-    main_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt1_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt2_image: {
-    [key: string]: unknown;
-} | string | null;
+    main_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt1_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt2_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
 };
 
 export type CategoryImageDelete = {
@@ -159,15 +168,24 @@ export type CategorySchema = {
     icon?: string | null;
     order_number?: number | null;
     translation: CategoryTranslationBase;
-    main_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt1_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt2_image: {
-    [key: string]: unknown;
-} | string | null;
+    main_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt1_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt2_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
     id: string;
 };
 
@@ -186,15 +204,24 @@ export type CategoryUpdate = {
     icon?: string | null;
     order_number?: number | null;
     translation: CategoryTranslationBase;
-    main_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt1_image: {
-    [key: string]: unknown;
-} | string | null;
-    alt2_image: {
-    [key: string]: unknown;
-} | string | null;
+    main_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt1_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    alt2_image:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
 };
 
 export type ConfigurationContact = {
@@ -519,14 +546,14 @@ export type ProductAttributeItem = {
  * Payload for creating or replacing selected attribute options for a product.
  */
 export type ProductAttributeOptionSelectionAdd = {
-    option_ids: Array<(string)>;
+    option_ids: Array<string>;
 };
 
 /**
  * Payload for creating or replacing selected attribute options for a product.
  */
 export type ProductAttributeOptionSelectionReplace = {
-    option_ids: Array<(string)>;
+    option_ids: Array<string>;
 };
 
 /**
@@ -566,24 +593,42 @@ export type ProductCreate = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1: {
-    [key: string]: unknown;
-} | string | null;
-    image_2: {
-    [key: string]: unknown;
-} | string | null;
-    image_3: {
-    [key: string]: unknown;
-} | string | null;
-    image_4: {
-    [key: string]: unknown;
-} | string | null;
-    image_5: {
-    [key: string]: unknown;
-} | string | null;
-    image_6: {
-    [key: string]: unknown;
-} | string | null;
+    image_1:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_2:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_3:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_4:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_5:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_6:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
     translation: ProductTranslationBase;
 };
 
@@ -596,7 +641,7 @@ export type ProductResponse = {
     category_order_number: number;
     order_number: number;
     stock?: number | null;
-    tags?: Array<(string)>;
+    tags?: Array<string>;
     name: string;
     description_short: string;
     description: string;
@@ -607,7 +652,7 @@ export type ProductResponse = {
     recurring_price_yearly?: number | null;
     max_one: boolean;
     shippable: boolean;
-    attributes?: Array<(string)>;
+    attributes?: Array<string>;
     digital?: string | null;
     featured: boolean;
     new_product: boolean;
@@ -671,24 +716,42 @@ export type ProductUpdate = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1: {
-    [key: string]: unknown;
-} | string | null;
-    image_2: {
-    [key: string]: unknown;
-} | string | null;
-    image_3: {
-    [key: string]: unknown;
-} | string | null;
-    image_4: {
-    [key: string]: unknown;
-} | string | null;
-    image_5: {
-    [key: string]: unknown;
-} | string | null;
-    image_6: {
-    [key: string]: unknown;
-} | string | null;
+    image_1:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_2:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_3:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_4:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_5:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_6:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
     translation: ProductTranslationBase;
     modified_at?: string | null;
 };
@@ -719,24 +782,42 @@ export type ProductWithDefaultPrice = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1: {
-    [key: string]: unknown;
-} | string | null;
-    image_2: {
-    [key: string]: unknown;
-} | string | null;
-    image_3: {
-    [key: string]: unknown;
-} | string | null;
-    image_4: {
-    [key: string]: unknown;
-} | string | null;
-    image_5: {
-    [key: string]: unknown;
-} | string | null;
-    image_6: {
-    [key: string]: unknown;
-} | string | null;
+    image_1:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_2:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_3:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_4:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_5:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_6:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
     translation: ProductTranslationBase;
     id: string;
     short_id?: string | null;
@@ -764,24 +845,42 @@ export type ProductWithDetailsAndPrices = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1: {
-    [key: string]: unknown;
-} | string | null;
-    image_2: {
-    [key: string]: unknown;
-} | string | null;
-    image_3: {
-    [key: string]: unknown;
-} | string | null;
-    image_4: {
-    [key: string]: unknown;
-} | string | null;
-    image_5: {
-    [key: string]: unknown;
-} | string | null;
-    image_6: {
-    [key: string]: unknown;
-} | string | null;
+    image_1:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_2:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_3:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_4:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_5:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
+    image_6:
+        | {
+              [key: string]: unknown;
+          }
+        | string
+        | null;
     translation: ProductTranslationBase;
     id: string;
     short_id?: string | null;
@@ -803,9 +902,9 @@ export type RestoreReport = {
     restored_from_revision_no?: number | null;
     new_revision_no?: number | null;
     resurrected?: Array<ResurrectedEntity>;
-    skipped_fields?: Array<(string)>;
+    skipped_fields?: Array<string>;
     unresolved?: Array<UnresolvedReference>;
-    warnings?: Array<(string)>;
+    warnings?: Array<string>;
 };
 
 export type ResurrectedEntity = {
@@ -949,7 +1048,7 @@ export type ShopUpdate = {
     vat_special: number | string;
     vat_zero: number | string;
     modified_at: string | null;
-    allowed_ips?: Array<(string)> | null;
+    allowed_ips?: Array<string> | null;
 };
 
 export type ShopWithPrices = {
@@ -1029,14 +1128,14 @@ export type UnresolvedReference = {
 };
 
 export type ValidationError = {
-    loc: Array<(string | number)>;
+    loc: Array<string | number>;
     msg: string;
     type: string;
 };
 
 export type GetHealthHealthGetResponse = string;
 
-export type GetFormsFormsGetResponse = Array<(string)>;
+export type GetFormsFormsGetResponse = Array<string>;
 
 export type NewFormFormsFormKeyPostData = {
     formKey: string;
@@ -1064,13 +1163,13 @@ export type GetMultiLicensesGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiLicensesGetResponse = Array<LicenseSchema>;
@@ -1104,13 +1203,14 @@ export type GetByImproviserUserIdLicensesImproviserImproviserUserIdGetData = {
     improviserUserId: string;
 };
 
-export type GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse = LicenseSchema;
+export type GetByImproviserUserIdLicensesImproviserImproviserUserIdGetResponse =
+    LicenseSchema;
 
 export type ListAccountsAdminAccountsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     /**
      * If true, only accounts without a stripe_customer_id; if false, only those with one.
@@ -1124,7 +1224,7 @@ export type ListAccountsAdminAccountsGetData = {
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type ListAccountsAdminAccountsGetResponse = Array<AdminAccountSchema>;
@@ -1147,14 +1247,16 @@ export type SyncStripeAdminAccountsIdSyncStripePostData = {
     id: string;
 };
 
-export type SyncStripeAdminAccountsIdSyncStripePostResponse = SyncStripeResponse;
+export type SyncStripeAdminAccountsIdSyncStripePostResponse =
+    SyncStripeResponse;
 
 export type LinkStripeAdminAccountsIdLinkStripePostData = {
     id: string;
     requestBody: LinkStripeBody;
 };
 
-export type LinkStripeAdminAccountsIdLinkStripePostResponse = AdminAccountSchema;
+export type LinkStripeAdminAccountsIdLinkStripePostResponse =
+    AdminAccountSchema;
 
 export type GetSignedDownloadLinkDownloadsFileNameGetData = {
     fileName: string;
@@ -1174,13 +1276,13 @@ export type GetMultiShopsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiShopsGetResponse = Array<ShopSchema>;
@@ -1203,13 +1305,15 @@ export type GetLastCompletedOrderShopsLastCompletedOrderIdGetData = {
     id: string;
 };
 
-export type GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse = ShopLastCompletedOrder;
+export type GetLastCompletedOrderShopsLastCompletedOrderIdGetResponse =
+    ShopLastCompletedOrder;
 
 export type GetLastPendingOrderShopsLastPendingOrderIdGetData = {
     id: string;
 };
 
-export type GetLastPendingOrderShopsLastPendingOrderIdGetResponse = ShopLastPendingOrder;
+export type GetLastPendingOrderShopsLastPendingOrderIdGetResponse =
+    ShopLastPendingOrder;
 
 export type GetByIdShopsIdGetData = {
     id: string;
@@ -1247,21 +1351,21 @@ export type GetAllowedIpsShopsAllowedIpsIdGetData = {
     id: string;
 };
 
-export type GetAllowedIpsShopsAllowedIpsIdGetResponse = Array<(string)>;
+export type GetAllowedIpsShopsAllowedIpsIdGetResponse = Array<string>;
 
 export type AddNewIpShopsAllowedIpsIdPostData = {
     id: string;
     requestBody: ShopIp;
 };
 
-export type AddNewIpShopsAllowedIpsIdPostResponse = Array<(string)>;
+export type AddNewIpShopsAllowedIpsIdPostResponse = Array<string>;
 
 export type RemoveIpShopsAllowedIpsIdRemovePostData = {
     id: string;
     requestBody: ShopIp;
 };
 
-export type RemoveIpShopsAllowedIpsIdRemovePostResponse = Array<(string)>;
+export type RemoveIpShopsAllowedIpsIdRemovePostResponse = Array<string>;
 
 export type GetProductsShopsShopIdPricesGetData = {
     lang: Lang;
@@ -1276,19 +1380,20 @@ export type GetCartProductsShopsShopIdPricesPostData = {
     shopId: string;
 };
 
-export type GetCartProductsShopsShopIdPricesPostResponse = Array<ProductResponse>;
+export type GetCartProductsShopsShopIdPricesPostResponse =
+    Array<ProductResponse>;
 
 export type GetMultiOrdersGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiOrdersGetResponse = Array<OrderSchema>;
@@ -1303,33 +1408,35 @@ export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse = Array<OrderSchema>;
+export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse =
+    Array<OrderSchema>;
 
 export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse = Array<OrderSchema>;
+export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse =
+    Array<OrderSchema>;
 
 export type GetByIdOrdersIdGetData = {
     id: string;
@@ -1379,14 +1486,14 @@ export type ListCategoriesData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     xApiKey?: string | null;
 };
 
@@ -1450,46 +1557,50 @@ export type SwapShopsShopIdCategoriesCategoryIdSwapPutData = {
 
 export type SwapShopsShopIdCategoriesCategoryIdSwapPutResponse = unknown;
 
-export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData = {
-    categoryId: string;
-    optionId?: Array<(string)>;
-    shopId: string;
-};
+export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetData =
+    {
+        categoryId: string;
+        optionId?: Array<string>;
+        shopId: string;
+    };
 
-export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse = Array<AvailableAttributeSchema>;
+export type GetAvailableAttributesShopsShopIdCategoriesCategoryIdAvailableAttributesGetResponse =
+    Array<AvailableAttributeSchema>;
 
-export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData = {
-    attributeId?: string | null;
-    attributeName?: string | null;
-    categoryId: string;
-    /**
-     * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
-     */
-    filter?: Array<(string)>;
-    limit?: number;
-    optionId?: Array<(string)>;
-    optionValueKey?: Array<(string)>;
-    shopId: string;
-    skip?: number;
-    /**
-     * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
-     */
-    sort?: Array<(string)>;
-};
+export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetData =
+    {
+        attributeId?: string | null;
+        attributeName?: string | null;
+        categoryId: string;
+        /**
+         * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
+         */
+        filter?: Array<string>;
+        limit?: number;
+        optionId?: Array<string>;
+        optionValueKey?: Array<string>;
+        shopId: string;
+        skip?: number;
+        /**
+         * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+         */
+        sort?: Array<string>;
+    };
 
-export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse = Array<ProductWithAttributes>;
+export type GetCategoryProductsShopsShopIdCategoriesCategoryIdProductsGetResponse =
+    Array<ProductWithAttributes>;
 
 export type GetMultiShopsShopIdCategoriesImagesGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiShopsShopIdCategoriesImagesGetResponse = unknown;
@@ -1519,20 +1630,21 @@ export type GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetData = {
     shopId: string;
 };
 
-export type GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse = unknown;
+export type GetSignedUploadUrlShopsShopIdImagesSignedUrlImageNameGetResponse =
+    unknown;
 
 export type ListProductsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     /**
      * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
      */
@@ -1556,16 +1668,16 @@ export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
-    optionId?: Array<(string)>;
-    optionValueKey?: Array<(string)>;
+    optionId?: Array<string>;
+    optionValueKey?: Array<string>;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     /**
      * Filter products by inventory state. `in_stock` returns products with stock > 0, `out_of_stock` returns products with stock = 0, `all` (default) returns everything.
      */
@@ -1573,7 +1685,8 @@ export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetData = {
     xApiKey?: string | null;
 };
 
-export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse = Array<ProductWithAttributes>;
+export type GetMultiWithAttributesShopsShopIdProductsWithAttributesGetResponse =
+    Array<ProductWithAttributes>;
 
 export type UpdateProductData = {
     productId: string;
@@ -1612,27 +1725,30 @@ export type SwapShopsShopIdProductsProductIdSwapPutData = {
 
 export type SwapShopsShopIdProductsProductIdSwapPutResponse = unknown;
 
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData = {
-    productId: string;
-    shopId: string;
-};
+export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData =
+    {
+        productId: string;
+        shopId: string;
+    };
 
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse = ProductWithAttributes;
+export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse =
+    ProductWithAttributes;
 
 export type GetMultiShopsShopIdProductsToTagsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type GetMultiShopsShopIdProductsToTagsGetResponse = Array<ProductToTagSchema>;
+export type GetMultiShopsShopIdProductsToTagsGetResponse =
+    Array<ProductToTagSchema>;
 
 export type CreateShopsShopIdProductsToTagsPostData = {
     requestBody: ProductToTagCreate;
@@ -1645,7 +1761,8 @@ export type GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData = {
     tagId: string;
 };
 
-export type GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse = unknown;
+export type GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse =
+    unknown;
 
 export type GetByIdShopsShopIdProductsToTagsIdGetData = {
     id: string;
@@ -1741,13 +1858,15 @@ export type RestoreProductData = {
 
 export type RestoreProductResponse = RestoreReport;
 
-export type ListCategoryRevisionsShopsShopIdCategoriesCategoryIdRevisionsGetData = {
-    categoryId: string;
-    shopId: string;
-    xApiKey?: string | null;
-};
+export type ListCategoryRevisionsShopsShopIdCategoriesCategoryIdRevisionsGetData =
+    {
+        categoryId: string;
+        shopId: string;
+        xApiKey?: string | null;
+    };
 
-export type ListCategoryRevisionsShopsShopIdCategoriesCategoryIdRevisionsGetResponse = Array<RevisionSummary>;
+export type ListCategoryRevisionsShopsShopIdCategoriesCategoryIdRevisionsGetResponse =
+    Array<RevisionSummary>;
 
 export type RestoreCategoryData = {
     categoryId: string;
@@ -1827,14 +1946,14 @@ export type ListTagsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     xApiKey?: string | null;
 };
 
@@ -1885,43 +2004,46 @@ export type GetByNameShopsShopIdTagsNameNameGetData = {
 
 export type GetByNameShopsShopIdTagsNameNameGetResponse = TagSchema;
 
-export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData = {
-    attributeId: string;
-    shopId: string;
-    xApiKey?: string | null;
-};
+export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetData =
+    {
+        attributeId: string;
+        shopId: string;
+        xApiKey?: string | null;
+    };
 
-export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse = AttributeWithOptionsSchema;
+export type GetByIdWithOptionsDirectShopsShopIdAttributesAttributeIdWithOptionsGetResponse =
+    AttributeWithOptionsSchema;
 
 export type GetWithOptionsShopsShopIdAttributesWithOptionsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     xApiKey?: string | null;
 };
 
-export type GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse = Array<AttributeWithOptionsSchema>;
+export type GetWithOptionsShopsShopIdAttributesWithOptionsGetResponse =
+    Array<AttributeWithOptionsSchema>;
 
 export type ListAttributesData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
     xApiKey?: string | null;
 };
 
@@ -1935,13 +2057,15 @@ export type CreateAttributeData = {
 
 export type CreateAttributeResponse = AttributeSchema;
 
-export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData = {
-    attributeId: string;
-    shopId: string;
-    xApiKey?: string | null;
-};
+export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetData =
+    {
+        attributeId: string;
+        shopId: string;
+        xApiKey?: string | null;
+    };
 
-export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse = AttributeWithOptionsSchema;
+export type GetByIdWithOptionsShopsShopIdAttributesIdAttributeIdWithOptionsGetResponse =
+    AttributeWithOptionsSchema;
 
 export type GetAttributeData = {
     attributeId: string;
@@ -2004,31 +2128,34 @@ export type ListOptionsForShopShopsShopIdAttributeOptionsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type ListOptionsForShopShopsShopIdAttributeOptionsGetResponse = Array<AttributeOptionSchema>;
+export type ListOptionsForShopShopsShopIdAttributeOptionsGetResponse =
+    Array<AttributeOptionSchema>;
 
 export type CreateOptionV2ShopsShopIdAttributeOptionsPostData = {
     requestBody: AttributeOptionCreate;
     shopId: string;
 };
 
-export type CreateOptionV2ShopsShopIdAttributeOptionsPostResponse = AttributeOptionSchema;
+export type CreateOptionV2ShopsShopIdAttributeOptionsPostResponse =
+    AttributeOptionSchema;
 
 export type GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData = {
     optionId: string;
     shopId: string;
 };
 
-export type GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse = AttributeOptionSchema;
+export type GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse =
+    AttributeOptionSchema;
 
 export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData = {
     optionId: string;
@@ -2036,7 +2163,8 @@ export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData = {
     shopId: string;
 };
 
-export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse = AttributeOptionSchema;
+export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse =
+    AttributeOptionSchema;
 
 export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData = {
     /**
@@ -2047,24 +2175,26 @@ export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData = {
     shopId: string;
 };
 
-export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse = void;
+export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse =
+    void;
 
 export type ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData = {
     attributeId: string;
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse = Array<AttributeOptionSchema>;
+export type ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse =
+    Array<AttributeOptionSchema>;
 
 export type CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData = {
     attributeId: string;
@@ -2074,7 +2204,8 @@ export type CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData = {
     shopId: string;
 };
 
-export type CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse = AttributeOptionSchema;
+export type CreateOptionShopsShopIdAttributesAttributeIdOptionsPostResponse =
+    AttributeOptionSchema;
 
 export type GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData = {
     attributeId: string;
@@ -2082,35 +2213,39 @@ export type GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetData = {
     shopId: string;
 };
 
-export type GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse = AttributeOptionSchema;
+export type GetOptionShopsShopIdAttributesAttributeIdOptionsOptionIdGetResponse =
+    AttributeOptionSchema;
 
-export type DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData = {
-    attributeId: string;
-    /**
-     * Permanently purge instead of moving to trash. Irreversible.
-     */
-    force?: boolean;
-    optionId: string;
-    shopId: string;
-};
+export type DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteData =
+    {
+        attributeId: string;
+        /**
+         * Permanently purge instead of moving to trash. Irreversible.
+         */
+        force?: boolean;
+        optionId: string;
+        shopId: string;
+    };
 
-export type DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse = void;
+export type DeleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDeleteResponse =
+    void;
 
 export type ProductAttributeValuesListData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
-export type ProductAttributeValuesListResponse = Array<ProductAttributeValueSchema>;
+export type ProductAttributeValuesListResponse =
+    Array<ProductAttributeValueSchema>;
 
 export type ProductAttributeValuesCreateDeprecatedData = {
     requestBody: ProductAttributeValueBase;
@@ -2153,13 +2288,13 @@ export type GetMultiShopsShopIdAccountsGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiShopsShopIdAccountsGetResponse = Array<AccountSchema>;
@@ -2199,19 +2334,22 @@ export type CreatePaymentIntentShopsShopIdStripePostResponse = unknown;
 
 export type CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData = {
     accountId: string;
-    requestBody: Array<(string)>;
+    requestBody: Array<string>;
     shopId: string;
     yearly?: boolean;
 };
 
-export type CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse = unknown;
+export type CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse =
+    unknown;
 
-export type CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData = {
-    shopId: string;
-    subscriptionId: string;
-};
+export type CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData =
+    {
+        shopId: string;
+        subscriptionId: string;
+    };
 
-export type CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse = void;
+export type CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteResponse =
+    void;
 
 export type CreateEarlyAccessPostData = {
     requestBody: EarlyAccessCreate;
@@ -2247,13 +2385,13 @@ export type GetMultiFaqGetData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
-    filter?: Array<(string)>;
+    filter?: Array<string>;
     limit?: number;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
-    sort?: Array<(string)>;
+    sort?: Array<string>;
 };
 
 export type GetMultiFaqGetResponse = Array<FaqSchema>;
@@ -2300,7 +2438,7 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                200: Array<(string)>;
+                200: Array<string>;
             };
         };
     };
@@ -2760,7 +2898,7 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                200: Array<(string)>;
+                200: Array<string>;
                 /**
                  * Validation Error
                  */
@@ -2773,7 +2911,7 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                200: Array<(string)>;
+                200: Array<string>;
                 /**
                  * Validation Error
                  */
@@ -2788,7 +2926,7 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                200: Array<(string)>;
+                200: Array<string>;
                 /**
                  * Validation Error
                  */

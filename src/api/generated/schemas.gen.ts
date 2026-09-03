@@ -5,21 +5,21 @@ export const $AccountCreate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         details: {
             additionalProperties: true,
             type: 'object',
-            title: 'Details'
-        }
+            title: 'Details',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'details'],
-    title: 'AccountCreate'
+    title: 'AccountCreate',
 } as const;
 
 export const $AccountSchema = {
@@ -27,26 +27,26 @@ export const $AccountSchema = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         details: {
             additionalProperties: true,
             type: 'object',
-            title: 'Details'
+            title: 'Details',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'details', 'id'],
-    title: 'AccountSchema'
+    title: 'AccountSchema',
 } as const;
 
 export const $AccountUpdate = {
@@ -54,21 +54,21 @@ export const $AccountUpdate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         details: {
             additionalProperties: true,
             type: 'object',
-            title: 'Details'
-        }
+            title: 'Details',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'details'],
-    title: 'AccountUpdate'
+    title: 'AccountUpdate',
 } as const;
 
 export const $AdminAccountSchema = {
@@ -76,104 +76,104 @@ export const $AdminAccountSchema = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         shop_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         shop_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shop Name'
+            title: 'Shop Name',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
+            title: 'Name',
         },
         hash_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Hash Name'
+            title: 'Hash Name',
         },
         details: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Details'
+            title: 'Details',
         },
         stripe_customer_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Stripe Customer Id'
+            title: 'Stripe Customer Id',
         },
         stripe_synced_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Stripe Synced At'
-        }
+            title: 'Stripe Synced At',
+        },
     },
     type: 'object',
     required: ['id'],
-    title: 'AdminAccountSchema'
+    title: 'AdminAccountSchema',
 } as const;
 
 export const $ApiKeyCreate = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
-        }
+            title: 'Name',
+        },
     },
     type: 'object',
     required: ['name'],
-    title: 'ApiKeyCreate'
+    title: 'ApiKeyCreate',
 } as const;
 
 export const $ApiKeyCreated = {
@@ -181,54 +181,55 @@ export const $ApiKeyCreated = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         prefix: {
             type: 'string',
-            title: 'Prefix'
+            title: 'Prefix',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         last_used_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Last Used At'
+            title: 'Last Used At',
         },
         revoked_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Revoked At'
+            title: 'Revoked At',
         },
         plaintext: {
             type: 'string',
-            title: 'Plaintext'
-        }
+            title: 'Plaintext',
+        },
     },
     type: 'object',
     required: ['id', 'name', 'prefix', 'created_at', 'plaintext'],
     title: 'ApiKeyCreated',
-    description: 'Response from minting a key. ``plaintext`` is shown ONCE — never again.'
+    description:
+        'Response from minting a key. ``plaintext`` is shown ONCE — never again.',
 } as const;
 
 export const $ApiKeyRead = {
@@ -236,82 +237,82 @@ export const $ApiKeyRead = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         prefix: {
             type: 'string',
-            title: 'Prefix'
+            title: 'Prefix',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         last_used_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Last Used At'
+            title: 'Last Used At',
         },
         revoked_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Revoked At'
-        }
+            title: 'Revoked At',
+        },
     },
     type: 'object',
     required: ['id', 'name', 'prefix', 'created_at'],
-    title: 'ApiKeyRead'
+    title: 'ApiKeyRead',
 } as const;
 
 export const $AttributeCreate = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         unit: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Unit'
+            title: 'Unit',
         },
         translation: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/AttributeTranslationBase'
+                    $ref: '#/components/schemas/AttributeTranslationBase',
                 },
                 {
-                    type: 'null'
-                }
-            ]
-        }
+                    type: 'null',
+                },
+            ],
+        },
     },
     type: 'object',
     required: ['name'],
-    title: 'AttributeCreate'
+    title: 'AttributeCreate',
 } as const;
 
 export const $AttributeOptionCreate = {
@@ -319,16 +320,16 @@ export const $AttributeOptionCreate = {
         attribute_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Attribute Id'
+            title: 'Attribute Id',
         },
         value_key: {
             type: 'string',
-            title: 'Value Key'
-        }
+            title: 'Value Key',
+        },
     },
     type: 'object',
     required: ['attribute_id', 'value_key'],
-    title: 'AttributeOptionCreate'
+    title: 'AttributeOptionCreate',
 } as const;
 
 export const $AttributeOptionSchema = {
@@ -336,33 +337,33 @@ export const $AttributeOptionSchema = {
         attribute_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Attribute Id'
+            title: 'Attribute Id',
         },
         value_key: {
             type: 'string',
-            title: 'Value Key'
+            title: 'Value Key',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['attribute_id', 'value_key', 'id'],
-    title: 'AttributeOptionSchema'
+    title: 'AttributeOptionSchema',
 } as const;
 
 export const $AttributeOptionUpdate = {
     properties: {
         value_key: {
             type: 'string',
-            title: 'Value Key'
-        }
+            title: 'Value Key',
+        },
     },
     type: 'object',
     required: ['value_key'],
-    title: 'AttributeOptionUpdate'
+    title: 'AttributeOptionUpdate',
 } as const;
 
 export const $AttributeSchema = {
@@ -370,76 +371,76 @@ export const $AttributeSchema = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         unit: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Unit'
+            title: 'Unit',
         },
         translation: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/AttributeTranslationBase'
+                    $ref: '#/components/schemas/AttributeTranslationBase',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'id'],
-    title: 'AttributeSchema'
+    title: 'AttributeSchema',
 } as const;
 
 export const $AttributeTranslationBase = {
     properties: {
         main_name: {
             type: 'string',
-            title: 'Main Name'
+            title: 'Main Name',
         },
         alt1_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Name'
+            title: 'Alt1 Name',
         },
         alt2_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Name'
-        }
+            title: 'Alt2 Name',
+        },
     },
     type: 'object',
     required: ['main_name'],
-    title: 'AttributeTranslationBase'
+    title: 'AttributeTranslationBase',
 } as const;
 
 export const $AttributeUpdate = {
@@ -447,38 +448,38 @@ export const $AttributeUpdate = {
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
+            title: 'Name',
         },
         unit: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Unit'
+            title: 'Unit',
         },
         translation: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/AttributeTranslationBase'
+                    $ref: '#/components/schemas/AttributeTranslationBase',
                 },
                 {
-                    type: 'null'
-                }
-            ]
-        }
+                    type: 'null',
+                },
+            ],
+        },
     },
     type: 'object',
-    title: 'AttributeUpdate'
+    title: 'AttributeUpdate',
 } as const;
 
 export const $AttributeWithOptionsSchema = {
@@ -486,50 +487,50 @@ export const $AttributeWithOptionsSchema = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         unit: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Unit'
+            title: 'Unit',
         },
         translation: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/AttributeTranslationBase'
+                    $ref: '#/components/schemas/AttributeTranslationBase',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         options: {
             items: {
-                '$ref': '#/components/schemas/AttributeOptionSchema'
+                $ref: '#/components/schemas/AttributeOptionSchema',
             },
             type: 'array',
             title: 'Options',
-            default: []
-        }
+            default: [],
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'id'],
-    title: 'AttributeWithOptionsSchema'
+    title: 'AttributeWithOptionsSchema',
 } as const;
 
 export const $AvailableAttributeSchema = {
@@ -537,45 +538,45 @@ export const $AvailableAttributeSchema = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         unit: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Unit'
+            title: 'Unit',
         },
         translation: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/AttributeTranslationBase'
+                    $ref: '#/components/schemas/AttributeTranslationBase',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         options: {
             items: {
-                '$ref': '#/components/schemas/AvailableOptionSchema'
+                $ref: '#/components/schemas/AvailableOptionSchema',
             },
             type: 'array',
             title: 'Options',
-            default: []
-        }
+            default: [],
+        },
     },
     type: 'object',
     required: ['id', 'name'],
-    title: 'AvailableAttributeSchema'
+    title: 'AvailableAttributeSchema',
 } as const;
 
 export const $AvailableOptionSchema = {
@@ -583,20 +584,20 @@ export const $AvailableOptionSchema = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         value_key: {
             type: 'string',
-            title: 'Value Key'
+            title: 'Value Key',
         },
         product_count: {
             type: 'integer',
-            title: 'Product Count'
-        }
+            title: 'Product Count',
+        },
     },
     type: 'object',
     required: ['id', 'value_key', 'product_count'],
-    title: 'AvailableOptionSchema'
+    title: 'AvailableOptionSchema',
 } as const;
 
 export const $Cart = {
@@ -604,15 +605,15 @@ export const $Cart = {
         products: {
             items: {
                 type: 'string',
-                format: 'uuid'
+                format: 'uuid',
             },
             type: 'array',
-            title: 'Products'
-        }
+            title: 'Products',
+        },
     },
     type: 'object',
     required: ['products'],
-    title: 'Cart'
+    title: 'Cart',
 } as const;
 
 export const $CategoryCreate = {
@@ -620,98 +621,105 @@ export const $CategoryCreate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         color: {
             type: 'string',
-            title: 'Color'
+            title: 'Color',
         },
         icon: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Icon'
+            title: 'Icon',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         translation: {
-            '$ref': '#/components/schemas/CategoryTranslationBase'
+            $ref: '#/components/schemas/CategoryTranslationBase',
         },
         main_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Main Image'
+            title: 'Main Image',
         },
         alt1_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Image'
+            title: 'Alt1 Image',
         },
         alt2_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Image'
-        }
+            title: 'Alt2 Image',
+        },
     },
     type: 'object',
-    required: ['shop_id', 'color', 'translation', 'main_image', 'alt1_image', 'alt2_image'],
-    title: 'CategoryCreate'
+    required: [
+        'shop_id',
+        'color',
+        'translation',
+        'main_image',
+        'alt1_image',
+        'alt2_image',
+    ],
+    title: 'CategoryCreate',
 } as const;
 
 export const $CategoryImageDelete = {
     properties: {
         image: {
             type: 'string',
-            title: 'Image'
-        }
+            title: 'Image',
+        },
     },
     type: 'object',
     required: ['image'],
-    title: 'CategoryImageDelete'
+    title: 'CategoryImageDelete',
 } as const;
 
 export const $CategorySchema = {
@@ -719,151 +727,159 @@ export const $CategorySchema = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         color: {
             type: 'string',
-            title: 'Color'
+            title: 'Color',
         },
         icon: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Icon'
+            title: 'Icon',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         translation: {
-            '$ref': '#/components/schemas/CategoryTranslationBase'
+            $ref: '#/components/schemas/CategoryTranslationBase',
         },
         main_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Main Image'
+            title: 'Main Image',
         },
         alt1_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Image'
+            title: 'Alt1 Image',
         },
         alt2_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Image'
+            title: 'Alt2 Image',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
-    required: ['shop_id', 'color', 'translation', 'main_image', 'alt1_image', 'alt2_image', 'id'],
-    title: 'CategorySchema'
+    required: [
+        'shop_id',
+        'color',
+        'translation',
+        'main_image',
+        'alt1_image',
+        'alt2_image',
+        'id',
+    ],
+    title: 'CategorySchema',
 } as const;
 
 export const $CategoryTranslationBase = {
     properties: {
         main_name: {
             type: 'string',
-            title: 'Main Name'
+            title: 'Main Name',
         },
         main_description: {
             type: 'string',
-            title: 'Main Description'
+            title: 'Main Description',
         },
         alt1_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Name'
+            title: 'Alt1 Name',
         },
         alt1_description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Description'
+            title: 'Alt1 Description',
         },
         alt2_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Name'
+            title: 'Alt2 Name',
         },
         alt2_description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Description'
-        }
+            title: 'Alt2 Description',
+        },
     },
     type: 'object',
     required: ['main_name', 'main_description'],
-    title: 'CategoryTranslationBase'
+    title: 'CategoryTranslationBase',
 } as const;
 
 export const $CategoryUpdate = {
@@ -871,321 +887,342 @@ export const $CategoryUpdate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         color: {
             type: 'string',
-            title: 'Color'
+            title: 'Color',
         },
         icon: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Icon'
+            title: 'Icon',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         translation: {
-            '$ref': '#/components/schemas/CategoryTranslationBase'
+            $ref: '#/components/schemas/CategoryTranslationBase',
         },
         main_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Main Image'
+            title: 'Main Image',
         },
         alt1_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Image'
+            title: 'Alt1 Image',
         },
         alt2_image: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Image'
-        }
+            title: 'Alt2 Image',
+        },
     },
     type: 'object',
-    required: ['shop_id', 'color', 'translation', 'main_image', 'alt1_image', 'alt2_image'],
-    title: 'CategoryUpdate'
+    required: [
+        'shop_id',
+        'color',
+        'translation',
+        'main_image',
+        'alt1_image',
+        'alt2_image',
+    ],
+    title: 'CategoryUpdate',
 } as const;
 
 export const $ConfigurationContact = {
     properties: {
         company: {
             type: 'string',
-            title: 'Company'
+            title: 'Company',
         },
         website: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Website'
+            title: 'Website',
         },
         phone: {
             type: 'string',
             maxLength: 64,
             minLength: 7,
             format: 'phone',
-            title: 'Phone'
+            title: 'Phone',
         },
         email: {
             type: 'string',
             format: 'email',
-            title: 'Email'
+            title: 'Email',
         },
         address: {
             type: 'string',
-            title: 'Address'
+            title: 'Address',
         },
         zip_code: {
             type: 'string',
-            title: 'Zip Code'
+            title: 'Zip Code',
         },
         city: {
             type: 'string',
-            title: 'City'
+            title: 'City',
         },
         twitter: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Twitter'
+            title: 'Twitter',
         },
         facebook: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Facebook'
+            title: 'Facebook',
         },
         instagram: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Instagram'
+            title: 'Instagram',
         },
         linkedin: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Linkedin'
+            title: 'Linkedin',
         },
         tiktok: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Tiktok'
-        }
+            title: 'Tiktok',
+        },
     },
     type: 'object',
     required: ['company', 'phone', 'email', 'address', 'zip_code', 'city'],
-    title: 'ConfigurationContact'
+    title: 'ConfigurationContact',
 } as const;
 
 export const $ConfigurationLanguageFieldMenuItems = {
     properties: {
         about: {
             type: 'string',
-            title: 'About'
+            title: 'About',
         },
         cart: {
             type: 'string',
-            title: 'Cart'
+            title: 'Cart',
         },
         checkout: {
             type: 'string',
-            title: 'Checkout'
+            title: 'Checkout',
         },
         products: {
             type: 'string',
-            title: 'Products'
+            title: 'Products',
         },
         contact: {
             type: 'string',
-            title: 'Contact'
+            title: 'Contact',
         },
         policies: {
             type: 'string',
-            title: 'Policies'
+            title: 'Policies',
         },
         terms: {
             type: 'string',
-            title: 'Terms'
+            title: 'Terms',
         },
         privacy_policy: {
             type: 'string',
-            title: 'Privacy Policy'
+            title: 'Privacy Policy',
         },
         return_policy: {
             type: 'string',
-            title: 'Return Policy'
+            title: 'Return Policy',
         },
         website: {
             type: 'string',
-            title: 'Website'
+            title: 'Website',
         },
         phone: {
             type: 'string',
-            title: 'Phone'
+            title: 'Phone',
         },
         email: {
             type: 'string',
-            title: 'Email'
+            title: 'Email',
         },
         address: {
             type: 'string',
-            title: 'Address'
-        }
+            title: 'Address',
+        },
     },
     type: 'object',
-    required: ['about', 'cart', 'checkout', 'products', 'contact', 'policies', 'terms', 'privacy_policy', 'return_policy', 'website', 'phone', 'email', 'address'],
-    title: 'ConfigurationLanguageFieldMenuItems'
+    required: [
+        'about',
+        'cart',
+        'checkout',
+        'products',
+        'contact',
+        'policies',
+        'terms',
+        'privacy_policy',
+        'return_policy',
+        'website',
+        'phone',
+        'email',
+        'address',
+    ],
+    title: 'ConfigurationLanguageFieldMenuItems',
 } as const;
 
 export const $ConfigurationLanguageFieldStaticTexts = {
     properties: {
         about: {
             type: 'string',
-            title: 'About'
+            title: 'About',
         },
         terms: {
             type: 'string',
-            title: 'Terms'
+            title: 'Terms',
         },
         privacy_policy: {
             type: 'string',
-            title: 'Privacy Policy'
+            title: 'Privacy Policy',
         },
         return_policy: {
             type: 'string',
-            title: 'Return Policy'
-        }
+            title: 'Return Policy',
+        },
     },
     type: 'object',
     required: ['about', 'terms', 'privacy_policy', 'return_policy'],
-    title: 'ConfigurationLanguageFieldStaticTexts'
+    title: 'ConfigurationLanguageFieldStaticTexts',
 } as const;
 
 export const $ConfigurationLanguageFields = {
     properties: {
         language_name: {
             type: 'string',
-            title: 'Language Name'
+            title: 'Language Name',
         },
         menu_items: {
-            '$ref': '#/components/schemas/ConfigurationLanguageFieldMenuItems'
+            $ref: '#/components/schemas/ConfigurationLanguageFieldMenuItems',
         },
         static_texts: {
-            '$ref': '#/components/schemas/ConfigurationLanguageFieldStaticTexts'
-        }
+            $ref: '#/components/schemas/ConfigurationLanguageFieldStaticTexts',
+        },
     },
     type: 'object',
     required: ['language_name', 'menu_items', 'static_texts'],
-    title: 'ConfigurationLanguageFields'
+    title: 'ConfigurationLanguageFields',
 } as const;
 
 export const $ConfigurationLanguages = {
     properties: {
         main: {
-            '$ref': '#/components/schemas/ConfigurationLanguageFields'
+            $ref: '#/components/schemas/ConfigurationLanguageFields',
         },
         alt1: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationLanguageFields'
+                    $ref: '#/components/schemas/ConfigurationLanguageFields',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         alt2: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationLanguageFields'
+                    $ref: '#/components/schemas/ConfigurationLanguageFields',
                 },
                 {
-                    type: 'null'
-                }
-            ]
-        }
+                    type: 'null',
+                },
+            ],
+        },
     },
     type: 'object',
     required: ['main'],
-    title: 'ConfigurationLanguages'
+    title: 'ConfigurationLanguages',
 } as const;
 
 export const $ConfigurationLegal = {
@@ -1193,28 +1230,28 @@ export const $ConfigurationLegal = {
         kvk_number: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Kvk Number'
+            title: 'Kvk Number',
         },
         btw_number: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Btw Number'
-        }
+            title: 'Btw Number',
+        },
     },
     type: 'object',
-    title: 'ConfigurationLegal'
+    title: 'ConfigurationLegal',
 } as const;
 
 export const $ConfigurationOrderStatusMails = {
@@ -1222,40 +1259,40 @@ export const $ConfigurationOrderStatusMails = {
         owner_notification_enabled: {
             type: 'boolean',
             title: 'Owner Notification Enabled',
-            default: true
+            default: true,
         },
         owner_notification_email: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'email'
+                    format: 'email',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Owner Notification Email'
+            title: 'Owner Notification Email',
         },
         copy_enabled: {
             type: 'boolean',
             title: 'Copy Enabled',
-            default: false
+            default: false,
         },
         copy_email: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'email'
+                    format: 'email',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Copy Email'
-        }
+            title: 'Copy Email',
+        },
     },
     type: 'object',
-    title: 'ConfigurationOrderStatusMails'
+    title: 'ConfigurationOrderStatusMails',
 } as const;
 
 export const $ConfigurationShipping_Input = {
@@ -1263,52 +1300,52 @@ export const $ConfigurationShipping_Input = {
         enabled: {
             type: 'boolean',
             title: 'Enabled',
-            default: false
+            default: false,
         },
         method: {
             type: 'string',
             title: 'Method',
-            default: 'fixed'
+            default: 'fixed',
         },
         fixed_fee: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
             title: 'Fixed Fee',
-            default: '0'
+            default: '0',
         },
         vat_calculation_enabled: {
             type: 'boolean',
             title: 'Vat Calculation Enabled',
-            default: true
+            default: true,
         },
         free_shipping_above_enabled: {
             type: 'boolean',
             title: 'Free Shipping Above Enabled',
-            default: false
+            default: false,
         },
         free_shipping_above_amount: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
             title: 'Free Shipping Above Amount',
-            default: '0'
-        }
+            default: '0',
+        },
     },
     type: 'object',
-    title: 'ConfigurationShipping'
+    title: 'ConfigurationShipping',
 } as const;
 
 export const $ConfigurationShipping_Output = {
@@ -1316,230 +1353,244 @@ export const $ConfigurationShipping_Output = {
         enabled: {
             type: 'boolean',
             title: 'Enabled',
-            default: false
+            default: false,
         },
         method: {
             type: 'string',
             title: 'Method',
-            default: 'fixed'
+            default: 'fixed',
         },
         fixed_fee: {
             type: 'number',
             title: 'Fixed Fee',
-            default: 0
+            default: 0,
         },
         vat_calculation_enabled: {
             type: 'boolean',
             title: 'Vat Calculation Enabled',
-            default: true
+            default: true,
         },
         free_shipping_above_enabled: {
             type: 'boolean',
             title: 'Free Shipping Above Enabled',
-            default: false
+            default: false,
         },
         free_shipping_above_amount: {
             type: 'number',
             title: 'Free Shipping Above Amount',
-            default: 0
-        }
+            default: 0,
+        },
     },
     type: 'object',
-    title: 'ConfigurationShipping'
+    title: 'ConfigurationShipping',
 } as const;
 
 export const $ConfigurationV1_Input = {
     properties: {
         short_shop_name: {
             type: 'string',
-            title: 'Short Shop Name'
+            title: 'Short Shop Name',
         },
         logo: {
             type: 'string',
-            title: 'Logo'
+            title: 'Logo',
         },
         main_banner: {
             type: 'string',
-            title: 'Main Banner'
+            title: 'Main Banner',
         },
         alt1_banner: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Banner'
+            title: 'Alt1 Banner',
         },
         alt2_banner: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Banner'
+            title: 'Alt2 Banner',
         },
         gradient_percentage: {
             type: 'integer',
             title: 'Gradient Percentage',
-            default: 75
+            default: 75,
         },
         languages: {
-            '$ref': '#/components/schemas/ConfigurationLanguages'
+            $ref: '#/components/schemas/ConfigurationLanguages',
         },
         google_analytics_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Google Analytics Id'
+            title: 'Google Analytics Id',
         },
         contact: {
-            '$ref': '#/components/schemas/ConfigurationContact'
+            $ref: '#/components/schemas/ConfigurationContact',
         },
         toggles: {
-            '$ref': '#/components/schemas/Toggles'
+            $ref: '#/components/schemas/Toggles',
         },
         legal: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationLegal'
+                    $ref: '#/components/schemas/ConfigurationLegal',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         shipping: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationShipping-Input'
+                    $ref: '#/components/schemas/ConfigurationShipping-Input',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         order_status_mails: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationOrderStatusMails'
+                    $ref: '#/components/schemas/ConfigurationOrderStatusMails',
                 },
                 {
-                    type: 'null'
-                }
-            ]
-        }
+                    type: 'null',
+                },
+            ],
+        },
     },
     type: 'object',
-    required: ['short_shop_name', 'logo', 'main_banner', 'languages', 'contact', 'toggles'],
-    title: 'ConfigurationV1'
+    required: [
+        'short_shop_name',
+        'logo',
+        'main_banner',
+        'languages',
+        'contact',
+        'toggles',
+    ],
+    title: 'ConfigurationV1',
 } as const;
 
 export const $ConfigurationV1_Output = {
     properties: {
         short_shop_name: {
             type: 'string',
-            title: 'Short Shop Name'
+            title: 'Short Shop Name',
         },
         logo: {
             type: 'string',
-            title: 'Logo'
+            title: 'Logo',
         },
         main_banner: {
             type: 'string',
-            title: 'Main Banner'
+            title: 'Main Banner',
         },
         alt1_banner: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Banner'
+            title: 'Alt1 Banner',
         },
         alt2_banner: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Banner'
+            title: 'Alt2 Banner',
         },
         gradient_percentage: {
             type: 'integer',
             title: 'Gradient Percentage',
-            default: 75
+            default: 75,
         },
         languages: {
-            '$ref': '#/components/schemas/ConfigurationLanguages'
+            $ref: '#/components/schemas/ConfigurationLanguages',
         },
         google_analytics_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Google Analytics Id'
+            title: 'Google Analytics Id',
         },
         contact: {
-            '$ref': '#/components/schemas/ConfigurationContact'
+            $ref: '#/components/schemas/ConfigurationContact',
         },
         toggles: {
-            '$ref': '#/components/schemas/Toggles'
+            $ref: '#/components/schemas/Toggles',
         },
         legal: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationLegal'
+                    $ref: '#/components/schemas/ConfigurationLegal',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         shipping: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationShipping-Output'
+                    $ref: '#/components/schemas/ConfigurationShipping-Output',
                 },
                 {
-                    type: 'null'
-                }
-            ]
+                    type: 'null',
+                },
+            ],
         },
         order_status_mails: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/ConfigurationOrderStatusMails'
+                    $ref: '#/components/schemas/ConfigurationOrderStatusMails',
                 },
                 {
-                    type: 'null'
-                }
-            ]
-        }
+                    type: 'null',
+                },
+            ],
+        },
     },
     type: 'object',
-    required: ['short_shop_name', 'logo', 'main_banner', 'languages', 'contact', 'toggles'],
-    title: 'ConfigurationV1'
+    required: [
+        'short_shop_name',
+        'logo',
+        'main_banner',
+        'languages',
+        'contact',
+        'toggles',
+    ],
+    title: 'ConfigurationV1',
 } as const;
 
 export const $DefaultPrice = {
@@ -1548,129 +1599,129 @@ export const $DefaultPrice = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Id'
+            title: 'Id',
         },
         created_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Created At'
+            title: 'Created At',
         },
         modified_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
+            title: 'Modified At',
         },
         internal_product_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Internal Product Id'
+            title: 'Internal Product Id',
         },
         active: {
             anyOf: [
                 {
-                    type: 'boolean'
+                    type: 'boolean',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Active'
+            title: 'Active',
         },
         new: {
             anyOf: [
                 {
-                    type: 'boolean'
+                    type: 'boolean',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'New'
+            title: 'New',
         },
         one: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'One'
+            title: 'One',
         },
         two_five: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Two Five'
+            title: 'Two Five',
         },
         five: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Five'
+            title: 'Five',
         },
         joint: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Joint'
+            title: 'Joint',
         },
         piece: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Piece'
-        }
+            title: 'Piece',
+        },
     },
     type: 'object',
-    title: 'DefaultPrice'
+    title: 'DefaultPrice',
 } as const;
 
 export const $EarlyAccessCreate = {
@@ -1678,272 +1729,304 @@ export const $EarlyAccessCreate = {
         email: {
             type: 'string',
             format: 'email',
-            title: 'Email'
-        }
+            title: 'Email',
+        },
     },
     type: 'object',
     required: ['email'],
-    title: 'EarlyAccessCreate'
+    title: 'EarlyAccessCreate',
 } as const;
 
 export const $FaqCreate = {
     properties: {
         question: {
             type: 'string',
-            title: 'Question'
+            title: 'Question',
         },
         answer: {
             type: 'string',
-            title: 'Answer'
+            title: 'Answer',
         },
         category: {
             type: 'string',
-            title: 'Category'
-        }
+            title: 'Category',
+        },
     },
     type: 'object',
     required: ['question', 'answer', 'category'],
-    title: 'FaqCreate'
+    title: 'FaqCreate',
 } as const;
 
 export const $FaqCreated = {
     properties: {
         question: {
             type: 'string',
-            title: 'Question'
+            title: 'Question',
         },
         answer: {
             type: 'string',
-            title: 'Answer'
+            title: 'Answer',
         },
         category: {
             type: 'string',
-            title: 'Category'
+            title: 'Category',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         modified_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Modified At'
-        }
+            title: 'Modified At',
+        },
     },
     type: 'object',
-    required: ['question', 'answer', 'category', 'id', 'created_at', 'modified_at'],
-    title: 'FaqCreated'
+    required: [
+        'question',
+        'answer',
+        'category',
+        'id',
+        'created_at',
+        'modified_at',
+    ],
+    title: 'FaqCreated',
 } as const;
 
 export const $FaqSchema = {
     properties: {
         question: {
             type: 'string',
-            title: 'Question'
+            title: 'Question',
         },
         answer: {
             type: 'string',
-            title: 'Answer'
+            title: 'Answer',
         },
         category: {
             type: 'string',
-            title: 'Category'
+            title: 'Category',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         modified_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Modified At'
-        }
+            title: 'Modified At',
+        },
     },
     type: 'object',
-    required: ['question', 'answer', 'category', 'id', 'created_at', 'modified_at'],
-    title: 'FaqSchema'
+    required: [
+        'question',
+        'answer',
+        'category',
+        'id',
+        'created_at',
+        'modified_at',
+    ],
+    title: 'FaqSchema',
 } as const;
 
 export const $FaqUpdate = {
     properties: {
         question: {
             type: 'string',
-            title: 'Question'
+            title: 'Question',
         },
         answer: {
             type: 'string',
-            title: 'Answer'
+            title: 'Answer',
         },
         category: {
             type: 'string',
-            title: 'Category'
-        }
+            title: 'Category',
+        },
     },
     type: 'object',
     required: ['question', 'answer', 'category'],
-    title: 'FaqUpdate'
+    title: 'FaqUpdate',
 } as const;
 
 export const $FaqUpdated = {
     properties: {
         question: {
             type: 'string',
-            title: 'Question'
+            title: 'Question',
         },
         answer: {
             type: 'string',
-            title: 'Answer'
+            title: 'Answer',
         },
         category: {
             type: 'string',
-            title: 'Category'
+            title: 'Category',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['question', 'answer', 'category', 'id'],
-    title: 'FaqUpdated'
+    title: 'FaqUpdated',
 } as const;
 
 export const $HTTPValidationError = {
     properties: {
         detail: {
             items: {
-                '$ref': '#/components/schemas/ValidationError'
+                $ref: '#/components/schemas/ValidationError',
             },
             type: 'array',
-            title: 'Detail'
-        }
+            title: 'Detail',
+        },
     },
     type: 'object',
-    title: 'HTTPValidationError'
+    title: 'HTTPValidationError',
 } as const;
 
 export const $Lang = {
     type: 'string',
     enum: ['main', 'alt1', 'alt2'],
     title: 'Lang',
-    description: 'Language options.'
+    description: 'Language options.',
 } as const;
 
 export const $LicenseCreate = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         improviser_user: {
             type: 'string',
             format: 'uuid',
-            title: 'Improviser User'
+            title: 'Improviser User',
         },
         is_recurring: {
             type: 'boolean',
-            title: 'Is Recurring'
+            title: 'Is Recurring',
         },
         seats: {
             type: 'number',
-            title: 'Seats'
+            title: 'Seats',
         },
         order_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Order Id'
+            title: 'Order Id',
         },
         end_date: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'End Date'
-        }
+            title: 'End Date',
+        },
     },
     type: 'object',
-    required: ['name', 'improviser_user', 'is_recurring', 'seats', 'order_id', 'end_date'],
-    title: 'LicenseCreate'
+    required: [
+        'name',
+        'improviser_user',
+        'is_recurring',
+        'seats',
+        'order_id',
+        'end_date',
+    ],
+    title: 'LicenseCreate',
 } as const;
 
 export const $LicenseSchema = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         improviser_user: {
             type: 'string',
             format: 'uuid',
-            title: 'Improviser User'
+            title: 'Improviser User',
         },
         is_recurring: {
             type: 'boolean',
-            title: 'Is Recurring'
+            title: 'Is Recurring',
         },
         seats: {
             type: 'number',
-            title: 'Seats'
+            title: 'Seats',
         },
         order_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Order Id'
+            title: 'Order Id',
         },
         end_date: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'End Date'
+            title: 'End Date',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         modified_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Modified At'
+            title: 'Modified At',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         start_date: {
             type: 'string',
             format: 'date-time',
-            title: 'Start Date'
-        }
+            title: 'Start Date',
+        },
     },
     type: 'object',
-    required: ['name', 'improviser_user', 'is_recurring', 'seats', 'order_id', 'end_date', 'id', 'modified_at', 'created_at', 'start_date'],
-    title: 'LicenseSchema'
+    required: [
+        'name',
+        'improviser_user',
+        'is_recurring',
+        'seats',
+        'order_id',
+        'end_date',
+        'id',
+        'modified_at',
+        'created_at',
+        'start_date',
+    ],
+    title: 'LicenseSchema',
 } as const;
 
 export const $LicenseUpdate = {
@@ -1951,65 +2034,65 @@ export const $LicenseUpdate = {
         seats: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Seats'
+            title: 'Seats',
         },
         end_date: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'End Date'
-        }
+            title: 'End Date',
+        },
     },
     type: 'object',
     required: ['seats', 'end_date'],
-    title: 'LicenseUpdate'
+    title: 'LicenseUpdate',
 } as const;
 
 export const $LinkStripeBody = {
     properties: {
         stripe_customer_id: {
             type: 'string',
-            title: 'Stripe Customer Id'
-        }
+            title: 'Stripe Customer Id',
+        },
     },
     type: 'object',
     required: ['stripe_customer_id'],
-    title: 'LinkStripeBody'
+    title: 'LinkStripeBody',
 } as const;
 
 export const $MyShopsResponse = {
     properties: {
         shops: {
             items: {
-                '$ref': '#/components/schemas/ShopSchema'
+                $ref: '#/components/schemas/ShopSchema',
             },
             type: 'array',
-            title: 'Shops'
+            title: 'Shops',
         },
         is_admin: {
             type: 'boolean',
-            title: 'Is Admin'
+            title: 'Is Admin',
         },
         can_write: {
             type: 'boolean',
-            title: 'Can Write'
-        }
+            title: 'Can Write',
+        },
     },
     type: 'object',
     required: ['shops', 'is_admin', 'can_write'],
-    title: 'MyShopsResponse'
+    title: 'MyShopsResponse',
 } as const;
 
 export const $OrderBase = {
@@ -2018,81 +2101,81 @@ export const $OrderBase = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
-        }
+            title: 'Shipping Fee Inc Btw',
+        },
     },
     type: 'object',
     required: ['total', 'notes', 'customer_order_id', 'status'],
-    title: 'OrderBase'
+    title: 'OrderBase',
 } as const;
 
 export const $OrderCreate = {
@@ -2101,116 +2184,123 @@ export const $OrderCreate = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
+            title: 'Shipping Fee Inc Btw',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         order_info: {
             items: {
-                '$ref': '#/components/schemas/OrderItem-Input'
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
-            title: 'Order Info'
+            title: 'Order Info',
         },
         completed_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Completed At'
+            title: 'Completed At',
         },
         account_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Name'
-        }
+            title: 'Account Name',
+        },
     },
     type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status', 'shop_id', 'order_info'],
-    title: 'OrderCreate'
+    required: [
+        'total',
+        'notes',
+        'customer_order_id',
+        'status',
+        'shop_id',
+        'order_info',
+    ],
+    title: 'OrderCreate',
 } as const;
 
 export const $OrderCreated = {
@@ -2219,106 +2309,114 @@ export const $OrderCreated = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
+            title: 'Shipping Fee Inc Btw',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         completed_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Completed At'
+            title: 'Completed At',
         },
         account_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Name'
-        }
+            title: 'Account Name',
+        },
     },
     type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status', 'id', 'created_at', 'account_name'],
-    title: 'OrderCreated'
+    required: [
+        'total',
+        'notes',
+        'customer_order_id',
+        'status',
+        'id',
+        'created_at',
+        'account_name',
+    ],
+    title: 'OrderCreated',
 } as const;
 
 export const $OrderItem_Input = {
@@ -2326,43 +2424,49 @@ export const $OrderItem_Input = {
         description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Description'
+            title: 'Description',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         product_name: {
             type: 'string',
-            title: 'Product Name'
+            title: 'Product Name',
         },
         quantity: {
             type: 'integer',
-            title: 'Quantity'
-        }
+            title: 'Quantity',
+        },
     },
     type: 'object',
-    required: ['description', 'price', 'product_id', 'product_name', 'quantity'],
-    title: 'OrderItem'
+    required: [
+        'description',
+        'price',
+        'product_id',
+        'product_name',
+        'quantity',
+    ],
+    title: 'OrderItem',
 } as const;
 
 export const $OrderItem_Output = {
@@ -2370,35 +2474,41 @@ export const $OrderItem_Output = {
         description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Description'
+            title: 'Description',
         },
         price: {
             type: 'number',
-            title: 'Price'
+            title: 'Price',
         },
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         product_name: {
             type: 'string',
-            title: 'Product Name'
+            title: 'Product Name',
         },
         quantity: {
             type: 'integer',
-            title: 'Quantity'
-        }
+            title: 'Quantity',
+        },
     },
     type: 'object',
-    required: ['description', 'price', 'product_id', 'product_name', 'quantity'],
-    title: 'OrderItem'
+    required: [
+        'description',
+        'price',
+        'product_id',
+        'product_name',
+        'quantity',
+    ],
+    title: 'OrderItem',
 } as const;
 
 export const $OrderSchema = {
@@ -2407,129 +2517,140 @@ export const $OrderSchema = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
+            title: 'Shipping Fee Inc Btw',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         order_info: {
             items: {
-                '$ref': '#/components/schemas/OrderItem-Output'
+                $ref: '#/components/schemas/OrderItem-Output',
             },
             type: 'array',
-            title: 'Order Info'
+            title: 'Order Info',
         },
         created_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Created At'
+            title: 'Created At',
         },
         completed_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Completed At'
+            title: 'Completed At',
         },
         account_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Name'
+            title: 'Account Name',
         },
         shop_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shop Name'
-        }
+            title: 'Shop Name',
+        },
     },
     type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status', 'id', 'shop_id', 'order_info', 'created_at', 'account_name', 'shop_name'],
-    title: 'OrderSchema'
+    required: [
+        'total',
+        'notes',
+        'customer_order_id',
+        'status',
+        'id',
+        'shop_id',
+        'order_info',
+        'created_at',
+        'account_name',
+        'shop_name',
+    ],
+    title: 'OrderSchema',
 } as const;
 
 export const $OrderUpdate = {
@@ -2538,93 +2659,100 @@ export const $OrderUpdate = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
+            title: 'Shipping Fee Inc Btw',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         order_info: {
             items: {
-                '$ref': '#/components/schemas/OrderItem-Input'
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
-            title: 'Order Info'
-        }
+            title: 'Order Info',
+        },
     },
     type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status', 'shop_id', 'order_info'],
-    title: 'OrderUpdate'
+    required: [
+        'total',
+        'notes',
+        'customer_order_id',
+        'status',
+        'shop_id',
+        'order_info',
+    ],
+    title: 'OrderUpdate',
 } as const;
 
 export const $OrderUpdated = {
@@ -2633,90 +2761,98 @@ export const $OrderUpdated = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Account Id'
+            title: 'Account Id',
         },
         total: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Total'
+            title: 'Total',
         },
         notes: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Notes'
+            title: 'Notes',
         },
         customer_order_id: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Customer Order Id'
+            title: 'Customer Order Id',
         },
         status: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Status'
+            title: 'Status',
         },
         shipping_fee_inc_btw: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Shipping Fee Inc Btw'
+            title: 'Shipping Fee Inc Btw',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         order_info: {
             items: {
-                '$ref': '#/components/schemas/OrderItem-Output'
+                $ref: '#/components/schemas/OrderItem-Output',
             },
             type: 'array',
-            title: 'Order Info'
+            title: 'Order Info',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status', 'shop_id', 'order_info', 'id'],
-    title: 'OrderUpdated'
+    required: [
+        'total',
+        'notes',
+        'customer_order_id',
+        'status',
+        'shop_id',
+        'order_info',
+        'id',
+    ],
+    title: 'OrderUpdated',
 } as const;
 
 export const $ProductAttributeItem = {
@@ -2724,42 +2860,42 @@ export const $ProductAttributeItem = {
         attribute_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Attribute Id'
+            title: 'Attribute Id',
         },
         attribute_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Attribute Name'
+            title: 'Attribute Name',
         },
         option_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Option Id'
+            title: 'Option Id',
         },
         option_value_key: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Option Value Key'
-        }
+            title: 'Option Value Key',
+        },
     },
     type: 'object',
     required: ['attribute_id'],
@@ -2769,7 +2905,7 @@ export const $ProductAttributeItem = {
 - attribute_id: the AttributeTable id
 - attribute_name: translated main_name for display (optional, may be omitted in some endpoints)
 - option_id: the AttributeOptionTable id when the value is an enum option
-- option_value_key: the option key (e.g., "XS", "M") when applicable`
+- option_value_key: the option key (e.g., "XS", "M") when applicable`,
 } as const;
 
 export const $ProductAttributeOptionSelectionAdd = {
@@ -2777,16 +2913,17 @@ export const $ProductAttributeOptionSelectionAdd = {
         option_ids: {
             items: {
                 type: 'string',
-                format: 'uuid'
+                format: 'uuid',
             },
             type: 'array',
-            title: 'Option Ids'
-        }
+            title: 'Option Ids',
+        },
     },
     type: 'object',
     required: ['option_ids'],
     title: 'ProductAttributeOptionSelectionAdd',
-    description: 'Payload for creating or replacing selected attribute options for a product.'
+    description:
+        'Payload for creating or replacing selected attribute options for a product.',
 } as const;
 
 export const $ProductAttributeOptionSelectionReplace = {
@@ -2794,16 +2931,17 @@ export const $ProductAttributeOptionSelectionReplace = {
         option_ids: {
             items: {
                 type: 'string',
-                format: 'uuid'
+                format: 'uuid',
             },
             type: 'array',
-            title: 'Option Ids'
-        }
+            title: 'Option Ids',
+        },
     },
     type: 'object',
     required: ['option_ids'],
     title: 'ProductAttributeOptionSelectionReplace',
-    description: 'Payload for creating or replacing selected attribute options for a product.'
+    description:
+        'Payload for creating or replacing selected attribute options for a product.',
 } as const;
 
 export const $ProductAttributeValueBase = {
@@ -2811,30 +2949,30 @@ export const $ProductAttributeValueBase = {
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         attribute_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Attribute Id'
+            title: 'Attribute Id',
         },
         option_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Option Id'
-        }
+            title: 'Option Id',
+        },
     },
     type: 'object',
     required: ['product_id', 'attribute_id'],
     title: 'ProductAttributeValueBase',
-    description: 'Base schema for product attribute values.'
+    description: 'Base schema for product attribute values.',
 } as const;
 
 export const $ProductAttributeValueSchema = {
@@ -2842,35 +2980,35 @@ export const $ProductAttributeValueSchema = {
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         attribute_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Attribute Id'
+            title: 'Attribute Id',
         },
         option_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Option Id'
+            title: 'Option Id',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['product_id', 'attribute_id', 'id'],
     title: 'ProductAttributeValueSchema',
-    description: 'Schema for representing a product attribute value.'
+    description: 'Schema for representing a product attribute value.',
 } as const;
 
 export const $ProductCreate = {
@@ -2878,531 +3016,559 @@ export const $ProductCreate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         category_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Category Id'
+            title: 'Category Id',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         recurring_price_monthly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Monthly'
+            title: 'Recurring Price Monthly',
         },
         recurring_price_yearly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Yearly'
+            title: 'Recurring Price Yearly',
         },
         max_one: {
             type: 'boolean',
-            title: 'Max One'
+            title: 'Max One',
         },
         shippable: {
             type: 'boolean',
-            title: 'Shippable'
+            title: 'Shippable',
         },
         digital: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Digital'
+            title: 'Digital',
         },
         featured: {
             type: 'boolean',
-            title: 'Featured'
+            title: 'Featured',
         },
         new_product: {
             type: 'boolean',
-            title: 'New Product'
+            title: 'New Product',
         },
         tax_category: {
             type: 'string',
-            title: 'Tax Category'
+            title: 'Tax Category',
         },
         discounted_price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted Price'
+            title: 'Discounted Price',
         },
         discounted_from: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted From'
+            title: 'Discounted From',
         },
         discounted_to: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted To'
+            title: 'Discounted To',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         stock: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
             title: 'Stock',
-            default: 1
+            default: 1,
         },
         sku: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Sku'
+            title: 'Sku',
         },
         image_1: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 1'
+            title: 'Image 1',
         },
         image_2: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 2'
+            title: 'Image 2',
         },
         image_3: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 3'
+            title: 'Image 3',
         },
         image_4: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 4'
+            title: 'Image 4',
         },
         image_5: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 5'
+            title: 'Image 5',
         },
         image_6: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 6'
+            title: 'Image 6',
         },
         translation: {
-            '$ref': '#/components/schemas/ProductTranslationBase'
-        }
+            $ref: '#/components/schemas/ProductTranslationBase',
+        },
     },
     type: 'object',
-    required: ['shop_id', 'max_one', 'shippable', 'featured', 'new_product', 'tax_category', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6', 'translation'],
-    title: 'ProductCreate'
+    required: [
+        'shop_id',
+        'max_one',
+        'shippable',
+        'featured',
+        'new_product',
+        'tax_category',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'image_5',
+        'image_6',
+        'translation',
+    ],
+    title: 'ProductCreate',
 } as const;
 
 export const $ProductResponse = {
     properties: {
         id: {
             type: 'string',
-            title: 'Id'
+            title: 'Id',
         },
         short_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Short Id'
+            title: 'Short Id',
         },
         sku: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Sku'
+            title: 'Sku',
         },
         category: {
             type: 'string',
-            title: 'Category'
+            title: 'Category',
         },
         category_image: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Category Image'
+            title: 'Category Image',
         },
         category_order_number: {
             type: 'integer',
-            title: 'Category Order Number'
+            title: 'Category Order Number',
         },
         order_number: {
             type: 'integer',
-            title: 'Order Number'
+            title: 'Order Number',
         },
         stock: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Stock'
+            title: 'Stock',
         },
         tags: {
             items: {
-                type: 'string'
+                type: 'string',
             },
             type: 'array',
             title: 'Tags',
-            default: []
+            default: [],
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         description_short: {
             type: 'string',
-            title: 'Description Short'
+            title: 'Description Short',
         },
         description: {
             type: 'string',
-            title: 'Description'
+            title: 'Description',
         },
         tax_category: {
             type: 'string',
-            title: 'Tax Category'
+            title: 'Tax Category',
         },
         tax_percentage: {
             type: 'number',
-            title: 'Tax Percentage'
+            title: 'Tax Percentage',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         recurring_price_monthly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Monthly'
+            title: 'Recurring Price Monthly',
         },
         recurring_price_yearly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Yearly'
+            title: 'Recurring Price Yearly',
         },
         max_one: {
             type: 'boolean',
-            title: 'Max One'
+            title: 'Max One',
         },
         shippable: {
             type: 'boolean',
-            title: 'Shippable'
+            title: 'Shippable',
         },
         attributes: {
             items: {
-                type: 'string'
+                type: 'string',
             },
             type: 'array',
             title: 'Attributes',
-            default: []
+            default: [],
         },
         digital: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Digital'
+            title: 'Digital',
         },
         featured: {
             type: 'boolean',
-            title: 'Featured'
+            title: 'Featured',
         },
         new_product: {
             type: 'boolean',
-            title: 'New Product'
+            title: 'New Product',
         },
         discounted_price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted Price'
+            title: 'Discounted Price',
         },
         discounted_from: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted From'
+            title: 'Discounted From',
         },
         discounted_to: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted To'
+            title: 'Discounted To',
         },
         image_1: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 1'
+            title: 'Image 1',
         },
         image_2: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 2'
+            title: 'Image 2',
         },
         image_3: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 3'
+            title: 'Image 3',
         },
         image_4: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 4'
+            title: 'Image 4',
         },
         image_5: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 5'
+            title: 'Image 5',
         },
         image_6: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 6'
-        }
+            title: 'Image 6',
+        },
     },
     type: 'object',
-    required: ['id', 'category', 'category_order_number', 'order_number', 'name', 'description_short', 'description', 'tax_category', 'tax_percentage', 'max_one', 'shippable', 'featured', 'new_product'],
-    title: 'ProductResponse'
+    required: [
+        'id',
+        'category',
+        'category_order_number',
+        'order_number',
+        'name',
+        'description_short',
+        'description',
+        'tax_category',
+        'tax_percentage',
+        'max_one',
+        'shippable',
+        'featured',
+        'new_product',
+    ],
+    title: 'ProductResponse',
 } as const;
 
 export const $ProductToTagCreate = {
@@ -3410,22 +3576,22 @@ export const $ProductToTagCreate = {
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         tag_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Tag Id'
+            title: 'Tag Id',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
-        }
+            title: 'Shop Id',
+        },
     },
     type: 'object',
     required: ['product_id', 'tag_id', 'shop_id'],
-    title: 'ProductToTagCreate'
+    title: 'ProductToTagCreate',
 } as const;
 
 export const $ProductToTagSchema = {
@@ -3433,27 +3599,27 @@ export const $ProductToTagSchema = {
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         tag_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Tag Id'
+            title: 'Tag Id',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['product_id', 'tag_id', 'shop_id', 'id'],
-    title: 'ProductToTagSchema'
+    title: 'ProductToTagSchema',
 } as const;
 
 export const $ProductToTagUpdate = {
@@ -3461,108 +3627,108 @@ export const $ProductToTagUpdate = {
         product_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Product Id'
+            title: 'Product Id',
         },
         tag_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Tag Id'
+            title: 'Tag Id',
         },
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
-        }
+            title: 'Shop Id',
+        },
     },
     type: 'object',
     required: ['product_id', 'tag_id', 'shop_id'],
-    title: 'ProductToTagUpdate'
+    title: 'ProductToTagUpdate',
 } as const;
 
 export const $ProductTranslationBase = {
     properties: {
         main_name: {
             type: 'string',
-            title: 'Main Name'
+            title: 'Main Name',
         },
         main_description: {
             type: 'string',
-            title: 'Main Description'
+            title: 'Main Description',
         },
         main_description_short: {
             type: 'string',
-            title: 'Main Description Short'
+            title: 'Main Description Short',
         },
         alt1_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Name'
+            title: 'Alt1 Name',
         },
         alt1_description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Description'
+            title: 'Alt1 Description',
         },
         alt1_description_short: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Description Short'
+            title: 'Alt1 Description Short',
         },
         alt2_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Name'
+            title: 'Alt2 Name',
         },
         alt2_description: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Description'
+            title: 'Alt2 Description',
         },
         alt2_description_short: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Description Short'
-        }
+            title: 'Alt2 Description Short',
+        },
     },
     type: 'object',
     required: ['main_name', 'main_description', 'main_description_short'],
-    title: 'ProductTranslationBase'
+    title: 'ProductTranslationBase',
 } as const;
 
 export const $ProductUpdate = {
@@ -3570,298 +3736,312 @@ export const $ProductUpdate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         category_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Category Id'
+            title: 'Category Id',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         recurring_price_monthly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Monthly'
+            title: 'Recurring Price Monthly',
         },
         recurring_price_yearly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Yearly'
+            title: 'Recurring Price Yearly',
         },
         max_one: {
             type: 'boolean',
-            title: 'Max One'
+            title: 'Max One',
         },
         shippable: {
             type: 'boolean',
-            title: 'Shippable'
+            title: 'Shippable',
         },
         digital: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Digital'
+            title: 'Digital',
         },
         featured: {
             type: 'boolean',
-            title: 'Featured'
+            title: 'Featured',
         },
         new_product: {
             type: 'boolean',
-            title: 'New Product'
+            title: 'New Product',
         },
         tax_category: {
             type: 'string',
-            title: 'Tax Category'
+            title: 'Tax Category',
         },
         discounted_price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted Price'
+            title: 'Discounted Price',
         },
         discounted_from: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted From'
+            title: 'Discounted From',
         },
         discounted_to: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted To'
+            title: 'Discounted To',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         stock: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
             title: 'Stock',
-            default: 1
+            default: 1,
         },
         sku: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Sku'
+            title: 'Sku',
         },
         image_1: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 1'
+            title: 'Image 1',
         },
         image_2: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 2'
+            title: 'Image 2',
         },
         image_3: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 3'
+            title: 'Image 3',
         },
         image_4: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 4'
+            title: 'Image 4',
         },
         image_5: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 5'
+            title: 'Image 5',
         },
         image_6: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 6'
+            title: 'Image 6',
         },
         translation: {
-            '$ref': '#/components/schemas/ProductTranslationBase'
+            $ref: '#/components/schemas/ProductTranslationBase',
         },
         modified_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
-        }
+            title: 'Modified At',
+        },
     },
     type: 'object',
-    required: ['shop_id', 'max_one', 'shippable', 'featured', 'new_product', 'tax_category', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6', 'translation'],
-    title: 'ProductUpdate'
+    required: [
+        'shop_id',
+        'max_one',
+        'shippable',
+        'featured',
+        'new_product',
+        'tax_category',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'image_5',
+        'image_6',
+        'translation',
+    ],
+    title: 'ProductUpdate',
 } as const;
 
 export const $ProductWithAttributes = {
     properties: {
         product: {
-            '$ref': '#/components/schemas/ProductWithDefaultPrice'
+            $ref: '#/components/schemas/ProductWithDefaultPrice',
         },
         attributes: {
             items: {
-                '$ref': '#/components/schemas/ProductAttributeItem'
+                $ref: '#/components/schemas/ProductAttributeItem',
             },
             type: 'array',
             title: 'Attributes',
-            default: []
-        }
+            default: [],
+        },
     },
     type: 'object',
     required: ['product'],
     title: 'ProductWithAttributes',
-    description: 'Schema for a product along with its associated attributes.'
+    description: 'Schema for a product along with its associated attributes.',
 } as const;
 
 export const $ProductWithDefaultPrice = {
@@ -3869,306 +4049,321 @@ export const $ProductWithDefaultPrice = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         category_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Category Id'
+            title: 'Category Id',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         recurring_price_monthly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Monthly'
+            title: 'Recurring Price Monthly',
         },
         recurring_price_yearly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Yearly'
+            title: 'Recurring Price Yearly',
         },
         max_one: {
             type: 'boolean',
-            title: 'Max One'
+            title: 'Max One',
         },
         shippable: {
             type: 'boolean',
-            title: 'Shippable'
+            title: 'Shippable',
         },
         digital: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Digital'
+            title: 'Digital',
         },
         featured: {
             type: 'boolean',
-            title: 'Featured'
+            title: 'Featured',
         },
         new_product: {
             type: 'boolean',
-            title: 'New Product'
+            title: 'New Product',
         },
         tax_category: {
             type: 'string',
-            title: 'Tax Category'
+            title: 'Tax Category',
         },
         discounted_price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted Price'
+            title: 'Discounted Price',
         },
         discounted_from: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted From'
+            title: 'Discounted From',
         },
         discounted_to: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted To'
+            title: 'Discounted To',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         stock: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
             title: 'Stock',
-            default: 1
+            default: 1,
         },
         sku: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Sku'
+            title: 'Sku',
         },
         image_1: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 1'
+            title: 'Image 1',
         },
         image_2: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 2'
+            title: 'Image 2',
         },
         image_3: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 3'
+            title: 'Image 3',
         },
         image_4: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 4'
+            title: 'Image 4',
         },
         image_5: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 5'
+            title: 'Image 5',
         },
         image_6: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 6'
+            title: 'Image 6',
         },
         translation: {
-            '$ref': '#/components/schemas/ProductTranslationBase'
+            $ref: '#/components/schemas/ProductTranslationBase',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         short_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Short Id'
+            title: 'Short Id',
         },
         modified_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
+            title: 'Modified At',
         },
         approved_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Approved At'
+            title: 'Approved At',
         },
         images_amount: {
             type: 'integer',
             title: 'Images Amount',
-            default: 0
+            default: 0,
         },
         prices: {
             anyOf: [
                 {
-                    '$ref': '#/components/schemas/DefaultPrice'
+                    $ref: '#/components/schemas/DefaultPrice',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            default: {}
-        }
+            default: {},
+        },
     },
     type: 'object',
-    required: ['shop_id', 'max_one', 'shippable', 'featured', 'new_product', 'tax_category', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6', 'translation', 'id'],
-    title: 'ProductWithDefaultPrice'
+    required: [
+        'shop_id',
+        'max_one',
+        'shippable',
+        'featured',
+        'new_product',
+        'tax_category',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'image_5',
+        'image_6',
+        'translation',
+        'id',
+    ],
+    title: 'ProductWithDefaultPrice',
 } as const;
 
 export const $ProductWithDetailsAndPrices = {
@@ -4176,408 +4371,424 @@ export const $ProductWithDetailsAndPrices = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         category_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Category Id'
+            title: 'Category Id',
         },
         price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Price'
+            title: 'Price',
         },
         recurring_price_monthly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Monthly'
+            title: 'Recurring Price Monthly',
         },
         recurring_price_yearly: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Recurring Price Yearly'
+            title: 'Recurring Price Yearly',
         },
         max_one: {
             type: 'boolean',
-            title: 'Max One'
+            title: 'Max One',
         },
         shippable: {
             type: 'boolean',
-            title: 'Shippable'
+            title: 'Shippable',
         },
         digital: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Digital'
+            title: 'Digital',
         },
         featured: {
             type: 'boolean',
-            title: 'Featured'
+            title: 'Featured',
         },
         new_product: {
             type: 'boolean',
-            title: 'New Product'
+            title: 'New Product',
         },
         tax_category: {
             type: 'string',
-            title: 'Tax Category'
+            title: 'Tax Category',
         },
         discounted_price: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted Price'
+            title: 'Discounted Price',
         },
         discounted_from: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted From'
+            title: 'Discounted From',
         },
         discounted_to: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Discounted To'
+            title: 'Discounted To',
         },
         order_number: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Order Number'
+            title: 'Order Number',
         },
         stock: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
             title: 'Stock',
-            default: 1
+            default: 1,
         },
         sku: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Sku'
+            title: 'Sku',
         },
         image_1: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 1'
+            title: 'Image 1',
         },
         image_2: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 2'
+            title: 'Image 2',
         },
         image_3: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 3'
+            title: 'Image 3',
         },
         image_4: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 4'
+            title: 'Image 4',
         },
         image_5: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 5'
+            title: 'Image 5',
         },
         image_6: {
             anyOf: [
                 {
                     additionalProperties: true,
-                    type: 'object'
+                    type: 'object',
                 },
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Image 6'
+            title: 'Image 6',
         },
         translation: {
-            '$ref': '#/components/schemas/ProductTranslationBase'
+            $ref: '#/components/schemas/ProductTranslationBase',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         short_id: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Short Id'
+            title: 'Short Id',
         },
         modified_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
+            title: 'Modified At',
         },
         approved_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Approved At'
+            title: 'Approved At',
         },
         images_amount: {
             type: 'integer',
             title: 'Images Amount',
-            default: 0
+            default: 0,
         },
         prices: {
             items: {
                 additionalProperties: true,
-                type: 'object'
+                type: 'object',
             },
             type: 'array',
             title: 'Prices',
-            default: []
-        }
+            default: [],
+        },
     },
     type: 'object',
-    required: ['shop_id', 'max_one', 'shippable', 'featured', 'new_product', 'tax_category', 'image_1', 'image_2', 'image_3', 'image_4', 'image_5', 'image_6', 'translation', 'id'],
-    title: 'ProductWithDetailsAndPrices'
+    required: [
+        'shop_id',
+        'max_one',
+        'shippable',
+        'featured',
+        'new_product',
+        'tax_category',
+        'image_1',
+        'image_2',
+        'image_3',
+        'image_4',
+        'image_5',
+        'image_6',
+        'translation',
+        'id',
+    ],
+    title: 'ProductWithDetailsAndPrices',
 } as const;
 
 export const $RestoreReport = {
     properties: {
         restored: {
             type: 'boolean',
-            title: 'Restored'
+            title: 'Restored',
         },
         entity_type: {
             type: 'string',
-            title: 'Entity Type'
+            title: 'Entity Type',
         },
         entity_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Entity Id'
+            title: 'Entity Id',
         },
         restored_from_revision_no: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Restored From Revision No'
+            title: 'Restored From Revision No',
         },
         new_revision_no: {
             anyOf: [
                 {
-                    type: 'integer'
+                    type: 'integer',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'New Revision No'
+            title: 'New Revision No',
         },
         resurrected: {
             items: {
-                '$ref': '#/components/schemas/ResurrectedEntity'
+                $ref: '#/components/schemas/ResurrectedEntity',
             },
             type: 'array',
             title: 'Resurrected',
-            default: []
+            default: [],
         },
         skipped_fields: {
             items: {
-                type: 'string'
+                type: 'string',
             },
             type: 'array',
             title: 'Skipped Fields',
-            default: []
+            default: [],
         },
         unresolved: {
             items: {
-                '$ref': '#/components/schemas/UnresolvedReference'
+                $ref: '#/components/schemas/UnresolvedReference',
             },
             type: 'array',
             title: 'Unresolved',
-            default: []
+            default: [],
         },
         warnings: {
             items: {
-                type: 'string'
+                type: 'string',
             },
             type: 'array',
             title: 'Warnings',
-            default: []
-        }
+            default: [],
+        },
     },
     type: 'object',
     required: ['restored', 'entity_type', 'entity_id'],
     title: 'RestoreReport',
-    description: "What a restore actually did — agents should read this to see what didn't come back."
+    description:
+        "What a restore actually did — agents should read this to see what didn't come back.",
 } as const;
 
 export const $ResurrectedEntity = {
     properties: {
         kind: {
             type: 'string',
-            title: 'Kind'
+            title: 'Kind',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
-        }
+            title: 'Name',
+        },
     },
     type: 'object',
     required: ['kind', 'id'],
-    title: 'ResurrectedEntity'
+    title: 'ResurrectedEntity',
 } as const;
 
 export const $RevisionDetail = {
@@ -4585,76 +4796,85 @@ export const $RevisionDetail = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         entity_type: {
             type: 'string',
-            title: 'Entity Type'
+            title: 'Entity Type',
         },
         entity_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Entity Id'
+            title: 'Entity Id',
         },
         revision_no: {
             type: 'integer',
-            title: 'Revision No'
+            title: 'Revision No',
         },
         action: {
             type: 'string',
-            title: 'Action'
+            title: 'Action',
         },
         schema_version: {
             type: 'integer',
-            title: 'Schema Version'
+            title: 'Schema Version',
         },
         created_by: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Created By'
+            title: 'Created By',
         },
         source: {
             type: 'string',
-            title: 'Source'
+            title: 'Source',
         },
         created_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Created At'
+            title: 'Created At',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
+            title: 'Name',
         },
         data: {
             additionalProperties: true,
             type: 'object',
-            title: 'Data'
-        }
+            title: 'Data',
+        },
     },
     type: 'object',
-    required: ['id', 'entity_type', 'entity_id', 'revision_no', 'action', 'schema_version', 'source', 'data'],
-    title: 'RevisionDetail'
+    required: [
+        'id',
+        'entity_type',
+        'entity_id',
+        'revision_no',
+        'action',
+        'schema_version',
+        'source',
+        'data',
+    ],
+    title: 'RevisionDetail',
 } as const;
 
 export const $RevisionSummary = {
@@ -4662,71 +4882,79 @@ export const $RevisionSummary = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         entity_type: {
             type: 'string',
-            title: 'Entity Type'
+            title: 'Entity Type',
         },
         entity_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Entity Id'
+            title: 'Entity Id',
         },
         revision_no: {
             type: 'integer',
-            title: 'Revision No'
+            title: 'Revision No',
         },
         action: {
             type: 'string',
-            title: 'Action'
+            title: 'Action',
         },
         schema_version: {
             type: 'integer',
-            title: 'Schema Version'
+            title: 'Schema Version',
         },
         created_by: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Created By'
+            title: 'Created By',
         },
         source: {
             type: 'string',
-            title: 'Source'
+            title: 'Source',
         },
         created_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Created At'
+            title: 'Created At',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
-        }
+            title: 'Name',
+        },
     },
     type: 'object',
-    required: ['id', 'entity_type', 'entity_id', 'revision_no', 'action', 'schema_version', 'source'],
-    title: 'RevisionSummary'
+    required: [
+        'id',
+        'entity_type',
+        'entity_id',
+        'revision_no',
+        'action',
+        'schema_version',
+        'source',
+    ],
+    title: 'RevisionSummary',
 } as const;
 
 export const $ShippingCalculateRequest = {
@@ -4734,100 +4962,107 @@ export const $ShippingCalculateRequest = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         order_info: {
             items: {
-                '$ref': '#/components/schemas/OrderItem-Input'
+                $ref: '#/components/schemas/OrderItem-Input',
             },
             type: 'array',
-            title: 'Order Info'
-        }
+            title: 'Order Info',
+        },
     },
     type: 'object',
     required: ['shop_id', 'order_info'],
-    title: 'ShippingCalculateRequest'
+    title: 'ShippingCalculateRequest',
 } as const;
 
 export const $ShippingCalculation = {
     properties: {
         enabled: {
             type: 'boolean',
-            title: 'Enabled'
+            title: 'Enabled',
         },
         method: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Method'
+            title: 'Method',
         },
         fee_inc_btw: {
             type: 'number',
-            title: 'Fee Inc Btw'
+            title: 'Fee Inc Btw',
         },
         fee_ex_btw: {
             type: 'number',
-            title: 'Fee Ex Btw'
+            title: 'Fee Ex Btw',
         },
         fee_btw: {
             type: 'number',
-            title: 'Fee Btw'
+            title: 'Fee Btw',
         },
         free_shipping_applied: {
             type: 'boolean',
-            title: 'Free Shipping Applied'
+            title: 'Free Shipping Applied',
         },
         free_shipping_threshold: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Free Shipping Threshold'
+            title: 'Free Shipping Threshold',
         },
         lines: {
             items: {
-                '$ref': '#/components/schemas/ShippingLine'
+                $ref: '#/components/schemas/ShippingLine',
             },
             type: 'array',
-            title: 'Lines'
-        }
+            title: 'Lines',
+        },
     },
     type: 'object',
-    required: ['enabled', 'fee_inc_btw', 'fee_ex_btw', 'fee_btw', 'free_shipping_applied', 'lines'],
-    title: 'ShippingCalculation'
+    required: [
+        'enabled',
+        'fee_inc_btw',
+        'fee_ex_btw',
+        'fee_btw',
+        'free_shipping_applied',
+        'lines',
+    ],
+    title: 'ShippingCalculation',
 } as const;
 
 export const $ShippingLine = {
     properties: {
         btw_rate: {
             type: 'number',
-            title: 'Btw Rate'
+            title: 'Btw Rate',
         },
         amount_ex_btw: {
             type: 'number',
-            title: 'Amount Ex Btw'
+            title: 'Amount Ex Btw',
         },
         amount_inc_btw: {
             type: 'number',
-            title: 'Amount Inc Btw'
+            title: 'Amount Inc Btw',
         },
         amount_btw: {
             type: 'number',
-            title: 'Amount Btw'
-        }
+            title: 'Amount Btw',
+        },
     },
     type: 'object',
     required: ['btw_rate', 'amount_ex_btw', 'amount_inc_btw', 'amount_btw'],
-    title: 'ShippingLine'
+    title: 'ShippingLine',
 } as const;
 
 export const $ShopCacheStatus = {
@@ -4836,199 +5071,208 @@ export const $ShopCacheStatus = {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
-        }
+            title: 'Modified At',
+        },
     },
     type: 'object',
     required: ['modified_at'],
-    title: 'ShopCacheStatus'
+    title: 'ShopCacheStatus',
 } as const;
 
 export const $ShopConfig = {
     properties: {
         config: {
-            '$ref': '#/components/schemas/ConfigurationV1-Output'
+            $ref: '#/components/schemas/ConfigurationV1-Output',
         },
         config_version: {
             type: 'integer',
-            title: 'Config Version'
+            title: 'Config Version',
         },
         shop_type: {
-            '$ref': '#/components/schemas/ShopType'
+            $ref: '#/components/schemas/ShopType',
         },
         stripe_public_key: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Stripe Public Key'
-        }
+            title: 'Stripe Public Key',
+        },
     },
     type: 'object',
     required: ['config', 'config_version', 'shop_type', 'stripe_public_key'],
-    title: 'ShopConfig'
+    title: 'ShopConfig',
 } as const;
 
 export const $ShopConfigUpdate_Input = {
     properties: {
         config: {
-            '$ref': '#/components/schemas/ConfigurationV1-Input'
+            $ref: '#/components/schemas/ConfigurationV1-Input',
         },
         config_version: {
             type: 'integer',
-            title: 'Config Version'
-        }
+            title: 'Config Version',
+        },
     },
     type: 'object',
     required: ['config', 'config_version'],
-    title: 'ShopConfigUpdate'
+    title: 'ShopConfigUpdate',
 } as const;
 
 export const $ShopConfigUpdate_Output = {
     properties: {
         config: {
-            '$ref': '#/components/schemas/ConfigurationV1-Output'
+            $ref: '#/components/schemas/ConfigurationV1-Output',
         },
         config_version: {
             type: 'integer',
-            title: 'Config Version'
-        }
+            title: 'Config Version',
+        },
     },
     type: 'object',
     required: ['config', 'config_version'],
-    title: 'ShopConfigUpdate'
+    title: 'ShopConfigUpdate',
 } as const;
 
 export const $ShopCreate = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         description: {
             type: 'string',
-            title: 'Description'
+            title: 'Description',
         },
         internal_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Internal Url'
+            title: 'Internal Url',
         },
         external_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'External Url'
+            title: 'External Url',
         },
         vat_standard: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Standard'
+            title: 'Vat Standard',
         },
         vat_lower_1: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 1'
+            title: 'Vat Lower 1',
         },
         vat_lower_2: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 2'
+            title: 'Vat Lower 2',
         },
         vat_lower_3: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 3'
+            title: 'Vat Lower 3',
         },
         vat_special: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Special'
+            title: 'Vat Special',
         },
         vat_zero: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Zero'
-        }
+            title: 'Vat Zero',
+        },
     },
     type: 'object',
-    required: ['name', 'description', 'vat_standard', 'vat_lower_1', 'vat_lower_2', 'vat_lower_3', 'vat_special', 'vat_zero'],
-    title: 'ShopCreate'
+    required: [
+        'name',
+        'description',
+        'vat_standard',
+        'vat_lower_1',
+        'vat_lower_2',
+        'vat_lower_3',
+        'vat_special',
+        'vat_zero',
+    ],
+    title: 'ShopCreate',
 } as const;
 
 export const $ShopIp = {
     properties: {
         ip: {
             type: 'string',
-            title: 'Ip'
-        }
+            title: 'Ip',
+        },
     },
     type: 'object',
     required: ['ip'],
-    title: 'ShopIp'
+    title: 'ShopIp',
 } as const;
 
 export const $ShopLastCompletedOrder = {
@@ -5036,18 +5280,18 @@ export const $ShopLastCompletedOrder = {
         last_completed_order: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Last Completed Order'
-        }
+            title: 'Last Completed Order',
+        },
     },
     type: 'object',
     required: ['last_completed_order'],
-    title: 'ShopLastCompletedOrder'
+    title: 'ShopLastCompletedOrder',
 } as const;
 
 export const $ShopLastPendingOrder = {
@@ -5055,333 +5299,369 @@ export const $ShopLastPendingOrder = {
         last_pending_order: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Last Pending Order'
-        }
+            title: 'Last Pending Order',
+        },
     },
     type: 'object',
     required: ['last_pending_order'],
-    title: 'ShopLastPendingOrder'
+    title: 'ShopLastPendingOrder',
 } as const;
 
 export const $ShopSchema = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         description: {
             type: 'string',
-            title: 'Description'
+            title: 'Description',
         },
         internal_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Internal Url'
+            title: 'Internal Url',
         },
         external_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'External Url'
+            title: 'External Url',
         },
         vat_standard: {
             type: 'number',
-            title: 'Vat Standard'
+            title: 'Vat Standard',
         },
         vat_lower_1: {
             type: 'number',
-            title: 'Vat Lower 1'
+            title: 'Vat Lower 1',
         },
         vat_lower_2: {
             type: 'number',
-            title: 'Vat Lower 2'
+            title: 'Vat Lower 2',
         },
         vat_lower_3: {
             type: 'number',
-            title: 'Vat Lower 3'
+            title: 'Vat Lower 3',
         },
         vat_special: {
             type: 'number',
-            title: 'Vat Special'
+            title: 'Vat Special',
         },
         vat_zero: {
             type: 'number',
-            title: 'Vat Zero'
+            title: 'Vat Zero',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
-    required: ['name', 'description', 'vat_standard', 'vat_lower_1', 'vat_lower_2', 'vat_lower_3', 'vat_special', 'vat_zero', 'id'],
-    title: 'ShopSchema'
+    required: [
+        'name',
+        'description',
+        'vat_standard',
+        'vat_lower_1',
+        'vat_lower_2',
+        'vat_lower_3',
+        'vat_special',
+        'vat_zero',
+        'id',
+    ],
+    title: 'ShopSchema',
 } as const;
 
 export const $ShopType = {
     properties: {
         max_languages: {
             type: 'number',
-            title: 'Max Languages'
+            title: 'Max Languages',
         },
         max_products: {
             type: 'number',
-            title: 'Max Products'
+            title: 'Max Products',
         },
         stripe_access: {
             type: 'boolean',
-            title: 'Stripe Access'
+            title: 'Stripe Access',
         },
         trial_mode: {
             type: 'boolean',
-            title: 'Trial Mode'
+            title: 'Trial Mode',
         },
         trial_started: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Trial Started'
+            title: 'Trial Started',
         },
         name: {
-            '$ref': '#/components/schemas/ShopTypeName'
-        }
+            $ref: '#/components/schemas/ShopTypeName',
+        },
     },
     type: 'object',
-    required: ['max_languages', 'max_products', 'stripe_access', 'trial_mode', 'name'],
-    title: 'ShopType'
+    required: [
+        'max_languages',
+        'max_products',
+        'stripe_access',
+        'trial_mode',
+        'name',
+    ],
+    title: 'ShopType',
 } as const;
 
 export const $ShopTypeName = {
     type: 'string',
     enum: ['small', 'business'],
-    title: 'ShopTypeName'
+    title: 'ShopTypeName',
 } as const;
 
 export const $ShopUpdate = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         description: {
             type: 'string',
-            title: 'Description'
+            title: 'Description',
         },
         internal_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Internal Url'
+            title: 'Internal Url',
         },
         external_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'External Url'
+            title: 'External Url',
         },
         vat_standard: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Standard'
+            title: 'Vat Standard',
         },
         vat_lower_1: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 1'
+            title: 'Vat Lower 1',
         },
         vat_lower_2: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 2'
+            title: 'Vat Lower 2',
         },
         vat_lower_3: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Lower 3'
+            title: 'Vat Lower 3',
         },
         vat_special: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Special'
+            title: 'Vat Special',
         },
         vat_zero: {
             anyOf: [
                 {
-                    type: 'number'
+                    type: 'number',
                 },
                 {
                     type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$'
-                }
+                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
+                },
             ],
-            title: 'Vat Zero'
+            title: 'Vat Zero',
         },
         modified_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Modified At'
+            title: 'Modified At',
         },
         allowed_ips: {
             anyOf: [
                 {
                     items: {
-                        type: 'string'
+                        type: 'string',
                     },
-                    type: 'array'
+                    type: 'array',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Allowed Ips'
-        }
+            title: 'Allowed Ips',
+        },
     },
     type: 'object',
-    required: ['name', 'description', 'vat_standard', 'vat_lower_1', 'vat_lower_2', 'vat_lower_3', 'vat_special', 'vat_zero', 'modified_at'],
-    title: 'ShopUpdate'
+    required: [
+        'name',
+        'description',
+        'vat_standard',
+        'vat_lower_1',
+        'vat_lower_2',
+        'vat_lower_3',
+        'vat_special',
+        'vat_zero',
+        'modified_at',
+    ],
+    title: 'ShopUpdate',
 } as const;
 
 export const $ShopWithPrices = {
     properties: {
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         description: {
             type: 'string',
-            title: 'Description'
+            title: 'Description',
         },
         internal_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Internal Url'
+            title: 'Internal Url',
         },
         external_url: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'External Url'
+            title: 'External Url',
         },
         vat_standard: {
             type: 'number',
-            title: 'Vat Standard'
+            title: 'Vat Standard',
         },
         vat_lower_1: {
             type: 'number',
-            title: 'Vat Lower 1'
+            title: 'Vat Lower 1',
         },
         vat_lower_2: {
             type: 'number',
-            title: 'Vat Lower 2'
+            title: 'Vat Lower 2',
         },
         vat_lower_3: {
             type: 'number',
-            title: 'Vat Lower 3'
+            title: 'Vat Lower 3',
         },
         vat_special: {
             type: 'number',
-            title: 'Vat Special'
+            title: 'Vat Special',
         },
         vat_zero: {
             type: 'number',
-            title: 'Vat Zero'
+            title: 'Vat Zero',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
-    required: ['name', 'description', 'vat_standard', 'vat_lower_1', 'vat_lower_2', 'vat_lower_3', 'vat_special', 'vat_zero', 'id'],
-    title: 'ShopWithPrices'
+    required: [
+        'name',
+        'description',
+        'vat_standard',
+        'vat_lower_1',
+        'vat_lower_2',
+        'vat_lower_3',
+        'vat_special',
+        'vat_zero',
+        'id',
+    ],
+    title: 'ShopWithPrices',
 } as const;
 
 export const $SyncStripeResponse = {
@@ -5389,26 +5669,31 @@ export const $SyncStripeResponse = {
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         stripe_customer_id: {
             type: 'string',
-            title: 'Stripe Customer Id'
+            title: 'Stripe Customer Id',
         },
         stripe_synced_at: {
             type: 'string',
             format: 'date-time',
-            title: 'Stripe Synced At'
+            title: 'Stripe Synced At',
         },
         stripe_customer: {
             additionalProperties: true,
             type: 'object',
-            title: 'Stripe Customer'
-        }
+            title: 'Stripe Customer',
+        },
     },
     type: 'object',
-    required: ['id', 'stripe_customer_id', 'stripe_synced_at', 'stripe_customer'],
-    title: 'SyncStripeResponse'
+    required: [
+        'id',
+        'stripe_customer_id',
+        'stripe_synced_at',
+        'stripe_customer',
+    ],
+    title: 'SyncStripeResponse',
 } as const;
 
 export const $TagCreate = {
@@ -5416,19 +5701,19 @@ export const $TagCreate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         translation: {
-            '$ref': '#/components/schemas/TagTranslationBase'
-        }
+            $ref: '#/components/schemas/TagTranslationBase',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'translation'],
-    title: 'TagCreate'
+    title: 'TagCreate',
 } as const;
 
 export const $TagSchema = {
@@ -5436,58 +5721,58 @@ export const $TagSchema = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         translation: {
-            '$ref': '#/components/schemas/TagTranslationBase'
+            $ref: '#/components/schemas/TagTranslationBase',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
-        }
+            title: 'Id',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'translation', 'id'],
-    title: 'TagSchema'
+    title: 'TagSchema',
 } as const;
 
 export const $TagTranslationBase = {
     properties: {
         main_name: {
             type: 'string',
-            title: 'Main Name'
+            title: 'Main Name',
         },
         alt1_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt1 Name'
+            title: 'Alt1 Name',
         },
         alt2_name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Alt2 Name'
-        }
+            title: 'Alt2 Name',
+        },
     },
     type: 'object',
     required: ['main_name'],
-    title: 'TagTranslationBase'
+    title: 'TagTranslationBase',
 } as const;
 
 export const $TagUpdate = {
@@ -5495,19 +5780,19 @@ export const $TagUpdate = {
         shop_id: {
             type: 'string',
             format: 'uuid',
-            title: 'Shop Id'
+            title: 'Shop Id',
         },
         name: {
             type: 'string',
-            title: 'Name'
+            title: 'Name',
         },
         translation: {
-            '$ref': '#/components/schemas/TagTranslationBase'
-        }
+            $ref: '#/components/schemas/TagTranslationBase',
+        },
     },
     type: 'object',
     required: ['shop_id', 'name', 'translation'],
-    title: 'TagUpdate'
+    title: 'TagUpdate',
 } as const;
 
 export const $Toggles = {
@@ -5515,148 +5800,148 @@ export const $Toggles = {
         show_new_products: {
             type: 'boolean',
             title: 'Show New Products',
-            default: true
+            default: true,
         },
         show_featured_products: {
             type: 'boolean',
             title: 'Show Featured Products',
-            default: true
+            default: true,
         },
         show_categories: {
             type: 'boolean',
             title: 'Show Categories',
-            default: true
+            default: true,
         },
         show_shop_name: {
             type: 'boolean',
             title: 'Show Shop Name',
-            default: true
+            default: true,
         },
         show_nav_categories: {
             type: 'boolean',
             title: 'Show Nav Categories',
-            default: false
+            default: false,
         },
         language_alt1_enabled: {
             type: 'boolean',
             title: 'Language Alt1 Enabled',
-            default: false
+            default: false,
         },
         language_alt2_enabled: {
             type: 'boolean',
             title: 'Language Alt2 Enabled',
-            default: false
+            default: false,
         },
         product_call_to_action_enabled: {
             type: 'boolean',
             title: 'Product Call To Action Enabled',
-            default: false
+            default: false,
         },
         enable_stock_on_products: {
             type: 'boolean',
             title: 'Enable Stock On Products',
-            default: false
+            default: false,
         },
         enable_attributes_for_categories: {
             type: 'boolean',
             title: 'Enable Attributes For Categories',
-            default: false
+            default: false,
         },
         force_unique_product_names: {
             type: 'boolean',
             title: 'Force Unique Product Names',
-            default: false
-        }
+            default: false,
+        },
     },
     type: 'object',
-    title: 'Toggles'
+    title: 'Toggles',
 } as const;
 
 export const $TrashItem = {
     properties: {
         entity_type: {
             type: 'string',
-            title: 'Entity Type'
+            title: 'Entity Type',
         },
         id: {
             type: 'string',
             format: 'uuid',
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
+            title: 'Name',
         },
         deleted_at: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time'
+                    format: 'date-time',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Deleted At'
+            title: 'Deleted At',
         },
         deleted_batch_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Deleted Batch Id'
-        }
+            title: 'Deleted Batch Id',
+        },
     },
     type: 'object',
     required: ['entity_type', 'id'],
-    title: 'TrashItem'
+    title: 'TrashItem',
 } as const;
 
 export const $UnresolvedReference = {
     properties: {
         kind: {
             type: 'string',
-            title: 'Kind'
+            title: 'Kind',
         },
         id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid'
+                    format: 'uuid',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Id'
+            title: 'Id',
         },
         name: {
             anyOf: [
                 {
-                    type: 'string'
+                    type: 'string',
                 },
                 {
-                    type: 'null'
-                }
+                    type: 'null',
+                },
             ],
-            title: 'Name'
-        }
+            title: 'Name',
+        },
     },
     type: 'object',
     required: ['kind'],
-    title: 'UnresolvedReference'
+    title: 'UnresolvedReference',
 } as const;
 
 export const $ValidationError = {
@@ -5665,26 +5950,26 @@ export const $ValidationError = {
             items: {
                 anyOf: [
                     {
-                        type: 'string'
+                        type: 'string',
                     },
                     {
-                        type: 'integer'
-                    }
-                ]
+                        type: 'integer',
+                    },
+                ],
             },
             type: 'array',
-            title: 'Location'
+            title: 'Location',
         },
         msg: {
             type: 'string',
-            title: 'Message'
+            title: 'Message',
         },
         type: {
             type: 'string',
-            title: 'Error Type'
-        }
+            title: 'Error Type',
+        },
     },
     type: 'object',
     required: ['loc', 'msg', 'type'],
-    title: 'ValidationError'
+    title: 'ValidationError',
 } as const;
