@@ -87,16 +87,14 @@ export class CancelablePromise<T> implements Promise<T> {
     public then<TResult1 = T, TResult2 = never>(
         onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null,
         onRejected?:
-            | ((reason: unknown) => TResult2 | PromiseLike<TResult2>)
-            | null,
+            ((reason: unknown) => TResult2 | PromiseLike<TResult2>) | null,
     ): Promise<TResult1 | TResult2> {
         return this.promise.then(onFulfilled, onRejected);
     }
 
     public catch<TResult = never>(
         onRejected?:
-            | ((reason: unknown) => TResult | PromiseLike<TResult>)
-            | null,
+            ((reason: unknown) => TResult | PromiseLike<TResult>) | null,
     ): Promise<T | TResult> {
         return this.promise.catch(onRejected);
     }

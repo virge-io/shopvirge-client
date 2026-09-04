@@ -1,0 +1,14 @@
+# pnpm settings. pnpm 10+ reads these from here; .npmrc is only for auth/registry.
+
+# Supply-chain hardening
+minimumReleaseAge: 10080 # 7 days, in minutes: a version must be this old before pnpm resolves it
+minimumReleaseAgeExclude:
+    - '@shopvirge/*' # our own packages are installable the day they ship
+blockExoticSubdeps: true # transitive dependencies must come from the registry, not git/tarball URLs
+trustPolicy: no-downgrade # refuse a version whose trust level regressed (e.g. lost provenance)
+trustPolicyIgnoreAfter: 129600 # 90 days: the trust check targets recent takeovers, long-published versions are exempt
+strictDepBuilds: true # installation fails on unreviewed postinstall scripts
+allowBuilds:
+    esbuild: true # its postinstall only validates the platform binary shipped as an optional dependency
+verifyDepsBeforeRun: error # scripts refuse to run against a stale node_modules
+engineStrict: true

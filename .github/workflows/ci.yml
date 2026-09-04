@@ -1,0 +1,43 @@
+name: CI
+
+on:
+    pull_request:
+        paths:
+            - 'npm/**'
+            - 'openapi.json'
+            - '.github/workflows/ci.yml'
+    push:
+        branches: [main]
+        paths:
+            - 'npm/**'
+            - 'openapi.json'
+            - '.github/workflows/ci.yml'
+
+permissions:
+    contents: read
+
+defaults:
+    run:
+        working-directory: npm
+
+jobs:
+    npm:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  package_json_file: npm/package.json
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: pnpm
+                  cache-dependency-path: npm/pnpm-lock.yaml
+            - run: pnpm install --frozen-lockfile
+            - name: Generated code matches openapi.json
+              run: pnpm check:generated
+            - run: pnpm tsc
+            - run: pnpm lint
+            - run: pnpm prettier
+            - run: pnpm build
+            - run: pnpm test

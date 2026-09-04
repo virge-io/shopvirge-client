@@ -1,0 +1,66 @@
+name: Publish npm package
+
+# Publishes @shopvirge/shopvirge-client when the version in npm/package.json
+# is not on npm yet. Authenticates with npm Trusted Publishing (OIDC): the
+# repository and this workflow file are registered as a trusted publisher on
+# npmjs.com, so no NPM_TOKEN secret is needed.
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'npm/**'
+            - 'openapi.json'
+    workflow_dispatch:
+
+concurrency: publish-npm
+
+permissions:
+    contents: write # create the GitHub release
+    id-token: write # npm provenance + trusted publishing
+
+defaults:
+    run:
+        working-directory: npm
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  package_json_file: npm/package.json
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+                  cache: pnpm
+                  cache-dependency-path: npm/pnpm-lock.yaml
+            - name: Update npm (trusted publishing needs npm >= 11.5.1)
+              run: npm install -g npm@latest && npm --version
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build
+            - run: pnpm test
+            - name: Is this version already on npm?
+              id: version
+              run: |
+                  VERSION=$(node -p "require('./package.json').version")
+                  echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+                  if npm view "@shopvirge/shopvirge-client@$VERSION" version >/dev/null 2>&1; then
+                      echo "published=true" >> "$GITHUB_OUTPUT"
+                      echo "::notice::@shopvirge/shopvirge-client@$VERSION is already on npm, nothing to publish"
+                  else
+                      echo "published=false" >> "$GITHUB_OUTPUT"
+                  fi
+            - name: Publish
+              if: steps.version.outputs.published == 'false'
+              run: npm publish --provenance --access public
+            - name: GitHub release
+              if: steps.version.outputs.published == 'false'
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  gh release create "npm-v${{ steps.version.outputs.version }}" \
+                      --title "npm v${{ steps.version.outputs.version }}" \
+                      --target "$GITHUB_SHA" \
+                      --generate-notes

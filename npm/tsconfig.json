@@ -1,17 +1,25 @@
 {
-    "extends": "@shopvirge/tsconfig/base.json",
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "strictNullChecks": true,
-        "rootDir": "./src",
-        "outDir": "./dist",
-        "target": "ES5"
+        "target": "ES2020",
+        "lib": ["ES2020", "DOM"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "types": ["node"],
+        "strict": true,
+        "declaration": true,
+        "declarationMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "noEmit": true
     },
-    "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-    "exclude": [
-        "node_modules",
-        "**/*.stories.ts",
-        "**/*.stories.js",
-        "**/*.stories.jsx",
-        "**/*.stories.tsx"
+    "include": [
+        "src/**/*.ts",
+        "test/**/*.ts",
+        "tsup.config.ts",
+        "vitest.config.ts"
     ]
 }

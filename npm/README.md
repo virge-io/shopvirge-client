@@ -85,22 +85,13 @@ OpenAPI.interceptors.response.use((response) => {
 
 ## Development
 
-### Regenerate the client
-
-From the `packages/shopvirge-client/` directory:
+This package lives in `npm/` of [virge-io/shopvirge-client](https://github.com/virge-io/shopvirge-client) and is generated from the `openapi.json` in the repository root. Run everything from `npm/` with pnpm.
 
 ```bash
-# From a local openapi.json file
-yarn openapi-ts
-
-# From the live API
-yarn openapi-ts-live
+pnpm generate        # regenerate src/api/generated from ../openapi.json
+pnpm generate:live   # fetch the live spec from api.shopvirge.com first, then generate + sync-version
+pnpm sync-version    # copy the spec's info.version into package.json
+pnpm build           # ESM bundle + types into dist/
 ```
 
-### Sync package version
-
-After regenerating, sync the package version from the OpenAPI spec:
-
-```bash
-yarn sync-version
-```
+Releases: merge a version bump to `main` and the publish workflow publishes it to npm. See the repository README for the full flow.
