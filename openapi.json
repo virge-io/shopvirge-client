@@ -3,7 +3,7 @@
     "info": {
         "title": "ShopVirge API",
         "description": "Backend for ShopVirge Shops.",
-        "version": "0.4.4"
+        "version": "0.4.5"
     },
     "paths": {
         "/health/": {
