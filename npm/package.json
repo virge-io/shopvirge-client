@@ -35,10 +35,10 @@
         "prettier": "prettier --check .",
         "prettier-fix": "prettier --write .",
         "test": "vitest run",
-        "generate": "openapi-ts -i ../openapi.json -o src/api/generated && prettier --write src/api/generated",
+        "generate": "prettier --write ../openapi.json && openapi-ts -i ../openapi.json -o src/api/generated && prettier --write src/api/generated",
         "generate:live": "node scripts/fetch-spec.mjs && pnpm generate && pnpm sync-version",
         "sync-version": "node scripts/sync-version.mjs",
-        "check:generated": "pnpm generate && pnpm sync-version && git diff --exit-code -- src/api/generated package.json",
+        "check:generated": "pnpm generate && pnpm sync-version && git diff --exit-code -- ../openapi.json src/api/generated package.json",
         "prepublishOnly": "pnpm build"
     },
     "devDependencies": {

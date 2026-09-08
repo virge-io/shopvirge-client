@@ -15,7 +15,9 @@ Versions follow `info.version` in `openapi.json`, so a backend release that bump
 1. Update the spec and regenerate, from `npm/`:
     - `pnpm generate:live` fetches the live spec into `openapi.json`, regenerates `src/api/generated` and syncs `package.json` to the spec version, or
     - drop a spec into `openapi.json` yourself and run `pnpm generate && pnpm sync-version`.
-2. Open a pull request. CI checks that the committed generated code matches the spec, then typechecks, lints, builds and tests.
+
+    `pnpm generate` formats `openapi.json` with prettier, so a spec diff only shows real API changes.
+2. Open a pull request. CI checks that the committed spec is formatted and the generated code and version match it, then typechecks, lints, builds and tests.
 3. Merge. If the version in `npm/package.json` is not on npm yet, the publish workflow publishes it with provenance and creates a `npm-v<version>` GitHub release. Nothing is published when the version already exists.
 
 Publishing authenticates with npm Trusted Publishing (OIDC), configured on npmjs.com for this repository and the `publish-npm.yml` workflow. No npm token is stored in GitHub.
