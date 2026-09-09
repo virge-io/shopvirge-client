@@ -138,19 +138,19 @@ export type CategoryCreate = {
     icon?: string | null;
     order_number?: number | null;
     translation: CategoryTranslationBase;
-    main_image:
+    main_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt1_image:
+    alt1_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt2_image:
+    alt2_image?:
         | {
               [key: string]: unknown;
           }
@@ -168,19 +168,19 @@ export type CategorySchema = {
     icon?: string | null;
     order_number?: number | null;
     translation: CategoryTranslationBase;
-    main_image:
+    main_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt1_image:
+    alt1_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt2_image:
+    alt2_image?:
         | {
               [key: string]: unknown;
           }
@@ -198,25 +198,34 @@ export type CategoryTranslationBase = {
     alt2_description?: string | null;
 };
 
+export type CategoryTranslationUpdate = {
+    main_name?: string | null;
+    main_description?: string | null;
+    alt1_name?: string | null;
+    alt1_description?: string | null;
+    alt2_name?: string | null;
+    alt2_description?: string | null;
+};
+
 export type CategoryUpdate = {
-    shop_id: string;
-    color: string;
+    shop_id?: string | null;
+    color?: string | null;
     icon?: string | null;
     order_number?: number | null;
-    translation: CategoryTranslationBase;
-    main_image:
+    translation?: CategoryTranslationUpdate | null;
+    main_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt1_image:
+    alt1_image?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    alt2_image:
+    alt2_image?:
         | {
               [key: string]: unknown;
           }
@@ -431,32 +440,30 @@ export type LinkStripeBody = {
     stripe_customer_id: string;
 };
 
+export type MailTestRequest = {
+    to?: string;
+    shop_name?: string;
+    owner_email?: string | null;
+};
+
+export type MailTestResponse = {
+    sent_to_customer: string;
+    sent_to_owner: string | null;
+    customer_order_id: number;
+};
+
 export type MyShopsResponse = {
     shops: Array<ShopSchema>;
     is_admin: boolean;
     can_write: boolean;
 };
 
-export type OrderBase = {
-    account_id?: string | null;
-    total: number | string | null;
-    notes: string | null;
-    customer_order_id: number | null;
-    status: string | null;
-    shipping_fee_inc_btw?: number | string | null;
-};
-
 export type OrderCreate = {
-    account_id?: string | null;
-    total: number | string | null;
-    notes: string | null;
-    customer_order_id: number | null;
-    status: string | null;
-    shipping_fee_inc_btw?: number | string | null;
     shop_id: string;
-    order_info: Array<OrderItem_Input>;
-    completed_at?: string | null;
+    order_info: Array<OrderItemCreate>;
+    account_id?: string | null;
     account_name?: string | null;
+    notes?: string | null;
 };
 
 export type OrderCreated = {
@@ -473,19 +480,45 @@ export type OrderCreated = {
 };
 
 export type OrderItem_Input = {
-    description: string | null;
+    description?: string | null;
     price: number | string;
     product_id: string;
     product_name: string;
     quantity: number;
+    plan?: 'onetime' | 'monthly' | 'yearly' | null;
 };
 
 export type OrderItem_Output = {
-    description: string | null;
+    description?: string | null;
     price: number;
     product_id: string;
     product_name: string;
     quantity: number;
+    plan?: 'onetime' | 'monthly' | 'yearly' | null;
+};
+
+export type OrderItemCreate = {
+    description?: string | null;
+    product_id: string;
+    product_name: string;
+    quantity: number;
+    plan?: 'onetime' | 'monthly' | 'yearly';
+};
+
+export type plan = 'onetime' | 'monthly' | 'yearly';
+
+export type OrderQuote = {
+    order_info: Array<OrderItem_Output>;
+    subtotal: number;
+    shipping_fee_inc_btw?: number | null;
+    free_shipping_applied?: boolean;
+    free_shipping_threshold?: number | null;
+    total: number;
+};
+
+export type OrderQuoteRequest = {
+    shop_id: string;
+    order_info: Array<OrderItemCreate>;
 };
 
 export type OrderSchema = {
@@ -504,15 +537,9 @@ export type OrderSchema = {
     shop_name: string | null;
 };
 
-export type OrderUpdate = {
-    account_id?: string | null;
-    total: number | string | null;
-    notes: string | null;
-    customer_order_id: number | null;
-    status: string | null;
-    shipping_fee_inc_btw?: number | string | null;
-    shop_id: string;
-    order_info: Array<OrderItem_Input>;
+export type OrderStatusUpdate = {
+    status?: string | null;
+    notes?: string | null;
 };
 
 export type OrderUpdated = {
@@ -578,6 +605,9 @@ export type ProductAttributeValueSchema = {
 export type ProductCreate = {
     shop_id: string;
     category_id?: string | null;
+    /**
+     * Unit price excluding VAT. Gross = price * (1 + tax_category rate).
+     */
     price?: number | string | null;
     recurring_price_monthly?: number | string | null;
     recurring_price_yearly?: number | string | null;
@@ -593,43 +623,43 @@ export type ProductCreate = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1:
+    image_1?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_2:
+    image_2?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_3:
+    image_3?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_4:
+    image_4?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_5:
+    image_5?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_6:
+    image_6?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    translation: ProductTranslationBase;
+    translation: ProductTranslationCreate;
 };
 
 export type ProductResponse = {
@@ -698,61 +728,88 @@ export type ProductTranslationBase = {
     alt2_description_short?: string | null;
 };
 
+export type ProductTranslationCreate = {
+    main_name: string;
+    main_description: string;
+    main_description_short: string;
+    alt1_name?: string | null;
+    alt1_description?: string | null;
+    alt1_description_short?: string | null;
+    alt2_name?: string | null;
+    alt2_description?: string | null;
+    alt2_description_short?: string | null;
+};
+
+export type ProductTranslationUpdate = {
+    main_name?: string | null;
+    main_description?: string | null;
+    main_description_short?: string | null;
+    alt1_name?: string | null;
+    alt1_description?: string | null;
+    alt1_description_short?: string | null;
+    alt2_name?: string | null;
+    alt2_description?: string | null;
+    alt2_description_short?: string | null;
+};
+
 export type ProductUpdate = {
-    shop_id: string;
+    shop_id?: string | null;
     category_id?: string | null;
+    /**
+     * Unit price excluding VAT. Gross = price * (1 + tax_category rate).
+     */
     price?: number | string | null;
     recurring_price_monthly?: number | string | null;
     recurring_price_yearly?: number | string | null;
-    max_one: boolean;
-    shippable: boolean;
+    max_one?: boolean | null;
+    shippable?: boolean | null;
     digital?: string | null;
-    featured: boolean;
-    new_product: boolean;
-    tax_category: string;
+    featured?: boolean | null;
+    new_product?: boolean | null;
+    tax_category?: string | null;
     discounted_price?: number | string | null;
     discounted_from?: string | null;
     discounted_to?: string | null;
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1:
+    image_1?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_2:
+    image_2?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_3:
+    image_3?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_4:
+    image_4?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_5:
+    image_5?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_6:
+    image_6?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    translation: ProductTranslationBase;
+    translation?: ProductTranslationUpdate | null;
     modified_at?: string | null;
 };
 
@@ -767,6 +824,9 @@ export type ProductWithAttributes = {
 export type ProductWithDefaultPrice = {
     shop_id: string;
     category_id?: string | null;
+    /**
+     * Unit price excluding VAT. Gross = price * (1 + tax_category rate).
+     */
     price?: number | null;
     recurring_price_monthly?: number | null;
     recurring_price_yearly?: number | null;
@@ -782,37 +842,37 @@ export type ProductWithDefaultPrice = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1:
+    image_1?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_2:
+    image_2?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_3:
+    image_3?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_4:
+    image_4?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_5:
+    image_5?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_6:
+    image_6?:
         | {
               [key: string]: unknown;
           }
@@ -830,6 +890,9 @@ export type ProductWithDefaultPrice = {
 export type ProductWithDetailsAndPrices = {
     shop_id: string;
     category_id?: string | null;
+    /**
+     * Unit price excluding VAT. Gross = price * (1 + tax_category rate).
+     */
     price?: number | null;
     recurring_price_monthly?: number | null;
     recurring_price_yearly?: number | null;
@@ -845,37 +908,37 @@ export type ProductWithDetailsAndPrices = {
     order_number?: number | null;
     stock?: number | null;
     sku?: string | null;
-    image_1:
+    image_1?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_2:
+    image_2?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_3:
+    image_3?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_4:
+    image_4?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_5:
+    image_5?:
         | {
               [key: string]: unknown;
           }
         | string
         | null;
-    image_6:
+    image_6?:
         | {
               [key: string]: unknown;
           }
@@ -1321,19 +1384,6 @@ export type GetByIdShopsIdGetData = {
 
 export type GetByIdShopsIdGetResponse = ShopWithPrices;
 
-export type UpdateShopsShopIdPutData = {
-    requestBody: ShopUpdate;
-    shopId: string;
-};
-
-export type UpdateShopsShopIdPutResponse = ShopSchema;
-
-export type DeleteShopsShopIdDeleteData = {
-    shopId: string;
-};
-
-export type DeleteShopsShopIdDeleteResponse = void;
-
 export type GetConfigShopsConfigIdGetData = {
     id: string;
 };
@@ -1346,6 +1396,19 @@ export type UpdateConfigShopsConfigIdPutData = {
 };
 
 export type UpdateConfigShopsConfigIdPutResponse = ShopConfigUpdate_Output;
+
+export type UpdateShopsShopIdPutData = {
+    requestBody: ShopUpdate;
+    shopId: string;
+};
+
+export type UpdateShopsShopIdPutResponse = ShopSchema;
+
+export type DeleteShopsShopIdDeleteData = {
+    shopId: string;
+};
+
+export type DeleteShopsShopIdDeleteResponse = void;
 
 export type GetAllowedIpsShopsAllowedIpsIdGetData = {
     id: string;
@@ -1404,7 +1467,7 @@ export type CreateOrdersPostData = {
 
 export type CreateOrdersPostResponse = OrderCreated;
 
-export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData = {
+export type ListPendingOrdersData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1416,12 +1479,12 @@ export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse =
-    Array<OrderSchema>;
+export type ListPendingOrdersResponse = Array<OrderSchema>;
 
-export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData = {
+export type ListCompleteOrdersData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -1433,10 +1496,10 @@ export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse =
-    Array<OrderSchema>;
+export type ListCompleteOrdersResponse = Array<OrderSchema>;
 
 export type GetByIdOrdersIdGetData = {
     id: string;
@@ -1450,16 +1513,22 @@ export type CheckOrdersCheckIdsGetData = {
 
 export type CheckOrdersCheckIdsGetResponse = Array<OrderCreated>;
 
+export type QuoteOrdersQuotePostData = {
+    requestBody: OrderQuoteRequest;
+};
+
+export type QuoteOrdersQuotePostResponse = OrderQuote;
+
 export type PatchOrdersOrderIdPatchData = {
     orderId: string;
-    requestBody: OrderBase;
+    requestBody: OrderStatusUpdate;
 };
 
 export type PatchOrdersOrderIdPatchResponse = OrderUpdated;
 
 export type UpdateOrdersOrderIdPutData = {
     orderId: string;
-    requestBody: OrderUpdate;
+    requestBody: OrderStatusUpdate;
 };
 
 export type UpdateOrdersOrderIdPutResponse = OrderUpdated;
@@ -1596,6 +1665,7 @@ export type GetMultiShopsShopIdCategoriesImagesGetData = {
      */
     filter?: Array<string>;
     limit?: number;
+    shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
@@ -1607,6 +1677,7 @@ export type GetMultiShopsShopIdCategoriesImagesGetResponse = unknown;
 
 export type GetByIdShopsShopIdCategoriesImagesIdGetData = {
     id: string;
+    shopId: string;
 };
 
 export type GetByIdShopsShopIdCategoriesImagesIdGetResponse = unknown;
@@ -1614,6 +1685,7 @@ export type GetByIdShopsShopIdCategoriesImagesIdGetResponse = unknown;
 export type PutShopsShopIdCategoriesImagesIdPutData = {
     id: string;
     requestBody: CategoryUpdate;
+    shopId: string;
 };
 
 export type PutShopsShopIdCategoriesImagesIdPutResponse = unknown;
@@ -1621,6 +1693,7 @@ export type PutShopsShopIdCategoriesImagesIdPutResponse = unknown;
 export type DeleteImageShopsShopIdCategoriesImagesDeleteIdPutData = {
     id: string;
     requestBody: CategoryImageDelete;
+    shopId: string;
 };
 
 export type DeleteImageShopsShopIdCategoriesImagesDeleteIdPutResponse = unknown;
@@ -1725,63 +1798,71 @@ export type SwapShopsShopIdProductsProductIdSwapPutData = {
 
 export type SwapShopsShopIdProductsProductIdSwapPutResponse = unknown;
 
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData =
-    {
-        productId: string;
-        shopId: string;
-    };
+export type GetProductAttributesData = {
+    productId: string;
+    shopId: string;
+};
 
-export type GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse =
-    ProductWithAttributes;
+export type GetProductAttributesResponse = ProductWithAttributes;
 
-export type GetMultiShopsShopIdProductsToTagsGetData = {
+export type ListProductToTagsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
     filter?: Array<string>;
     limit?: number;
+    shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type GetMultiShopsShopIdProductsToTagsGetResponse =
-    Array<ProductToTagSchema>;
+export type ListProductToTagsResponse = Array<ProductToTagSchema>;
 
-export type CreateShopsShopIdProductsToTagsPostData = {
+export type CreateProductToTagData = {
     requestBody: ProductToTagCreate;
+    shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateShopsShopIdProductsToTagsPostResponse = void;
+export type CreateProductToTagResponse = void;
 
-export type GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData = {
+export type GetProductToTagRelationIdData = {
     productId: string;
+    shopId: string;
     tagId: string;
+    xApiKey?: string | null;
 };
 
-export type GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse =
-    unknown;
+export type GetProductToTagRelationIdResponse = unknown;
 
-export type GetByIdShopsShopIdProductsToTagsIdGetData = {
+export type GetProductToTagData = {
     id: string;
+    shopId: string;
+    xApiKey?: string | null;
 };
 
-export type GetByIdShopsShopIdProductsToTagsIdGetResponse = ProductToTagSchema;
+export type GetProductToTagResponse = ProductToTagSchema;
 
-export type UpdateShopsShopIdProductsToTagsProductToTagIdPutData = {
+export type UpdateProductToTagData = {
     productToTagId: string;
     requestBody: ProductToTagUpdate;
+    shopId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse = void;
+export type UpdateProductToTagResponse = void;
 
-export type DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData = {
+export type DeleteProductToTagData = {
     productToTagId: string;
+    shopId: string;
+    xApiKey?: string | null;
 };
 
-export type DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse = void;
+export type DeleteProductToTagResponse = void;
 
 export type ListShopRevisionsData = {
     /**
@@ -2124,7 +2205,7 @@ export type RevokeShopsShopIdApiKeysKeyIdDeleteData = {
 
 export type RevokeShopsShopIdApiKeysKeyIdDeleteResponse = void;
 
-export type ListOptionsForShopShopsShopIdAttributeOptionsGetData = {
+export type ListAttributeOptionsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
      */
@@ -2136,47 +2217,47 @@ export type ListOptionsForShopShopsShopIdAttributeOptionsGetData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
-export type ListOptionsForShopShopsShopIdAttributeOptionsGetResponse =
-    Array<AttributeOptionSchema>;
+export type ListAttributeOptionsResponse = Array<AttributeOptionSchema>;
 
-export type CreateOptionV2ShopsShopIdAttributeOptionsPostData = {
+export type CreateAttributeOptionData = {
     requestBody: AttributeOptionCreate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type CreateOptionV2ShopsShopIdAttributeOptionsPostResponse =
-    AttributeOptionSchema;
+export type CreateAttributeOptionResponse = AttributeOptionSchema;
 
-export type GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData = {
+export type GetAttributeOptionData = {
     optionId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse =
-    AttributeOptionSchema;
+export type GetAttributeOptionResponse = AttributeOptionSchema;
 
-export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData = {
+export type UpdateAttributeOptionData = {
     optionId: string;
     requestBody: AttributeOptionUpdate;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse =
-    AttributeOptionSchema;
+export type UpdateAttributeOptionResponse = AttributeOptionSchema;
 
-export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData = {
+export type DeleteAttributeOptionData = {
     /**
      * Permanently purge instead of moving to trash. Irreversible.
      */
     force?: boolean;
     optionId: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse =
-    void;
+export type DeleteAttributeOptionResponse = void;
 
 export type ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData = {
     attributeId: string;
@@ -2242,6 +2323,7 @@ export type ProductAttributeValuesListData = {
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
      */
     sort?: Array<string>;
+    xApiKey?: string | null;
 };
 
 export type ProductAttributeValuesListResponse =
@@ -2250,6 +2332,7 @@ export type ProductAttributeValuesListResponse =
 export type ProductAttributeValuesCreateDeprecatedData = {
     requestBody: ProductAttributeValueBase;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type ProductAttributeValuesCreateDeprecatedResponse = unknown;
@@ -2257,6 +2340,7 @@ export type ProductAttributeValuesCreateDeprecatedResponse = unknown;
 export type ProductAttributeValuesGetData = {
     id: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type ProductAttributeValuesGetResponse = ProductAttributeValueSchema;
@@ -2264,22 +2348,25 @@ export type ProductAttributeValuesGetResponse = ProductAttributeValueSchema;
 export type ProductAttributeValuesDeleteData = {
     id: string;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type ProductAttributeValuesDeleteResponse = void;
 
-export type ProductAttributeValuesCreateForProductData = {
+export type AddProductAttributeOptionsData = {
     productId: string;
     requestBody: ProductAttributeOptionSelectionAdd;
     shopId: string;
+    xApiKey?: string | null;
 };
 
-export type ProductAttributeValuesCreateForProductResponse = unknown;
+export type AddProductAttributeOptionsResponse = unknown;
 
 export type ProductAttributeValuesReplaceForProductData = {
     productId: string;
     requestBody: ProductAttributeOptionSelectionReplace;
     shopId: string;
+    xApiKey?: string | null;
 };
 
 export type ProductAttributeValuesReplaceForProductResponse = void;
@@ -2290,6 +2377,7 @@ export type GetMultiShopsShopIdAccountsGetData = {
      */
     filter?: Array<string>;
     limit?: number;
+    shopId: string;
     skip?: number;
     /**
      * The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
@@ -2301,12 +2389,14 @@ export type GetMultiShopsShopIdAccountsGetResponse = Array<AccountSchema>;
 
 export type CreateShopsShopIdAccountsPostData = {
     requestBody: AccountCreate;
+    shopId: string;
 };
 
 export type CreateShopsShopIdAccountsPostResponse = unknown;
 
 export type GetByIdShopsShopIdAccountsIdGetData = {
     id: string;
+    shopId: string;
 };
 
 export type GetByIdShopsShopIdAccountsIdGetResponse = AccountSchema;
@@ -2314,33 +2404,36 @@ export type GetByIdShopsShopIdAccountsIdGetResponse = AccountSchema;
 export type UpdateShopsShopIdAccountsAccountIdPutData = {
     accountId: string;
     requestBody: AccountUpdate;
+    shopId: string;
 };
 
 export type UpdateShopsShopIdAccountsAccountIdPutResponse = unknown;
 
 export type DeleteShopsShopIdAccountsAccountIdDeleteData = {
     accountId: string;
+    shopId: string;
 };
 
 export type DeleteShopsShopIdAccountsAccountIdDeleteResponse = void;
 
 export type CreatePaymentIntentShopsShopIdStripePostData = {
-    accountId: string;
-    price: number;
+    orderId: string;
     shopId: string;
 };
 
-export type CreatePaymentIntentShopsShopIdStripePostResponse = unknown;
+export type CreatePaymentIntentShopsShopIdStripePostResponse = {
+    [key: string]: string;
+};
 
 export type CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData = {
-    accountId: string;
-    requestBody: Array<string>;
+    orderId: string;
     shopId: string;
-    yearly?: boolean;
 };
 
 export type CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostResponse =
-    unknown;
+    {
+        [key: string]: string;
+    };
 
 export type CancelSubscriptionShopsShopIdStripeSubscriptionSubscriptionIdDeleteData =
     {
@@ -2420,6 +2513,13 @@ export type DeleteFaqFaqIdDeleteData = {
 };
 
 export type DeleteFaqFaqIdDeleteResponse = void;
+
+export type SendTestOrderConfirmationMailTestSendOrderConfirmationPostData = {
+    requestBody?: MailTestRequest;
+};
+
+export type SendTestOrderConfirmationMailTestSendOrderConfirmationPostResponse =
+    MailTestResponse;
 
 export type $OpenApiTs = {
     '/health/': {
@@ -2835,34 +2935,6 @@ export type $OpenApiTs = {
             };
         };
     };
-    '/shops/{shop_id}': {
-        put: {
-            req: UpdateShopsShopIdPutData;
-            res: {
-                /**
-                 * Successful Response
-                 */
-                201: ShopSchema;
-                /**
-                 * Validation Error
-                 */
-                422: HTTPValidationError;
-            };
-        };
-        delete: {
-            req: DeleteShopsShopIdDeleteData;
-            res: {
-                /**
-                 * Successful Response
-                 */
-                204: void;
-                /**
-                 * Validation Error
-                 */
-                422: HTTPValidationError;
-            };
-        };
-    };
     '/shops/config/{id}': {
         get: {
             req: GetConfigShopsConfigIdGetData;
@@ -2884,6 +2956,34 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 201: ShopConfigUpdate_Output;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}': {
+        put: {
+            req: UpdateShopsShopIdPutData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                201: ShopSchema;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+        delete: {
+            req: DeleteShopsShopIdDeleteData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                204: void;
                 /**
                  * Validation Error
                  */
@@ -2992,7 +3092,7 @@ export type $OpenApiTs = {
     };
     '/orders/shop/{shop_id}/pending': {
         get: {
-            req: ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData;
+            req: ListPendingOrdersData;
             res: {
                 /**
                  * Successful Response
@@ -3007,7 +3107,7 @@ export type $OpenApiTs = {
     };
     '/orders/shop/{shop_id}/complete': {
         get: {
-            req: ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData;
+            req: ListCompleteOrdersData;
             res: {
                 /**
                  * Successful Response
@@ -3043,6 +3143,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 200: Array<OrderCreated>;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/orders/quote': {
+        post: {
+            req: QuoteOrdersQuotePostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: OrderQuote;
                 /**
                  * Validation Error
                  */
@@ -3424,7 +3539,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products/{product_id}/with_attributes': {
         get: {
-            req: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData;
+            req: GetProductAttributesData;
             res: {
                 /**
                  * Successful Response
@@ -3439,7 +3554,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products-to-tags/': {
         get: {
-            req: GetMultiShopsShopIdProductsToTagsGetData;
+            req: ListProductToTagsData;
             res: {
                 /**
                  * Successful Response
@@ -3452,7 +3567,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateShopsShopIdProductsToTagsPostData;
+            req: CreateProductToTagData;
             res: {
                 /**
                  * Successful Response
@@ -3467,7 +3582,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products-to-tags/get_relation_id': {
         get: {
-            req: GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData;
+            req: GetProductToTagRelationIdData;
             res: {
                 /**
                  * Successful Response
@@ -3482,7 +3597,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products-to-tags/{id}': {
         get: {
-            req: GetByIdShopsShopIdProductsToTagsIdGetData;
+            req: GetProductToTagData;
             res: {
                 /**
                  * Successful Response
@@ -3497,7 +3612,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/products-to-tags/{product_to_tag_id}': {
         put: {
-            req: UpdateShopsShopIdProductsToTagsProductToTagIdPutData;
+            req: UpdateProductToTagData;
             res: {
                 /**
                  * Successful Response
@@ -3510,7 +3625,7 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData;
+            req: DeleteProductToTagData;
             res: {
                 /**
                  * Successful Response
@@ -3993,7 +4108,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/attribute-options/': {
         get: {
-            req: ListOptionsForShopShopsShopIdAttributeOptionsGetData;
+            req: ListAttributeOptionsData;
             res: {
                 /**
                  * Successful Response
@@ -4006,7 +4121,7 @@ export type $OpenApiTs = {
             };
         };
         post: {
-            req: CreateOptionV2ShopsShopIdAttributeOptionsPostData;
+            req: CreateAttributeOptionData;
             res: {
                 /**
                  * Successful Response
@@ -4021,7 +4136,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/attribute-options/{option_id}': {
         get: {
-            req: GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData;
+            req: GetAttributeOptionData;
             res: {
                 /**
                  * Successful Response
@@ -4034,7 +4149,7 @@ export type $OpenApiTs = {
             };
         };
         put: {
-            req: UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData;
+            req: UpdateAttributeOptionData;
             res: {
                 /**
                  * Successful Response
@@ -4047,7 +4162,7 @@ export type $OpenApiTs = {
             };
         };
         delete: {
-            req: DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData;
+            req: DeleteAttributeOptionData;
             res: {
                 /**
                  * Successful Response
@@ -4174,7 +4289,7 @@ export type $OpenApiTs = {
     };
     '/shops/{shop_id}/product-attribute-values/{product_id}': {
         post: {
-            req: ProductAttributeValuesCreateForProductData;
+            req: AddProductAttributeOptionsData;
             res: {
                 /**
                  * Successful Response
@@ -4278,7 +4393,9 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                201: unknown;
+                201: {
+                    [key: string]: string;
+                };
                 /**
                  * Validation Error
                  */
@@ -4293,7 +4410,9 @@ export type $OpenApiTs = {
                 /**
                  * Successful Response
                  */
-                201: unknown;
+                201: {
+                    [key: string]: string;
+                };
                 /**
                  * Validation Error
                  */
@@ -4440,6 +4559,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 204: void;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/mail-test/send-order-confirmation': {
+        post: {
+            req: SendTestOrderConfirmationMailTestSendOrderConfirmationPostData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: MailTestResponse;
                 /**
                  * Validation Error
                  */
