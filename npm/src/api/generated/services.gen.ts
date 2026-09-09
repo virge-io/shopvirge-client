@@ -51,14 +51,14 @@ import type {
     GetLastPendingOrderShopsLastPendingOrderIdGetResponse,
     GetByIdShopsIdGetData,
     GetByIdShopsIdGetResponse,
-    UpdateShopsShopIdPutData,
-    UpdateShopsShopIdPutResponse,
-    DeleteShopsShopIdDeleteData,
-    DeleteShopsShopIdDeleteResponse,
     GetConfigShopsConfigIdGetData,
     GetConfigShopsConfigIdGetResponse,
     UpdateConfigShopsConfigIdPutData,
     UpdateConfigShopsConfigIdPutResponse,
+    UpdateShopsShopIdPutData,
+    UpdateShopsShopIdPutResponse,
+    DeleteShopsShopIdDeleteData,
+    DeleteShopsShopIdDeleteResponse,
     GetAllowedIpsShopsAllowedIpsIdGetData,
     GetAllowedIpsShopsAllowedIpsIdGetResponse,
     AddNewIpShopsAllowedIpsIdPostData,
@@ -73,14 +73,16 @@ import type {
     GetMultiOrdersGetResponse,
     CreateOrdersPostData,
     CreateOrdersPostResponse,
-    ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData,
-    ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse,
-    ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData,
-    ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse,
+    ListPendingOrdersData,
+    ListPendingOrdersResponse,
+    ListCompleteOrdersData,
+    ListCompleteOrdersResponse,
     GetByIdOrdersIdGetData,
     GetByIdOrdersIdGetResponse,
     CheckOrdersCheckIdsGetData,
     CheckOrdersCheckIdsGetResponse,
+    QuoteOrdersQuotePostData,
+    QuoteOrdersQuotePostResponse,
     PatchOrdersOrderIdPatchData,
     PatchOrdersOrderIdPatchResponse,
     UpdateOrdersOrderIdPutData,
@@ -133,20 +135,20 @@ import type {
     GetProductResponse,
     SwapShopsShopIdProductsProductIdSwapPutData,
     SwapShopsShopIdProductsProductIdSwapPutResponse,
-    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
-    GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse,
-    GetMultiShopsShopIdProductsToTagsGetData,
-    GetMultiShopsShopIdProductsToTagsGetResponse,
-    CreateShopsShopIdProductsToTagsPostData,
-    CreateShopsShopIdProductsToTagsPostResponse,
-    GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData,
-    GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse,
-    GetByIdShopsShopIdProductsToTagsIdGetData,
-    GetByIdShopsShopIdProductsToTagsIdGetResponse,
-    UpdateShopsShopIdProductsToTagsProductToTagIdPutData,
-    UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse,
-    DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData,
-    DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse,
+    GetProductAttributesData,
+    GetProductAttributesResponse,
+    ListProductToTagsData,
+    ListProductToTagsResponse,
+    CreateProductToTagData,
+    CreateProductToTagResponse,
+    GetProductToTagRelationIdData,
+    GetProductToTagRelationIdResponse,
+    GetProductToTagData,
+    GetProductToTagResponse,
+    UpdateProductToTagData,
+    UpdateProductToTagResponse,
+    DeleteProductToTagData,
+    DeleteProductToTagResponse,
     ListShopRevisionsData,
     ListShopRevisionsResponse,
     GetRevisionData,
@@ -211,16 +213,16 @@ import type {
     ListKeysShopsShopIdApiKeysGetResponse,
     RevokeShopsShopIdApiKeysKeyIdDeleteData,
     RevokeShopsShopIdApiKeysKeyIdDeleteResponse,
-    ListOptionsForShopShopsShopIdAttributeOptionsGetData,
-    ListOptionsForShopShopsShopIdAttributeOptionsGetResponse,
-    CreateOptionV2ShopsShopIdAttributeOptionsPostData,
-    CreateOptionV2ShopsShopIdAttributeOptionsPostResponse,
-    GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData,
-    GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse,
-    UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData,
-    UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse,
-    DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData,
-    DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse,
+    ListAttributeOptionsData,
+    ListAttributeOptionsResponse,
+    CreateAttributeOptionData,
+    CreateAttributeOptionResponse,
+    GetAttributeOptionData,
+    GetAttributeOptionResponse,
+    UpdateAttributeOptionData,
+    UpdateAttributeOptionResponse,
+    DeleteAttributeOptionData,
+    DeleteAttributeOptionResponse,
     ListOptionsShopsShopIdAttributesAttributeIdOptionsGetData,
     ListOptionsShopsShopIdAttributesAttributeIdOptionsGetResponse,
     CreateOptionShopsShopIdAttributesAttributeIdOptionsPostData,
@@ -237,8 +239,8 @@ import type {
     ProductAttributeValuesGetResponse,
     ProductAttributeValuesDeleteData,
     ProductAttributeValuesDeleteResponse,
-    ProductAttributeValuesCreateForProductData,
-    ProductAttributeValuesCreateForProductResponse,
+    AddProductAttributeOptionsData,
+    AddProductAttributeOptionsResponse,
     ProductAttributeValuesReplaceForProductData,
     ProductAttributeValuesReplaceForProductResponse,
     GetMultiShopsShopIdAccountsGetData,
@@ -275,6 +277,8 @@ import type {
     UpdateFaqFaqIdPutResponse,
     DeleteFaqFaqIdDeleteData,
     DeleteFaqFaqIdDeleteResponse,
+    SendTestOrderConfirmationMailTestSendOrderConfirmationPostData,
+    SendTestOrderConfirmationMailTestSendOrderConfirmationPostResponse,
 } from './types.gen';
 
 /**
@@ -879,55 +883,6 @@ export const getByIdShopsIdGet = (
 };
 
 /**
- * Update shop
- * Update shop details such as name, description, and VAT rates.
- * @param data The data for the request.
- * @param data.shopId
- * @param data.requestBody
- * @returns ShopSchema Successful Response
- * @throws ApiError
- */
-export const updateShopsShopIdPut = (
-    data: UpdateShopsShopIdPutData,
-): CancelablePromise<UpdateShopsShopIdPutResponse> => {
-    return __request(OpenAPI, {
-        method: 'PUT',
-        url: '/shops/{shop_id}',
-        path: {
-            shop_id: data.shopId,
-        },
-        body: data.requestBody,
-        mediaType: 'application/json',
-        errors: {
-            422: 'Validation Error',
-        },
-    });
-};
-
-/**
- * Delete shop
- * Permanently remove a shop from the platform.
- * @param data The data for the request.
- * @param data.shopId
- * @returns void Successful Response
- * @throws ApiError
- */
-export const deleteShopsShopIdDelete = (
-    data: DeleteShopsShopIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdDeleteResponse> => {
-    return __request(OpenAPI, {
-        method: 'DELETE',
-        url: '/shops/{shop_id}',
-        path: {
-            shop_id: data.shopId,
-        },
-        errors: {
-            422: 'Validation Error',
-        },
-    });
-};
-
-/**
  * Get shop configuration
  * Retrieve the shop's full configuration object, including feature toggles (e.g. stock tracking, checkout behaviour) and payment settings.
  * @param data The data for the request.
@@ -970,6 +925,55 @@ export const updateConfigShopsConfigIdPut = (
         },
         body: data.requestBody,
         mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Update shop
+ * Update shop details such as name, description, and VAT rates.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.requestBody
+ * @returns ShopSchema Successful Response
+ * @throws ApiError
+ */
+export const updateShopsShopIdPut = (
+    data: UpdateShopsShopIdPutData,
+): CancelablePromise<UpdateShopsShopIdPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Delete shop
+ * Permanently remove a shop from the platform.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @returns void Successful Response
+ * @throws ApiError
+ */
+export const deleteShopsShopIdDelete = (
+    data: DeleteShopsShopIdDeleteData,
+): CancelablePromise<DeleteShopsShopIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/shops/{shop_id}',
+        path: {
+            shop_id: data.shopId,
+        },
         errors: {
             422: 'Validation Error',
         },
@@ -1139,7 +1143,7 @@ export const getMultiOrdersGet = (
 
 /**
  * Create order
- * Submit a new customer order. The caller's IP is validated against the shop's allowlist. If stock tracking is enabled the product availability is verified before the order is created. A Stripe customer is auto-created for new account names when the shop has Stripe configured.
+ * Submit a new customer order. The caller's IP is validated against the shop's allowlist. Unit prices, shipping, and totals are derived server-side from the product catalogue. If stock tracking is enabled the product availability is verified before the order is created. A Stripe customer is auto-created for new account names when the shop has Stripe configured.
  * @param data The data for the request.
  * @param data.requestBody
  * @returns OrderCreated Successful Response
@@ -1161,24 +1165,28 @@ export const createOrdersPost = (
 
 /**
  * List pending orders for a shop
- * Returns all orders with status `pending` for the given shop. These are orders awaiting fulfilment.
+ * Read-only. Returns the shop's orders with status `pending` - orders awaiting fulfilment. Scoped to the shop in the path; you cannot read other shops' orders. Results include customer names and totals, so treat them as personal data. Supports pagination (`skip`/`limit`), filtering and sorting via the common query parameters. `filter` matches order fields only (status, dates, totals, etc.) and does NOT match customer name or email - to find a customer's orders, list the shop's orders and match on `account_name` client-side.
  * @param data The data for the request.
  * @param data.shopId
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const showAllPendingOrdersPerShopOrdersShopShopIdPendingGet = (
-    data: ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetData,
-): CancelablePromise<ShowAllPendingOrdersPerShopOrdersShopShopIdPendingGetResponse> => {
+export const listPendingOrders = (
+    data: ListPendingOrdersData,
+): CancelablePromise<ListPendingOrdersResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/orders/shop/{shop_id}/pending',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -1194,24 +1202,28 @@ export const showAllPendingOrdersPerShopOrdersShopShopIdPendingGet = (
 
 /**
  * List completed orders for a shop
- * Returns all orders with status `complete` or `cancelled` for the given shop. Used for order history and reporting.
+ * Read-only. Returns the shop's orders with status `complete` or `cancelled` - the order history, useful for reporting. Scoped to the shop in the path; you cannot read other shops' orders. Results include customer names and totals, so treat them as personal data. Supports pagination (`skip`/`limit`), filtering and sorting via the common query parameters. `filter` matches order fields only (status, dates, totals, etc.) and does NOT match customer name or email - to find a customer's orders, list the shop's orders and match on `account_name` client-side.
  * @param data The data for the request.
  * @param data.shopId
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns OrderSchema Successful Response
  * @throws ApiError
  */
-export const showAllCompleteOrdersPerShopOrdersShopShopIdCompleteGet = (
-    data: ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetData,
-): CancelablePromise<ShowAllCompleteOrdersPerShopOrdersShopShopIdCompleteGetResponse> => {
+export const listCompleteOrders = (
+    data: ListCompleteOrdersData,
+): CancelablePromise<ListCompleteOrdersResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/orders/shop/{shop_id}/complete',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -1272,6 +1284,28 @@ export const checkOrdersCheckIdsGet = (
 };
 
 /**
+ * Quote an order
+ * Calculate gross line prices, shipping, and total from product IDs, quantities, and plans.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @returns OrderQuote Successful Response
+ * @throws ApiError
+ */
+export const quoteOrdersQuotePost = (
+    data: QuoteOrdersQuotePostData,
+): CancelablePromise<QuoteOrdersQuotePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/orders/quote',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
  * Update order status
  * Partially update an order — typically to mark it `complete` or `cancelled`. Setting status to `complete` triggers stock deduction (if enabled), a Discord webhook notification, and an order confirmation email. Idempotent: setting the same status twice is a no-op.
  * @param data The data for the request.
@@ -1298,8 +1332,8 @@ export const patchOrdersOrderIdPatch = (
 };
 
 /**
- * Full order update
- * Fully replace an order's fields. Requires authentication. Also sets `completed_at` when transitioning to `complete` or `cancelled`.
+ * Update order status
+ * Update an order's status or notes. Prices, line items, and totals are immutable after creation.
  * @param data The data for the request.
  * @param data.orderId
  * @param data.requestBody
@@ -1488,7 +1522,7 @@ export const getCategory = (
 
 /**
  * Update category
- * Update an existing category's details and translations.
+ * Partially update a category. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `main_image`, `alt1_image` and `alt2_image` are S3 object filenames managed by the image-upload flow - do not set them unless explicitly given a filename.
  * @param data The data for the request.
  * @param data.categoryId
  * @param data.shopId
@@ -1696,8 +1730,9 @@ export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (
 
 /**
  * Get Multi
- * List all product category images
+ * List all product category images.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
@@ -1706,11 +1741,14 @@ export const getCategoryProductsShopsShopIdCategoriesCategoryIdProductsGet = (
  * @throws ApiError
  */
 export const getMultiShopsShopIdCategoriesImagesGet = (
-    data: GetMultiShopsShopIdCategoriesImagesGetData = {},
+    data: GetMultiShopsShopIdCategoriesImagesGetData,
 ): CancelablePromise<GetMultiShopsShopIdCategoriesImagesGetResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/categories-images/',
+        path: {
+            shop_id: data.shopId,
+        },
         query: {
             skip: data.skip,
             limit: data.limit,
@@ -1727,6 +1765,7 @@ export const getMultiShopsShopIdCategoriesImagesGet = (
  * Get By Id
  * @param data The data for the request.
  * @param data.id
+ * @param data.shopId
  * @returns unknown Successful Response
  * @throws ApiError
  */
@@ -1738,6 +1777,7 @@ export const getByIdShopsShopIdCategoriesImagesIdGet = (
         url: '/shops/{shop_id}/categories-images/{id}',
         path: {
             id: data.id,
+            shop_id: data.shopId,
         },
         errors: {
             422: 'Validation Error',
@@ -1749,6 +1789,7 @@ export const getByIdShopsShopIdCategoriesImagesIdGet = (
  * Put
  * @param data The data for the request.
  * @param data.id
+ * @param data.shopId
  * @param data.requestBody
  * @returns unknown Successful Response
  * @throws ApiError
@@ -1761,6 +1802,7 @@ export const putShopsShopIdCategoriesImagesIdPut = (
         url: '/shops/{shop_id}/categories-images/{id}',
         path: {
             id: data.id,
+            shop_id: data.shopId,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -1774,6 +1816,7 @@ export const putShopsShopIdCategoriesImagesIdPut = (
  * Delete Image
  * @param data The data for the request.
  * @param data.id
+ * @param data.shopId
  * @param data.requestBody
  * @returns unknown Successful Response
  * @throws ApiError
@@ -1786,6 +1829,7 @@ export const deleteImageShopsShopIdCategoriesImagesDeleteIdPut = (
         url: '/shops/{shop_id}/categories-images/delete/{id}',
         path: {
             id: data.id,
+            shop_id: data.shopId,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -1949,7 +1993,7 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
 
 /**
  * Update product
- * Update an existing product's details, including name, description, pricing, stock, and feature flags.
+ * Partially update a product. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `image_1`-`image_6` are S3 object filenames managed by the image-upload flow - do not set them unless explicitly given a filename.
  * @param data The data for the request.
  * @param data.productId
  * @param data.shopId
@@ -2079,40 +2123,47 @@ export const swapShopsShopIdProductsProductIdSwapPut = (
  * @returns ProductWithAttributes Successful Response
  * @throws ApiError
  */
-export const getByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGet =
-    (
-        data: GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetData,
-    ): CancelablePromise<GetByIdWithAttributesShopsShopIdProductsProductIdWithAttributesGetResponse> => {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/shops/{shop_id}/products/{product_id}/with_attributes',
-            path: {
-                product_id: data.productId,
-                shop_id: data.shopId,
-            },
-            errors: {
-                422: 'Validation Error',
-            },
-        });
-    };
+export const getProductAttributes = (
+    data: GetProductAttributesData,
+): CancelablePromise<GetProductAttributesResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/products/{product_id}/with_attributes',
+        path: {
+            product_id: data.productId,
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
 
 /**
  * List product-tag associations
  * Returns all product-to-tag relationship records for a shop.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns ProductToTagSchema Successful Response
  * @throws ApiError
  */
-export const getMultiShopsShopIdProductsToTagsGet = (
-    data: GetMultiShopsShopIdProductsToTagsGetData = {},
-): CancelablePromise<GetMultiShopsShopIdProductsToTagsGetResponse> => {
+export const listProductToTags = (
+    data: ListProductToTagsData,
+): CancelablePromise<ListProductToTagsResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/products-to-tags/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         query: {
             skip: data.skip,
             limit: data.limit,
@@ -2129,16 +2180,24 @@ export const getMultiShopsShopIdProductsToTagsGet = (
  * Add tag to product
  * Create an association between a product and a tag. Both must exist within the shop.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const createShopsShopIdProductsToTagsPost = (
-    data: CreateShopsShopIdProductsToTagsPostData,
-): CancelablePromise<CreateShopsShopIdProductsToTagsPostResponse> => {
+export const createProductToTag = (
+    data: CreateProductToTagData,
+): CancelablePromise<CreateProductToTagResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/products-to-tags/',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         body: data.requestBody,
         mediaType: 'application/json',
         errors: {
@@ -2151,17 +2210,25 @@ export const createShopsShopIdProductsToTagsPost = (
  * Get product-tag relation ID
  * Find the UUID of the association record between a specific product and tag. Returns 400 if the relation does not exist.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.tagId
  * @param data.productId
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const getRelationIdShopsShopIdProductsToTagsGetRelationIdGet = (
-    data: GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetData,
-): CancelablePromise<GetRelationIdShopsShopIdProductsToTagsGetRelationIdGetResponse> => {
+export const getProductToTagRelationId = (
+    data: GetProductToTagRelationIdData,
+): CancelablePromise<GetProductToTagRelationIdResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/products-to-tags/get_relation_id',
+        path: {
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         query: {
             tag_id: data.tagId,
             product_id: data.productId,
@@ -2177,17 +2244,23 @@ export const getRelationIdShopsShopIdProductsToTagsGetRelationIdGet = (
  * Retrieve a single product-to-tag association by its UUID.
  * @param data The data for the request.
  * @param data.id
+ * @param data.shopId
+ * @param data.xApiKey
  * @returns ProductToTagSchema Successful Response
  * @throws ApiError
  */
-export const getByIdShopsShopIdProductsToTagsIdGet = (
-    data: GetByIdShopsShopIdProductsToTagsIdGetData,
-): CancelablePromise<GetByIdShopsShopIdProductsToTagsIdGetResponse> => {
+export const getProductToTag = (
+    data: GetProductToTagData,
+): CancelablePromise<GetProductToTagResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/products-to-tags/{id}',
         path: {
             id: data.id,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -2200,18 +2273,24 @@ export const getByIdShopsShopIdProductsToTagsIdGet = (
  * Update an existing product-tag association record.
  * @param data The data for the request.
  * @param data.productToTagId
+ * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const updateShopsShopIdProductsToTagsProductToTagIdPut = (
-    data: UpdateShopsShopIdProductsToTagsProductToTagIdPutData,
-): CancelablePromise<UpdateShopsShopIdProductsToTagsProductToTagIdPutResponse> => {
+export const updateProductToTag = (
+    data: UpdateProductToTagData,
+): CancelablePromise<UpdateProductToTagResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
         path: {
             product_to_tag_id: data.productToTagId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -2226,17 +2305,23 @@ export const updateShopsShopIdProductsToTagsProductToTagIdPut = (
  * Delete the association between a product and a tag.
  * @param data The data for the request.
  * @param data.productToTagId
+ * @param data.shopId
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteShopsShopIdProductsToTagsProductToTagIdDelete = (
-    data: DeleteShopsShopIdProductsToTagsProductToTagIdDeleteData,
-): CancelablePromise<DeleteShopsShopIdProductsToTagsProductToTagIdDeleteResponse> => {
+export const deleteProductToTag = (
+    data: DeleteProductToTagData,
+): CancelablePromise<DeleteProductToTagResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/products-to-tags/{product_to_tag_id}',
         path: {
             product_to_tag_id: data.productToTagId,
+            shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -3252,17 +3337,21 @@ export const revokeShopsShopIdApiKeysKeyIdDelete = (
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const listOptionsForShopShopsShopIdAttributeOptionsGet = (
-    data: ListOptionsForShopShopsShopIdAttributeOptionsGetData,
-): CancelablePromise<ListOptionsForShopShopsShopIdAttributeOptionsGetResponse> => {
+export const listAttributeOptions = (
+    data: ListAttributeOptionsData,
+): CancelablePromise<ListAttributeOptionsResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/attribute-options/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -3282,17 +3371,21 @@ export const listOptionsForShopShopsShopIdAttributeOptionsGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const createOptionV2ShopsShopIdAttributeOptionsPost = (
-    data: CreateOptionV2ShopsShopIdAttributeOptionsPostData,
-): CancelablePromise<CreateOptionV2ShopsShopIdAttributeOptionsPostResponse> => {
+export const createAttributeOption = (
+    data: CreateAttributeOptionData,
+): CancelablePromise<CreateAttributeOptionResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/attribute-options/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -3308,18 +3401,22 @@ export const createOptionV2ShopsShopIdAttributeOptionsPost = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.optionId
+ * @param data.xApiKey
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const getOptionV2ShopsShopIdAttributeOptionsOptionIdGet = (
-    data: GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetData,
-): CancelablePromise<GetOptionV2ShopsShopIdAttributeOptionsOptionIdGetResponse> => {
+export const getAttributeOption = (
+    data: GetAttributeOptionData,
+): CancelablePromise<GetAttributeOptionResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/attribute-options/{option_id}',
         path: {
             shop_id: data.shopId,
             option_id: data.optionId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         errors: {
             422: 'Validation Error',
@@ -3334,18 +3431,22 @@ export const getOptionV2ShopsShopIdAttributeOptionsOptionIdGet = (
  * @param data.shopId
  * @param data.optionId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns AttributeOptionSchema Successful Response
  * @throws ApiError
  */
-export const updateOptionV2ShopsShopIdAttributeOptionsOptionIdPut = (
-    data: UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutData,
-): CancelablePromise<UpdateOptionV2ShopsShopIdAttributeOptionsOptionIdPutResponse> => {
+export const updateAttributeOption = (
+    data: UpdateAttributeOptionData,
+): CancelablePromise<UpdateAttributeOptionResponse> => {
     return __request(OpenAPI, {
         method: 'PUT',
         url: '/shops/{shop_id}/attribute-options/{option_id}',
         path: {
             shop_id: data.shopId,
             option_id: data.optionId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -3362,18 +3463,22 @@ export const updateOptionV2ShopsShopIdAttributeOptionsOptionIdPut = (
  * @param data.shopId
  * @param data.optionId
  * @param data.force Permanently purge instead of moving to trash. Irreversible.
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
-export const deleteOptionV2ShopsShopIdAttributeOptionsOptionIdDelete = (
-    data: DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteData,
-): CancelablePromise<DeleteOptionV2ShopsShopIdAttributeOptionsOptionIdDeleteResponse> => {
+export const deleteAttributeOption = (
+    data: DeleteAttributeOptionData,
+): CancelablePromise<DeleteAttributeOptionResponse> => {
     return __request(OpenAPI, {
         method: 'DELETE',
         url: '/shops/{shop_id}/attribute-options/{option_id}',
         path: {
             shop_id: data.shopId,
             option_id: data.optionId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             force: data.force,
@@ -3519,6 +3624,7 @@ export const deleteOptionShopsShopIdAttributesAttributeIdOptionsOptionIdDelete =
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
  * @param data.sort The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column.
+ * @param data.xApiKey
  * @returns ProductAttributeValueSchema Successful Response
  * @throws ApiError
  */
@@ -3530,6 +3636,9 @@ export const productAttributeValuesList = (
         url: '/shops/{shop_id}/product-attribute-values/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         query: {
             skip: data.skip,
@@ -3556,6 +3665,7 @@ export const productAttributeValuesList = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
@@ -3567,6 +3677,9 @@ export const productAttributeValuesCreateDeprecated = (
         url: '/shops/{shop_id}/product-attribute-values/',
         path: {
             shop_id: data.shopId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -3582,6 +3695,7 @@ export const productAttributeValuesCreateDeprecated = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.id
+ * @param data.xApiKey
  * @returns ProductAttributeValueSchema Successful Response
  * @throws ApiError
  */
@@ -3595,6 +3709,9 @@ export const productAttributeValuesGet = (
             shop_id: data.shopId,
             id: data.id,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         errors: {
             422: 'Validation Error',
         },
@@ -3607,6 +3724,7 @@ export const productAttributeValuesGet = (
  * @param data The data for the request.
  * @param data.shopId
  * @param data.id
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
@@ -3620,6 +3738,9 @@ export const productAttributeValuesDelete = (
             shop_id: data.shopId,
             id: data.id,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         errors: {
             422: 'Validation Error',
         },
@@ -3628,33 +3749,32 @@ export const productAttributeValuesDelete = (
 
 /**
  * Create product attribute values for product
- * Create new product attribute value(s) for a specific product using product_id in the URL.
+ * Assign existing attribute options to a product.
  *
- * This deprecates the old POST / endpoint that required product_id in the body.
- *
- * Notes:
- * - attribute_id is omitted; it will be inferred from option_id, as the option is already tied to an attribute_id.
- *
- * - This endpoint first validates that all option_ids belong to attributes that belong to the shop.
- * - And that these options actually exist.
- * - If everything is passed, it will create the product attribute values.
- * - Duplicates are ignored, and the endpoint returns 201 Created for each successful creation. That means no 409 is raised when a duplicate is encountered; it just won't be created.
+ * Provide the shop and product UUIDs in the path and a non-empty ``option_ids``
+ * list in the body. Each option must belong to an attribute in the same shop;
+ * its attribute is inferred automatically. Existing assignments are left intact,
+ * so repeating a request is safe and does not create duplicates.
  * @param data The data for the request.
  * @param data.shopId
  * @param data.productId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns unknown Successful Response
  * @throws ApiError
  */
-export const productAttributeValuesCreateForProduct = (
-    data: ProductAttributeValuesCreateForProductData,
-): CancelablePromise<ProductAttributeValuesCreateForProductResponse> => {
+export const addProductAttributeOptions = (
+    data: AddProductAttributeOptionsData,
+): CancelablePromise<AddProductAttributeOptionsResponse> => {
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/product-attribute-values/{product_id}',
         path: {
             shop_id: data.shopId,
             product_id: data.productId,
+        },
+        headers: {
+            'X-API-Key': data.xApiKey,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -3680,6 +3800,7 @@ export const productAttributeValuesCreateForProduct = (
  * @param data.shopId
  * @param data.productId
  * @param data.requestBody
+ * @param data.xApiKey
  * @returns void Successful Response
  * @throws ApiError
  */
@@ -3693,6 +3814,9 @@ export const productAttributeValuesReplaceForProduct = (
             shop_id: data.shopId,
             product_id: data.productId,
         },
+        headers: {
+            'X-API-Key': data.xApiKey,
+        },
         body: data.requestBody,
         mediaType: 'application/json',
         errors: {
@@ -3705,6 +3829,7 @@ export const productAttributeValuesReplaceForProduct = (
  * List accounts
  * Returns all customer accounts for a shop. Accounts are created automatically when an order is placed with a new customer name.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.skip
  * @param data.limit
  * @param data.filter This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
@@ -3713,11 +3838,14 @@ export const productAttributeValuesReplaceForProduct = (
  * @throws ApiError
  */
 export const getMultiShopsShopIdAccountsGet = (
-    data: GetMultiShopsShopIdAccountsGetData = {},
+    data: GetMultiShopsShopIdAccountsGetData,
 ): CancelablePromise<GetMultiShopsShopIdAccountsGetResponse> => {
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/accounts/',
+        path: {
+            shop_id: data.shopId,
+        },
         query: {
             skip: data.skip,
             limit: data.limit,
@@ -3734,6 +3862,7 @@ export const getMultiShopsShopIdAccountsGet = (
  * Create account
  * Manually create a new customer account for a shop.
  * @param data The data for the request.
+ * @param data.shopId
  * @param data.requestBody
  * @returns unknown Successful Response
  * @throws ApiError
@@ -3744,6 +3873,9 @@ export const createShopsShopIdAccountsPost = (
     return __request(OpenAPI, {
         method: 'POST',
         url: '/shops/{shop_id}/accounts/',
+        path: {
+            shop_id: data.shopId,
+        },
         body: data.requestBody,
         mediaType: 'application/json',
         errors: {
@@ -3757,6 +3889,7 @@ export const createShopsShopIdAccountsPost = (
  * Retrieve a single customer account by its UUID.
  * @param data The data for the request.
  * @param data.id
+ * @param data.shopId
  * @returns AccountSchema Successful Response
  * @throws ApiError
  */
@@ -3768,6 +3901,7 @@ export const getByIdShopsShopIdAccountsIdGet = (
         url: '/shops/{shop_id}/accounts/{id}',
         path: {
             id: data.id,
+            shop_id: data.shopId,
         },
         errors: {
             422: 'Validation Error',
@@ -3780,6 +3914,7 @@ export const getByIdShopsShopIdAccountsIdGet = (
  * Update an existing customer account's details.
  * @param data The data for the request.
  * @param data.accountId
+ * @param data.shopId
  * @param data.requestBody
  * @returns unknown Successful Response
  * @throws ApiError
@@ -3792,6 +3927,7 @@ export const updateShopsShopIdAccountsAccountIdPut = (
         url: '/shops/{shop_id}/accounts/{account_id}',
         path: {
             account_id: data.accountId,
+            shop_id: data.shopId,
         },
         body: data.requestBody,
         mediaType: 'application/json',
@@ -3806,6 +3942,7 @@ export const updateShopsShopIdAccountsAccountIdPut = (
  * Remove a customer account from a shop.
  * @param data The data for the request.
  * @param data.accountId
+ * @param data.shopId
  * @returns void Successful Response
  * @throws ApiError
  */
@@ -3817,6 +3954,7 @@ export const deleteShopsShopIdAccountsAccountIdDelete = (
         url: '/shops/{shop_id}/accounts/{account_id}',
         path: {
             account_id: data.accountId,
+            shop_id: data.shopId,
         },
         errors: {
             422: 'Validation Error',
@@ -3826,12 +3964,11 @@ export const deleteShopsShopIdAccountsAccountIdDelete = (
 
 /**
  * Create payment intent
- * Create a Stripe PaymentIntent for a one-time purchase. Uses the shop's own `stripe_secret_key`. The `price` is in euro cents. Returns a `clientSecret` to complete the payment on the frontend.
+ * Create a Stripe PaymentIntent for a one-time purchase. Uses the shop's own `stripe_secret_key` and the total saved on the order. Returns a `clientSecret` to complete the payment on the frontend.
  * @param data The data for the request.
  * @param data.shopId
- * @param data.price
- * @param data.accountId
- * @returns unknown Successful Response
+ * @param data.orderId
+ * @returns string Successful Response
  * @throws ApiError
  */
 export const createPaymentIntentShopsShopIdStripePost = (
@@ -3844,8 +3981,7 @@ export const createPaymentIntentShopsShopIdStripePost = (
             shop_id: data.shopId,
         },
         query: {
-            price: data.price,
-            account_id: data.accountId,
+            order_id: data.orderId,
         },
         errors: {
             422: 'Validation Error',
@@ -3855,13 +3991,11 @@ export const createPaymentIntentShopsShopIdStripePost = (
 
 /**
  * Create subscription
- * Create a Stripe Subscription for one or more products. Price lookup keys are resolved as `monthly-<product_id>` or `yearly-<product_id>`. Returns `clientSecret` and `subscriptionId` to confirm payment on the frontend.
+ * Create a Stripe Subscription using products and plan stored on an order. Price lookup keys are resolved as `monthly-<product_id>` or `yearly-<product_id>`. Returns `clientSecret` and `subscriptionId` to confirm payment on the frontend.
  * @param data The data for the request.
  * @param data.shopId
- * @param data.accountId
- * @param data.requestBody
- * @param data.yearly
- * @returns unknown Successful Response
+ * @param data.orderId
+ * @returns string Successful Response
  * @throws ApiError
  */
 export const createSubscriptionIntentShopsShopIdStripeSubscriptionPost = (
@@ -3874,11 +4008,8 @@ export const createSubscriptionIntentShopsShopIdStripeSubscriptionPost = (
             shop_id: data.shopId,
         },
         query: {
-            account_id: data.accountId,
-            yearly: data.yearly,
+            order_id: data.orderId,
         },
-        body: data.requestBody,
-        mediaType: 'application/json',
         errors: {
             422: 'Validation Error',
         },
@@ -4119,6 +4250,30 @@ export const deleteFaqFaqIdDelete = (
         path: {
             faq_id: data.faqId,
         },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Send Test Order Confirmation
+ * Send a synthetic order confirmation mail through the configured SMTP.
+ *
+ * Intended for local testing against Mailpit. Gated by settings.MAIL_TEST_ENDPOINT_ENABLED.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @returns MailTestResponse Successful Response
+ * @throws ApiError
+ */
+export const sendTestOrderConfirmationMailTestSendOrderConfirmationPost = (
+    data: SendTestOrderConfirmationMailTestSendOrderConfirmationPostData = {},
+): CancelablePromise<SendTestOrderConfirmationMailTestSendOrderConfirmationPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/mail-test/send-order-confirmation',
+        body: data.requestBody,
+        mediaType: 'application/json',
         errors: {
             422: 'Validation Error',
         },

@@ -699,14 +699,7 @@ export const $CategoryCreate = {
         },
     },
     type: 'object',
-    required: [
-        'shop_id',
-        'color',
-        'translation',
-        'main_image',
-        'alt1_image',
-        'alt2_image',
-    ],
+    required: ['shop_id', 'color', 'translation'],
     title: 'CategoryCreate',
 } as const;
 
@@ -810,15 +803,7 @@ export const $CategorySchema = {
         },
     },
     type: 'object',
-    required: [
-        'shop_id',
-        'color',
-        'translation',
-        'main_image',
-        'alt1_image',
-        'alt2_image',
-        'id',
-    ],
+    required: ['shop_id', 'color', 'translation', 'id'],
     title: 'CategorySchema',
 } as const;
 
@@ -882,15 +867,102 @@ export const $CategoryTranslationBase = {
     title: 'CategoryTranslationBase',
 } as const;
 
+export const $CategoryTranslationUpdate = {
+    properties: {
+        main_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Main Name',
+        },
+        main_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Main Description',
+        },
+        alt1_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Name',
+        },
+        alt1_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Description',
+        },
+        alt2_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Name',
+        },
+        alt2_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Description',
+        },
+    },
+    type: 'object',
+    title: 'CategoryTranslationUpdate',
+} as const;
+
 export const $CategoryUpdate = {
     properties: {
         shop_id: {
-            type: 'string',
-            format: 'uuid',
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'uuid',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Shop Id',
         },
         color: {
-            type: 'string',
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Color',
         },
         icon: {
@@ -916,7 +988,14 @@ export const $CategoryUpdate = {
             title: 'Order Number',
         },
         translation: {
-            $ref: '#/components/schemas/CategoryTranslationBase',
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/CategoryTranslationUpdate',
+                },
+                {
+                    type: 'null',
+                },
+            ],
         },
         main_image: {
             anyOf: [
@@ -965,14 +1044,6 @@ export const $CategoryUpdate = {
         },
     },
     type: 'object',
-    required: [
-        'shop_id',
-        'color',
-        'translation',
-        'main_image',
-        'alt1_image',
-        'alt2_image',
-    ],
     title: 'CategoryUpdate',
 } as const;
 
@@ -2072,6 +2143,65 @@ export const $LinkStripeBody = {
     title: 'LinkStripeBody',
 } as const;
 
+export const $MailTestRequest = {
+    properties: {
+        to: {
+            type: 'string',
+            format: 'email',
+            title: 'To',
+            default: 'customer@example.com',
+        },
+        shop_name: {
+            type: 'string',
+            title: 'Shop Name',
+            default: 'ShopVirge Dev',
+        },
+        owner_email: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'email',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Owner Email',
+        },
+    },
+    type: 'object',
+    title: 'MailTestRequest',
+} as const;
+
+export const $MailTestResponse = {
+    properties: {
+        sent_to_customer: {
+            type: 'string',
+            format: 'email',
+            title: 'Sent To Customer',
+        },
+        sent_to_owner: {
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'email',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Sent To Owner',
+        },
+        customer_order_id: {
+            type: 'integer',
+            title: 'Customer Order Id',
+        },
+    },
+    type: 'object',
+    required: ['sent_to_customer', 'sent_to_owner', 'customer_order_id'],
+    title: 'MailTestResponse',
+} as const;
+
 export const $MyShopsResponse = {
     properties: {
         shops: {
@@ -2095,166 +2225,8 @@ export const $MyShopsResponse = {
     title: 'MyShopsResponse',
 } as const;
 
-export const $OrderBase = {
-    properties: {
-        account_id: {
-            anyOf: [
-                {
-                    type: 'string',
-                    format: 'uuid',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Account Id',
-        },
-        total: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Total',
-        },
-        notes: {
-            anyOf: [
-                {
-                    type: 'string',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Notes',
-        },
-        customer_order_id: {
-            anyOf: [
-                {
-                    type: 'integer',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Customer Order Id',
-        },
-        status: {
-            anyOf: [
-                {
-                    type: 'string',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Status',
-        },
-        shipping_fee_inc_btw: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Shipping Fee Inc Btw',
-        },
-    },
-    type: 'object',
-    required: ['total', 'notes', 'customer_order_id', 'status'],
-    title: 'OrderBase',
-} as const;
-
 export const $OrderCreate = {
     properties: {
-        account_id: {
-            anyOf: [
-                {
-                    type: 'string',
-                    format: 'uuid',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Account Id',
-        },
-        total: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Total',
-        },
-        notes: {
-            anyOf: [
-                {
-                    type: 'string',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Notes',
-        },
-        customer_order_id: {
-            anyOf: [
-                {
-                    type: 'integer',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Customer Order Id',
-        },
-        status: {
-            anyOf: [
-                {
-                    type: 'string',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Status',
-        },
-        shipping_fee_inc_btw: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Shipping Fee Inc Btw',
-        },
         shop_id: {
             type: 'string',
             format: 'uuid',
@@ -2262,22 +2234,22 @@ export const $OrderCreate = {
         },
         order_info: {
             items: {
-                $ref: '#/components/schemas/OrderItem-Input',
+                $ref: '#/components/schemas/OrderItemCreate',
             },
             type: 'array',
             title: 'Order Info',
         },
-        completed_at: {
+        account_id: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'date-time',
+                    format: 'uuid',
                 },
                 {
                     type: 'null',
                 },
             ],
-            title: 'Completed At',
+            title: 'Account Id',
         },
         account_name: {
             anyOf: [
@@ -2290,16 +2262,21 @@ export const $OrderCreate = {
             ],
             title: 'Account Name',
         },
+        notes: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Notes',
+        },
     },
+    additionalProperties: false,
     type: 'object',
-    required: [
-        'total',
-        'notes',
-        'customer_order_id',
-        'status',
-        'shop_id',
-        'order_info',
-    ],
+    required: ['shop_id', 'order_info'],
     title: 'OrderCreate',
 } as const;
 
@@ -2457,15 +2434,21 @@ export const $OrderItem_Input = {
             type: 'integer',
             title: 'Quantity',
         },
+        plan: {
+            anyOf: [
+                {
+                    type: 'string',
+                    enum: ['onetime', 'monthly', 'yearly'],
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Plan',
+        },
     },
     type: 'object',
-    required: [
-        'description',
-        'price',
-        'product_id',
-        'product_name',
-        'quantity',
-    ],
+    required: ['price', 'product_id', 'product_name', 'quantity'],
     title: 'OrderItem',
 } as const;
 
@@ -2499,16 +2482,132 @@ export const $OrderItem_Output = {
             type: 'integer',
             title: 'Quantity',
         },
+        plan: {
+            anyOf: [
+                {
+                    type: 'string',
+                    enum: ['onetime', 'monthly', 'yearly'],
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Plan',
+        },
     },
     type: 'object',
-    required: [
-        'description',
-        'price',
-        'product_id',
-        'product_name',
-        'quantity',
-    ],
+    required: ['price', 'product_id', 'product_name', 'quantity'],
     title: 'OrderItem',
+} as const;
+
+export const $OrderItemCreate = {
+    properties: {
+        description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Description',
+        },
+        product_id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Product Id',
+        },
+        product_name: {
+            type: 'string',
+            title: 'Product Name',
+        },
+        quantity: {
+            type: 'integer',
+            title: 'Quantity',
+        },
+        plan: {
+            type: 'string',
+            enum: ['onetime', 'monthly', 'yearly'],
+            title: 'Plan',
+            default: 'onetime',
+        },
+    },
+    additionalProperties: false,
+    type: 'object',
+    required: ['product_id', 'product_name', 'quantity'],
+    title: 'OrderItemCreate',
+} as const;
+
+export const $OrderQuote = {
+    properties: {
+        order_info: {
+            items: {
+                $ref: '#/components/schemas/OrderItem-Output',
+            },
+            type: 'array',
+            title: 'Order Info',
+        },
+        subtotal: {
+            type: 'number',
+            title: 'Subtotal',
+        },
+        shipping_fee_inc_btw: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Shipping Fee Inc Btw',
+        },
+        free_shipping_applied: {
+            type: 'boolean',
+            title: 'Free Shipping Applied',
+            default: false,
+        },
+        free_shipping_threshold: {
+            anyOf: [
+                {
+                    type: 'number',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Free Shipping Threshold',
+        },
+        total: {
+            type: 'number',
+            title: 'Total',
+        },
+    },
+    type: 'object',
+    required: ['order_info', 'subtotal', 'total'],
+    title: 'OrderQuote',
+} as const;
+
+export const $OrderQuoteRequest = {
+    properties: {
+        shop_id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Shop Id',
+        },
+        order_info: {
+            items: {
+                $ref: '#/components/schemas/OrderItemCreate',
+            },
+            type: 'array',
+            title: 'Order Info',
+        },
+    },
+    additionalProperties: false,
+    type: 'object',
+    required: ['shop_id', 'order_info'],
+    title: 'OrderQuoteRequest',
 } as const;
 
 export const $OrderSchema = {
@@ -2653,34 +2752,18 @@ export const $OrderSchema = {
     title: 'OrderSchema',
 } as const;
 
-export const $OrderUpdate = {
+export const $OrderStatusUpdate = {
     properties: {
-        account_id: {
+        status: {
             anyOf: [
                 {
                     type: 'string',
-                    format: 'uuid',
                 },
                 {
                     type: 'null',
                 },
             ],
-            title: 'Account Id',
-        },
-        total: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Total',
+            title: 'Status',
         },
         notes: {
             anyOf: [
@@ -2693,66 +2776,10 @@ export const $OrderUpdate = {
             ],
             title: 'Notes',
         },
-        customer_order_id: {
-            anyOf: [
-                {
-                    type: 'integer',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Customer Order Id',
-        },
-        status: {
-            anyOf: [
-                {
-                    type: 'string',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Status',
-        },
-        shipping_fee_inc_btw: {
-            anyOf: [
-                {
-                    type: 'number',
-                },
-                {
-                    type: 'string',
-                    pattern: '^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$',
-                },
-                {
-                    type: 'null',
-                },
-            ],
-            title: 'Shipping Fee Inc Btw',
-        },
-        shop_id: {
-            type: 'string',
-            format: 'uuid',
-            title: 'Shop Id',
-        },
-        order_info: {
-            items: {
-                $ref: '#/components/schemas/OrderItem-Input',
-            },
-            type: 'array',
-            title: 'Order Info',
-        },
     },
+    additionalProperties: false,
     type: 'object',
-    required: [
-        'total',
-        'notes',
-        'customer_order_id',
-        'status',
-        'shop_id',
-        'order_info',
-    ],
-    title: 'OrderUpdate',
+    title: 'OrderStatusUpdate',
 } as const;
 
 export const $OrderUpdated = {
@@ -3044,6 +3071,8 @@ export const $ProductCreate = {
                 },
             ],
             title: 'Price',
+            description:
+                'Unit price excluding VAT. Gross = price * (1 + tax_category rate).',
         },
         recurring_price_monthly: {
             anyOf: [
@@ -3270,7 +3299,7 @@ export const $ProductCreate = {
             title: 'Image 6',
         },
         translation: {
-            $ref: '#/components/schemas/ProductTranslationBase',
+            $ref: '#/components/schemas/ProductTranslationCreate',
         },
     },
     type: 'object',
@@ -3281,12 +3310,6 @@ export const $ProductCreate = {
         'featured',
         'new_product',
         'tax_category',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'image_5',
-        'image_6',
         'translation',
     ],
     title: 'ProductCreate',
@@ -3731,11 +3754,210 @@ export const $ProductTranslationBase = {
     title: 'ProductTranslationBase',
 } as const;
 
+export const $ProductTranslationCreate = {
+    properties: {
+        main_name: {
+            type: 'string',
+            title: 'Main Name',
+        },
+        main_description: {
+            type: 'string',
+            title: 'Main Description',
+        },
+        main_description_short: {
+            type: 'string',
+            title: 'Main Description Short',
+        },
+        alt1_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Name',
+        },
+        alt1_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Description',
+        },
+        alt1_description_short: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Description Short',
+        },
+        alt2_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Name',
+        },
+        alt2_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Description',
+        },
+        alt2_description_short: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Description Short',
+        },
+    },
+    type: 'object',
+    required: ['main_name', 'main_description', 'main_description_short'],
+    title: 'ProductTranslationCreate',
+} as const;
+
+export const $ProductTranslationUpdate = {
+    properties: {
+        main_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Main Name',
+        },
+        main_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Main Description',
+        },
+        main_description_short: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Main Description Short',
+        },
+        alt1_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Name',
+        },
+        alt1_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Description',
+        },
+        alt1_description_short: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt1 Description Short',
+        },
+        alt2_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Name',
+        },
+        alt2_description: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Description',
+        },
+        alt2_description_short: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Alt2 Description Short',
+        },
+    },
+    type: 'object',
+    title: 'ProductTranslationUpdate',
+} as const;
+
 export const $ProductUpdate = {
     properties: {
         shop_id: {
-            type: 'string',
-            format: 'uuid',
+            anyOf: [
+                {
+                    type: 'string',
+                    format: 'uuid',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Shop Id',
         },
         category_id: {
@@ -3764,6 +3986,8 @@ export const $ProductUpdate = {
                 },
             ],
             title: 'Price',
+            description:
+                'Unit price excluding VAT. Gross = price * (1 + tax_category rate).',
         },
         recurring_price_monthly: {
             anyOf: [
@@ -3796,11 +4020,25 @@ export const $ProductUpdate = {
             title: 'Recurring Price Yearly',
         },
         max_one: {
-            type: 'boolean',
+            anyOf: [
+                {
+                    type: 'boolean',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Max One',
         },
         shippable: {
-            type: 'boolean',
+            anyOf: [
+                {
+                    type: 'boolean',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Shippable',
         },
         digital: {
@@ -3815,15 +4053,36 @@ export const $ProductUpdate = {
             title: 'Digital',
         },
         featured: {
-            type: 'boolean',
+            anyOf: [
+                {
+                    type: 'boolean',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Featured',
         },
         new_product: {
-            type: 'boolean',
+            anyOf: [
+                {
+                    type: 'boolean',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'New Product',
         },
         tax_category: {
-            type: 'string',
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
             title: 'Tax Category',
         },
         discounted_price: {
@@ -3990,7 +4249,14 @@ export const $ProductUpdate = {
             title: 'Image 6',
         },
         translation: {
-            $ref: '#/components/schemas/ProductTranslationBase',
+            anyOf: [
+                {
+                    $ref: '#/components/schemas/ProductTranslationUpdate',
+                },
+                {
+                    type: 'null',
+                },
+            ],
         },
         modified_at: {
             anyOf: [
@@ -4006,21 +4272,6 @@ export const $ProductUpdate = {
         },
     },
     type: 'object',
-    required: [
-        'shop_id',
-        'max_one',
-        'shippable',
-        'featured',
-        'new_product',
-        'tax_category',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'image_5',
-        'image_6',
-        'translation',
-    ],
     title: 'ProductUpdate',
 } as const;
 
@@ -4073,6 +4324,8 @@ export const $ProductWithDefaultPrice = {
                 },
             ],
             title: 'Price',
+            description:
+                'Unit price excluding VAT. Gross = price * (1 + tax_category rate).',
         },
         recurring_price_monthly: {
             anyOf: [
@@ -4354,12 +4607,6 @@ export const $ProductWithDefaultPrice = {
         'featured',
         'new_product',
         'tax_category',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'image_5',
-        'image_6',
         'translation',
         'id',
     ],
@@ -4395,6 +4642,8 @@ export const $ProductWithDetailsAndPrices = {
                 },
             ],
             title: 'Price',
+            description:
+                'Unit price excluding VAT. Gross = price * (1 + tax_category rate).',
         },
         recurring_price_monthly: {
             anyOf: [
@@ -4674,12 +4923,6 @@ export const $ProductWithDetailsAndPrices = {
         'featured',
         'new_product',
         'tax_category',
-        'image_1',
-        'image_2',
-        'image_3',
-        'image_4',
-        'image_5',
-        'image_6',
         'translation',
         'id',
     ],

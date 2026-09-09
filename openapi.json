@@ -3,7 +3,7 @@
     "info": {
         "title": "ShopVirge API",
         "description": "Backend for ShopVirge Shops.",
-        "version": "0.4.5"
+        "version": "0.5.0"
     },
     "paths": {
         "/health/": {
@@ -1163,91 +1163,6 @@
                 }
             }
         },
-        "/shops/{shop_id}": {
-            "put": {
-                "tags": ["shops"],
-                "summary": "Update shop",
-                "description": "Update shop details such as name, description, and VAT rates.",
-                "operationId": "update_shops__shop_id__put",
-                "security": [{ "HTTPBearer": [] }],
-                "parameters": [
-                    {
-                        "name": "shop_id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid",
-                            "title": "Shop Id"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ShopUpdate"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ShopSchema"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": ["shops"],
-                "summary": "Delete shop",
-                "description": "Permanently remove a shop from the platform.",
-                "operationId": "delete_shops__shop_id__delete",
-                "security": [{ "HTTPBearer": [] }],
-                "parameters": [
-                    {
-                        "name": "shop_id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid",
-                            "title": "Shop Id"
-                        }
-                    }
-                ],
-                "responses": {
-                    "204": { "description": "Successful Response" },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/shops/config/{id}": {
             "get": {
                 "tags": ["shops"],
@@ -1328,6 +1243,91 @@
                             }
                         }
                     },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shops/{shop_id}": {
+            "put": {
+                "tags": ["shops"],
+                "summary": "Update shop",
+                "description": "Update shop details such as name, description, and VAT rates.",
+                "operationId": "update_shops__shop_id__put",
+                "security": [{ "HTTPBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ShopUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShopSchema"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["shops"],
+                "summary": "Delete shop",
+                "description": "Permanently remove a shop from the platform.",
+                "operationId": "delete_shops__shop_id__delete",
+                "security": [{ "HTTPBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": { "description": "Successful Response" },
                     "422": {
                         "description": "Validation Error",
                         "content": {
@@ -1683,7 +1683,7 @@
             "post": {
                 "tags": ["orders"],
                 "summary": "Create order",
-                "description": "Submit a new customer order. The caller's IP is validated against the shop's allowlist. If stock tracking is enabled the product availability is verified before the order is created. A Stripe customer is auto-created for new account names when the shop has Stripe configured.",
+                "description": "Submit a new customer order. The caller's IP is validated against the shop's allowlist. Unit prices, shipping, and totals are derived server-side from the product catalogue. If stock tracking is enabled the product availability is verified before the order is created. A Stripe customer is auto-created for new account names when the shop has Stripe configured.",
                 "operationId": "create_orders__post",
                 "requestBody": {
                     "required": true,
@@ -1721,11 +1721,10 @@
         },
         "/orders/shop/{shop_id}/pending": {
             "get": {
-                "tags": ["orders"],
+                "tags": ["orders", "agent-exposed", "agent-large"],
                 "summary": "List pending orders for a shop",
-                "description": "Returns all orders with status `pending` for the given shop. These are orders awaiting fulfilment.",
-                "operationId": "show_all_pending_orders_per_shop_orders_shop__shop_id__pending_get",
-                "security": [{ "HTTPBearer": [] }],
+                "description": "Read-only. Returns the shop's orders with status `pending` - orders awaiting fulfilment. Scoped to the shop in the path; you cannot read other shops' orders. Results include customer names and totals, so treat them as personal data. Supports pagination (`skip`/`limit`), filtering and sorting via the common query parameters. `filter` matches order fields only (status, dates, totals, etc.) and does NOT match customer name or email - to find a customer's orders, list the shop's orders and match on `account_name` client-side.",
+                "operationId": "list_pending_orders",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -1780,6 +1779,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -1792,7 +1800,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/OrderSchema"
                                     },
-                                    "title": "Response Show All Pending Orders Per Shop Orders Shop  Shop Id  Pending Get"
+                                    "title": "Response List Pending Orders"
                                 }
                             }
                         }
@@ -1812,11 +1820,10 @@
         },
         "/orders/shop/{shop_id}/complete": {
             "get": {
-                "tags": ["orders"],
+                "tags": ["orders", "agent-exposed", "agent-large"],
                 "summary": "List completed orders for a shop",
-                "description": "Returns all orders with status `complete` or `cancelled` for the given shop. Used for order history and reporting.",
-                "operationId": "show_all_complete_orders_per_shop_orders_shop__shop_id__complete_get",
-                "security": [{ "HTTPBearer": [] }],
+                "description": "Read-only. Returns the shop's orders with status `complete` or `cancelled` - the order history, useful for reporting. Scoped to the shop in the path; you cannot read other shops' orders. Results include customer names and totals, so treat them as personal data. Supports pagination (`skip`/`limit`), filtering and sorting via the common query parameters. `filter` matches order fields only (status, dates, totals, etc.) and does NOT match customer name or email - to find a customer's orders, list the shop's orders and match on `account_name` client-side.",
+                "operationId": "list_complete_orders",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -1871,6 +1878,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -1883,7 +1899,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/OrderSchema"
                                     },
-                                    "title": "Response Show All Complete Orders Per Shop Orders Shop  Shop Id  Complete Get"
+                                    "title": "Response List Complete Orders"
                                 }
                             }
                         }
@@ -1985,6 +2001,46 @@
                 }
             }
         },
+        "/orders/quote": {
+            "post": {
+                "tags": ["orders"],
+                "summary": "Quote an order",
+                "description": "Calculate gross line prices, shipping, and total from product IDs, quantities, and plans.",
+                "operationId": "quote_orders_quote_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderQuoteRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderQuote"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/orders/{order_id}": {
             "patch": {
                 "tags": ["orders"],
@@ -2008,7 +2064,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/OrderBase"
+                                "$ref": "#/components/schemas/OrderStatusUpdate"
                             }
                         }
                     }
@@ -2038,8 +2094,8 @@
             },
             "put": {
                 "tags": ["orders"],
-                "summary": "Full order update",
-                "description": "Fully replace an order's fields. Requires authentication. Also sets `completed_at` when transitioning to `complete` or `cancelled`.",
+                "summary": "Update order status",
+                "description": "Update an order's status or notes. Prices, line items, and totals are immutable after creation.",
                 "operationId": "update_orders__order_id__put",
                 "security": [{ "HTTPBearer": [] }],
                 "parameters": [
@@ -2059,7 +2115,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/OrderUpdate"
+                                "$ref": "#/components/schemas/OrderStatusUpdate"
                             }
                         }
                     }
@@ -2417,7 +2473,7 @@
             "put": {
                 "tags": ["categories", "agent-exposed"],
                 "summary": "Update category",
-                "description": "Update an existing category's details and translations.",
+                "description": "Partially update a category. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `main_image`, `alt1_image` and `alt2_image` are S3 object filenames managed by the image-upload flow - do not set them unless explicitly given a filename.",
                 "operationId": "update_category",
                 "parameters": [
                     {
@@ -2881,10 +2937,20 @@
             "get": {
                 "tags": ["shops", "categories"],
                 "summary": "Get Multi",
-                "description": "List all product category images",
+                "description": "List all product category images.",
                 "operationId": "get_multi_shops__shop_id__categories_images__get",
                 "security": [{ "HTTPBearer": [] }],
                 "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
                     {
                         "name": "skip",
                         "in": "query",
@@ -2964,6 +3030,16 @@
                             "format": "uuid",
                             "title": "Id"
                         }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
                     }
                 ],
                 "responses": {
@@ -2997,6 +3073,16 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
                         }
                     }
                 ],
@@ -3043,6 +3129,16 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
                         }
                     }
                 ],
@@ -3436,7 +3532,7 @@
             "put": {
                 "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Update product",
-                "description": "Update an existing product's details, including name, description, pricing, stock, and feature flags.",
+                "description": "Partially update a product. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `image_1`-`image_6` are S3 object filenames managed by the image-upload flow - do not set them unless explicitly given a filename.",
                 "operationId": "update_product",
                 "parameters": [
                     {
@@ -3672,10 +3768,10 @@
         },
         "/shops/{shop_id}/products/{product_id}/with_attributes": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Get product with attributes",
                 "description": "Retrieve a single product together with its assigned attribute values (e.g. size, color). Public endpoint — no authentication required.",
-                "operationId": "get_by_id_with_attributes_shops__shop_id__products__product_id__with_attributes_get",
+                "operationId": "get_product_attributes",
                 "parameters": [
                     {
                         "name": "product_id",
@@ -3724,12 +3820,21 @@
         },
         "/shops/{shop_id}/products-to-tags/": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed", "agent-large"],
                 "summary": "List product-tag associations",
                 "description": "Returns all product-to-tag relationship records for a shop.",
-                "operationId": "get_multi_shops__shop_id__products_to_tags__get",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "list_product_to_tags",
                 "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
                     {
                         "name": "skip",
                         "in": "query",
@@ -3773,6 +3878,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -3785,7 +3899,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/ProductToTagSchema"
                                     },
-                                    "title": "Response Get Multi Shops  Shop Id  Products To Tags  Get"
+                                    "title": "Response List Product To Tags"
                                 }
                             }
                         }
@@ -3803,11 +3917,31 @@
                 }
             },
             "post": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Add tag to product",
                 "description": "Create an association between a product and a tag. Both must exist within the shop.",
-                "operationId": "create_shops__shop_id__products_to_tags__post",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "create_product_to_tag",
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -3835,12 +3969,21 @@
         },
         "/shops/{shop_id}/products-to-tags/get_relation_id": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Get product-tag relation ID",
                 "description": "Find the UUID of the association record between a specific product and tag. Returns 400 if the relation does not exist.",
-                "operationId": "get_relation_id_shops__shop_id__products_to_tags_get_relation_id_get",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "get_product_to_tag_relation_id",
                 "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
                     {
                         "name": "tag_id",
                         "in": "query",
@@ -3859,6 +4002,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Product Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -3882,11 +4034,10 @@
         },
         "/shops/{shop_id}/products-to-tags/{id}": {
             "get": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Get product-tag association",
                 "description": "Retrieve a single product-to-tag association by its UUID.",
-                "operationId": "get_by_id_shops__shop_id__products_to_tags__id__get",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "get_product_to_tag",
                 "parameters": [
                     {
                         "name": "id",
@@ -3896,6 +4047,25 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -3925,11 +4095,10 @@
         },
         "/shops/{shop_id}/products-to-tags/{product_to_tag_id}": {
             "put": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Update product-tag association",
                 "description": "Update an existing product-tag association record.",
-                "operationId": "update_shops__shop_id__products_to_tags__product_to_tag_id__put",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "update_product_to_tag",
                 "parameters": [
                     {
                         "name": "product_to_tag_id",
@@ -3939,6 +4108,25 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Product To Tag Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -3967,11 +4155,10 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "products"],
+                "tags": ["shops", "products", "agent-exposed"],
                 "summary": "Remove tag from product",
                 "description": "Delete the association between a product and a tag.",
-                "operationId": "delete_shops__shop_id__products_to_tags__product_to_tag_id__delete",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "delete_product_to_tag",
                 "parameters": [
                     {
                         "name": "product_to_tag_id",
@@ -3981,6 +4168,25 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Product To Tag Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -6187,11 +6393,10 @@
         },
         "/shops/{shop_id}/attribute-options/": {
             "get": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed", "agent-large"],
                 "summary": "List attribute options for a shop",
                 "description": "Retrieve a paginated list of all attribute options (e.g., 'Small', 'XL') across all attributes within a shop.",
-                "operationId": "list_options_for_shop_shops__shop_id__attribute_options__get",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "list_attribute_options",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6246,6 +6451,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -6258,7 +6472,7 @@
                                     "items": {
                                         "$ref": "#/components/schemas/AttributeOptionSchema"
                                     },
-                                    "title": "Response List Options For Shop Shops  Shop Id  Attribute Options  Get"
+                                    "title": "Response List Attribute Options"
                                 }
                             }
                         }
@@ -6276,11 +6490,10 @@
                 }
             },
             "post": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Create attribute option",
                 "description": "Create a new option for a specific attribute within a shop. The attribute_id must be provided in the request body.",
-                "operationId": "create_option_v2_shops__shop_id__attribute_options__post",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "create_attribute_option",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6290,6 +6503,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Shop Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -6329,11 +6551,10 @@
         },
         "/shops/{shop_id}/attribute-options/{option_id}": {
             "get": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Get attribute option",
                 "description": "Retrieve the details of a specific attribute option by its unique ID, ensuring it belongs to the shop.",
-                "operationId": "get_option_v2_shops__shop_id__attribute_options__option_id__get",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "get_attribute_option",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6353,6 +6574,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Option Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -6380,11 +6610,10 @@
                 }
             },
             "put": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Update attribute option",
                 "description": "Update the details of an existing attribute option, ensuring it belongs to the shop.",
-                "operationId": "update_option_v2_shops__shop_id__attribute_options__option_id__put",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "update_attribute_option",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6404,6 +6633,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Option Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -6441,11 +6679,10 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "attributes"],
+                "tags": ["shops", "attributes", "agent-exposed"],
                 "summary": "Delete attribute option",
                 "description": "Remove an attribute option, ensuring it belongs to the shop.",
-                "operationId": "delete_option_v2_shops__shop_id__attribute_options__option_id__delete",
-                "security": [{ "HTTPBearer": [] }],
+                "operationId": "delete_attribute_option",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6478,6 +6715,15 @@
                             "title": "Force"
                         },
                         "description": "Permanently purge instead of moving to trash. Irreversible."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -6796,7 +7042,6 @@
                 "summary": "List product attribute values",
                 "description": "List product attribute values for a shop (scoped by product.shop_id).",
                 "operationId": "product_attribute_values_list",
-                "security": [{ "HTTPBearer": [] }],
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6851,6 +7096,15 @@
                             "title": "Sort"
                         },
                         "description": "The sort will accept parameters like `col:ASC` or `col:DESC` and will split on the `:`. If it does not find a `:` it will sort ascending on that column."
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -6897,6 +7151,15 @@
                             "format": "uuid",
                             "title": "Shop Id"
                         }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -6933,7 +7196,6 @@
                 "summary": "Get product attribute value",
                 "description": "Retrieve a single product attribute value by id scoped to the given shop.",
                 "operationId": "product_attribute_values_get",
-                "security": [{ "HTTPBearer": [] }],
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -6953,6 +7215,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -6980,11 +7251,10 @@
                 }
             },
             "delete": {
-                "tags": ["shops", "products", "attributes"],
+                "tags": ["shops", "products", "attributes", "agent-exposed"],
                 "summary": "Delete product attribute value",
                 "description": "Delete a product attribute value if it belongs to the given shop.",
                 "operationId": "product_attribute_values_delete",
-                "security": [{ "HTTPBearer": [] }],
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -7005,6 +7275,15 @@
                             "format": "uuid",
                             "title": "Id"
                         }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
+                        }
                     }
                 ],
                 "responses": {
@@ -7024,11 +7303,10 @@
         },
         "/shops/{shop_id}/product-attribute-values/{product_id}": {
             "post": {
-                "tags": ["shops", "products", "attributes"],
+                "tags": ["shops", "products", "attributes", "agent-exposed"],
                 "summary": "Create product attribute values for product",
-                "description": "Create new product attribute value(s) for a specific product using product_id in the URL.\n\nThis deprecates the old POST / endpoint that required product_id in the body.\n\nNotes:\n- attribute_id is omitted; it will be inferred from option_id, as the option is already tied to an attribute_id.\n\n- This endpoint first validates that all option_ids belong to attributes that belong to the shop.\n- And that these options actually exist.\n- If everything is passed, it will create the product attribute values.\n- Duplicates are ignored, and the endpoint returns 201 Created for each successful creation. That means no 409 is raised when a duplicate is encountered; it just won't be created.",
-                "operationId": "product_attribute_values_create_for_product",
-                "security": [{ "HTTPBearer": [] }],
+                "description": "Assign existing attribute options to a product.\n\nProvide the shop and product UUIDs in the path and a non-empty ``option_ids``\nlist in the body. Each option must belong to an attribute in the same shop;\nits attribute is inferred automatically. Existing assignments are left intact,\nso repeating a request is safe and does not create duplicates.",
+                "operationId": "add_product_attribute_options",
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -7048,6 +7326,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Product Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -7079,11 +7366,10 @@
                 }
             },
             "put": {
-                "tags": ["shops", "products", "attributes"],
+                "tags": ["shops", "products", "attributes", "agent-exposed"],
                 "summary": "Replace product attribute values for product",
                 "description": "New version of selected options endpoint addressed by product_id in the path.\n\nThis endpoint now accepts option_ids that may belong to different attributes.\nRequirements/validations:\n  - product_id (path) must belong to the shop\n  - option_ids must be a non-empty list\n  - all option_ids must exist\n  - every inferred attribute (from the options) must belong to the shop\n  - for each inferred attribute, set selected options for (product_id, attribute) to exactly\n    the provided option_ids that belong to that attribute",
                 "operationId": "product_attribute_values_replace_for_product",
-                "security": [{ "HTTPBearer": [] }],
                 "parameters": [
                     {
                         "name": "shop_id",
@@ -7103,6 +7389,15 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Product Id"
+                        }
+                    },
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [{ "type": "string" }, { "type": "null" }],
+                            "title": "X-Api-Key"
                         }
                     }
                 ],
@@ -7139,6 +7434,16 @@
                 "operationId": "get_multi_shops__shop_id__accounts__get",
                 "security": [{ "HTTPBearer": [] }],
                 "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    },
                     {
                         "name": "skip",
                         "in": "query",
@@ -7217,6 +7522,18 @@
                 "description": "Manually create a new customer account for a shop.",
                 "operationId": "create_shops__shop_id__accounts__post",
                 "security": [{ "HTTPBearer": [] }],
+                "parameters": [
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -7262,6 +7579,16 @@
                             "format": "uuid",
                             "title": "Id"
                         }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
                     }
                 ],
                 "responses": {
@@ -7304,6 +7631,16 @@
                             "type": "string",
                             "format": "uuid",
                             "title": "Account Id"
+                        }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
                         }
                     }
                 ],
@@ -7350,6 +7687,16 @@
                             "format": "uuid",
                             "title": "Account Id"
                         }
+                    },
+                    {
+                        "name": "shop_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "title": "Shop Id"
+                        }
                     }
                 ],
                 "responses": {
@@ -7371,7 +7718,7 @@
             "post": {
                 "tags": ["stripe"],
                 "summary": "Create payment intent",
-                "description": "Create a Stripe PaymentIntent for a one-time purchase. Uses the shop's own `stripe_secret_key`. The `price` is in euro cents. Returns a `clientSecret` to complete the payment on the frontend.",
+                "description": "Create a Stripe PaymentIntent for a one-time purchase. Uses the shop's own `stripe_secret_key` and the total saved on the order. Returns a `clientSecret` to complete the payment on the frontend.",
                 "operationId": "create_payment_intent_shops__shop_id__stripe__post",
                 "parameters": [
                     {
@@ -7385,26 +7732,30 @@
                         }
                     },
                     {
-                        "name": "price",
-                        "in": "query",
-                        "required": true,
-                        "schema": { "type": "integer", "title": "Price" }
-                    },
-                    {
-                        "name": "account_id",
+                        "name": "order_id",
                         "in": "query",
                         "required": true,
                         "schema": {
                             "type": "string",
                             "format": "uuid",
-                            "title": "Account Id"
+                            "title": "Order Id"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
                         "description": "Successful Response",
-                        "content": { "application/json": { "schema": {} } }
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "title": "Response Create Payment Intent Shops  Shop Id  Stripe  Post"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -7423,7 +7774,7 @@
             "post": {
                 "tags": ["stripe"],
                 "summary": "Create subscription",
-                "description": "Create a Stripe Subscription for one or more products. Price lookup keys are resolved as `monthly-<product_id>` or `yearly-<product_id>`. Returns `clientSecret` and `subscriptionId` to confirm payment on the frontend.",
+                "description": "Create a Stripe Subscription using products and plan stored on an order. Price lookup keys are resolved as `monthly-<product_id>` or `yearly-<product_id>`. Returns `clientSecret` and `subscriptionId` to confirm payment on the frontend.",
                 "operationId": "create_subscription_intent_shops__shop_id__stripe_subscription_post",
                 "parameters": [
                     {
@@ -7437,42 +7788,30 @@
                         }
                     },
                     {
-                        "name": "account_id",
+                        "name": "order_id",
                         "in": "query",
                         "required": true,
                         "schema": {
                             "type": "string",
                             "format": "uuid",
-                            "title": "Account Id"
-                        }
-                    },
-                    {
-                        "name": "yearly",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "boolean",
-                            "default": false,
-                            "title": "Yearly"
+                            "title": "Order Id"
                         }
                     }
                 ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": { "type": "string", "format": "uuid" },
-                                "title": "Product Ids"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "201": {
                         "description": "Successful Response",
-                        "content": { "application/json": { "schema": {} } }
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "title": "Response Create Subscription Intent Shops  Shop Id  Stripe Subscription Post"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation Error",
@@ -7937,6 +8276,49 @@
                     }
                 }
             }
+        },
+        "/mail-test/send-order-confirmation": {
+            "post": {
+                "tags": ["mail-test"],
+                "summary": "Send Test Order Confirmation",
+                "description": "Send a synthetic order confirmation mail through the configured SMTP.\n\nIntended for local testing against Mailpit. Gated by settings.MAIL_TEST_ENDPOINT_ENABLED.",
+                "operationId": "send_test_order_confirmation_mail_test_send_order_confirmation_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MailTestRequest",
+                                "default": {
+                                    "to": "customer@example.com",
+                                    "shop_name": "ShopVirge Dev"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MailTestResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -8359,14 +8741,7 @@
                     }
                 },
                 "type": "object",
-                "required": [
-                    "shop_id",
-                    "color",
-                    "translation",
-                    "main_image",
-                    "alt1_image",
-                    "alt2_image"
-                ],
+                "required": ["shop_id", "color", "translation"],
                 "title": "CategoryCreate"
             },
             "CategoryImageDelete": {
@@ -8423,15 +8798,7 @@
                     "id": { "type": "string", "format": "uuid", "title": "Id" }
                 },
                 "type": "object",
-                "required": [
-                    "shop_id",
-                    "color",
-                    "translation",
-                    "main_image",
-                    "alt1_image",
-                    "alt2_image",
-                    "id"
-                ],
+                "required": ["shop_id", "color", "translation", "id"],
                 "title": "CategorySchema"
             },
             "CategoryTranslationBase": {
@@ -8462,14 +8829,49 @@
                 "required": ["main_name", "main_description"],
                 "title": "CategoryTranslationBase"
             },
+            "CategoryTranslationUpdate": {
+                "properties": {
+                    "main_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Main Name"
+                    },
+                    "main_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Main Description"
+                    },
+                    "alt1_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Name"
+                    },
+                    "alt1_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Description"
+                    },
+                    "alt2_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Name"
+                    },
+                    "alt2_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Description"
+                    }
+                },
+                "type": "object",
+                "title": "CategoryTranslationUpdate"
+            },
             "CategoryUpdate": {
                 "properties": {
                     "shop_id": {
-                        "type": "string",
-                        "format": "uuid",
+                        "anyOf": [
+                            { "type": "string", "format": "uuid" },
+                            { "type": "null" }
+                        ],
                         "title": "Shop Id"
                     },
-                    "color": { "type": "string", "title": "Color" },
+                    "color": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Color"
+                    },
                     "icon": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
                         "title": "Icon"
@@ -8479,7 +8881,12 @@
                         "title": "Order Number"
                     },
                     "translation": {
-                        "$ref": "#/components/schemas/CategoryTranslationBase"
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CategoryTranslationUpdate"
+                            },
+                            { "type": "null" }
+                        ]
                     },
                     "main_image": {
                         "anyOf": [
@@ -8507,14 +8914,6 @@
                     }
                 },
                 "type": "object",
-                "required": [
-                    "shop_id",
-                    "color",
-                    "translation",
-                    "main_image",
-                    "alt1_image",
-                    "alt2_image"
-                ],
                 "title": "CategoryUpdate"
             },
             "ConfigurationContact": {
@@ -9240,6 +9639,57 @@
                 "required": ["stripe_customer_id"],
                 "title": "LinkStripeBody"
             },
+            "MailTestRequest": {
+                "properties": {
+                    "to": {
+                        "type": "string",
+                        "format": "email",
+                        "title": "To",
+                        "default": "customer@example.com"
+                    },
+                    "shop_name": {
+                        "type": "string",
+                        "title": "Shop Name",
+                        "default": "ShopVirge Dev"
+                    },
+                    "owner_email": {
+                        "anyOf": [
+                            { "type": "string", "format": "email" },
+                            { "type": "null" }
+                        ],
+                        "title": "Owner Email"
+                    }
+                },
+                "type": "object",
+                "title": "MailTestRequest"
+            },
+            "MailTestResponse": {
+                "properties": {
+                    "sent_to_customer": {
+                        "type": "string",
+                        "format": "email",
+                        "title": "Sent To Customer"
+                    },
+                    "sent_to_owner": {
+                        "anyOf": [
+                            { "type": "string", "format": "email" },
+                            { "type": "null" }
+                        ],
+                        "title": "Sent To Owner"
+                    },
+                    "customer_order_id": {
+                        "type": "integer",
+                        "title": "Customer Order Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sent_to_customer",
+                    "sent_to_owner",
+                    "customer_order_id"
+                ],
+                "title": "MailTestResponse"
+            },
             "MyShopsResponse": {
                 "properties": {
                     "shops": {
@@ -9254,97 +9704,8 @@
                 "required": ["shops", "is_admin", "can_write"],
                 "title": "MyShopsResponse"
             },
-            "OrderBase": {
-                "properties": {
-                    "account_id": {
-                        "anyOf": [
-                            { "type": "string", "format": "uuid" },
-                            { "type": "null" }
-                        ],
-                        "title": "Account Id"
-                    },
-                    "total": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Total"
-                    },
-                    "notes": {
-                        "anyOf": [{ "type": "string" }, { "type": "null" }],
-                        "title": "Notes"
-                    },
-                    "customer_order_id": {
-                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
-                        "title": "Customer Order Id"
-                    },
-                    "status": {
-                        "anyOf": [{ "type": "string" }, { "type": "null" }],
-                        "title": "Status"
-                    },
-                    "shipping_fee_inc_btw": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Shipping Fee Inc Btw"
-                    }
-                },
-                "type": "object",
-                "required": ["total", "notes", "customer_order_id", "status"],
-                "title": "OrderBase"
-            },
             "OrderCreate": {
                 "properties": {
-                    "account_id": {
-                        "anyOf": [
-                            { "type": "string", "format": "uuid" },
-                            { "type": "null" }
-                        ],
-                        "title": "Account Id"
-                    },
-                    "total": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Total"
-                    },
-                    "notes": {
-                        "anyOf": [{ "type": "string" }, { "type": "null" }],
-                        "title": "Notes"
-                    },
-                    "customer_order_id": {
-                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
-                        "title": "Customer Order Id"
-                    },
-                    "status": {
-                        "anyOf": [{ "type": "string" }, { "type": "null" }],
-                        "title": "Status"
-                    },
-                    "shipping_fee_inc_btw": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Shipping Fee Inc Btw"
-                    },
                     "shop_id": {
                         "type": "string",
                         "format": "uuid",
@@ -9352,32 +9713,30 @@
                     },
                     "order_info": {
                         "items": {
-                            "$ref": "#/components/schemas/OrderItem-Input"
+                            "$ref": "#/components/schemas/OrderItemCreate"
                         },
                         "type": "array",
                         "title": "Order Info"
                     },
-                    "completed_at": {
+                    "account_id": {
                         "anyOf": [
-                            { "type": "string", "format": "date-time" },
+                            { "type": "string", "format": "uuid" },
                             { "type": "null" }
                         ],
-                        "title": "Completed At"
+                        "title": "Account Id"
                     },
                     "account_name": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
                         "title": "Account Name"
+                    },
+                    "notes": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Notes"
                     }
                 },
+                "additionalProperties": false,
                 "type": "object",
-                "required": [
-                    "total",
-                    "notes",
-                    "customer_order_id",
-                    "status",
-                    "shop_id",
-                    "order_info"
-                ],
+                "required": ["shop_id", "order_info"],
                 "title": "OrderCreate"
             },
             "OrderCreated": {
@@ -9464,16 +9823,20 @@
                         "type": "string",
                         "title": "Product Name"
                     },
-                    "quantity": { "type": "integer", "title": "Quantity" }
+                    "quantity": { "type": "integer", "title": "Quantity" },
+                    "plan": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "enum": ["onetime", "monthly", "yearly"]
+                            },
+                            { "type": "null" }
+                        ],
+                        "title": "Plan"
+                    }
                 },
                 "type": "object",
-                "required": [
-                    "description",
-                    "price",
-                    "product_id",
-                    "product_name",
-                    "quantity"
-                ],
+                "required": ["price", "product_id", "product_name", "quantity"],
                 "title": "OrderItem"
             },
             "OrderItem-Output": {
@@ -9492,17 +9855,98 @@
                         "type": "string",
                         "title": "Product Name"
                     },
-                    "quantity": { "type": "integer", "title": "Quantity" }
+                    "quantity": { "type": "integer", "title": "Quantity" },
+                    "plan": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "enum": ["onetime", "monthly", "yearly"]
+                            },
+                            { "type": "null" }
+                        ],
+                        "title": "Plan"
+                    }
                 },
                 "type": "object",
-                "required": [
-                    "description",
-                    "price",
-                    "product_id",
-                    "product_name",
-                    "quantity"
-                ],
+                "required": ["price", "product_id", "product_name", "quantity"],
                 "title": "OrderItem"
+            },
+            "OrderItemCreate": {
+                "properties": {
+                    "description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Description"
+                    },
+                    "product_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "title": "Product Id"
+                    },
+                    "product_name": {
+                        "type": "string",
+                        "title": "Product Name"
+                    },
+                    "quantity": { "type": "integer", "title": "Quantity" },
+                    "plan": {
+                        "type": "string",
+                        "enum": ["onetime", "monthly", "yearly"],
+                        "title": "Plan",
+                        "default": "onetime"
+                    }
+                },
+                "additionalProperties": false,
+                "type": "object",
+                "required": ["product_id", "product_name", "quantity"],
+                "title": "OrderItemCreate"
+            },
+            "OrderQuote": {
+                "properties": {
+                    "order_info": {
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItem-Output"
+                        },
+                        "type": "array",
+                        "title": "Order Info"
+                    },
+                    "subtotal": { "type": "number", "title": "Subtotal" },
+                    "shipping_fee_inc_btw": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Shipping Fee Inc Btw"
+                    },
+                    "free_shipping_applied": {
+                        "type": "boolean",
+                        "title": "Free Shipping Applied",
+                        "default": false
+                    },
+                    "free_shipping_threshold": {
+                        "anyOf": [{ "type": "number" }, { "type": "null" }],
+                        "title": "Free Shipping Threshold"
+                    },
+                    "total": { "type": "number", "title": "Total" }
+                },
+                "type": "object",
+                "required": ["order_info", "subtotal", "total"],
+                "title": "OrderQuote"
+            },
+            "OrderQuoteRequest": {
+                "properties": {
+                    "shop_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "title": "Shop Id"
+                    },
+                    "order_info": {
+                        "items": {
+                            "$ref": "#/components/schemas/OrderItemCreate"
+                        },
+                        "type": "array",
+                        "title": "Order Info"
+                    }
+                },
+                "additionalProperties": false,
+                "type": "object",
+                "required": ["shop_id", "order_info"],
+                "title": "OrderQuoteRequest"
             },
             "OrderSchema": {
                 "properties": {
@@ -9582,72 +10026,20 @@
                 ],
                 "title": "OrderSchema"
             },
-            "OrderUpdate": {
+            "OrderStatusUpdate": {
                 "properties": {
-                    "account_id": {
-                        "anyOf": [
-                            { "type": "string", "format": "uuid" },
-                            { "type": "null" }
-                        ],
-                        "title": "Account Id"
-                    },
-                    "total": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Total"
-                    },
-                    "notes": {
-                        "anyOf": [{ "type": "string" }, { "type": "null" }],
-                        "title": "Notes"
-                    },
-                    "customer_order_id": {
-                        "anyOf": [{ "type": "integer" }, { "type": "null" }],
-                        "title": "Customer Order Id"
-                    },
                     "status": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
                         "title": "Status"
                     },
-                    "shipping_fee_inc_btw": {
-                        "anyOf": [
-                            { "type": "number" },
-                            {
-                                "type": "string",
-                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
-                            },
-                            { "type": "null" }
-                        ],
-                        "title": "Shipping Fee Inc Btw"
-                    },
-                    "shop_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "title": "Shop Id"
-                    },
-                    "order_info": {
-                        "items": {
-                            "$ref": "#/components/schemas/OrderItem-Input"
-                        },
-                        "type": "array",
-                        "title": "Order Info"
+                    "notes": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Notes"
                     }
                 },
+                "additionalProperties": false,
                 "type": "object",
-                "required": [
-                    "total",
-                    "notes",
-                    "customer_order_id",
-                    "status",
-                    "shop_id",
-                    "order_info"
-                ],
-                "title": "OrderUpdate"
+                "title": "OrderStatusUpdate"
             },
             "OrderUpdated": {
                 "properties": {
@@ -9832,7 +10224,8 @@
                             },
                             { "type": "null" }
                         ],
-                        "title": "Price"
+                        "title": "Price",
+                        "description": "Unit price excluding VAT. Gross = price * (1 + tax_category rate)."
                     },
                     "recurring_price_monthly": {
                         "anyOf": [
@@ -9958,7 +10351,7 @@
                         "title": "Image 6"
                     },
                     "translation": {
-                        "$ref": "#/components/schemas/ProductTranslationBase"
+                        "$ref": "#/components/schemas/ProductTranslationCreate"
                     }
                 },
                 "type": "object",
@@ -9969,12 +10362,6 @@
                     "featured",
                     "new_product",
                     "tax_category",
-                    "image_1",
-                    "image_2",
-                    "image_3",
-                    "image_4",
-                    "image_5",
-                    "image_6",
                     "translation"
                 ],
                 "title": "ProductCreate"
@@ -10228,11 +10615,99 @@
                 ],
                 "title": "ProductTranslationBase"
             },
+            "ProductTranslationCreate": {
+                "properties": {
+                    "main_name": { "type": "string", "title": "Main Name" },
+                    "main_description": {
+                        "type": "string",
+                        "title": "Main Description"
+                    },
+                    "main_description_short": {
+                        "type": "string",
+                        "title": "Main Description Short"
+                    },
+                    "alt1_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Name"
+                    },
+                    "alt1_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Description"
+                    },
+                    "alt1_description_short": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Description Short"
+                    },
+                    "alt2_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Name"
+                    },
+                    "alt2_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Description"
+                    },
+                    "alt2_description_short": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Description Short"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "main_name",
+                    "main_description",
+                    "main_description_short"
+                ],
+                "title": "ProductTranslationCreate"
+            },
+            "ProductTranslationUpdate": {
+                "properties": {
+                    "main_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Main Name"
+                    },
+                    "main_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Main Description"
+                    },
+                    "main_description_short": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Main Description Short"
+                    },
+                    "alt1_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Name"
+                    },
+                    "alt1_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Description"
+                    },
+                    "alt1_description_short": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt1 Description Short"
+                    },
+                    "alt2_name": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Name"
+                    },
+                    "alt2_description": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Description"
+                    },
+                    "alt2_description_short": {
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
+                        "title": "Alt2 Description Short"
+                    }
+                },
+                "type": "object",
+                "title": "ProductTranslationUpdate"
+            },
             "ProductUpdate": {
                 "properties": {
                     "shop_id": {
-                        "type": "string",
-                        "format": "uuid",
+                        "anyOf": [
+                            { "type": "string", "format": "uuid" },
+                            { "type": "null" }
+                        ],
                         "title": "Shop Id"
                     },
                     "category_id": {
@@ -10251,7 +10726,8 @@
                             },
                             { "type": "null" }
                         ],
-                        "title": "Price"
+                        "title": "Price",
+                        "description": "Unit price excluding VAT. Gross = price * (1 + tax_category rate)."
                     },
                     "recurring_price_monthly": {
                         "anyOf": [
@@ -10275,19 +10751,28 @@
                         ],
                         "title": "Recurring Price Yearly"
                     },
-                    "max_one": { "type": "boolean", "title": "Max One" },
-                    "shippable": { "type": "boolean", "title": "Shippable" },
+                    "max_one": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Max One"
+                    },
+                    "shippable": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Shippable"
+                    },
                     "digital": {
                         "anyOf": [{ "type": "string" }, { "type": "null" }],
                         "title": "Digital"
                     },
-                    "featured": { "type": "boolean", "title": "Featured" },
+                    "featured": {
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
+                        "title": "Featured"
+                    },
                     "new_product": {
-                        "type": "boolean",
+                        "anyOf": [{ "type": "boolean" }, { "type": "null" }],
                         "title": "New Product"
                     },
                     "tax_category": {
-                        "type": "string",
+                        "anyOf": [{ "type": "string" }, { "type": "null" }],
                         "title": "Tax Category"
                     },
                     "discounted_price": {
@@ -10377,7 +10862,12 @@
                         "title": "Image 6"
                     },
                     "translation": {
-                        "$ref": "#/components/schemas/ProductTranslationBase"
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ProductTranslationUpdate"
+                            },
+                            { "type": "null" }
+                        ]
                     },
                     "modified_at": {
                         "anyOf": [
@@ -10388,21 +10878,6 @@
                     }
                 },
                 "type": "object",
-                "required": [
-                    "shop_id",
-                    "max_one",
-                    "shippable",
-                    "featured",
-                    "new_product",
-                    "tax_category",
-                    "image_1",
-                    "image_2",
-                    "image_3",
-                    "image_4",
-                    "image_5",
-                    "image_6",
-                    "translation"
-                ],
                 "title": "ProductUpdate"
             },
             "ProductWithAttributes": {
@@ -10440,7 +10915,8 @@
                     },
                     "price": {
                         "anyOf": [{ "type": "number" }, { "type": "null" }],
-                        "title": "Price"
+                        "title": "Price",
+                        "description": "Unit price excluding VAT. Gross = price * (1 + tax_category rate)."
                     },
                     "recurring_price_monthly": {
                         "anyOf": [{ "type": "number" }, { "type": "null" }],
@@ -10587,12 +11063,6 @@
                     "featured",
                     "new_product",
                     "tax_category",
-                    "image_1",
-                    "image_2",
-                    "image_3",
-                    "image_4",
-                    "image_5",
-                    "image_6",
                     "translation",
                     "id"
                 ],
@@ -10614,7 +11084,8 @@
                     },
                     "price": {
                         "anyOf": [{ "type": "number" }, { "type": "null" }],
-                        "title": "Price"
+                        "title": "Price",
+                        "description": "Unit price excluding VAT. Gross = price * (1 + tax_category rate)."
                     },
                     "recurring_price_monthly": {
                         "anyOf": [{ "type": "number" }, { "type": "null" }],
@@ -10763,12 +11234,6 @@
                     "featured",
                     "new_product",
                     "tax_category",
-                    "image_1",
-                    "image_2",
-                    "image_3",
-                    "image_4",
-                    "image_5",
-                    "image_6",
                     "translation",
                     "id"
                 ],
