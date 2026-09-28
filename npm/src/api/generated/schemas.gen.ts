@@ -6095,6 +6095,11 @@ export const $Toggles = {
             title: 'Force Unique Product Names',
             default: false,
         },
+        is_consumer: {
+            type: 'boolean',
+            title: 'Is Consumer',
+            default: false,
+        },
     },
     type: 'object',
     title: 'Toggles',
