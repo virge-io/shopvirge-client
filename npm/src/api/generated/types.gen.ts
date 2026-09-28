@@ -1153,6 +1153,7 @@ export type Toggles = {
     show_nav_categories?: boolean;
     show_new_products?: boolean;
     show_shop_name?: boolean;
+    is_consumer?: boolean;
 };
 
 export type TrashItem = {

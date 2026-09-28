@@ -6005,6 +6005,11 @@ export const $Toggles = {
             title: 'Show Shop Name',
             type: 'boolean',
         },
+        is_consumer: {
+            type: 'boolean',
+            title: 'Is Consumer',
+            default: false,
+        },
     },
     title: 'Toggles',
     type: 'object',
