@@ -1174,6 +1174,7 @@ export type Toggles = {
     enable_stock_on_products?: boolean;
     enable_attributes_for_categories?: boolean;
     force_unique_product_names?: boolean;
+    is_consumer?: boolean;
 };
 
 export type TrashItem = {
