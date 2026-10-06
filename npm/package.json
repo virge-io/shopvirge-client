@@ -1,6 +1,6 @@
 {
     "name": "@shopvirge/shopvirge-client",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "TypeScript client for the ShopVirge API, generated from its OpenAPI spec",
     "repository": {
         "type": "git",
