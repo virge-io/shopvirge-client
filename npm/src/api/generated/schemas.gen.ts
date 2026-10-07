@@ -6010,6 +6010,11 @@ export const $Toggles = {
             title: 'Is Consumer',
             default: false,
         },
+        is_consumer: {
+            type: 'boolean',
+            title: 'Is Consumer',
+            default: false,
+        },
     },
     title: 'Toggles',
     type: 'object',
