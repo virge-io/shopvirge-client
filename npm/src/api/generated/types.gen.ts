@@ -1078,6 +1078,18 @@ export type ShopType = {
 
 export type ShopTypeName = 'small' | 'business';
 
+/**
+ * Body of the admin shop-type route; its own name keeps ``ShopType`` an output-only schema.
+ */
+export type ShopTypeUpdate = {
+    max_languages: number;
+    max_products: number;
+    name: ShopTypeName;
+    stripe_access: boolean;
+    trial_mode: boolean;
+    trial_started?: string | null;
+};
+
 export type ShopUpdate = {
     allowed_ips?: Array<string> | null;
     description: string;
@@ -2255,6 +2267,13 @@ export type GetRevisionData = {
 };
 
 export type GetRevisionResponse = RevisionDetail;
+
+export type UpdateShopTypeData = {
+    requestBody: ShopTypeUpdate;
+    shopId: string;
+};
+
+export type UpdateShopTypeResponse = ShopType;
 
 export type CreatePaymentIntentShopsShopIdStripePostData = {
     orderId: string;
@@ -4147,6 +4166,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 200: RevisionDetail;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/shop-type': {
+        put: {
+            req: UpdateShopTypeData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: ShopType;
                 /**
                  * Validation Error
                  */

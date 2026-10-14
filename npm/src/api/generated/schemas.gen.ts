@@ -5594,6 +5594,53 @@ export const $ShopTypeName = {
     type: 'string',
 } as const;
 
+export const $ShopTypeUpdate = {
+    description:
+        'Body of the admin shop-type route; its own name keeps ``ShopType`` an output-only schema.',
+    properties: {
+        max_languages: {
+            title: 'Max Languages',
+            type: 'number',
+        },
+        max_products: {
+            title: 'Max Products',
+            type: 'number',
+        },
+        name: {
+            $ref: '#/components/schemas/ShopTypeName',
+        },
+        stripe_access: {
+            title: 'Stripe Access',
+            type: 'boolean',
+        },
+        trial_mode: {
+            title: 'Trial Mode',
+            type: 'boolean',
+        },
+        trial_started: {
+            anyOf: [
+                {
+                    format: 'date-time',
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Trial Started',
+        },
+    },
+    required: [
+        'max_languages',
+        'max_products',
+        'stripe_access',
+        'trial_mode',
+        'name',
+    ],
+    title: 'ShopTypeUpdate',
+    type: 'object',
+} as const;
+
 export const $ShopUpdate = {
     properties: {
         allowed_ips: {

@@ -241,6 +241,8 @@ import type {
     ListShopRevisionsResponse,
     GetRevisionData,
     GetRevisionResponse,
+    UpdateShopTypeData,
+    UpdateShopTypeResponse,
     CreatePaymentIntentShopsShopIdStripePostData,
     CreatePaymentIntentShopsShopIdStripePostResponse,
     CreateSubscriptionIntentShopsShopIdStripeSubscriptionPostData,
@@ -3491,6 +3493,32 @@ export const getRevision = (
             shop_id: data.shopId,
             revision_id: data.revisionId,
         },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Set shop type
+ * Replace the shop's type: the plan name, trial mode, language and product limits and Stripe access. A new shop starts as a one-language trial until this route provisions its plan.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.requestBody
+ * @returns ShopType Successful Response
+ * @throws ApiError
+ */
+export const updateShopType = (
+    data: UpdateShopTypeData,
+): CancelablePromise<UpdateShopTypeResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/shops/{shop_id}/shop-type',
+        path: {
+            shop_id: data.shopId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
         errors: {
             422: 'Validation Error',
         },
