@@ -43,11 +43,11 @@ OpenAPI.HEADERS = {
 Once configured, use the generated service functions to interact with the API:
 
 ```ts
-import { OpenAPI, ShopsService } from '@shopvirge/shopvirge-client';
+import { OpenAPI, listMyShops } from '@shopvirge/shopvirge-client';
 
 OpenAPI.BASE = 'https://api.shopvirge.com';
 
-const shops = await ShopsService.getShops();
+const shops = await listMyShops();
 ```
 
 ### Full configuration reference
