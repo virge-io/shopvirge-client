@@ -108,6 +108,8 @@ import type {
     GetProductResponse,
     SwapShopsShopIdProductsProductIdSwapPutData,
     SwapShopsShopIdProductsProductIdSwapPutResponse,
+    CreateProductImageUploadData,
+    CreateProductImageUploadResponse,
     ListProductToTagsData,
     ListProductToTagsResponse,
     CreateProductToTagData,
@@ -158,6 +160,8 @@ import type {
     RestoreAttributeResponse,
     ListTrashShopsShopIdTrashGetData,
     ListTrashShopsShopIdTrashGetResponse,
+    GetShopAboutData,
+    GetShopAboutResponse,
     ListTagsData,
     ListTagsResponse,
     CreateTagData,
@@ -369,7 +373,7 @@ export const createShopsPost = (
 
 /**
  * List shops and capabilities for the current user
- * Returns the shops this user can manage, derived from their Cognito groups, plus capability flags the agent should use to tailor its welcome message and behaviour. Admins (group 'Admins') see all shops and have full write access. Tenant users see only the shop(s) whose ID matches one of their Cognito group names; their write access is also scoped to those shops. Always call this first — before saying anything to the user.
+ * Returns the shops this user can manage, derived from their Cognito groups, plus capability flags the agent should use to tailor its welcome message and behaviour. Admins (group 'Admins') see all shops and have full write access. Tenant users see only the shop(s) whose ID matches one of their Cognito group names; their write access is also scoped to those shops. Each shop carries `languages`: which real language its `main`, `alt1` and `alt2` translation slots hold (`language_name`) and whether the alt storefront is `enabled`. Always call this first — before saying anything to the user.
  * @returns MyShopsResponse Successful Response
  * @throws ApiError
  */
@@ -1579,7 +1583,7 @@ export const getMultiWithAttributesShopsShopIdProductsWithAttributesGet = (
 
 /**
  * Update product
- * Partially update a product. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `image_1`-`image_6` are S3 object filenames managed by the image-upload flow - do not set them unless explicitly given a filename.
+ * Partially update a product. Send ONLY the fields you want to change; omitted fields are left untouched. Names and descriptions live in the nested `translation` object and can also be sent partially. `image_1`-`image_6` are S3 object keys: to add or replace a picture call `create_product_image_upload`, upload the file to the returned URL, then set the returned `key` here; send null or an empty string to clear a slot.
  * @param data The data for the request.
  * @param data.productId
  * @param data.shopId
@@ -1682,6 +1686,34 @@ export const swapShopsShopIdProductsProductIdSwapPut = (
         query: {
             move_up: data.moveUp,
         },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Get a signed product image upload
+ * Step 1 of adding a product picture. Returns `url`, `fields` and the S3 object `key`. Then (2) send the file with `POST url` as multipart/form-data: every entry of `fields` first, the file last in a field named `file`; the `Content-Type` field is already in `fields`, so the file must really be that type. Max 10 MB, valid for 10 minutes. Then (3) call `update_product` with the slot you want (`image_1`-`image_6`; `image_1` is the main image) set to `key`. Nothing is attached to the product until step 3.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @param data.productId
+ * @param data.requestBody
+ * @returns unknown Successful Response
+ * @throws ApiError
+ */
+export const createProductImageUpload = (
+    data: CreateProductImageUploadData,
+): CancelablePromise<CreateProductImageUploadResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/shops/{shop_id}/products/{product_id}/images/upload-url',
+        path: {
+            shop_id: data.shopId,
+            product_id: data.productId,
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
         errors: {
             422: 'Validation Error',
         },
@@ -2391,6 +2423,29 @@ export const listTrashShopsShopIdTrashGet = (
     return __request(OpenAPI, {
         method: 'GET',
         url: '/shops/{shop_id}/trash',
+        path: {
+            shop_id: data.shopId,
+        },
+        errors: {
+            422: 'Validation Error',
+        },
+    });
+};
+
+/**
+ * Get what a shop is about
+ * Returns the shop's own About text (markdown) for each translation slot (`main`, `alt1`, `alt2`), with the slot's `language_name`. Use it to learn what the shop sells and how it presents itself, so your answers and any copy you write fit that shop. A slot without a text has `about` null.
+ * @param data The data for the request.
+ * @param data.shopId
+ * @returns ShopAbout Successful Response
+ * @throws ApiError
+ */
+export const getShopAbout = (
+    data: GetShopAboutData,
+): CancelablePromise<GetShopAboutResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/shops/{shop_id}/about',
         path: {
             shop_id: data.shopId,
         },

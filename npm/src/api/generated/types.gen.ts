@@ -440,8 +440,23 @@ export type LinkStripeBody = {
     stripe_customer_id: string;
 };
 
+export type MyShopSchema = {
+    name: string;
+    description: string;
+    internal_url?: string | null;
+    external_url?: string | null;
+    vat_standard: number;
+    vat_lower_1: number;
+    vat_lower_2: number;
+    vat_lower_3: number;
+    vat_special: number;
+    vat_zero: number;
+    id: string;
+    languages: ShopLanguages;
+};
+
 export type MyShopsResponse = {
-    shops: Array<ShopSchema>;
+    shops: Array<MyShopSchema>;
     is_admin: boolean;
     can_write: boolean;
 };
@@ -640,6 +655,19 @@ export type ProductCreate = {
         | null;
     translation: ProductTranslationCreate;
 };
+
+export type ProductImageUploadRequest = {
+    /**
+     * MIME type of the file you are going to upload.
+     */
+    content_type: 'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp';
+};
+
+/**
+ * MIME type of the file you are going to upload.
+ */
+export type content_type =
+    'image/png' | 'image/jpeg' | 'image/gif' | 'image/webp';
 
 export type ProductResponse = {
     id: string;
@@ -1007,6 +1035,21 @@ export type ShippingLine = {
     amount_btw: number;
 };
 
+/**
+ * What a shop says about itself, per translation slot: the markdown of its storefront "About" page.
+ */
+export type ShopAbout = {
+    name: string;
+    main: ShopAboutSlot;
+    alt1: ShopAboutSlot;
+    alt2: ShopAboutSlot;
+};
+
+export type ShopAboutSlot = {
+    language_name?: string | null;
+    about?: string | null;
+};
+
 export type ShopCacheStatus = {
     modified_at: string | null;
 };
@@ -1043,6 +1086,20 @@ export type ShopCreate = {
 
 export type ShopIp = {
     ip: string;
+};
+
+export type ShopLanguageSlot = {
+    language_name?: string | null;
+    enabled?: boolean;
+};
+
+/**
+ * Which real language each translation slot (`main_*`, `alt1_*`, `alt2_*`) holds in one shop.
+ */
+export type ShopLanguages = {
+    main?: ShopLanguageSlot;
+    alt1?: ShopLanguageSlot;
+    alt2?: ShopLanguageSlot;
 };
 
 export type ShopSchema = {
@@ -1722,6 +1779,14 @@ export type SwapShopsShopIdProductsProductIdSwapPutData = {
 
 export type SwapShopsShopIdProductsProductIdSwapPutResponse = unknown;
 
+export type CreateProductImageUploadData = {
+    productId: string;
+    requestBody: ProductImageUploadRequest;
+    shopId: string;
+};
+
+export type CreateProductImageUploadResponse = unknown;
+
 export type ListProductToTagsData = {
     /**
      * This filter can accept search query's like `key:value` and will split on the `:`. If it detects more than one `:`, or does not find a `:` it will search for the string in all columns.
@@ -1978,6 +2043,12 @@ export type ListTrashShopsShopIdTrashGetData = {
 };
 
 export type ListTrashShopsShopIdTrashGetResponse = Array<TrashItem>;
+
+export type GetShopAboutData = {
+    shopId: string;
+};
+
+export type GetShopAboutResponse = ShopAbout;
 
 export type ListTagsData = {
     /**
@@ -3292,6 +3363,21 @@ export type $OpenApiTs = {
             };
         };
     };
+    '/shops/{shop_id}/products/{product_id}/images/upload-url': {
+        post: {
+            req: CreateProductImageUploadData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                201: unknown;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
     '/shops/{shop_id}/products-to-tags/': {
         get: {
             req: ListProductToTagsData;
@@ -3652,6 +3738,21 @@ export type $OpenApiTs = {
                  * Successful Response
                  */
                 200: Array<TrashItem>;
+                /**
+                 * Validation Error
+                 */
+                422: HTTPValidationError;
+            };
+        };
+    };
+    '/shops/{shop_id}/about': {
+        get: {
+            req: GetShopAboutData;
+            res: {
+                /**
+                 * Successful Response
+                 */
+                200: ShopAbout;
                 /**
                  * Validation Error
                  */
