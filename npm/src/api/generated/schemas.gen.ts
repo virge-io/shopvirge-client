@@ -2143,11 +2143,92 @@ export const $LinkStripeBody = {
     title: 'LinkStripeBody',
 } as const;
 
+export const $MyShopSchema = {
+    properties: {
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+        description: {
+            type: 'string',
+            title: 'Description',
+        },
+        internal_url: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Internal Url',
+        },
+        external_url: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'External Url',
+        },
+        vat_standard: {
+            type: 'number',
+            title: 'Vat Standard',
+        },
+        vat_lower_1: {
+            type: 'number',
+            title: 'Vat Lower 1',
+        },
+        vat_lower_2: {
+            type: 'number',
+            title: 'Vat Lower 2',
+        },
+        vat_lower_3: {
+            type: 'number',
+            title: 'Vat Lower 3',
+        },
+        vat_special: {
+            type: 'number',
+            title: 'Vat Special',
+        },
+        vat_zero: {
+            type: 'number',
+            title: 'Vat Zero',
+        },
+        id: {
+            type: 'string',
+            format: 'uuid',
+            title: 'Id',
+        },
+        languages: {
+            $ref: '#/components/schemas/ShopLanguages',
+        },
+    },
+    type: 'object',
+    required: [
+        'name',
+        'description',
+        'vat_standard',
+        'vat_lower_1',
+        'vat_lower_2',
+        'vat_lower_3',
+        'vat_special',
+        'vat_zero',
+        'id',
+        'languages',
+    ],
+    title: 'MyShopSchema',
+} as const;
+
 export const $MyShopsResponse = {
     properties: {
         shops: {
             items: {
-                $ref: '#/components/schemas/ShopSchema',
+                $ref: '#/components/schemas/MyShopSchema',
             },
             type: 'array',
             title: 'Shops',
@@ -3223,6 +3304,20 @@ export const $ProductCreate = {
         'translation',
     ],
     title: 'ProductCreate',
+} as const;
+
+export const $ProductImageUploadRequest = {
+    properties: {
+        content_type: {
+            type: 'string',
+            enum: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+            title: 'Content Type',
+            description: 'MIME type of the file you are going to upload.',
+        },
+    },
+    type: 'object',
+    required: ['content_type'],
+    title: 'ProductImageUploadRequest',
 } as const;
 
 export const $ProductResponse = {
@@ -5218,6 +5313,58 @@ export const $ShippingLine = {
     title: 'ShippingLine',
 } as const;
 
+export const $ShopAbout = {
+    properties: {
+        name: {
+            type: 'string',
+            title: 'Name',
+        },
+        main: {
+            $ref: '#/components/schemas/ShopAboutSlot',
+        },
+        alt1: {
+            $ref: '#/components/schemas/ShopAboutSlot',
+        },
+        alt2: {
+            $ref: '#/components/schemas/ShopAboutSlot',
+        },
+    },
+    type: 'object',
+    required: ['name', 'main', 'alt1', 'alt2'],
+    title: 'ShopAbout',
+    description:
+        'What a shop says about itself, per translation slot: the markdown of its storefront "About" page.',
+} as const;
+
+export const $ShopAboutSlot = {
+    properties: {
+        language_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Language Name',
+        },
+        about: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'About',
+        },
+    },
+    type: 'object',
+    title: 'ShopAboutSlot',
+} as const;
+
 export const $ShopCacheStatus = {
     properties: {
         modified_at: {
@@ -5426,6 +5573,56 @@ export const $ShopIp = {
     type: 'object',
     required: ['ip'],
     title: 'ShopIp',
+} as const;
+
+export const $ShopLanguageSlot = {
+    properties: {
+        language_name: {
+            anyOf: [
+                {
+                    type: 'string',
+                },
+                {
+                    type: 'null',
+                },
+            ],
+            title: 'Language Name',
+        },
+        enabled: {
+            type: 'boolean',
+            title: 'Enabled',
+            default: true,
+        },
+    },
+    type: 'object',
+    title: 'ShopLanguageSlot',
+} as const;
+
+export const $ShopLanguages = {
+    properties: {
+        main: {
+            $ref: '#/components/schemas/ShopLanguageSlot',
+            default: {
+                enabled: true,
+            },
+        },
+        alt1: {
+            $ref: '#/components/schemas/ShopLanguageSlot',
+            default: {
+                enabled: false,
+            },
+        },
+        alt2: {
+            $ref: '#/components/schemas/ShopLanguageSlot',
+            default: {
+                enabled: false,
+            },
+        },
+    },
+    type: 'object',
+    title: 'ShopLanguages',
+    description:
+        'Which real language each translation slot (`main_*`, `alt1_*`, `alt2_*`) holds in one shop.',
 } as const;
 
 export const $ShopSchema = {
